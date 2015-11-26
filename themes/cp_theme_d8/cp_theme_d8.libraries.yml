@@ -1,0 +1,18 @@
+global-css:
+  css:
+    theme:
+      css/cp_theme_d8.css: {}
+      css/bootstrap.min.css: {}
+      css/bootstrap-submenu.min.css: {}
+      
+global-js:     
+  js:
+    js/cp_theme_d8.js: {} 
+    js/bootstrap.min.js: {}
+    js/bootstrap-submenu.min.js: {}
+    
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery
+    - core/jquery.once

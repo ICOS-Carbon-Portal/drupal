@@ -1,0 +1,27 @@
+name: CP Theme
+description: 'A Carbon Portal D8 theme.'
+package: CP
+
+type: theme
+version: 1.0
+core: 8.x
+
+base theme: bartik
+screenshot: CP_Theme_D8.svg
+
+libraries:
+  - cp_theme_d8/global-css
+  - cp_theme_d8/global-js
+  
+regions:
+  header: Header
+  highlighted: Highlighted
+  breadcrumb: Breadcrumb
+  content: Content
+  sidebar_second: 'Sidebar second'
+  featured_bottom_first: 'Featured bottom first'
+  featured_bottom_second: 'Featured bottom second'
+  featured_bottom_third: 'Featured bottom third'
+  footer_first: 'Footer first'
+  footer_second: 'Footer second'
+  footer_third: 'Footer third'

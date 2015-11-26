@@ -1,0 +1,9 @@
+<?php
+
+function cp_theme_d8_preprocess_html(&$variables) {
+	
+	include ('menu/ListOfNodes.php');
+	$nodes = new ListOfNodes();
+	$variables['page']['cp_theme_d8_menu_elements'] = $nodes->getNodes();
+	 
+}
