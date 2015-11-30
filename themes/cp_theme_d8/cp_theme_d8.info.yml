@@ -16,7 +16,6 @@ libraries:
 regions:
   header: Header
   highlighted: Highlighted
-  breadcrumb: Breadcrumb
   content: Content
   sidebar_second: 'Sidebar second'
   featured_bottom_first: 'Featured bottom first'
