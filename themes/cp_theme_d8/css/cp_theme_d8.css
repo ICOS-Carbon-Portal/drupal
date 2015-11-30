@@ -68,22 +68,20 @@ body {
 
 @media all and (min-width: 800px) {
 	#cp_theme_d8_menu ul {
-		padding: 0;
+		padding: 0em 0em 0em 0.5em;
 		margin: 0;	
 		list-style: none;
     	list-style-image: none;
     	list-style-type: none;
-	}
-	
-	#cp_theme_d8_menu > ul {
-		margin: 0em 0em 0em 1em;	
+    	margin: 0em auto 0em auto;
+		max-width: 1290px;
 	}
 	
 	#cp_theme_d8_menu ul li {
 		display: block;
 		position: relative;
 		float: left;
-		background: #F06322;
+		background: #414042;
 	}
 	
 	#cp_theme_d8_menu li ul { 
@@ -100,15 +98,15 @@ body {
 	
 	#cp_theme_d8_menu ul li a:hover,
 	#cp_theme_d8_menu li:hover li a:hover {
-		color: #000000;
+		color: #ffffff;
 	}
 	
 	#cp_theme_d8_menu li:hover a {
-		background: #F06322;
+		background: #414042;
 	}
 	
 	#cp_theme_d8_menu li:hover li a:hover {
-		background: #f59a70;
+		background: #666468;
 	}
 	
 	#cp_theme_d8_menu li:hover > ul {
@@ -164,7 +162,7 @@ body {
 	
 	#cp_theme_d8_menu ul li {
 		display: block;
-		background: #F06322;
+		background: #414042;
 	}
 	
 	#cp_theme_d8_menu li ul { 
@@ -194,3 +192,29 @@ body {
 		margin-bottom: 0.2em;
 	}
 }
+
+#cp_theme_d8_menu_breadcrumbs {
+	background-color: #ffffff;
+}
+
+#cp_theme_d8_menu_breadcrumbs li {
+	list-style: none;
+   	list-style-image: none;
+   	list-style-type: none;
+   	display: inline;
+}
+
+#cp_theme_d8_menu_breadcrumbs a {
+	text-decoration: none;
+	padding: 0.4em 0.4em 0.4em 0em;
+	border: 0;
+	color: #414042;
+}
+
+#cp_theme_d8_menu_breadcrumbs span {
+	padding: 0em 0.4em 0em 0em;
+	color: #414042;
+}
+
+
+

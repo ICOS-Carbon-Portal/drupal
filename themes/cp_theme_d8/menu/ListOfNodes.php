@@ -4,14 +4,69 @@ include ('Node.php');
 
 class ListOfNodes {
 	
-	private $list_of_nodes = array();
+	private $nodes;
+	private $menu = array();
+	private $breadcrumbs = array();
 	
-	function getNodes() {
-
-		$nodes = $this->_prepare_nodes();
+	function __construct() {
+		$this->nodes = $this->_prepare_nodes();
+	}
+	
+	function getBreadcrumbs($active_path) {
 		
+		$active_node = null;
+		foreach ($this->nodes as $node) {
+		if ('/' . $node->getPath() == $active_path) {
+				$active_node = $node;
+			}
+		}
+		
+		if ($active_node != null && $active_node->getDepth() > '1') {
+			$in = 1;
+			$list[$in] = $active_node;
+			
+			$co = $active_node->getDepth();
+			while ($co > '1') {
+				foreach ($this->nodes as $node) {
+					if ($list[$in]->getParent() == $node->getId()) {
+						$list[$in + 1] = $node;
+					}
+				}
+				
+				$in ++;
+				$co --;
+			}
+			
+			$rev_list = array_reverse($list);
+			$this->breadcrumbs[] = '<ul>';
+			$in = count($rev_list) - 1;
+			foreach ($rev_list as $node) {
+				if ('/' . $node->getPath() != $active_path) {
+					
+					$delimiter = '';
+					if ($in > 1) {
+						$delimiter = '<span>&raquo;</span>';
+					}
+					
+					$url = $GLOBALS['base_url'] . '/';
+					$this->breadcrumbs[] = '<li><a href="' . $url . $node->getPath().'">' . $node->getTitle() . '</a>' . $delimiter . '</li>';
+					
+					$in --;
+				}
+			}
+			$this->breadcrumbs[] = '</ul>';
+			
+		} else {
+			$this->breadcrumbs[] = '';
+		}
+		
+		return implode($this->breadcrumbs);
+	}
+	
+	function getMenu() {
+
 		$top_nodes = array();
-		foreach ($nodes as $node) {
+		foreach ($this->nodes as $node) {
 			if ($node->getDepth() == '1') {
 				$top_nodes[] = $node;	
 			}
@@ -19,18 +74,18 @@ class ListOfNodes {
 		
 		if (count($top_nodes) > 1) { usort($top_nodes, array('ListOfNodes','_compare')); }
 		
-		$this->list_of_nodes[] = '<ul>';
+		$this->menu[] = '<ul>';
 		
 		foreach ($top_nodes as $node) {
-			$this->list_of_nodes[] = $this->_build_html($node, $output, $nodes);
+			$this->menu[] = $this->_build_menu($node, $output, $this->nodes);
 		}
 		
-		$this->list_of_nodes[] = '</ul>';
+		$this->menu[] = '</ul>';
 		
-		return implode('', $this->list_of_nodes);
+		return implode('', $this->menu);
 	}
 	
-	function _build_html($node, &$output, $nodes) {
+	function _build_menu($node, &$output, $nodes) {
 		
 		$url = $GLOBALS['base_url'] . '/';
 		
@@ -43,9 +98,9 @@ class ListOfNodes {
 				$title .= '<img src="/themes/custom/cp_theme_d8/images/arrow-down.svg">'; 
 			}
 			
-			$this->list_of_nodes[] = '<li class="' . $nodetype . '"><a href="#">'. $title . '</a>';
-			$this->list_of_nodes[] = '<ul>';
-			$this->list_of_nodes[] = '<li><a href="'. $url . $node->getPath() .'">'. $node->getTitle() .'</a></li>';
+			$this->menu[] = '<li class="' . $nodetype . '"><a href="#">'. $title . '</a>';
+			$this->menu[] = '<ul>';
+			$this->menu[] = '<li><a href="'. $url . $node->getPath() .'">'. $node->getTitle() .'</a></li>';
 			
 			$sub_nodes = array();
 			foreach ($nodes as $sub_node) {
@@ -57,15 +112,15 @@ class ListOfNodes {
 			if (count($sub_nodes) > 1) { usort($sub_nodes, array('ListOfNodes','_compare')); }
 			
 			foreach ($sub_nodes as $sub_node) {
-				$this->_build_html($sub_node, $output, $nodes);
+				$this->_build_menu($sub_node, $output, $nodes);
 			}
 			
-			$this->list_of_nodes[] = '</ul>';
-			$this->list_of_nodes[] = '</li>';
+			$this->menu[] = '</ul>';
+			$this->menu[] = '</li>';
 			
 			
 		} else {
-			$this->list_of_nodes[] = '<li><a href="'. $url . $node->getPath() .'">'. $node->getTitle() .'</a></li>';
+			$this->menu[] = '<li><a href="'. $url . $node->getPath() .'">'. $node->getTitle() .'</a></li>';
 		}
 	}
 	
