@@ -1,7 +1,7 @@
 /** Body **/
 body {
 	font-family: "Open Sans",sans-serif !important;
-	background-color: #292929 !important;
+	background-color: #414042 !important;
 }
 
 /** Header **/
@@ -217,4 +217,87 @@ body {
 }
 
 
+/** Footer **/
+.site-footer {
+	padding: 0;
+	background: #414042;
+}
+
+.site-footer__top .region,
+.region-footer-first, 
+.region-footer-first,
+.region-footer-first {
+	width: 33%;
+}
+
+.region-footer-first h3,
+.region-footer-second h3,
+.region-footer-third h3 {
+	font-size: 2.2rem;
+	color: #f2f2f2;
+}
+
+.region-footer-first p,
+.region-footer-second p,
+.region-footer-third p {
+	font-size: 1.5rem;
+	color: #f2f2f2;
+}
+
+.site-footer .content a,
+.site-footer .content a.is-active {
+	color: #0A96F0;
+	text-decoration: none;
+	border: 0;
+}
+
+.site-footer .block {
+	border: 0;
+	padding: 0;
+}
+
+.region-footer-second a.footer-button {
+	background-color: #0A96F0;
+	font-size: 1.4rem;
+	color: #FFF;
+	text-decoration: none;
+	text-transform: uppercase;
+	display: inline-block;
+	border: medium none;
+	cursor: pointer;
+	padding: 1.6rem 6rem;
+	margin: 1rem 1rem 1rem 0px;
+	border-radius: 0.2rem;
+	background-clip: padding-box;
+}
+
+.region-footer-third a.footer-link {
+	color: #0A96F0;
+	font-size: 1.4rem;
+	display: inline-block;
+	cursor: pointer;
+	padding: 0.5rem 0px;
+	margin-left: 1rem;
+	position: relative;
+	text-transform: uppercase;
+}
+
+.region-footer-third a.footer-link::after {
+	border-style: solid;
+	border-color: transparent transparent transparent #0A96F0;
+	-moz-border-top-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	border-image: none;
+	content: " ";
+	height: 0px;
+	width: 0px;
+	position: absolute;
+	pointer-events: none;
+	border-width: 0.7rem;
+	right: 100%;
+	top: 50%;
+	margin-top: -0.5rem;	
+}
 
