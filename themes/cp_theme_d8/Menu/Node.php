@@ -1,8 +1,5 @@
 <?php
 
-/**
- *
- */
 class Node {
 
 	private $id;

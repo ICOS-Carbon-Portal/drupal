@@ -3,7 +3,6 @@ description: 'A Carbon Portal D8 theme.'
 package: CP
 
 type: theme
-version: 1.0
 core: 8.x
 
 base theme: bartik

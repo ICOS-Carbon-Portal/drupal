@@ -16,7 +16,7 @@ class ListOfNodes {
 		
 		$active_node = null;
 		foreach ($this->nodes as $node) {
-		if ('/' . $node->getPath() == $active_path) {
+			if ('/' . $node->getPath() == $active_path) {
 				$active_node = $node;
 			}
 		}
@@ -56,15 +56,18 @@ class ListOfNodes {
 			}
 			$this->breadcrumbs[] = '</ul>';
 			
-		} else {
+		} 
+		
+		else {
 			$this->breadcrumbs[] = '';
 		}
 		
 		return implode($this->breadcrumbs);
+		
 	}
 	
 	function getMenu() {
-
+		
 		$top_nodes = array();
 		foreach ($this->nodes as $node) {
 			if ($node->getDepth() == '1') {
@@ -83,6 +86,7 @@ class ListOfNodes {
 		$this->menu[] = '</ul>';
 		
 		return implode('', $this->menu);
+		
 	}
 	
 	function _build_menu($node, &$output, $nodes) {
@@ -118,14 +122,16 @@ class ListOfNodes {
 			$this->menu[] = '</ul>';
 			$this->menu[] = '</li>';
 			
-			
-		} else {
+		} 
+		
+		else {
 			$this->menu[] = '<li><a href="'. $url . $node->getPath() .'">'. $node->getTitle() .'</a></li>';
 		}
+		
 	}
 	
 	static function _compare($a, $b) {
-	
+		
 		if ($a->getId() == $b->getId()) {
 			return 0;
 		}
@@ -136,9 +142,11 @@ class ListOfNodes {
 		}
 		
 		return $a->getWeight() > $b->getWeight() ? 1 : -1;
+		
 	}
 	
 	function _prepare_nodes() {
+		
 		$nodes = array();
 		
 		foreach ($this->_collect_nodes() as $node) {
@@ -161,6 +169,7 @@ class ListOfNodes {
 		}
 		
 		return $nodes;
+		
 	}
 		
 	function _collect_nodes() {
@@ -191,7 +200,7 @@ class ListOfNodes {
 			}
 		}
 
-		return $list;
+		return $list;	
 		
 	}
 	
@@ -215,5 +224,6 @@ class ListOfNodes {
 		}
 
 		return $node;
+		
 	}
 }

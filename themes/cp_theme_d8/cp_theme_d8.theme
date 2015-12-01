@@ -2,16 +2,12 @@
 
 function cp_theme_d8_preprocess_page(&$variables, $hook) {
 	
-	include ('menu/ListOfNodes.php');
+	include ('Menu/ListOfNodes.php');
 	$nodes = new ListOfNodes();
 	
 	$variables['cp_theme_d8_menu_elements'] = $nodes->getMenu();
 	
 	$variables['cp_theme_d8_menu_breadcrumbs'] = $nodes->getBreadcrumbs(\Drupal::request()->getRequestUri());
-	
-	
-	
-	
 	 
 }
 
