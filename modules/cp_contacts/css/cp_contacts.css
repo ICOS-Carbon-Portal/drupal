@@ -1,0 +1,39 @@
+#cp_contacts {
+	
+}
+
+#cp_contacts .contact {
+	
+}
+
+#cp_contacts .region-left {
+	width: 100px;	
+}
+
+#cp_contacts .region-right {
+	position: relative;
+	bottom: 95px;
+	left: 120px;
+}
+
+#cp_contacts .name,
+#cp_contacts .title,
+#cp_contacts .organization,
+#cp_contacts .email {
+	padding-bottom: 1rem;
+}
+
+#cp_contacts .name {
+	font-size: 1.8rem;
+	line-height: 1.7rem;	
+}
+
+#cp_contacts .title,
+#cp_contacts .organization {
+	text-transform: none;
+}
+
+#cp_contacts .email a,
+#cp_contacts .phone a {
+	border-bottom: 0px;
+}

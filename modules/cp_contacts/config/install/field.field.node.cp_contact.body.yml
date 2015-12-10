@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.cp_contact
+  module:
+    - text
+id: node.cp_contact.body
+field_name: body
+entity_type: node
+bundle: cp_contact
+label: 'Body'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.cp_contact.body
+    - node.type.cp_contact
+  module:
+    - text
+    - user
+id: node.cp_contact.teaser
+targetEntityType: node
+bundle: cp_contact
+mode: teaser
+content:
+hidden:
+  body: true
+  links: true

@@ -1,0 +1,27 @@
+<?php
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function cp_contacts_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+	case 'help.page.cp_contacts':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('CP Contacts Module') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function cp_contacts_theme() {
+  $theme = [];
+
+  return $theme;
+}

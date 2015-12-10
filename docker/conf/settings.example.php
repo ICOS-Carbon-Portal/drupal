@@ -20,4 +20,6 @@ $settings['trusted_host_patterns'] = array(
 	'^url_to_site$',
 );
 
+$settings['file_public_path'] = 'sites/default/files';
+
 

@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cp_contact_email
+    - node.type.cp_contact
+id: node.cp_contact.field_cp_contact_email
+field_name: field_cp_contact_email
+entity_type: node
+bundle: cp_contact
+label: 'Email'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

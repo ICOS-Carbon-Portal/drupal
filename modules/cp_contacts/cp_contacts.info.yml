@@ -1,0 +1,10 @@
+name: CP Contacts
+description: Carbon Portal contacts fields and list.
+package: CP
+
+type: module
+core: 8.x
+
+libraries:
+  - cp_contacts/style
+  - cp_contacts/script

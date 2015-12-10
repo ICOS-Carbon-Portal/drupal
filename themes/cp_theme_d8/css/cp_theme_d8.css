@@ -1,7 +1,10 @@
 /** Body **/
 body {
-	font-family: "Open Sans",sans-serif !important;
 	background-color: #414042 !important;
+	font-size: 0.9rem;
+	line-height: 1.35rem;
+	color: #414042;	
+	font-family: "Open Sans",sans-serif !important;	
 }
 
 /** Header **/

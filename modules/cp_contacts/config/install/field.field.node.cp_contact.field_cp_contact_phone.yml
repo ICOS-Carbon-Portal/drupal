@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cp_contact_phone
+    - node.type.cp_contact
+id: node.cp_contact.field_cp_contact_phone
+field_name: field_cp_contact_phone
+entity_type: node
+bundle: cp_contact
+label: 'Phone'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

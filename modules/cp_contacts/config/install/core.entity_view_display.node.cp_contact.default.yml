@@ -1,0 +1,74 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.cp_contact.field_cp_contact_name
+    - field.field.node.cp_contact.field_cp_contact_email
+    - field.field.node.cp_contact.field_cp_contact_phone
+    - field.field.node.cp_contact.field_cp_contact_photo
+    - field.field.node.cp_contact.field_cp_contact_organization
+    - field.field.node.cp_contact.field_cp_contact_title
+    - field.field.node.cp_contact.field_cp_contact_index
+    - node.type.cp_contact
+  module:
+    - image
+    - text
+    - user
+id: node.cp_contact.default
+targetEntityType: node
+bundle: cp_contact
+mode: default
+content:
+  field_cp_contact_name:
+    weight: 102
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_cp_contact_email:
+    weight: 103
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+  field_cp_contact_phone:
+    weight: 104
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_cp_contact_photo:
+    weight: 105
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_cp_contact_organization:
+    weight: 106
+    label: above
+    settings: { }
+    third_party_settings: {  }
+    type: list_default
+  field_cp_contact_title:
+    weight: 107
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_cp_contact_index:
+    weight: 108
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+hidden:
+  body: true
+  links: true
+
