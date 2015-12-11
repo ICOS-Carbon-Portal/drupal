@@ -17,17 +17,7 @@ if [ "$1" ]
 then
     if [ "$1" == "up" ]
     then
-    	
-    	if [ -f container_is_build ] 
-    	then
-    		docker-compose -p $PREFIX start
-    		 
-    	else
-    		docker-compose -p $PREFIX up -d
-    		touch container_is_build
-    		
-    	fi
-    	
+    	docker-compose -p $PREFIX up -d --no-recreate
     elif [ "$1" == "start" ]
     then
         docker-compose -p $PREFIX start

@@ -1,4 +1,4 @@
-# Based on https://github.com/docker-library/drupal/blob/898b3178e7d1737347fe0602726b38c4bb300330/8/Dockerfile
+# Based on https://github.com/docker-library/drupal/
 
 from php:5.6-apache
 
