@@ -33,6 +33,14 @@
 	text-transform: none;
 }
 
+#cp_contacts .title {
+        font-size: 85%;
+}
+
+#cp_contacts .organization {
+	font-size: 80%;
+}
+
 #cp_contacts .email a,
 #cp_contacts .phone a {
 	border-bottom: 0px;

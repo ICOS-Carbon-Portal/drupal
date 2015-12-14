@@ -3,7 +3,7 @@
   Drupal.behaviors.cp_contacts = {
     attach: function(context, settings) {
       
-    	if ($(window).width() > 1299) {
+    	if ($(window).width() > 1199) {
 			placeMaxSize();
 			
 		} else {
