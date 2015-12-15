@@ -20,6 +20,11 @@ run { \
 		echo 'opcache.fast_shutdown=1'; \
 		echo 'opcache.enable_cli=1'; \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
+	
+run { \
+		echo 'upload_max_filesize=10M'; \
+		echo 'post_max_size=10M'; \
+	} > /usr/local/etc/php/conf.d/php-conf.ini
 
 
 workdir /var/www/html
@@ -52,11 +57,4 @@ run chown www-data:www-data -R /var/www/html/sites/ \
 	&& ln -s /drupal_files/themes/ /var/www/html/themes/custom \
 	&& ln -s /drupal_files/modules/ /var/www/html/modules/custom \
 	&& mkdir /var/www/html/sites/default/files \
-	&& ln -s /drupal_files/public_files/ /var/www/html/sites/default/files/cp \
-	&& chown www-data:www-data -R /var/www/html/sites/default/files		
-
-	
-	
-
-	
-
+	&& chown www-data:www-data -R /var/www/html/sites/default/files	
