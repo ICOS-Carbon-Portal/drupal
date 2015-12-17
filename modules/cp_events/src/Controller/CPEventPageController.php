@@ -48,6 +48,10 @@ class CPEventPageController extends ControllerBase {
 	  		if ($event->getPictureTitle() != null || $event->getPictureTitle() != '') { $picture_title = $event->getPictureTitle(); }
 	  					
 	  		$output .= '<div class="text"><img src="' . $picture_url . '" alt="' . $picture_title . '" title="' . $picture_title . '" />' . $event->getText() . '</div>';
+	  	
+	  	} else {
+	  		$output .= '<div class="text">' . $event->getText() . '</div>';
+	  		
 	  	}
   
   		if ($event->getLinkUrl() != null || $event->getLinkUrl() != '') {
