@@ -21,8 +21,13 @@ class CPEventPageController extends ControllerBase {
 	  	}
 	  	
 	    return array(
-	        '#type' => 'markup',
 	        '#markup' => $this->_build_html($event),
+	    	'#attached' => array(
+	    		'library' =>  array(
+	    			'cp_events/style',
+	    			'cp_events/script'
+	    		),
+	    	),
 	    );
 	}
   
