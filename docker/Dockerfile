@@ -42,10 +42,8 @@ run curl -fSL "http://ftp.drupal.org/files/projects/drupal-${DRUPAL_VERSION}.tar
 
 run curl -sS https://getcomposer.org/installer | php \
 	&& mv composer.phar /usr/local/bin/composer \
-	&& composer global require drush/drush:8.x
 	
 env PATH /root/.composer/vendor/bin:$PATH
-env DRUSH_PHP /usr/local/bin/php
 
 
 copy /conf/settings.php /var/www/html/sites/default/settings.php
