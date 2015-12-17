@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cp_event_from_date
+    - node.type.cp_event
+  module:
+    - datetime
+id: node.cp_event.field_cp_event_from_date
+field_name: field_cp_event_from_date
+entity_type: node
+bundle: cp_event
+label: Start of the event
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime
