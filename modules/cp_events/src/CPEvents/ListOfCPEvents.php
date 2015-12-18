@@ -33,19 +33,13 @@ class ListOfCpEvents {
 	
 	static function _compare($a, $b) {
 	
-		if (($a->getFromDate() != null || $a->getFromDate() != '')
-				&& ($b->getFromDate() != null || $b->getFromDate() != '')) {
-					
-			if ($a->getFromDate() == $b->getFromDate()) {
-				return $a->getChanged() < $b->getChanged() ? 1 : -1;
-			}
-	
-			return $a->getFromDate() > $b->getFromDate() ? 1 : -1;
-		}
+		$comp_a = $a->getChanged();
+		if (($a->getFromDate() != null || $a->getFromDate() != '')) { $comp_a = $a->getFromDate(); }
 		
-		else {
-			return $a->getChanged() < $b->getChanged() ? 1 : -1;
-		}
+		$comp_b = $b->getChanged();
+		if (($b->getFromDate() != null || $b->getFromDate() != '')) { $comp_b = $b->getFromDate(); }
+		
+		return $comp_a < $comp_b ? 1 : -1;
 	}
 	
 	function _collect_events() {
