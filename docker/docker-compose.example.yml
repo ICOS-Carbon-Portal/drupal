@@ -7,7 +7,7 @@ drupal:
   volumes:
    - ../themes:/drupal_files/themes
    - ../modules:/drupal_files/modules
-   - ../public_files:/drupal_files/public_files
+   - ../files:/drupal_files/files
 mariadb:
   image: mariadb:10.0.21
   ports:
