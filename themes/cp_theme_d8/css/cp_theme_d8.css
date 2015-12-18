@@ -304,3 +304,8 @@ body {
 	margin-top: -0.5rem;	
 }
 
+
+/** Page **/
+h1.page-title {
+	color: #F06322;
+}
