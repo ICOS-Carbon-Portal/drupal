@@ -2,15 +2,12 @@
 
 from php:5.6-apache
 
-
 run a2enmod rewrite
-
 
 run apt-get update && apt-get install -y libpng12-dev libjpeg-dev libpq-dev git vim \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
 	&& docker-php-ext-install gd mbstring opcache pdo pdo_mysql pdo_pgsql
-
 
 run { \
 		echo 'opcache.memory_consumption=128'; \
@@ -26,9 +23,7 @@ run { \
 		echo 'post_max_size=10M'; \
 	} > /usr/local/etc/php/conf.d/php-conf.ini
 
-
 workdir /var/www/html
-
 
 env DRUPAL_VERSION 8.0.0
 env DRUPAL_MD5 92ce9a54fa926b58032a4e39b0f9a9f1
@@ -39,16 +34,8 @@ run curl -fSL "http://ftp.drupal.org/files/projects/drupal-${DRUPAL_VERSION}.tar
 	&& rm drupal.tar.gz \
 	&& chown -R www-data:www-data sites
 
-
-run curl -sS https://getcomposer.org/installer | php \
-	&& mv composer.phar /usr/local/bin/composer \
-	
-env PATH /root/.composer/vendor/bin:$PATH
-
-
 copy /conf/settings.php /var/www/html/sites/default/settings.php
 copy /conf/services.yml /var/www/html/sites/default/services.yml
-
 
 run chown www-data:www-data -R /var/www/html/sites/ \
 	&& chmod 664 /var/www/html/sites/default/settings.php \

@@ -18,8 +18,6 @@ $settings['trusted_host_patterns'] = array(
 		'^url_to_site$',
 );
 
-#$settings['file_public_base_url'] = 'https://site.address/files';
-
 $settings['container_yamls'][] = __DIR__ . '/services.yml';
 
 
