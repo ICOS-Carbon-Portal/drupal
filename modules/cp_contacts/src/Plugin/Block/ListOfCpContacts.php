@@ -73,6 +73,7 @@ class ListOfCpContacts extends BlockBase {
 		$list = array();
 		
 		foreach ($this->_collect_contacts() as $c) {
+			$c = $this->_add_name($c);
 			$c = $this->_add_email($c);
 			$c = $this->_add_phone($c);
 			$c = $this->_add_photo($c);
@@ -104,24 +105,46 @@ class ListOfCpContacts extends BlockBase {
 		$list = array();
 		
 		$result = db_query('
-			select entity_id, field_cp_contact_name_value	
-			from {node__field_cp_contact_name}
-			'
-		
+			select nid 	
+			from {node}
+			where type = :type
+			',
+				
+			array(':type' => 'cp_contact')
 		)->fetchAll();
 		
 		
 		foreach ($result as $record) {
 			if ($record) {
 				$contact = new Contact();
-				$contact->setId($record->entity_id);
-				$contact->setName($record->field_cp_contact_name_value);
+				$contact->setId($record->nid);
 				
 				$list[] = $contact;
 			}
 		}
 		
 		return $list;	
+	}
+	
+	function _add_name($contact) {
+	
+		$result = db_query('
+			select field_cp_contact_name_value
+			from {node__field_cp_contact_name}
+			where entity_id = :id
+			',
+	
+			array(':id' => $contact->getId())
+		)->fetchAll();
+	
+	
+		foreach ($result as $record) {
+			if ($record) {
+				$contact->setName($record->field_cp_contact_name_value);
+			}
+		}
+	
+		return $contact;
 	}
 	
 	function _add_email($contact) {

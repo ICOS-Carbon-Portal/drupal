@@ -15,6 +15,7 @@ class ListOfCpEvents {
 		$list = array();
 		
 		foreach ($this->_collect_events() as $c) {
+			$c = $this->_add_heading($c);
 			$c = $this->_add_text($c);
 			$c = $this->_add_picture($c);
 			$c = $this->_add_link($c);
@@ -47,24 +48,47 @@ class ListOfCpEvents {
 		$list = array();
 		
 		$result = db_query('
-			select entity_id, field_cp_event_heading_value	
-			from {node__field_cp_event_heading}
-			'
-		
+			select nid	
+			from {node}
+			where type = :type
+			',
+			
+			array(':type' => 'cp_event')
 		)->fetchAll();
 		
 		
 		foreach ($result as $record) {
 			if ($record) {
 				$event = new Event();
-				$event->setId($record->entity_id);
-				$event->setHeading($record->field_cp_event_heading_value);
+				$event->setId($record->nid);
+				
 				
 				$list[] = $event;
 			}
 		}
 		
 		return $list;	
+	}
+
+	function _add_heading($event) {
+	
+		$result = db_query('
+			select field_cp_event_heading_value
+			from {node__field_cp_event_heading}
+			where entity_id = :id
+			',
+	
+			array(':id' => $event->getId())
+		)->fetchAll();
+	
+	
+		foreach ($result as $record) {
+			if ($record) {
+				$event->setHeading($record->field_cp_event_heading_value);
+			}
+		}
+	
+		return $event;
 	}
 	
 	function _add_text($event) {
