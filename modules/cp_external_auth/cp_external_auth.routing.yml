@@ -1,0 +1,7 @@
+cp_external_auth.login:
+  path: '/cp_login'
+  defaults:
+    _controller: '\Drupal\cp_external_auth\Controller\ExternalAuth::initialize'
+    _title: ''
+  requirements:
+    _permission: 'access content'

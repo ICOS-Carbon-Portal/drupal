@@ -1,0 +1,6 @@
+name: CP External Authentication
+description: Carbon Portal external authentication.
+package: CP
+
+type: module
+core: 8.x
