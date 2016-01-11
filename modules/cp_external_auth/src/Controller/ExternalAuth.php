@@ -21,8 +21,8 @@ class ExternalAuth {
 		if ($request->query->has('login')) {
 			
 			if (($request->query->get('givenName') != null && $request->query->get('givenName') != '')
-				&& $request->query->get('surname') != null && $request->query->get('surname') != ''
-				&& $request->query->get('mail') != null && $request->query->get('mail') != '' && $this->checkEmail($request->query->get('mail'))) {
+				&& ($request->query->get('surname') != null && $request->query->get('surname') != '')
+				&& ($request->query->get('mail') != null && $request->query->get('mail') != '' && $this->checkEmail($request->query->get('mail')))) {
 				
 					$username = $this->buildUsername($request->query->get('givenName'), $request->query->get('surname'), $request->query->get('mail'));
 					
