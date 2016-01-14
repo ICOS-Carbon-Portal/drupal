@@ -4,4 +4,12 @@ cp_external_auth.login:
     _controller: '\Drupal\cp_external_auth\Controller\ExternalAuth::initialize'
     _title: ''
   requirements:
+    _permission: 'access external_auth login'
+    
+cp_external_auth.logout:
+  path: '/user/logout'
+  defaults:
+    _controller: '\Drupal\cp_external_auth\Controller\Logout::leave'
+    _title: ''
+  requirements:
     _permission: 'access content'

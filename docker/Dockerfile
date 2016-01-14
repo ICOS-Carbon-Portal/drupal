@@ -21,6 +21,7 @@ run { \
 run { \
 		echo 'upload_max_filesize=10M'; \
 		echo 'post_max_size=10M'; \
+		echo 'date.timezone=UTC'; \
 	} > /usr/local/etc/php/conf.d/php-conf.ini
 
 workdir /var/www/html
