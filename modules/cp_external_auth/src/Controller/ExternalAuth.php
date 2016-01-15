@@ -18,23 +18,25 @@ class ExternalAuth {
 		
 		$request = \Drupal::request();
 		
-		if (($request->query->get('givenName') != null && $request->query->get('givenName') != '')
-			&& ($request->query->get('surname') != null && $request->query->get('surname') != '')
-			&& ($request->query->get('mail') != null && $request->query->get('mail') != '' && $this->checkEmail($request->query->get('mail')))) {
+		if ($request->query->get('login') != null && $request->query->get('login') == '1') {
+			if (($request->query->get('givenName') != null && $request->query->get('givenName') != '')
+				&& ($request->query->get('surname') != null && $request->query->get('surname') != '')
+				&& ($request->query->get('mail') != null && $request->query->get('mail') != '' && $this->checkEmail($request->query->get('mail')))) {
+				
+					$username = $this->buildUsername($request->query->get('givenName'), $request->query->get('surname'), $request->query->get('mail'));
+					
+					$user = user_load_by_name($username);
+					
+					if ($user == false) {
+						$user = $this->createUser($username, $request->query->get('mail'));
+					}
+					
+					if ($user != null) {
+						user_login_finalize($user);	
+					}
 			
-				$username = $this->buildUsername($request->query->get('givenName'), $request->query->get('surname'), $request->query->get('mail'));
-				
-				$user = user_load_by_name($username);
-				
-				if ($user == false) {
-					$user = $this->createUser($username, $request->query->get('mail'));
-				}
-				
-				if ($user != null) {
-					user_login_finalize($user);	
-				}
-		
-		} 
+			}
+		}
 		
 		$response = new RedirectResponse('/node/1');
 		return $response;	
