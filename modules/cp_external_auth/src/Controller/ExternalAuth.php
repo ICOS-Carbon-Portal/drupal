@@ -31,11 +31,6 @@ class ExternalAuth {
 				}
 				
 				if ($user != null) {
-					
-					if (! \Drupal::currentUser()->isAnonymous()) {
-						user_logout();
-					}
-					
 					user_login_finalize($user);	
 				}
 		
