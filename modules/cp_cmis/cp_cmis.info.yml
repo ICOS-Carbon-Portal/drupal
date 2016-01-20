@@ -1,0 +1,10 @@
+name: CP CMIS
+description: Carbon Portal CMIS integration.
+package: CP
+
+type: module
+core: 8.x
+
+libraries:
+  - cp_cmis/style
+  - cp_cmis/script

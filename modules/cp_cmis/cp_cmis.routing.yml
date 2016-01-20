@@ -1,0 +1,15 @@
+cp_cmis.settings:
+  path: '/admin/config/cp_cmis_settings'
+  defaults:
+    _form: '\Drupal\cp_cmis\CMIS\Settings'
+    _title: 'CP CMIS Settings'
+  requirements:
+    _permission: 'administer site configuration'
+    
+cp_cmis.fetcher:
+  path: '/fetch/{id}'
+  defaults:
+    _controller: '\Drupal\cp_cmis\Controller\CMISResourceFetcher::fetch'
+    _title: ''
+  requirements:
+    _permission: 'access content'    
