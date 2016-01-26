@@ -42,41 +42,58 @@ class ListOfTeasedCpEvents extends BlockBase {
 	
 		$url = $GLOBALS['base_url'] . '/' . PublicStream::basePath() . '/';
 	
+		$old_date = strtotime('-7 days', strtotime(date('Y-m-d')));
+		
 		$co = 0;
 		foreach ($list as $e) {
 			
 			if ($co < $counter && $e->getNews() == 0 && $e->getHistorical() == 0) {	
 				
-				$output .= '<div class="tease-event">';
-				
+				$from_date = '';
 				if ($e->getFromDate() != null || $e->getFromDate() != '') {
-					$output .= '<div class="from_date">' . $e->getFromDate() . '</div>';
+					$from_date = $e->getFromDate();
+						
+				} else {
+					$from_date = date('Y-m-d', $e->getCreated());
 				}
 				
-				$output .= '<div class="heading"><a href="/event/'.$e->getId().'">' . $e->getHeading() . '</a></div>';
+				$to_date = '';
+				if ($e->getToDate() != null || $e->getToDate() != '') {
+					$to_date = ' -- ' . $e->getToDate();
 				
-				if ($e->getPictureUrl() != null || $e->getPictureUrl() != '') {
-					$picture_url = $url . str_replace('public://', '', $e->getPictureUrl());
+				}
+				
+				if (strtotime($from_date) > $old_date) {
+						
+					$output .= '<div class="tease-event">';
 					
-					$picture_title = '';
-					if ($e->getPictureTitle() != null || $e->getPictureTitle() != '') { $picture_title = $e->getPictureTitle(); }
+					$output .= '<div class="from_date">' . $from_date . $to_date . '</div>';
 					
-					$output .= '<div class="picture">';
-					$output .= '<img src="' . $picture_url . '" alt="' . $picture_title . '" title="' . $picture_title . '" />';
+					$output .= '<div class="heading"><a href="/event/'.$e->getId().'">' . $e->getHeading() . '</a></div>';
+					
+					if ($e->getPictureUrl() != null || $e->getPictureUrl() != '') {
+						$picture_url = $url . str_replace('public://', '', $e->getPictureUrl());
+						
+						$picture_title = '';
+						if ($e->getPictureTitle() != null || $e->getPictureTitle() != '') { $picture_title = $e->getPictureTitle(); }
+						
+						$output .= '<div class="picture">';
+						$output .= '<img src="' . $picture_url . '" alt="' . $picture_title . '" title="' . $picture_title . '" />';
+						$output .= '</div>';
+					}
+					
+					$text = $e->getText();
+					if (strlen($e->getText()) > 199 ) {
+						$text = substr($e->getText(), 0, 199);
+						$text .= '<br/><a href="/event/' . $e->getId() . '">Read more..</a>';
+					}
+					
+					$output .= '<div class="text">' . $text . '</div>';
+						
 					$output .= '</div>';
-				}
-				
-				$text = $e->getText();
-				if (strlen($e->getText()) > 199 ) {
-					$text = substr($e->getText(), 0, 199);
-					$text .= '<br/><a href="/event/' . $e->getId() . '">Read more..</a>';
-				}
-				
-				$output .= '<div class="text">' . $text . '</div>';
 					
-				$output .= '</div>';
-				
-				$co ++;
+					$co ++;
+				}
 			}	
 		}
 	

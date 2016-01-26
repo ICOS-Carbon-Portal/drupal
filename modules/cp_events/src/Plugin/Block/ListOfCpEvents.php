@@ -43,9 +43,21 @@ class ListOfCpEvents extends BlockBase {
 				
 				$output .= '<div class="full-event">';
 			
+				$from_date = '';
 				if ($e->getFromDate() != null || $e->getFromDate() != '') {
-					$output .= '<div class="from_date">' . $e->getFromDate() . '</div>';
+					$from_date = $e->getFromDate();
+					
+				} else {
+					$from_date = date('Y-m-d', $e->getCreated());
 				}
+				
+				$to_date = '';
+				if ($e->getToDate() != null || $e->getToDate() != '') {
+					$to_date = ' -- ' . $e->getToDate();
+				
+				}
+				
+				$output .= '<div class="from_date">' . $from_date . $to_date . '</div>';
 				
 				$output .= '<div class="heading"><a href="/event/'.$e->getId().'">' . $e->getHeading() . '</a></div>';
 				

@@ -49,9 +49,15 @@ class ListOfTeasedCpEventsAsNews extends BlockBase {
 				
 				$output .= '<div class="tease-event">';
 				
+				$date = '';
 				if ($e->getFromDate() != null || $e->getFromDate() != '') {
-					$output .= '<div class="from_date">' . $e->getFromDate() . '</div>';
+					$date = $e->getFromDate();
+				
+				} else {
+					$date = date('Y-m-d', $e->getChanged());
 				}
+				
+				$output .= '<div class="from_date">' . $date . '</div>';
 				
 				$output .= '<div class="heading"><a href="/event/'.$e->getId().'">' . $e->getHeading() . '</a></div>';
 				

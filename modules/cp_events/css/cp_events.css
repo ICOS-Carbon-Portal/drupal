@@ -109,3 +109,12 @@
 		max-width: 200px;
 	}
 }
+
+.layout-main-wrapper {
+        min-height: 0px !important;
+}
+
+.featured-bottom {
+        background: rgba(255,255,255,1) !important;
+        border-top: 0 !important;
+}
