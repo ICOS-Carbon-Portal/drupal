@@ -13,7 +13,9 @@ class Event {
 	private $link_title;
 	private $from_date;
 	private $to_date;
+	private $news;
 	private $historical;
+	private $deprecated;
 	private $created;
 	private $changed;
 	
@@ -90,7 +92,7 @@ class Event {
 	}
 	
 	public function setFromDate($from_date) {
-		$this->from_date= $from_date;
+		$this->from_date = $from_date;
 	}
 	
 	public function getToDate() {
@@ -98,7 +100,15 @@ class Event {
 	}
 	
 	public function setToDate($to_date) {
-		$this->to_date= $to_date;
+		$this->to_date = $to_date;
+	}
+	
+	public function getNews() {
+		return $this->news;
+	}
+	
+	public function setNews($news) {
+		$this->news = $news;
 	}
 	
 	public function getHistorical() {
@@ -106,7 +116,15 @@ class Event {
 	}
 	
 	public function setHistorical($historical) {
-		$this->historical= $historical;
+		$this->historical = $historical;
+	}
+	
+	public function getDeprecated() {
+		return $this->deprecated;
+	}
+	
+	public function setDeprecated($deprecated) {
+		$this->deprecated = $deprecated;
 	}
 	
 	public function getCreated() {
@@ -114,7 +132,7 @@ class Event {
 	}
 	
 	public function setCreated($created) {
-		$this->created= $created;
+		$this->created = $created;
 	}
 	
 	public function getChanged() {

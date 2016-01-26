@@ -3,15 +3,15 @@
 namespace Drupal\cp_events\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\cp_events\CPEvents\ListOfCPEvents;
+use Drupal\cp_events\CPEvents\ListOfEvents;
 use Drupal\Core\StreamWrapper\PublicStream;
 
 class CPEventPageController extends ControllerBase {
 	
 	public function content($event_id) {
 	  	
-	  	$listOfCPEvents = new ListOfCPEvents();
-	  	$list = $listOfCPEvents->getListOfEvents();
+	  	$listOfEvents = new ListOfEvents();
+	  	$list = $listOfEvents->getListOfEvents();
 	  	
 	  	$event = null;
 	  	foreach ($list as $e) {

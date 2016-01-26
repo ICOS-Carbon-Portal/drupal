@@ -11,7 +11,7 @@ field_name: field_cp_event_from_date
 entity_type: node
 bundle: cp_event
 label: Start of the event
-description: ''
+description: 'If start date is filled the date will be used in sorting functions, otherwise creating/changed date will be used.'
 required: false
 translatable: false
 default_value: {  }

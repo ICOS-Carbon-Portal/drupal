@@ -4,7 +4,7 @@ namespace Drupal\cp_events\CPEvents;
 
 use Drupal\cp_events\CPEvents\Event;
 
-class ListOfCpEvents {
+class ListOfEvents {
 	
 	function getListOfEvents() {
 		return $this->_prepare_events();
@@ -21,26 +21,14 @@ class ListOfCpEvents {
 			$c = $this->_add_link($c);
 			$c = $this->_add_from_date($c);
 			$c = $this->_add_to_date($c);
+			$c = $this->_add_news($c);
 			$c = $this->_add_historical($c);
 			$c = $this->_add_created($c);
 				
 			$list[] = $c;
 		}
 		
-		usort($list, array($this,'_compare'));
-		
 		return $list;
-	}
-	
-	static function _compare($a, $b) {
-	
-		$comp_a = $a->getChanged();
-		if (($a->getFromDate() != null || $a->getFromDate() != '')) { $comp_a = $a->getFromDate(); }
-		
-		$comp_b = $b->getChanged();
-		if (($b->getFromDate() != null || $b->getFromDate() != '')) { $comp_b = $b->getFromDate(); }
-		
-		return $comp_a < $comp_b ? 1 : -1;
 	}
 	
 	function _collect_events() {
@@ -48,9 +36,10 @@ class ListOfCpEvents {
 		$list = array();
 		
 		$result = db_query('
-			select nid	
-			from {node}
-			where type = :type
+			select n.nid	
+			from {node} as n join {node__field_cp_event_deprecated} as d on n.nid = d.entity_id
+			where n.type = :type
+			and d.field_cp_event_deprecated_value = 0
 			',
 			
 			array(':type' => 'cp_event')
@@ -198,6 +187,27 @@ class ListOfCpEvents {
 		}
 
 		return $event;
+	}
+	
+	function _add_news($event) {
+	
+		$result = db_query('
+			select field_cp_event_news_value
+			from {node__field_cp_event_news}
+			where entity_id = :id
+			',
+	
+				array(':id' => $event->getId())
+				)->fetchAll();
+	
+	
+				foreach ($result as $record) {
+					if ($record) {
+						$event->setNews($record->field_cp_event_news_value);
+					}
+				}
+	
+				return $event;
 	}
 	
 	function _add_historical($event) {

@@ -15,7 +15,7 @@
 
 function setCorrectHeight() {
 
-	jQuery('.all-event .text img').each( function() {
+	jQuery('.full-event .text img').each( function() {
 		
 		jQuery(this).parent().css({'min-height': jQuery(this).height()});
 		

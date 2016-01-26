@@ -3,20 +3,21 @@
 namespace Drupal\cp_events\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
-use Drupal\cp_events\CPEvents\ListOfCPEvents;
+use Drupal\cp_events\CPEvents\SortedListOfEvents;
 use Drupal\Core\StreamWrapper\PublicStream;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * @Block(
- *   id = "compressed_list_of_cp_events",
- *   admin_label = @Translation("Compressed list of CP events"),
+ *   id = "list_of_teased_cp_events_as_news",
+ *   admin_label = @Translation("List of teased CP news"),
  * )
  */
-class CompressedListOfCpEvents extends BlockBase {
+class ListOfTeasedCpEventsAsNews extends BlockBase {
 	
 	function build() {
-		$listOfCPEvents = new ListOfCPEvents();
-		$list = $listOfCPEvents->getListOfEvents();
+		$listOfEvents = new SortedListOfEvents();
+		$list = $listOfEvents->getListLatestFirst();
 	
 		return array(
 			'#markup' => $this->_build_html($list),
@@ -30,16 +31,23 @@ class CompressedListOfCpEvents extends BlockBase {
 	}
 	
 	function _build_html($list) {
-	
-		$output = '<div id="cp_events">';
+		$config = $this->getConfiguration();
+		
+		$counter = '5';
+		if (isset($config['cp_events_teased_events_as_news_counts'])) {
+			$counter = $config['cp_events_teased_events_as_news_counts'];
+		}
+		
+		$output = '<div id="cp_events_as_news">';
 	
 		$url = $GLOBALS['base_url'] . '/' . PublicStream::basePath() . '/';
 	
+		$co = 0;
 		foreach ($list as $e) {
 			
-			if ($e->getHistorical() == 0) {	
+			if ($co < $counter && $e->getNews() != 0 && $e->getHistorical() == 0) {	
 				
-				$output .= '<div class="comp-event">';
+				$output .= '<div class="tease-event">';
 				
 				if ($e->getFromDate() != null || $e->getFromDate() != '') {
 					$output .= '<div class="from_date">' . $e->getFromDate() . '</div>';
@@ -67,11 +75,43 @@ class CompressedListOfCpEvents extends BlockBase {
 				$output .= '<div class="text">' . $text . '</div>';
 					
 				$output .= '</div>';
-			}	
+				
+				$co ++;
+			}
 		}
 	
 		$output .= '</div>';
 	
 		return $output;
+	}
+	
+	/**
+	 * {@inheritdoc}
+	 */
+	public function blockForm($form, FormStateInterface $form_state) {
+		$config = $this->getConfiguration();
+		
+		$counter = '5';
+		if (isset($config['cp_events_teased_events_as_news_counts'])) {
+			$counter = $config['cp_events_teased_events_as_news_counts'];
+		}
+		
+		$form = parent::blockForm($form, $form_state);
+		
+		$form['cp_events_teased_events_as_news_counts'] = array (
+				'#type' => 'textfield',
+				'#title' => $this->t('Type the number of news to show'),
+				'#description' => $this->t(''),
+				'#default_value' => $counter
+		);
+	
+		return $form;	 
+	}
+	
+	/**
+	 * {@inheritdoc}
+	 */
+	public function blockSubmit($form, FormStateInterface $form_state) {
+		$this->setConfigurationValue('cp_events_teased_events_as_news_counts', $form_state->getValue('cp_events_teased_events_as_news_counts'));
 	}
 }

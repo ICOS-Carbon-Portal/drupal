@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cp_event_news
+    - node.type.cp_event
+id: node.cp_event.field_cp_event_news
+field_name: field_cp_event_news
+entity_type: node
+bundle: cp_event
+label: News
+description: 'If selected the content will be treated as a news ( latest on top ), otherwise just as an event.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'News'
+  off_label: 'None news'
+field_type: boolean

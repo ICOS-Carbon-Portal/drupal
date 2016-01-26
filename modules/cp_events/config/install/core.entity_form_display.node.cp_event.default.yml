@@ -8,7 +8,9 @@ dependencies:
     - field.field.node.cp_event.field_cp_event_link
     - field.field.node.cp_event.field_cp_event_from_date
     - field.field.node.cp_event.field_cp_event_to_date
+    - field.field.node.cp_event.field_cp_event_news
     - field.field.node.cp_event.field_cp_event_historical
+    - field.field.node.cp_event.field_cp_event_deprecated
     - node.type.cp_event
   module:
     - image
@@ -64,12 +66,24 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
-  field_cp_event_historical:
+  field_cp_event_news:
     weight: 38
     settings:
       display_label: false
     third_party_settings: {  }
-    type: boolean_checkbox    
+    type: boolean_checkbox
+  field_cp_event_historical:
+    weight: 39
+    settings:
+      display_label: false
+    third_party_settings: {  }
+    type: boolean_checkbox
+  field_cp_event_deprecated:
+    weight: 40
+    settings:
+      display_label: false
+    third_party_settings: {  }
+    type: boolean_checkbox             
   path:
     type: path
     weight: 30
