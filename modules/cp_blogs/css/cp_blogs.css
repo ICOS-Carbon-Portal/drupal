@@ -10,15 +10,24 @@
 	border-bottom: 0;
 	padding-bottom: 2rem;
 	float: left;
-	width: 60%;
+	width: 70%;
 }
 
 .latest-blog .picture {
 	float: right;
-	width: 40%;
+	width: 30%;
+	padding-left: 1rem;
+	padding-bottom: 1rem;
 }
 
-.featured-bottom {
-        background: rgba(255,255,255,1) !important;
-        border-top: 0 !important;
+@media all and (min-width: 800px) {
+	.latest-blog {
+		width: 100%;
+	}
+}
+
+@media all and (max-width: 799px) {
+	.latest-blog {
+		width: 100%;
+	}	
 }
