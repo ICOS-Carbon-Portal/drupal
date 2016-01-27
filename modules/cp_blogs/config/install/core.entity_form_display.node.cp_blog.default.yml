@@ -1,0 +1,77 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.cp_blog.field_cp_blog_heading
+    - field.field.node.cp_blog.field_cp_blog_picture
+    - field.field.node.cp_blog.field_cp_blog_text
+    - field.field.node.cp_blog.field_cp_blog_deprecated
+    - node.type.cp_blog
+  module:
+    - image
+    - link
+    - datetime
+    - path
+    - text
+id: node.cp_blog.default
+targetEntityType: node
+bundle: cp_blog
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+  field_cp_blog_heading:
+    weight: 32
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_cp_blog_picture:
+    weight: 33
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+  field_cp_blog_text:
+    weight: 34
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+  field_cp_blog_deprecated:
+    weight: 35
+    settings:
+      display_label: false
+    third_party_settings: {  }
+    type: boolean_checkbox          
+  path:
+    type: path
+    weight: 30
+    settings: {  }
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: -5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  body: true
+  promote: true
+  sticky: true
+  

@@ -1,0 +1,10 @@
+name: CP Blogs
+description: Carbon Portal blog fields and list.
+package: CP
+
+type: module
+core: 8.x
+
+libraries:
+  - cp_blogs/style
+  - cp_blogs/script

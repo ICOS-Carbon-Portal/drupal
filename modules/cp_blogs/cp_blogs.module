@@ -1,0 +1,27 @@
+<?php
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function cp_blogs_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+	case 'help.page.cp_blogs':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('CP Blogs Module') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function cp_blogs_theme() {
+  $theme = [];
+
+  return $theme;
+}

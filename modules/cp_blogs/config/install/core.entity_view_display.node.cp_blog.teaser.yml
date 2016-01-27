@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.cp_blog.body
+    - node.type.cp_blog
+  module:
+    - text
+    - user
+id: node.cp_blog.teaser
+targetEntityType: node
+bundle: cp_blog
+mode: teaser
+content:
+hidden:
+  body: true
+  links: true
