@@ -71,7 +71,7 @@ body {
 
 @media all and (min-width: 800px) {
 	#cp_theme_d8_menu ul {
-		padding: 0em 0em 0em 0.5em;
+		padding: 0em 0em 0em 0em;
 		margin: 0;	
 		list-style: none;
     	list-style-image: none;
@@ -108,6 +108,7 @@ body {
 		background: #414042;
 	}
 	
+	#cp_theme_d8_menu li:hover a:hover,
 	#cp_theme_d8_menu li:hover li a:hover {
 		background: #666468;
 	}
@@ -155,6 +156,10 @@ body {
 		margin-right: 1em;
 		margin-bottom: 0.2em;
 	}
+	
+	#cp_theme_d8_menu .is_topnode .open_menu {
+		display: none;
+	}
 }
 
 @media all and (max-width: 799px) {
@@ -171,8 +176,8 @@ body {
 	#cp_theme_d8_menu li ul { 
 		display: none;
 	}
-	
-	#cp_theme_d8_menu li.tap ul { 
+		
+	#cp_theme_d8_menu li.open ul { 
 		display: block;
 	}
 	
@@ -194,6 +199,16 @@ body {
 		margin-left: 1em;
 		margin-bottom: 0.2em;
 	}
+	
+	#cp_theme_d8_menu .is_topnode .open_menu {
+		float: right; 
+		height: 1.6em; 
+		cursor: pointer; 
+		padding-left: 50px; 
+		padding-right: 50px; 
+		position: relative; 
+		top: 0.8em;	
+	}		
 }
 
 #cp_theme_d8_menu_breadcrumbs {

@@ -39,14 +39,15 @@ class ListOfNodes {
 			
 			$rev_list = array_reverse($list);
 			$this->breadcrumbs[] = '<ul>';
-			$in = count($rev_list) - 1;
+			
+			//$in = count($rev_list) - 1;
 			foreach ($rev_list as $node) {
 				if ('/' . $node->getPath() != $active_path) {
 					
-					$delimiter = '';
-					if ($in > 1) {
+					//$delimiter = '';
+					//if ($in > 1) {
 						$delimiter = '<span>&raquo;</span>';
-					}
+					//}
 					
 					$url = $GLOBALS['base_url'] . '/';
 					$this->breadcrumbs[] = '<li><a href="' . $url . $node->getPath().'">' . $node->getTitle() . '</a>' . $delimiter . '</li>';
@@ -54,6 +55,8 @@ class ListOfNodes {
 					$in --;
 				}
 			}
+			
+			$this->breadcrumbs[] = '<li><a href="' . $url . $active_node->getPath().'">' . $active_node->getTitle() . '</a></li>';
 			$this->breadcrumbs[] = '</ul>';
 			
 		} 
@@ -102,9 +105,8 @@ class ListOfNodes {
 				$title .= '<img src="/themes/custom/cp_theme_d8/images/arrow-down.svg">'; 
 			}
 			
-			$this->menu[] = '<li class="' . $nodetype . '"><a href="#">'. $title . '</a>';
+			$this->menu[] = '<li class="' . $nodetype . '"><a href="'. $url . $node->getPath() .'">'. $title . '</a>';
 			$this->menu[] = '<ul>';
-			$this->menu[] = '<li><a href="'. $url . $node->getPath() .'">'. $node->getTitle() .'</a></li>';
 			
 			$sub_nodes = array();
 			foreach ($nodes as $sub_node) {
