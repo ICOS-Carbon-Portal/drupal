@@ -1,0 +1,10 @@
+name: CP Feedback
+description: Carbon Portal feedback.
+package: CP
+
+type: module
+core: 8.x
+
+libraries:
+  - cp_feedback/style
+  - cp_feedback/script

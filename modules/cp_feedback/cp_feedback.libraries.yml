@@ -1,0 +1,12 @@
+style:
+  css:
+    theme:
+      css/cp_feedback.css: {}
+      
+script:     
+  js:
+    js/cp_feedback.js: {}
+    
+  dependencies:
+    - core/jquery
+    - core/jquery.once    
