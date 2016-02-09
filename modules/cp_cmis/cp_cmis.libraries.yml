@@ -6,8 +6,28 @@ style:
       
 script:     
   js:
-    js/cp_cmis.js: {} 
+    js/cp_cmis.js: {}
     js/bootstrap.min.js: {}
+    
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery
+    - core/jquery.once
+
+style_files:
+  css:
+    theme:
+      css/cp_cmis_files.css: {}
+      css/bootstrap.min.css: {}
+      css/bootstrap-sortable.css: {}
+          
+script_files:     
+  js:
+    js/cp_cmis_files.js: {}
+    js/bootstrap.min.js: {}
+    js/bootstrap-sortable.js: {}
+    js/moment.min.js: {}
     
   dependencies:
     - core/drupal

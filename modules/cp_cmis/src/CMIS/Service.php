@@ -39,7 +39,7 @@ class Service {
 							$document = new Document();
 							$document->setId($object->properties['cmis:objectId']);
 							$document->setName($object->properties['cmis:name']);
-							//$document->setDescription($object->properties['cmis:description']);
+							$document->setDescription($object->properties['cmis:description']);
 							$document->setLastModifiedBy($object->properties['cmis:lastModifiedBy']);
 							$document->setLastModifiedDate($object->properties['cmis:lastModificationDate']);
 							

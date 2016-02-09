@@ -1,0 +1,50 @@
+.cp_cmis h3.heading {
+	font-size: 1.7rem;
+	font-weight: bold;	
+}
+
+.cp_cmis h3.heading img {
+	width: 4rem;
+	padding-right: 1rem;	
+}
+
+.cp_cmis th {
+	background-color: #414042;
+	font-weight: normal;
+    font-family: inherit;	
+}
+
+.cp_cmis th:hover, .cp_cmis th:focus {
+	background-color: #666468 !important;
+	color: #ffffff;
+}
+
+.cp_cmis td.type {
+    width: 6rem;
+}
+
+.cp_cmis td.type img {
+	width: 4rem;		
+}
+
+.cp_cmis td.name {
+    
+}
+
+.cp_cmis td.name a {
+    text-decoration: none;
+    border-bottom: 0;
+}
+
+.cp_cmis td.description {
+    width: 50%;
+}
+
+.cp_cmis td.modified_by {
+    width: 14rem;
+}
+
+.cp_cmis td.modified_date {
+    width: 14rem;
+}
+
