@@ -1,0 +1,24 @@
+<?php
+
+function cp_statistics_page_bottom(array &$page_bottom) {
+
+	$headers = apache_request_headers();
+	$ip = $headers['X-Forwarded-For'];
+	$request = \Drupal::service('request_stack')->getCurrentRequest();
+	$date = new \DateTime();
+	$db = \Drupal::service('database');
+	
+	$insert = $db->insert('cp_statistics_visit');
+	$insert->fields(array(
+			'ip' => $ip, 
+			'path' => $request->getRequestUri(), 
+			'year' => $date->format('Y'),
+			'month' => $date->format('m'),
+			'day' => $date->format('d'),
+			'clock' => $date->format('H:i:s'),
+			
+	))->execute();
+	
+
+	$page_bottom['cp_statistics'] = ['#markup' => ''];
+}

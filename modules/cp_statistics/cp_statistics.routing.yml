@@ -1,0 +1,7 @@
+cp_statistics.create_visit_table:
+  path: '/cp_statistics/create_visit_table'
+  defaults:
+    _controller: '\Drupal\cp_statistics\Controller\CPStatisticsDB::createVisitTable'
+    _title: ''
+  requirements:
+    _permission: 'administer site configuration'
