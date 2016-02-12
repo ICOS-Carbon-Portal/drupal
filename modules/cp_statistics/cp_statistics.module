@@ -2,23 +2,37 @@
 
 function cp_statistics_page_bottom(array &$page_bottom) {
 
-	$headers = apache_request_headers();
-	$ip = $headers['X-Forwarded-For'];
-	$request = \Drupal::service('request_stack')->getCurrentRequest();
-	$date = new \DateTime();
+	\Drupal::service('page_cache_kill_switch')->trigger();
+	
 	$db = \Drupal::service('database');
+	$result = $db->query('show tables like \'cp_statistics_visit\'')->fetchAll();
 	
-	$insert = $db->insert('cp_statistics_visit');
-	$insert->fields(array(
-			'ip' => $ip, 
-			'path' => $request->getRequestUri(), 
-			'year' => $date->format('Y'),
-			'month' => $date->format('m'),
-			'day' => $date->format('d'),
-			'clock' => $date->format('H:i:s'),
-			
-	))->execute();
 	
+	if ($result) {
+		
+	 	$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+	 	$page = $_SERVER['REQUEST_URI'];
+	 	$referrer = '';
+	 	if (isset($_SERVER["HTTP_REFERER"])) { $referrer = $_SERVER["HTTP_REFERER"]; }
+	 	$browser = $_SERVER["HTTP_USER_AGENT"];
+	 	$inlogged = 'no';
+	 	if (! \Drupal::currentUser()->isAnonymous()) { $inlogged = 'yes'; }
+	 	$date = new \DateTime();
+	
+	 	$insert = $db->insert('cp_statistics_visit');	 	
+	 	$insert->fields(array(
+	 			'ip' => $ip, 
+	 			'page' => $page, 
+	 			'referrer' => $referrer,
+	 			'browser' => $browser,
+	 			'inlogged' => $inlogged,
+	 			'timestamp' => $date->getTimestamp(),
+	 			'year' => $date->format('Y'),
+	 			'month' => $date->format('m'),
+	 			'day' => $date->format('d'),
+	 			'clock' => $date->format('H:i:s')		
+	 	))->execute();
+	}
 
-	$page_bottom['cp_statistics'] = ['#markup' => ''];
+ 	$page_bottom['cp_statistics'] = ['#markup' => ''];
 }

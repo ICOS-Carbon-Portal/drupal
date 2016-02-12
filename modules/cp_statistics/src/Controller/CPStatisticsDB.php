@@ -11,61 +11,82 @@ class CPStatisticsDB extends ControllerBase {
 		$do_create = true;
 		
 		$db = \Drupal::service('database');
-		
-		
 		$result = $db->query('show tables like \'cp_statistics_visit\'')->fetchAll();
-		if ($result) {
-			foreach ($result as $post) {
-				$do_create = false;
-			}
-		}
 		
-		if ($do_create) {
+		if (empty($result)) {
 			$table = array(
 					'description' => 'CP Statistics visit table',
-					
+						
 					'fields' => array(
 							'id' => array(
 									'description' => 'ID',
 									'type' => 'serial',
 									'not null' => TRUE
 							),
-							
+								
 							'ip' => array(
 									'description' => 'Visitors IP address',
 									'type' => 'varchar',
 									'length' => 255,
 									'not null' => TRUE
 							),
-						
-							'path' => array(
+			
+							'page' => array(
 									'description' => 'Visited page',
 									'type' => 'varchar',
 									'length' => 255,
 									'not null' => TRUE
 							),
 							
+							'referrer' => array(
+									'description' => 'Visitor came from url',
+									'type' => 'varchar',
+									'length' => 255,
+									'not null' => TRUE
+							),
+								
+							'browser' => array(
+									'description' => 'Visitors browser',
+									'type' => 'varchar',
+									'length' => 255,
+									'not null' => TRUE
+							),
+							
+							'inlogged' => array(
+									'description' => 'Is visitor inlogged - yes/no',
+									'type' => 'varchar',
+									'length' => 3,
+									'not null' => TRUE
+							),
+								
+							'timestamp' => array(
+									'description' => 'Timestamp',
+									'type' => 'varchar',
+									'length' => 20,
+									'not null' => TRUE
+							),
+								
 							'year' => array(
 									'description' => 'Year',
 									'type' => 'varchar',
 									'not null' => TRUE,
 									'length' => 10
 							),
-							
+								
 							'month' => array(
 									'description' => 'Month',
 									'type' => 'varchar',
 									'not null' => TRUE,
 									'length' => 10
 							),
-							
+								
 							'day' => array(
 									'description' => 'Day',
 									'type' => 'varchar',
 									'not null' => TRUE,
 									'length' => 10
 							),
-							
+								
 							'clock' => array(
 									'description' => 'Clock',
 									'type' => 'varchar',
@@ -73,8 +94,8 @@ class CPStatisticsDB extends ControllerBase {
 									'length' => 10
 							),
 					),
-					
-				'primary key' => array('id'),
+						
+					'primary key' => array('id'),
 			);
 			
 			$db->schema()->createTable('cp_statistics_visit', $table);
