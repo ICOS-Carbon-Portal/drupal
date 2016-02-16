@@ -1,0 +1,40 @@
+  
+{% for year, element in elements %}
+
+<div class="archive-event">
+
+<div class="panel-group" id="accordion_{{ year }}" role="tablist" aria-multiselectable="true">
+	<div class="panel panel-default">
+		<div class="panel-heading" role="tab" id="heading_{{ year }}">
+			<h4 class="panel-title">
+				<a role="button" data-toggle="collapse" data-parent="#accordion_{{ year }}" href="#collapse_{{ year }}" aria-expanded="true" aria-controls="collapse_{{ year }}">
+					{{ year }}
+				</a>
+			</h4>
+		</div>
+		<div id="collapse_{{ year }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_{{ year }}">
+			<div class="panel-body">
+      
+				{% for event in element %}
+				
+					<div class="element post{{ loop.index is odd }}">
+						<div class="from_date"> {{ event.getFromDate() }} </div>
+						<div class="heading"><a href="/event/{{ event.getId() }}"> {{ event.getHeading() }} </a></div>
+					</div>
+					
+				{% endfor %}      
+      
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+			
+{% endfor %}
+
+
+
+
+
+
