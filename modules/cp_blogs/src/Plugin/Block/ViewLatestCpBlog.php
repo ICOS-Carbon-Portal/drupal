@@ -37,7 +37,7 @@ class ViewLatestCpBlog extends BlockBase {
 	
 	function _build_html($blog) {
 	
-		$output .= '<div class="latest-blog">';
+		$output = '<div class="latest-blog">';
 				
 		$output .= '<div class="date">' . date('Y-m-d', $blog->getCreated()) . '</div>';
 		

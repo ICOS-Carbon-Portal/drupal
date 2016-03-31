@@ -16,6 +16,8 @@ class ExternalAuth {
 	
 	public function initialize() {
 		
+		\Drupal::service('page_cache_kill_switch')->trigger();
+		
 		$request = \Drupal::request();
 		
 		if ($request->query->get('login') != null && $request->query->get('login') == '1') {
