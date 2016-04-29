@@ -1,0 +1,153 @@
+.tease-event {
+	padding-bottom: 2em;
+}
+
+.tease-event .from_date,
+.tease-event .heading,
+.tease-event .picture {
+	padding-bottom: 1em;
+}
+
+.tease-event .from_date {
+	color: #0a96f0;
+	font-weight: bold;
+}
+
+.tease-event .heading a {
+	color: #0a96f0;
+	font-size: 2rem;
+	line-height: 2rem;
+	text-decoration: none;
+	border-bottom: 0;
+}
+
+.tease-event .text a {
+	text-decoration: none;
+	border-bottom: 0;
+}
+
+@media all and (min-width: 800px) {
+	.tease-event .picture {
+		max-width: 250px;
+	}
+}
+
+@media all and (max-width: 799px) {
+	.tease-event .picture {
+		max-width: 200px;
+	}	
+}
+
+.full-event {
+	padding-bottom: 4em;
+}
+
+.full-event .from_date,
+.full-event .heading {
+	padding-bottom: 1em;
+}
+
+.full-event .from_date {
+	color: #0a96f0;
+	font-weight: bold;
+}
+
+.full-event .heading {
+	color: #0a96f0;
+	font-size: 2rem;
+	line-height: 2rem;
+	border-bottom: 0;
+}
+
+.full-event .heading a {
+	color: #0a96f0;
+	font-size: 2rem;
+	line-height: 2rem;
+	text-decoration: none;
+	border-bottom: 0;
+}
+
+.full-event .text img {
+	float: right;
+	padding-left: 2rem;
+	padding-bottom: 2rem;
+}
+
+.full-event .text a {
+	text-decoration: none;
+	border-bottom: 0;
+}
+
+.full-event .link {
+	border-bottom: 0;
+	padding-top: 2rem;
+}
+
+.full-event .link a {
+	color: #414042;
+	font-size: 2rem;
+	text-decoration: none;
+	border-bottom: 0;
+}
+
+@media all and (min-width: 800px) {
+	.full-event {
+		width: 60%;
+	}
+	
+	.full-event .text img {
+		max-width: 400px;
+	}
+}
+
+@media all and (max-width: 799px) {
+	.full-event {
+		width: 100%;
+	}
+		
+	.full-event .text img {
+		max-width: 200px;
+	}
+}
+
+.archive-event .element {
+	margin-bottom: 1em;
+}
+
+.archive-event .post {
+	background-color: #f8f5f3;
+}
+
+.archive-event .post1 {
+	background-color: #ffffff;
+}
+
+.archive-event .panel-heading {
+	background-color: #f8f5f3 !important;
+}
+
+.archive-event .panel-title a {
+	color: #0a96f0;
+	font-weight: bold;
+	text-decoration: none;
+	border-bottom: 0;
+}
+
+.archive-event .from_date,
+.archive-event .heading a {
+
+}
+
+.archive-event .heading a {
+	text-decoration: none;
+	border-bottom: 0;
+}
+
+.layout-main-wrapper {
+	min-height: 0px !important;
+}
+
+.featured-bottom {
+	background: rgba(255,255,255,1) !important;
+	border-top: 0 !important;
+}

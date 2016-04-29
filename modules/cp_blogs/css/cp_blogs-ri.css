@@ -1,0 +1,33 @@
+.latest-blog .date {
+	color: #0a96f0;
+	font-weight: bold;
+}
+
+.latest-blog .heading {
+	color: #0a96f0;
+	font-size: 2rem;
+	line-height: 2rem;
+	border-bottom: 0;
+	padding-bottom: 2rem;
+	float: left;
+	width: 70%;
+}
+
+.latest-blog .picture {
+	float: right;
+	width: 30%;
+	padding-left: 1rem;
+	padding-bottom: 1rem;
+}
+
+@media all and (min-width: 800px) {
+	.latest-blog {
+		width: 100%;
+	}
+}
+
+@media all and (max-width: 799px) {
+	.latest-blog {
+		width: 100%;
+	}	
+}
