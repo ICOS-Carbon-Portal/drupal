@@ -1,0 +1,10 @@
+name: CP Documents
+description: Carbon Portal document fields and list.
+package: CP
+
+type: module
+core: 8.x
+
+libraries:
+  - cp_documents/style
+  - cp_documents/script

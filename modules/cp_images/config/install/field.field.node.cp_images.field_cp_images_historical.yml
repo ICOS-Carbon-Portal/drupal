@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cp_images_historical
+    - node.type.cp_images
+id: node.cp_images.field_cp_images_historical
+field_name: field_cp_images_historical
+entity_type: node
+bundle: cp_images
+label: Historical
+description: 'If selected the content will only be accessable on archive pages.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Historical'
+  off_label: 'Not historical'
+field_type: boolean

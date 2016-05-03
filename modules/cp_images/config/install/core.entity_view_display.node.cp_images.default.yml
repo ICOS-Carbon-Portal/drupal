@@ -1,0 +1,54 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.cp_images.field_cp_images_picture
+    - field.field.node.cp_images.field_cp_images_category_key
+    - field.field.node.cp_images.field_cp_images_historical
+    - field.field.node.cp_images.field_cp_images_deprecated    
+    - node.type.cp_images
+  module:
+    - image
+    - user
+id: node.cp_images.default
+targetEntityType: node
+bundle: cp_images
+mode: default
+content:
+  field_cp_images_picture:
+    weight: 110
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_cp_images_category_key:
+    weight: 111
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer  
+  field_cp_images_historical:
+    weight: 112
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+  field_cp_images_deprecated:
+    weight: 113
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean        
+hidden:
+  body: true
+  links: true

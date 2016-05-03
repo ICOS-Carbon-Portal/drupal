@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cp_documents_category_key
+    - node.type.cp_documents
+id: node.cp_documents.field_cp_documents_category_key
+field_name: field_cp_documents_category_key
+entity_type: node
+bundle: cp_documents
+label: Category key
+description: 'Select which category key this document belongs to. A category key will be mapped to a named category.'
+required: true
+translatable: false
+default_value:
+  value: 0
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

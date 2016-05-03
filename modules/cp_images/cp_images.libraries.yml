@@ -1,0 +1,12 @@
+style:
+  css:
+    theme:
+      css/cp_images.css: {}
+      
+script:     
+  js:
+    js/cp_images.js: {}
+    
+  dependencies:
+    - core/jquery
+    - core/jquery.once    

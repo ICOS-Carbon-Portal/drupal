@@ -1,0 +1,62 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.cp_documents.field_cp_documents_file
+    - field.field.node.cp_documents.field_cp_documents_picture
+    - field.field.node.cp_documents.field_cp_documents_category_key
+    - field.field.node.cp_documents.field_cp_documents_historical
+    - field.field.node.cp_documents.field_cp_documents_deprecated    
+    - node.type.cp_documents
+  module:
+    - file
+    - image
+    - user
+id: node.cp_documents.default
+targetEntityType: node
+bundle: cp_documents
+mode: default
+content:
+  field_cp_documents_file:
+    weight: 110
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_default
+  field_cp_documents_picture:
+    weight: 111
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_cp_documents_category_key:
+    weight: 112
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer  
+  field_cp_documents_historical:
+    weight: 113
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+  field_cp_documents_deprecated:
+    weight: 114
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean        
+hidden:
+  body: true
+  links: true

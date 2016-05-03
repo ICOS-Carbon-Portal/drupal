@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cp_documents_deprecated
+    - node.type.cp_documents
+id: node.cp_documents.field_cp_documents_deprecated
+field_name: field_cp_documents_deprecated
+entity_type: node
+bundle: cp_documents
+label: Deprecated
+description: 'If selected the content will not be accessable on the site.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Deprecated'
+  off_label: 'Not deprecated'
+field_type: boolean

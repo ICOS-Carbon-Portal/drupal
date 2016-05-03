@@ -1,0 +1,10 @@
+name: CP Images
+description: Carbon Portal images fields and list.
+package: CP
+
+type: module
+core: 8.x
+
+libraries:
+  - cp_images/style
+  - cp_images/script
