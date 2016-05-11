@@ -9,6 +9,7 @@ class Document {
 	private $created;
 	private $changed;
 	private $file_url;
+	private $file_name;
 	private $file_description;
 	private $picture_url;
 	private $picture_title;
@@ -61,6 +62,14 @@ class Document {
 	
 	public function setFileUrl($file_url) {
 		$this->file_url = $file_url;
+	}
+	
+	public function getFileName() {
+		return $this->file_name;
+	}
+	
+	public function setFileName($file_name) {
+		$this->file_name = $file_name;
 	}
 	
 	public function getFileDescription() {

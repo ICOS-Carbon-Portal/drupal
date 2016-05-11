@@ -63,7 +63,7 @@ class ListOfDocuments {
 	function _add_file($document) {
 	
 		$result = db_query('
-			select fm.uri, f.field_cp_documents_file_description
+			select fm.uri, fm.filename, f.field_cp_documents_file_description
 			from {file_managed} as fm
 			join {node__field_cp_documents_file} as f on fm.fid = f.field_cp_documents_file_target_id
 			where f.entity_id = :id
@@ -76,6 +76,7 @@ class ListOfDocuments {
 		foreach ($result as $record) {
 			if ($record) {
 				$document->setFileUrl($record->uri);
+				$document->setFileName($record->filename);
 				$document->setFileDescription($record->field_cp_documents_file_description);
 			}
 		}

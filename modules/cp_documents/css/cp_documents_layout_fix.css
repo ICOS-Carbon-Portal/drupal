@@ -1,0 +1,30 @@
+#main {
+    margin-top: 0px;
+    margin-bottom: 0px;	
+}
+
+#main-wrapper {
+	height: 0px;
+	min-height: 0px;
+}
+
+.featured-bottom { 
+	background: rgba(0, 0, 0, 0) !important;
+}
+
+.featured-bottom .layout-container { 
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.block {
+	border-bottom: 0px !important;
+}
+
+.block h2 { 
+	color: #0A96F0 !important;
+	font-size: 1.8em !important;
+	line-height: 1.8em !important;
+	font-weight: bold;
+}
+

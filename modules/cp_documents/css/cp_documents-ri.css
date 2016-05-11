@@ -1,0 +1,24 @@
+.cp_documents { }
+
+.cp_documents .panel-heading {
+	background-color: #0A96F0 !important;
+	color: #ffffff !important;
+}
+
+.cp_documents .panel-title img { width: 70px; }
+
+.cp_documents .panel-title a {
+    display: block;
+    float: right;
+}
+
+.cp_documents .panel-body .icon, .cp_document .panel-body .file {
+	display: inline;
+	float: left; 
+}
+
+.cp_documents .panel-body .icon { padding-right: 2rem; }
+
+.cp_documents .panel-body .file {  }
+
+.cp_documents .panel-body .icon img { width: 100px; }

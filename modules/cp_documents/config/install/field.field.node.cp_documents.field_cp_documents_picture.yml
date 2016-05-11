@@ -11,7 +11,7 @@ field_name: field_cp_documents_picture
 entity_type: node
 bundle: cp_documents
 label: 'Icon of the document'
-description: 'You can upload a picture as a icon for your document.'
+description: 'You can upload a picture as a icon for your document. The pictures size should be at least 100x70 pixels.'
 required: false
 translatable: false
 default_value: {  }
