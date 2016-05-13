@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_cp_documents_file
+    - field.storage.node.field_cp_documents_document
     - node.type.cp_documents
   module:
     - file
-id: node.cp_documents.field_cp_documents_file
-field_name: field_cp_documents_file
+id: node.cp_documents.field_cp_documents_document
+field_name: field_cp_documents_document
 entity_type: node
 bundle: cp_documents
 label: Document

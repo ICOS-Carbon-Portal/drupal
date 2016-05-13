@@ -19,111 +19,92 @@ class CpDocuments extends BlockBase {
 		$listOfDocuments = new SortedListOfDocuments();
 		$list = $listOfDocuments->getListLatestFirst();
 		
-		if ($list != null) {
-		
-			return array(
-				'#markup' => $this->_build_html($list),
-				'#attached' => array(
-					'library' =>  array(
-						'cp_documents/style',
-						'cp_documents/script'
-					),
+		return array(
+			'#markup' => $this->_build_html($list),
+			'#attached' => array(
+				'library' =>  array(
+					'cp_documents/style',
+					'cp_documents/script'
 				),
-			);
+			),
+		);
 		
-		} else {
-			return array('#markup' => '',);
-		}
 	}
 	
 	
-	function _build_html($documents) {
+	function _build_html($list) {
 		$config = $this->getConfiguration();
 		
-		$cp_document_id = '';
-		if (isset($config['cp_documents_id'])) {
-			$cp_document_id = $config['cp_documents_id'];
-		}
-		$cp_document_id = str_replace(' ', '_', $cp_document_id);
-		$cp_document_id = str_replace('.', '_', $cp_document_id);
+		$id = $config['cp_documents_id'];
+		$id = str_replace(' ', '_', $id);
+		$id = str_replace('.', '_', $id);
 		
-		$category_key = '0';
-		if (isset($config['cp_documents_category_key'])) {
-			$category_key = $config['cp_documents_category_key'];
-		}
-		
-		$category_name = 'Open';
-		if (isset($config['cp_documents_category_name']) && $config['cp_documents_category_name'] != '') {
-			$category_name = $config['cp_documents_category_name'];
-		}
-		
-		$category_icon = '';
-		if (isset($config['cp_documents_category_icon'])) {
-			$category_icon = $config['cp_documents_category_icon'];
-		}
+		$category_name = $config['cp_documents_category_name'];	
+		$category_icon = $config['cp_documents_category_icon'];
 		
 		$path = drupal_get_path('module', 'cp_documents');
 		
-		
 		$output = '<div class="cp_documents">';
 		
-		$output .= '<div id="cp_document_accordion_' . $cp_document_id . '" class="panel-group" role="tablist" aria-multiselectable="true">';
+		$output .= '<div id="cp_document_accordion_' . $id . '" class="panel-group" role="tablist" aria-multiselectable="true">';
 		$output .= '<div class="panel panel-default">';
-		$output .= '<div id="cp_document_accordion_' . $cp_document_id . '_heading" class="panel-heading" role="tab">';
+		$output .= '<div id="cp_document_accordion_' . $id . '_heading" class="panel-heading" role="tab">';
 		$output .= '<h3 class="panel-title">';
 		$output .= '<img src="/' . $path . '/images/' . $category_icon . '.svg" />';
-		$output .= '<a role="button" data-toggle="collapse" data-parent="#cp_document_accordion_' . $cp_document_id . '" href="#cp_document_accordion_' . $cp_document_id . '_collapse" aria-expanded="true" aria-controls="cp_document_accordion_' . $cp_document_id . '_collapse">';
+		$output .= '<a role="button" data-toggle="collapse" data-parent="#cp_document_accordion_' . $id . '" href="#cp_document_accordion_' . $id . '_collapse" aria-expanded="true" aria-controls="cp_document_accordion_' . $id . '_collapse">';
 		$output .= $category_name;
 		$output .= '</a>';
 		$output .= '</h3>';
 		$output .= '</div>';
-		$output .= '<div id="cp_document_accordion_' . $cp_document_id . '_collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="cp_document_accordion_' . $cp_document_id . '_heading">';
+		$output .= '<div id="cp_document_accordion_' . $id . '_collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="cp_document_accordion_' . $id . '_heading">';
 		$output .= '<div class="panel-body">';
 		
-		
-		foreach ($documents as $document) {
+		if ($list != null) {
 			
-			if ($category_key == $document->getCategoryKey()
-					&& $document->getFileUrl() != null
-					&& $document->getFileUrl() != '') {
+			foreach ($list as $document) {
 				
-				
-				$url = $GLOBALS['base_url'] . '/' . PublicStream::basePath() . '/';				
-				$file_url = $url . str_replace('public://', '', $document->getFileUrl());	
-				$file_description = '';
-				if ($document->getFileDescription() != null || $document->getFileDescription() != '') { 
-					$file_description = $document->getFileDescription(); 
-				}
+				if ($category_name == $document->getCategory()
+						&& $document->getDocumentUri() != null
+						&& $document->getDocumentUri() != '') {
 					
-				
-				$icon = '';
-				if ($document->getPictureUrl() != null || $document->getPictureUrl() != '') {
-					$picture_url = $url . str_replace('public://', '', $document->getPictureUrl());
-					$icon = '<img src="' . $picture_url . '" />';	
-				}
-				
-				$output .= '<div>';
-				
-				$output .= '<div class="icon">';
-				$output .= $icon;
-				$output .= '</div>';
-				
-				
-				$output .= '<div class="file">';
-				$output .= '<h4>';
-				$output .= '<a href="' . $file_url . '" title="' . $document->getTitle() . '" >' . $document->getTitle(). '</a>';
-				$output .= '</h4>';
-				$output .= '<span>';
-				$output .= $file_description;
-				$output .= '</span>';
-				$output .= '</div>';
-				
-				$output .= '</div>';
+					
+					$url = $GLOBALS['base_url'] . '/' . PublicStream::basePath() . '/';				
+					$document_url = $url . str_replace('public://', '', $document->getDocumentUri());	
+					$document_description = '';
+					if ($document->getDocumentDescription() != null || $document->getDocumentDescription() != '') { 
+						$document_description = $document->getDocumentDescription(); 
+					}
 						
-			}	
-			
-		}
+					
+					$icon = '';
+					if ($document->getPictureUri() != null || $document->getPictureUri() != '') {
+						$picture_url = $url . str_replace('public://', '', $document->getPictureUri());
+						$icon = '<img src="' . $picture_url . '" />';	
+					}
+					
+					$output .= '<div>';
+					
+					$output .= '<div class="icon">';
+					$output .= $icon;
+					$output .= '</div>';
+					
+					
+					$output .= '<div class="file">';
+					$output .= '<h4>';
+					$output .= '<a href="' . $document_url . '" title="' . $document->getTitle() . '" >' . $document->getTitle(). '</a>';
+					$output .= '</h4>';
+					$output .= '<span>';
+					$output .= $document_description;
+					$output .= '</span>';
+					$output .= '</div>';
+					
+					$output .= '</div>';
+							
+				}	
+				
+			}
 		
+		}
 		
 		$output .= '</div>';
 		$output .= '</div>';
@@ -141,48 +122,49 @@ class CpDocuments extends BlockBase {
 	 */
 	public function blockForm($form, FormStateInterface $form_state) {
 		$config = $this->getConfiguration();
+		
+		$form = parent::blockForm($form, $form_state);
 	
-		$cp_document_id = microtime();
+		$id = microtime();
 		if (isset($config['cp_documents_id'])) {
-			$cp_document_id = $config['cp_documents_id'];
+			$id = $config['cp_documents_id'];
 		}
 		
-		$category_key = '0';
-		if (isset($config['cp_documents_category_key'])) {
-			$category_key = $config['cp_documents_category_key'];
-		}
+		$form['cp_documents_id'] = array (
+				'#type' => 'hidden',
+				'#value' => $id
+		);
+		
+		
+		$category_options = array();
+ 		$listOfDocuments = new SortedListOfDocuments();
+ 		$list = $listOfDocuments->getListLatestFirst();
+ 		foreach ($list as $document) {
+ 			$category_options[$document->getCategory()] = $document->getCategory();
+ 		}
 		
 		$category_name = '';
 		if (isset($config['cp_documents_category_name'])) {
 			$category_name = $config['cp_documents_category_name'];
 		}
 		
+		if (empty($category_options)) {
+			$category_options['DOCUMENTS'] = 'DOCUMENTS';
+		}
+		
+		$form['cp_documents_category_name'] = array (
+				'#type' => 'select',
+				'#title' => $this->t('Select a category'),
+				'#description' => $this->t(''),
+				'#options' => $category_options,
+				'#default_value' => $category_name
+		);
+		
+		
 		$category_icon = 'icon_none';
 		if (isset($config['cp_documents_category_icon'])) {
 			$category_icon = $config['cp_documents_category_icon'];
 		}
-	
-		$form = parent::blockForm($form, $form_state);
-	
-		$form['cp_documents_id'] = array (
-				'#type' => 'hidden',
-				'#value' => $cp_document_id
-		);
-		
-		$form['cp_documents_category_key'] = array (
-				'#type' => 'textfield',
-				'#title' => $this->t('Type the category key value'),
-				'#description' => $this->t(''),
-				'#default_value' => $category_key
-		);
-		
-		$form['cp_documents_category_name'] = array (
-				'#type' => 'textfield',
-				'#title' => $this->t('Type the category name'),
-				'#description' => $this->t(''),
-				'#default_value' => $category_name
-		);
-		
 		
 		$path = drupal_get_path('module', 'cp_documents');
 		
@@ -217,7 +199,6 @@ class CpDocuments extends BlockBase {
 	 */
 	public function blockSubmit($form, FormStateInterface $form_state) {
 		$this->setConfigurationValue('cp_documents_id', $form_state->getValue('cp_documents_id'));
-		$this->setConfigurationValue('cp_documents_category_key', $form_state->getValue('cp_documents_category_key'));
 		$this->setConfigurationValue('cp_documents_category_name', $form_state->getValue('cp_documents_category_name'));
 		$this->setConfigurationValue('cp_documents_category_icon', $form_state->getValue('cp_documents_category_icon'));
 	}	

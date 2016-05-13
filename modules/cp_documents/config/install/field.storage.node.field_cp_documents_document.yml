@@ -4,8 +4,8 @@ dependencies:
   module:
     - file
     - node
-id: node.field_cp_documents_file
-field_name: field_cp_documents_file
+id: node.field_cp_documents_document
+field_name: field_cp_documents_document
 entity_type: node
 type: file
 settings:

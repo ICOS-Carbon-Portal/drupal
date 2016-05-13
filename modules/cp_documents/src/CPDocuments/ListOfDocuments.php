@@ -15,9 +15,9 @@ class ListOfDocuments {
 		$list = array();
 		
 		foreach ($this->_collect_documents() as $d) {
-			$d = $this->_add_file($d);
+			$d = $this->_add_document($d);
 			$d = $this->_add_picture($d);
-			$d = $this->_add_category_key($d);
+			$d = $this->_add_category($d);
 			$d = $this->_add_historical($d);
 				
 			$list[] = $d;
@@ -60,12 +60,12 @@ class ListOfDocuments {
 	}
 	
 	
-	function _add_file($document) {
+	function _add_document($document) {
 	
 		$result = db_query('
-			select fm.uri, fm.filename, f.field_cp_documents_file_description
+			select fm.uri, fm.filename, f.field_cp_documents_document_description
 			from {file_managed} as fm
-			join {node__field_cp_documents_file} as f on fm.fid = f.field_cp_documents_file_target_id
+			join {node__field_cp_documents_document} as f on fm.fid = f.field_cp_documents_document_target_id
 			where f.entity_id = :id
 			',
 	
@@ -75,9 +75,9 @@ class ListOfDocuments {
 
 		foreach ($result as $record) {
 			if ($record) {
-				$document->setFileUrl($record->uri);
-				$document->setFileName($record->filename);
-				$document->setFileDescription($record->field_cp_documents_file_description);
+				$document->setDocumentUri($record->uri);
+				$document->setDocumentName($record->filename);
+				$document->setDocumentDescription($record->field_cp_documents_document_description);
 			}
 		}
 
@@ -88,7 +88,7 @@ class ListOfDocuments {
 	function _add_picture($document) {
 	
 		$result = db_query('
-			select fm.uri, p.field_cp_documents_picture_alt, p.field_cp_documents_picture_width, p.field_cp_documents_picture_height
+			select fm.uri, fm.filename, p.field_cp_documents_picture_alt, p.field_cp_documents_picture_width, p.field_cp_documents_picture_height
 			from {file_managed} as fm
 			join {node__field_cp_documents_picture} as p on fm.fid = p.field_cp_documents_picture_target_id
 			where p.entity_id = :id
@@ -100,7 +100,8 @@ class ListOfDocuments {
 
 		foreach ($result as $record) {
 			if ($record) {
-				$document->setPictureUrl($record->uri);
+				$document->setPictureUri($record->uri);
+				$document->setPictureName($record->filename);
 				$document->setPictureTitle($record->field_cp_documents_picture_alt);
 				$document->setPictureWidth($record->field_cp_documents_picture_width);
 				$document->setPictureHeight($record->field_cp_documents_picture_height);
@@ -111,11 +112,11 @@ class ListOfDocuments {
 	}
 	
 	
-	function _add_category_key($document) {
+	function _add_category($document) {
 	
 		$result = db_query('
-			select field_cp_documents_category_key_value
-			from {node__field_cp_documents_category_key}
+			select field_cp_documents_category_value
+			from {node__field_cp_documents_category}
 			where entity_id = :id
 			',
 	
@@ -125,7 +126,7 @@ class ListOfDocuments {
 
 		foreach ($result as $record) {
 			if ($record) {
-				$document->setCategoryKey($record->field_cp_documents_category_key_value);
+				$document->setCategory($record->field_cp_documents_category_value);
 			}
 		}
 

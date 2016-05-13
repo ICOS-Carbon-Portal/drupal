@@ -2,9 +2,9 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.cp_documents.field_cp_documents_file
+    - field.field.node.cp_documents.field_cp_documents_document
     - field.field.node.cp_documents.field_cp_documents_picture
-    - field.field.node.cp_documents.field_cp_documents_category_key
+    - field.field.node.cp_documents.field_cp_documents_category
     - field.field.node.cp_documents.field_cp_documents_historical
     - field.field.node.cp_documents.field_cp_documents_deprecated    
     - node.type.cp_documents
@@ -17,7 +17,7 @@ targetEntityType: node
 bundle: cp_documents
 mode: default
 content:
-  field_cp_documents_file:
+  field_cp_documents_document:
     weight: 110
     settings:
       progress_indicator: throbber
@@ -31,14 +31,12 @@ content:
       image_link: ''
     third_party_settings: {  }
     type: image
-  field_cp_documents_category_key:
+  field_cp_documents_category:
     weight: 112
     label: above
-    settings:
-      thousand_separator: ''
-      prefix_suffix: true
+    settings: { }
     third_party_settings: {  }
-    type: number_integer  
+    type: string  
   field_cp_documents_historical:
     weight: 113
     label: above

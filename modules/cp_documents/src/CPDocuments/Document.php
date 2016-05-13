@@ -8,14 +8,15 @@ class Document {
 	private $title;
 	private $created;
 	private $changed;
-	private $file_url;
-	private $file_name;
-	private $file_description;
-	private $picture_url;
+	private $document_uri;
+	private $document_name;
+	private $document_description;
+	private $picture_uri;
+	private $picture_name;
 	private $picture_title;
 	private $picture_width;
 	private $picture_height;	
-	private $category_key;
+	private $category;
 	private $historical;
 	private $deprecated;
 	
@@ -56,36 +57,44 @@ class Document {
 		$this->changed = $changed;
 	}
 	
-	public function getFileUrl() {
-		return $this->file_url;
+	public function getDocumentUri() {
+		return $this->document_uri;
 	}
 	
-	public function setFileUrl($file_url) {
-		$this->file_url = $file_url;
+	public function setDocumentUri($document_uri) {
+		$this->document_uri = $document_uri;
 	}
 	
-	public function getFileName() {
-		return $this->file_name;
+	public function getDocumentName() {
+		return $this->document_name;
 	}
 	
-	public function setFileName($file_name) {
-		$this->file_name = $file_name;
+	public function setDocumentName($document_name) {
+		$this->document_name = $document_name;
 	}
 	
-	public function getFileDescription() {
-		return $this->file_description;
+	public function getDocumentDescription() {
+		return $this->document_description;
 	}
 	
-	public function setFileDescription($file_description) {
-		$this->file_description = $file_description;
+	public function setDocumentDescription($document_description) {
+		$this->document_description = $document_description;
 	}
 	
-	public function getPictureUrl() {
-		return $this->picture_url;
+	public function getPictureUri() {
+		return $this->picture_uri;
 	}
 	
-	public function setPictureUrl($picture_url) {
-		$this->picture_url = $picture_url;
+	public function setPictureUri($picture_uri) {
+		$this->picture_uri = $picture_uri;
+	}
+	
+	public function getPictureName() {
+		return $this->picture_name;
+	}
+	
+	public function setPictureName($picture_name) {
+		$this->picture_name = $picture_name;
 	}
 	
 	public function getPictureTitle() {
@@ -112,12 +121,12 @@ class Document {
 		$this->picture_height = $picture_height;
 	}	
 	
-	public function getCategoryKey() {
-		return $this->category_key;
+	public function getCategory() {
+		return $this->category;
 	}
 	
-	public function setCategoryKey($category_key) {
-		$this->category_key = $category_key;
+	public function setCategory($category) {
+		$this->category = $category;
 	}
 
 	public function getHistorical() {
