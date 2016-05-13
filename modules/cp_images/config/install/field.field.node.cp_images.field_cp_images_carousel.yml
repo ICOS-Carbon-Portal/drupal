@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cp_images_carousel
+    - node.type.cp_images
+id: node.cp_images.field_cp_images_carousel
+field_name: field_cp_images_carousel
+entity_type: node
+bundle: cp_images
+label: Carousel
+description: 'If selected the content will be shown in the picture carousel.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'Shown in carousel'
+  off_label: 'Not shown in carousel'
+field_type: boolean

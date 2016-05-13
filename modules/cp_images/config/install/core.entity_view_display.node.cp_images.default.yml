@@ -3,7 +3,8 @@ status: true
 dependencies:
   config:
     - field.field.node.cp_images.field_cp_images_picture
-    - field.field.node.cp_images.field_cp_images_category_key
+    - field.field.node.cp_images.field_cp_images_category
+    - field.field.node.cp_images.field_cp_images_carousel
     - field.field.node.cp_images.field_cp_images_historical
     - field.field.node.cp_images.field_cp_images_deprecated    
     - node.type.cp_images
@@ -23,16 +24,23 @@ content:
       image_link: ''
     third_party_settings: {  }
     type: image
-  field_cp_images_category_key:
+  field_cp_images_category:
     weight: 111
     label: above
-    settings:
-      thousand_separator: ''
-      prefix_suffix: true
+    settings: { }
     third_party_settings: {  }
-    type: number_integer  
-  field_cp_images_historical:
+    type: string
+  field_cp_images_carousel:
     weight: 112
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean    
+  field_cp_images_historical:
+    weight: 113
     label: above
     settings:
       format: default
@@ -41,7 +49,7 @@ content:
     third_party_settings: {  }
     type: boolean
   field_cp_images_deprecated:
-    weight: 113
+    weight: 114
     label: above
     settings:
       format: default

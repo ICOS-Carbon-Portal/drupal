@@ -8,11 +8,13 @@ class Image {
 	private $title;
 	private $created;
 	private $changed;
-	private $picture_url;
+	private $picture_uri;
+	private $picture_name;
 	private $picture_title;
 	private $picture_width;
-	private $picture_height;	
-	private $category_key;
+	private $picture_height;
+	private $category;
+	private $carousel;
 	private $historical;
 	private $deprecated;
 	
@@ -53,12 +55,20 @@ class Image {
 		$this->changed = $changed;
 	}
 	
-	public function getPictureUrl() {
-		return $this->picture_url;
+	public function getPictureUri() {
+		return $this->picture_uri;
 	}
 	
-	public function setPictureUrl($picture_url) {
-		$this->picture_url = $picture_url;
+	public function setPictureUri($picture_uri) {
+		$this->picture_uri = $picture_uri;
+	}
+	
+	public function getPictureName() {
+		return $this->picture_name;
+	}
+	
+	public function setPictureName($picture_name) {
+		$this->picture_name = $picture_name;
 	}
 	
 	public function getPictureTitle() {
@@ -83,16 +93,24 @@ class Image {
 	
 	public function setPictureHeight($picture_height) {
 		$this->picture_height = $picture_height;
-	}	
-	
-	public function getCategoryKey() {
-		return $this->category_key;
 	}
 	
-	public function setCategoryKey($category_key) {
-		$this->category_key = $category_key;
+	public function getCategory() {
+		return $this->category;
+	}
+	
+	public function setCategory($category) {
+		$this->category = $category;
 	}
 
+	public function getCarousel() {
+		return $this->carousel;
+	}
+	
+	public function setCarousel($carousel) {
+		$this->carousel = $carousel;
+	}
+	
 	public function getHistorical() {
 		return $this->historical;
 	}
