@@ -63,7 +63,8 @@ class CpDocuments extends BlockBase {
 			
 			foreach ($list as $document) {
 				
-				if ($category_name == $document->getCategory()
+				if ($document->getHistorical() == '0'
+						&& $category_name == $document->getCategory()
 						&& $document->getDocumentUri() != null
 						&& $document->getDocumentUri() != '') {
 					
