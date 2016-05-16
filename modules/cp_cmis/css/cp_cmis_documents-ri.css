@@ -1,0 +1,36 @@
+.cp_cmis_documents { }
+
+.cp_cmis_documents .panel-heading {
+	background-color: #0A96F0 !important;
+	color: #ffffff !important;
+}
+
+.cp_cmis_documents .panel-title img { width: 70px; }
+
+.cp_cmis_documents .panel-title a {
+	display: block;
+	float: right;
+}
+
+.cp_cmis_document { padding-bottom: 20px; }
+
+.cp_cmis_document .icon,
+.cp_cmis_document .file,
+.cp_cmis_document .modified_date,
+.cp_cmis_document .modified_by {
+	display: inline;
+}
+
+.cp_cmis_document .icon img { width: 50px; }
+
+.cp_cmis_document .icon img,
+.cp_cmis_document .modified_date { 
+	padding-right: 10px; 
+}
+
+.cp_cmis_document .description {  }
+
+.cp_cmis_document .modified_date,
+.cp_cmis_document .modified_by {
+	font-size: smaller;
+}

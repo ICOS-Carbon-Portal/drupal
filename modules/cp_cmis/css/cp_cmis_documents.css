@@ -1,0 +1,13 @@
+.cp_cmis_documents { }
+
+.cp_cmis_documents .panel-heading {
+	background-color: #F06322 !important;
+	color: #ffffff !important;
+}
+
+.cp_cmis_documents .panel-title img { width: 70px; }
+
+.cp_cmis_documents .panel-title a {
+	display: block;
+	float: right;
+}

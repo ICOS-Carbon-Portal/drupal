@@ -29,6 +29,17 @@ script_files:
     js/bootstrap-sortable.js: {}
     js/moment.min.js: {}
     
+style_documents:
+  css:
+    theme:
+      css/cp_cmis_documents-ri.css: {}
+      css/bootstrap.min.css: {}
+          
+script_documents:     
+  js:
+    js/cp_cmis_documents.js: {}
+    js/bootstrap.min.js: {}   
+    
   dependencies:
     - core/drupal
     - core/drupalSettings
