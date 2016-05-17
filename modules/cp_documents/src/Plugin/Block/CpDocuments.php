@@ -50,10 +50,10 @@ class CpDocuments extends BlockBase {
 		$output .= '<div class="panel panel-default">';
 		$output .= '<div id="cp_document_accordion_' . $id . '_heading" class="panel-heading" role="tab">';
 		$output .= '<h3 class="panel-title">';
-		$output .= '<img src="/' . $path . '/images/' . $category_icon . '.svg" />';
 		$output .= '<a role="button" data-toggle="collapse" data-parent="#cp_document_accordion_' . $id . '" href="#cp_document_accordion_' . $id . '_collapse" aria-expanded="true" aria-controls="cp_document_accordion_' . $id . '_collapse">';
 		$output .= $category_name;
 		$output .= '</a>';
+		$output .= '<img src="/' . $path . '/images/' . $category_icon . '.svg" />';
 		$output .= '</h3>';
 		$output .= '</div>';
 		$output .= '<div id="cp_document_accordion_' . $id . '_collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="cp_document_accordion_' . $id . '_heading">';
@@ -83,20 +83,20 @@ class CpDocuments extends BlockBase {
 						$icon = '<img src="' . $picture_url . '" />';	
 					}
 					
-					$output .= '<div>';
+					$output .= '<div class="cp_document">';
 					
+					$output .= '<div>';
 					$output .= '<div class="icon">';
 					$output .= $icon;
 					$output .= '</div>';
-					
-					
-					$output .= '<div class="file">';
-					$output .= '<h4>';
+					;
+					$output .= '<h4 class="file">';
 					$output .= '<a href="' . $document_url . '" title="' . $document->getTitle() . '" >' . $document->getTitle(). '</a>';
 					$output .= '</h4>';
-					$output .= '<span>';
+					$output .= '</div>';
+					
+					$output .= '<div class="description">';
 					$output .= $document_description;
-					$output .= '</span>';
 					$output .= '</div>';
 					
 					$output .= '</div>';

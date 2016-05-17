@@ -12,13 +12,19 @@
     float: right;
 }
 
-.cp_documents .panel-body .icon, .cp_document .panel-body .file {
+.cp_document { padding-bottom: 20px; }
+
+.cp_document .icon, .cp_document .file {
 	display: inline;
-	float: left; 
 }
 
-.cp_documents .panel-body .icon { padding-right: 2rem; }
+.cp_document .icon { padding-right: 2rem; }
 
-.cp_documents .panel-body .file {  }
+.cp_document .icon img { width: 100px; }
 
-.cp_documents .panel-body .icon img { width: 100px; }
+.cp_document .file {  }
+
+.cp_document .file a { vertical-align: bottom; }
+
+.cp_document .description { padding-top: 2px; }
+

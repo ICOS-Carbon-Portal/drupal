@@ -28,3 +28,18 @@
 	font-weight: bold;
 }
 
+.region-featured-bottom-first, .region-featured-bottom-third {
+	width: 30% !important;
+}
+
+.region-featured-bottom-second {
+	width: 40% !important;
+}
+
+@media all and (min-width: 851px) {
+	.layout-container {
+		max-width: 100% !important;
+	}
+}
+
+
