@@ -26,8 +26,8 @@ run { \
 
 workdir /var/www/html
 
-env DRUPAL_VERSION 8.0.0
-env DRUPAL_MD5 92ce9a54fa926b58032a4e39b0f9a9f1
+env DRUPAL_VERSION 8.1.1
+env DRUPAL_MD5 529f3d72964c612695f68e0a6078b8ae
 
 run curl -fSL "http://ftp.drupal.org/files/projects/drupal-${DRUPAL_VERSION}.tar.gz" -o drupal.tar.gz \
 	&& echo "${DRUPAL_MD5} *drupal.tar.gz" | md5sum -c - \
@@ -35,12 +35,5 @@ run curl -fSL "http://ftp.drupal.org/files/projects/drupal-${DRUPAL_VERSION}.tar
 	&& rm drupal.tar.gz \
 	&& chown -R www-data:www-data sites
 
-copy /conf/settings.php /var/www/html/sites/default/settings.php
-copy /conf/services.yml /var/www/html/sites/default/services.yml
-
-run chown www-data:www-data -R /var/www/html/sites/ \
-	&& chmod 664 /var/www/html/sites/default/settings.php \
-	&& ln -s /drupal_files/themes/ /var/www/html/themes/custom \
-	&& ln -s /drupal_files/modules/ /var/www/html/modules/custom \
-	&& mkdir /var/www/html/sites/default/files \
-	&& chown www-data:www-data -R /var/www/html/sites/default/files	
+copy cp-init /usr/local/bin/
+cmd ["cp-init"]

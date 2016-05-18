@@ -5,9 +5,9 @@ drupal:
   ports:
    - "8080:80"
   volumes:
-   - ../themes:/drupal_files/themes
-   - ../modules:/drupal_files/modules
-   - ../files:/drupal_files/files
+   - ../themes:/var/www/html/themes
+   - ../modules:/var/www/html/modules
+   - ../files/default:/var/www/html/sites/default/:rw
 mariadb:
   image: mariadb:10.0.21
   ports:
@@ -17,5 +17,6 @@ mariadb:
     MYSQL_DATABASE: database
     MYSQL_USER: user
     MYSQL_PASSWORD: xxxxxxxx
-
+  volumes:
+    - ../db:/var/lib/mysql/:rw
 
