@@ -37,9 +37,7 @@
 }
 
 @media all and (min-width: 851px) {
-	.layout-container {
+	.featured-bottom .layout-container {
 		max-width: 100% !important;
 	}
 }
-
-
