@@ -5,6 +5,7 @@
     	
 	    checkCpUserConsent();
 	    
+	    handleIngressAndTitle();
         
     	$(function() {
     		
@@ -94,6 +95,27 @@ function checkCpUserConsent() {
 checkedCpUserConsent = false;
 
 
+/**
+ * This method assume two fields: 
+ * Boolean field_cp_page_show_title, 
+ * Text (plain, long) field_cp_page_ingress 
+ */
+function handleIngressAndTitle() {
+	
+	jQuery('.field--name-field-cp-page-show-title .field__label').hide();
+	jQuery('.field--name-field-cp-page-show-title .field__item').hide();
+	jQuery('.field--name-field-cp-page-ingress .field__label').hide();
+	
+	if (jQuery('.field--name-field-cp-page-show-title .field__item').text() === 'Not show title') {
+		jQuery('.field--name-field-cp-page-ingress .field__item').hide();
+		jQuery('.page-title').hide();
+		
+	} else {
+		jQuery('.page-title').css({'padding': '0 0 1rem 0', 'border-bottom': '0.1rem dashed #c7c8ca', 'color' : '#0a96f0'});
+		jQuery('.field--name-field-cp-page-ingress .field__item').css({'padding': '0 0 3rem 0', 'font-size': '1.2rem', 'text-transform': 'uppercase'});
+		
+	}
+}
 
 
 

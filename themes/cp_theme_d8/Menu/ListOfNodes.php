@@ -102,7 +102,7 @@ class ListOfNodes {
 			$title = $node->getTitle();
 			if ($node->getDepth() > '1') {
 				$nodetype = 'has_subnodes';
-				$title .= '<img src="/themes/custom/cp_theme_d8/images/arrow-down.svg">'; 
+				$title .= '<img src="/themes/cp_theme_d8/images/arrow-down.svg">'; 
 			}
 			
 			$this->menu[] = '<li class="' . $nodetype . '"><a href="'. $url . $node->getPath() .'">'. $title . '</a>';
