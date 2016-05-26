@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.cp_event.field_cp_event_heading
     - field.field.node.cp_event.field_cp_event_text
     - field.field.node.cp_event.field_cp_event_picture
     - field.field.node.cp_event.field_cp_event_link
@@ -23,13 +22,6 @@ targetEntityType: node
 bundle: cp_event
 mode: default
 content:  
-  field_cp_event_heading:
-    weight: 102
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
   field_cp_event_text:
     weight: 103
     label: above

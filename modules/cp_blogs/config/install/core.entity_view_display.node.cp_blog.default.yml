@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.cp_blog.field_cp_blog_heading
     - field.field.node.cp_blog.field_cp_blog_picture
     - field.field.node.cp_blog.field_cp_blog_text
     - field.field.node.cp_blog.field_cp_blog_deprecated
@@ -18,13 +17,6 @@ targetEntityType: node
 bundle: cp_blog
 mode: default
 content:  
-  field_cp_blog_heading:
-    weight: 102
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
   field_cp_blog_picture:
     weight: 103
     label: above

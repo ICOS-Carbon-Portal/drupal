@@ -5,13 +5,13 @@ namespace Drupal\cp_blogs\CPBlogs;
 class Blog {
 	
 	private $id;
-	private $heading;
+	private $title;
+	private $created;
 	private $picture_url;
 	private $picture_title;
 	private $text;
 	private $deprecated;
-	private $created;
-
+	
 	function __construct() {
 	
 	}
@@ -24,12 +24,20 @@ class Blog {
 		$this->id = $id;
 	}
 	
-	public function getHeading() {
-		return $this->heading;
+	public function getTitle() {
+		return $this->title;
 	}
 	
-	public function setHeading($heading) {
-		$this->heading = $heading;
+	public function setTitle($title) {
+		$this->title = $title;
+	}
+	
+	public function getCreated() {
+		return $this->created;
+	}
+	
+	public function setCreated($created) {
+		$this->created = $created;
 	}
 	
 	public function getPictureUrl() {
@@ -62,13 +70,5 @@ class Blog {
 	
 	public function setDeprecated($deprecated) {
 		$this->deprecated = $deprecated;
-	}
-	
-	public function getCreated() {
-		return $this->created;
-	}
-	
-	public function setCreated($created) {
-		$this->created = $created;
 	}
 }

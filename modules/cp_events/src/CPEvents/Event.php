@@ -5,7 +5,9 @@ namespace Drupal\cp_events\CPEvents;
 class Event {
 	
 	private $id;
-	private $heading;
+	private $title;
+	private $created;
+	private $changed;
 	private $text;
 	private $picture_url;
 	private $picture_title;
@@ -16,8 +18,6 @@ class Event {
 	private $news;
 	private $historical;
 	private $deprecated;
-	private $created;
-	private $changed;
 	
 	function __construct() {
 	
@@ -31,12 +31,28 @@ class Event {
 		$this->id = $id;
 	}
 	
-	public function getHeading() {
-		return $this->heading;
+	public function getTitle() {
+		return $this->title;
 	}
 	
-	public function setHeading($heading) {
-		$this->heading = $heading;
+	public function setTitle($title) {
+		$this->title = $title;
+	}
+	
+	public function getCreated() {
+		return $this->created;
+	}
+	
+	public function setCreated($created) {
+		$this->created = $created;
+	}
+	
+	public function getChanged() {
+		return $this->changed;
+	}
+	
+	public function setChanged($changed) {
+		$this->changed = $changed;
 	}
 	
 	public function getText() {
@@ -125,21 +141,5 @@ class Event {
 	
 	public function setDeprecated($deprecated) {
 		$this->deprecated = $deprecated;
-	}
-	
-	public function getCreated() {
-		return $this->created;
-	}
-	
-	public function setCreated($created) {
-		$this->created = $created;
-	}
-	
-	public function getChanged() {
-		return $this->changed;
-	}
-	
-	public function setChanged($changed) {
-		$this->changed = $changed;
 	}
 }

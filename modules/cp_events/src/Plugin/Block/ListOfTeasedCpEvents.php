@@ -69,7 +69,7 @@ class ListOfTeasedCpEvents extends BlockBase {
 					
 					$output .= '<div class="from_date">' . $from_date . $to_date . '</div>';
 					
-					$output .= '<div class="heading"><a href="/event/'.$e->getId().'">' . $e->getHeading() . '</a></div>';
+					$output .= '<div class="heading"><a href="/event/'.$e->getId().'">' . $e->getTitle() . '</a></div>';
 					
 					if ($e->getPictureUrl() != null || $e->getPictureUrl() != '') {
 						$picture_url = $url . str_replace('public://', '', $e->getPictureUrl());

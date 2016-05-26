@@ -19,7 +19,7 @@
 				
 					<div class="element post{{ loop.index is odd }}">
 						<div class="from_date"> {{ event.getFromDate() }} </div>
-						<div class="heading"><a href="/event/{{ event.getId() }}"> {{ event.getHeading() }} </a></div>
+						<div class="heading"><a href="/event/{{ event.getId() }}"> {{ event.getTitle() }} </a></div>
 					</div>
 					
 				{% endfor %}      

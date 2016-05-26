@@ -43,7 +43,7 @@ class ViewLatestCpBlog extends BlockBase {
 		
 		$output .= '<div>';
 		
-		$output .= '<div class="heading">' . $blog->getHeading() . '</div>';
+		$output .= '<div class="heading">' . $blog->getTitle() . '</div>';
 				
 		if ($blog->getPictureUrl() != null || $blog->getPictureUrl() != '') {
 			$url = $GLOBALS['base_url'] . '/' . PublicStream::basePath() . '/';

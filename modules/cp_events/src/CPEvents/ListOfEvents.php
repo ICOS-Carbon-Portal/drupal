@@ -15,7 +15,6 @@ class ListOfEvents {
 		$list = array();
 		
 		foreach ($this->_collect_events() as $c) {
-			$c = $this->_add_heading($c);
 			$c = $this->_add_text($c);
 			$c = $this->_add_picture($c);
 			$c = $this->_add_link($c);
@@ -23,7 +22,6 @@ class ListOfEvents {
 			$c = $this->_add_to_date($c);
 			$c = $this->_add_news($c);
 			$c = $this->_add_historical($c);
-			$c = $this->_add_created($c);
 				
 			$list[] = $c;
 		}
@@ -36,8 +34,10 @@ class ListOfEvents {
 		$list = array();
 		
 		$result = db_query('
-			select n.nid	
-			from {node} as n join {node__field_cp_event_deprecated} as d on n.nid = d.entity_id
+			select n.nid, nfd.title, nfd.created, nfd.changed	
+			from {node} as n 
+				join {node__field_cp_event_deprecated} as d on n.nid = d.entity_id
+				join {node_field_data} as nfd on n.nid = nfd.nid
 			where n.type = :type
 			and d.field_cp_event_deprecated_value = 0
 			',
@@ -50,34 +50,15 @@ class ListOfEvents {
 			if ($record) {
 				$event = new Event();
 				$event->setId($record->nid);
-				
+				$event->setTitle($record->title);
+				$event->setCreated($record->created);
+				$event->setChanged($record->changed);
 				
 				$list[] = $event;
 			}
 		}
 		
 		return $list;	
-	}
-
-	function _add_heading($event) {
-	
-		$result = db_query('
-			select field_cp_event_heading_value
-			from {node__field_cp_event_heading}
-			where entity_id = :id
-			',
-	
-			array(':id' => $event->getId())
-		)->fetchAll();
-	
-	
-		foreach ($result as $record) {
-			if ($record) {
-				$event->setHeading($record->field_cp_event_heading_value);
-			}
-		}
-	
-		return $event;
 	}
 	
 	function _add_text($event) {
@@ -225,28 +206,6 @@ class ListOfEvents {
 		foreach ($result as $record) {
 			if ($record) {
 				$event->setHistorical($record->field_cp_event_historical_value);
-			}
-		}
-	
-		return $event;
-	}
-	
-	function _add_created($event) {
-	
-		$result = db_query('
-			select created, changed
-			from {node_field_data}
-			where vid = :id
-			',
-	
-			array(':id' => $event->getId())
-		)->fetchAll();
-	
-	
-		foreach ($result as $record) {
-			if ($record) {
-				$event->setCreated($record->created);
-				$event->setChanged($record->changed);
 			}
 		}
 	

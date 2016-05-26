@@ -44,7 +44,7 @@ class CPEventPageController extends ControllerBase {
 	  		$output .= '<div class="from_date">' . $event->getFromDate() . '</div>';
 	  	}
 	  
-	  	$output .= '<div class="heading">' . $event->getHeading() . '</div>';
+	  	$output .= '<div class="heading">' . $event->getTitle() . '</div>';
 	  
 	  	if ($event->getPictureUrl() != null || $event->getPictureUrl() != '') {
 	  		$picture_url = $url . str_replace('public://', '', $event->getPictureUrl());

@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.cp_event.field_cp_event_heading
     - field.field.node.cp_event.field_cp_event_text
     - field.field.node.cp_event.field_cp_event_picture
     - field.field.node.cp_event.field_cp_event_link
@@ -28,13 +27,6 @@ content:
     weight: 10
     settings: {  }
     third_party_settings: {  }
-  field_cp_event_heading:
-    weight: 32
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
   field_cp_event_text:
     weight: 33
     settings:
