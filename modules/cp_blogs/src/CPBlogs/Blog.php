@@ -7,6 +7,7 @@ class Blog {
 	private $id;
 	private $title;
 	private $created;
+	private $changed;
 	private $picture_url;
 	private $picture_title;
 	private $text;
@@ -38,6 +39,14 @@ class Blog {
 	
 	public function setCreated($created) {
 		$this->created = $created;
+	}
+	
+	public function getChanged() {
+		return $this->changed;
+	}
+	
+	public function setChanged($changed) {
+		$this->changed = $changed;
 	}
 	
 	public function getPictureUrl() {

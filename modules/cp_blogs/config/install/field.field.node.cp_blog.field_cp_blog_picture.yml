@@ -12,7 +12,7 @@ entity_type: node
 bundle: cp_blog
 label: 'Picture'
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''

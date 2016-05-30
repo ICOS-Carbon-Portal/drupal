@@ -29,7 +29,7 @@ class ListOfBlogs {
 		$list = array();
 		
 		$result = db_query('
-			select n.nid, nfd.title, nfd.created	
+			select n.nid, nfd.title, nfd.created, nfd.changed	
 			from {node} as n 
 				join {node__field_cp_blog_deprecated} as d on n.nid = d.entity_id
 				join {node_field_data} as nfd on n.nid = nfd.nid
@@ -47,6 +47,7 @@ class ListOfBlogs {
 				$blog->setId($record->nid);
 				$blog->setTitle($record->title);
 				$blog->setCreated($record->created);
+				$blog->setChanged($record->changed);
 				
 				$list[] = $blog;
 			}
