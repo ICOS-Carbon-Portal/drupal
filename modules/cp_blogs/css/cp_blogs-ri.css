@@ -31,3 +31,22 @@
 		width: 100%;
 	}	
 }
+
+.cp_blog_teased .heading {
+	font-size: 1.8rem;
+	color: #0a96f0;
+}
+
+.cp_blog_teased .link, .cp_blog_teased .link:hover, .cp_blog_teased .link a, .cp_blog_teased .link a:hover {
+	text-decoration: none;
+	border-bottom: 0;
+}
+
+.cp_blog .heading {
+	font-size: 2.5rem;
+	color: #0a96f0;
+}
+
+.cp_blog .picture {
+	padding-bottom: 2rem;
+}

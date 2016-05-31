@@ -24,8 +24,8 @@ class CPBlogPageController extends ControllerBase {
 	        '#markup' => $this->_build_html($blog),
 	    	'#attached' => array(
 	    		'library' =>  array(
-	    			'cp_events/style',
-	    			'cp_events/script'
+	    			'cp_blogs/style',
+	    			'cp_blogs/script'
 	    		),
 	    	),
 	    );
@@ -36,8 +36,6 @@ class CPBlogPageController extends ControllerBase {
 		$output = '<div class="cp_blog">';
 
 		$output .= '<div class="date">' . date('Y-m-d', $blog->getChanged()) . '</div>';
-
-		$output .= '<div>';
 
 		$output .= '<div class="heading">' . $blog->getTitle() . '</div>';
 
@@ -52,8 +50,6 @@ class CPBlogPageController extends ControllerBase {
 			$output .= '<img src="' . $picture_url . '" alt="' . $picture_title . '" title="' . $picture_title . '" />';
 			$output .= '</div>';
 		}
-
-		$output .= '</div>';
 
 		$output .= '<div class="text">' . $blog->getText() . '</div>';
 
