@@ -35,9 +35,8 @@ class CPEventPageController extends ControllerBase {
   
 	  	$output = '<div id="cp_events">';
 	  
-	  	$url = $GLOBALS['base_url'] . '/' . PublicStream::basePath() . '/';
+	  	$url = '/' . PublicStream::basePath() . '/';
 	  
-	  	
 		$output .= '<div class="full-event">';
 	  
 	  	if ($event->getFromDate() != null || $event->getFromDate() != '') {
