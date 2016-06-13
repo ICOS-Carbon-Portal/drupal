@@ -33,7 +33,7 @@ class ListOfCpEventsAsNews extends BlockBase {
 	
 		$output = '<div id="cp_events_as_news">';
 	
-		$url = $GLOBALS['base_url'] . '/' . PublicStream::basePath() . '/';
+		$url = '/' . PublicStream::basePath() . '/';
 	
 		foreach ($list as $e) {
 			

@@ -40,7 +40,7 @@ class ListOfTeasedCpEvents extends BlockBase {
 		
 		$output = '<div id="cp_events">';
 	
-		$url = $GLOBALS['base_url'] . '/' . PublicStream::basePath() . '/';
+		$url = '/' . PublicStream::basePath() . '/';
 	
 		$old_date = strtotime('-7 days', strtotime(date('Y-m-d')));
 		

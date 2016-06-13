@@ -66,7 +66,7 @@ class CpImagesCarousel extends BlockBase {
 		$output .= '<div class="carousel-inner vertical" role="listbox">';
 		
 		
-		$url = $GLOBALS['base_url'] . '/' . PublicStream::basePath() . '/';
+		$url = '/' . PublicStream::basePath() . '/';
 
 		$co = 0;
 		foreach ($images as $image) {

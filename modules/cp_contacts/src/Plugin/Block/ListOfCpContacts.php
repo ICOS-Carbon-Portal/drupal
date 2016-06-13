@@ -36,7 +36,7 @@ class ListOfCpContacts extends BlockBase {
 		
 		$output = '<div id="cp_contacts">';
 		
-		$url = $GLOBALS['base_url'] . '/' . PublicStream::basePath() . '/';
+		$url = '/' . PublicStream::basePath() . '/';
 		
 		$co = 1;
 		

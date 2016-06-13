@@ -40,7 +40,7 @@ class ListOfTeasedCpEventsAsNews extends BlockBase {
 		
 		$output = '<div id="cp_events_as_news">';
 	
-		$url = $GLOBALS['base_url'] . '/' . PublicStream::basePath() . '/';
+		$url = '/' . PublicStream::basePath() . '/';
 	
 		$co = 0;
 		foreach ($list as $e) {

@@ -49,7 +49,7 @@ class ListOfNodes {
 						$delimiter = '<span>&raquo;</span>';
 					//}
 					
-					$url = $GLOBALS['base_url'] . '/';
+					$url = '/';
 					$this->breadcrumbs[] = '<li><a href="' . $url . $node->getPath().'">' . $node->getTitle() . '</a>' . $delimiter . '</li>';
 					
 					$in --;
@@ -94,7 +94,7 @@ class ListOfNodes {
 	
 	function _build_menu($node, &$output, $nodes) {
 		
-		$url = $GLOBALS['base_url'] . '/';
+		$url = '/';
 		
 		if ($node->getHasChildren() == '1') {
 			

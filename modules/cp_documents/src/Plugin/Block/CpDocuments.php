@@ -69,7 +69,7 @@ class CpDocuments extends BlockBase {
 						&& $document->getDocumentUri() != '') {
 					
 					
-					$url = $GLOBALS['base_url'] . '/' . PublicStream::basePath() . '/';				
+					$url = '/' . PublicStream::basePath() . '/';				
 					$document_url = $url . str_replace('public://', '', $document->getDocumentUri());	
 					$document_description = '';
 					if ($document->getDocumentDescription() != null || $document->getDocumentDescription() != '') { 
