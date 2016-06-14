@@ -123,6 +123,9 @@ function handleIngressAndTitle() {
 		jQuery('.field--name-field-cp-page-ingress .field__item').hide();
 		jQuery('.page-title').hide();
 		
+		jQuery('#main-wrapper').css({'height':'0px', 'min-height':'0px'});
+		jQuery('#main').css({'margin-top':'0px', 'margin-bottom':'0px'});
+		
 	} else {
 		jQuery('.page-title').css({'padding':'0 0 1rem 0', 'border-bottom':'0.1rem dashed #c7c8ca'});
 		jQuery('.field--name-field-cp-page-ingress .field__item').css({'padding':'0 0 3rem 0', 'font-size':'1.4rem', 'font-weight':'bold', 'text-transform':'uppercase', 'text-align':'center'});	
