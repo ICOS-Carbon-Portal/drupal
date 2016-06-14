@@ -337,6 +337,16 @@ body {
 
 /** Page **/
 h1.page-title {
+	text-align: center;
+	text-transform: uppercase;
+	color: #0a96f0; 
+}
+
+.region h2 {
+	text-transform: uppercase;
+	font-size: 2em;
+	line-height: 1em;
+	font-weight: 500;
 	color: #0a96f0;
 }
 

@@ -21,13 +21,6 @@
 	border-bottom: 0px !important;
 }
 
-.block h2 { 
-	color: #0A96F0 !important;
-	font-size: 1.8em !important;
-	line-height: 1.8em !important;
-	font-weight: bold;
-}
-
 .region-featured-bottom-first, .region-featured-bottom-third {
 	width: 30% !important;
 }
