@@ -10,7 +10,7 @@ third_party_settings:
     parent: 'main:'
 name: 'CP Document'
 type: cp_documents
-description: 'Carbon Portal document form.'
+description: 'Carbon Portal document.'
 help: ''
 new_revision: false
 preview_mode: 1

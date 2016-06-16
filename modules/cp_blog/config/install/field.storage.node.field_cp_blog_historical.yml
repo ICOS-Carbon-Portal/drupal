@@ -3,12 +3,11 @@ status: true
 dependencies:
   module:
     - node
-id: node.field_cp_blog_text
-field_name: field_cp_blog_text
+id: node.field_cp_blog_historical
+field_name: field_cp_blog_historical
 entity_type: node
-type: text_with_summary
-settings:
-  case_sensitive: false
+type: boolean
+settings: {  }
 module: core
 locked: false
 cardinality: 1

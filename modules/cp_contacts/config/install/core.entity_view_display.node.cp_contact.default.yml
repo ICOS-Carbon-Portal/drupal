@@ -20,27 +20,27 @@ bundle: cp_contact
 mode: default
 content:
   field_cp_contact_name:
-    weight: 102
+    weight: 110
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_cp_contact_email:
-    weight: 103
+    weight: 112
     label: above
     settings: {  }
     third_party_settings: {  }
     type: basic_string
   field_cp_contact_phone:
-    weight: 104
+    weight: 114
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_cp_contact_photo:
-    weight: 105
+    weight: 116
     label: above
     settings:
       image_style: ''
@@ -48,20 +48,20 @@ content:
     third_party_settings: {  }
     type: image
   field_cp_contact_organization:
-    weight: 106
+    weight: 118
     label: above
     settings: { }
     third_party_settings: {  }
     type: list_default
   field_cp_contact_title:
-    weight: 107
+    weight: 120
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_cp_contact_index:
-    weight: 108
+    weight: 122
     label: above
     settings:
       thousand_separator: ''

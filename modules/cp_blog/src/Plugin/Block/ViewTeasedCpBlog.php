@@ -14,7 +14,7 @@ use Drupal\Core\Form\FormStateInterface;
  * )
  */
 class ViewTeasedCpBlog extends BlockBase {
-	
+
 	function build() {
 		$listOfBlogs = new SortedListOfBlogs();
 		$list = $listOfBlogs->getListLatestFirst();
@@ -39,16 +39,16 @@ class ViewTeasedCpBlog extends BlockBase {
 	function _build_html($list) {
 		$config = $this->getConfiguration();
 		
-		$blog_title = '';
-		if (isset($config['cp_blog_blog_title'])) {
-			$blog_title = $config['cp_blog_blog_title'];
+		$blog_category = '';
+		if (isset($config['cp_blog_blog_category'])) {
+			$blog_category = $config['cp_blog_blog_category'];
 		}
 		
 		$output = '';
 		
 		foreach ($list as $blog) {
 			
-			if ($blog->getTitle() == $blog_title) {
+			if ($blog->getCategory() == $blog_category) {
 				
 				$output .= '<div class="cp_blog_teased">';
 				
@@ -69,20 +69,20 @@ class ViewTeasedCpBlog extends BlockBase {
 				}
 				
 				
-				
-				$text = '';
 				if (strlen($blog->getText()) > 1 ) {
-					$text_start = strpos($blog->getText(), '<p>');
-					$text_stop = strpos($blog->getText(), '</p>');
 					
-					$output .= '<div class="teaser">' . substr($blog->getText(), $text_start, $text_stop - $text_start) . '<span class="dots">...</span></div>';
+					$stop = 80;
+					if (strlen($blog->getText()) < 80) { $stop = strlen($blog->getText()); }
+					
+					$output .= '<div class="teaser">' . substr($blog->getText(), 0, $stop) . '<span class="dots">...</span></div>';
 				}
-				
 				
 						
 				$output .= '<div class="link"><a href="/blog/' . $blog->getId() . '">Read the blog</a></div>';
 				
 				$output .= '</div>';
+				
+				break;
 			}
 	
 		}
@@ -104,12 +104,12 @@ class ViewTeasedCpBlog extends BlockBase {
 		$listOfBlogs = new SortedListOfBlogs();
 		$list = $listOfBlogs->getListLatestFirst();
 		foreach ($list as $blog) {
-			$blog_options[$blog->getTitle()] = $blog->getTitle();
+			$blog_options[$blog->getCategory()] = $blog->getCategory();
 		}
 		
-		$blog_title = '';
-		if (isset($config['cp_blog_blog_title'])) {
-			$blog_title = $config['cp_blog_blog_title'];
+		$blog_category = '';
+		if (isset($config['cp_blog_blog_category'])) {
+			$blog_category = $config['cp_blog_blog_category'];
 		}
 		
 		$description = '';
@@ -118,12 +118,12 @@ class ViewTeasedCpBlog extends BlockBase {
 		
 		}
 		
-		$form['cp_blog_blog_title'] = array (
+		$form['cp_blog_blog_category'] = array (
 				'#type' => 'select',
 				'#title' => $this->t('Select a blog'),
 				'#description' => $description,
 				'#options' => $blog_options,
-				'#default_value' => $blog_title
+				'#default_value' => $blog_category
 		);
 		
 		return $form;
@@ -134,6 +134,6 @@ class ViewTeasedCpBlog extends BlockBase {
 	 * {@inheritdoc}
 	 */
 	public function blockSubmit($form, FormStateInterface $form_state) {
-		$this->setConfigurationValue('cp_blog_blog_title', $form_state->getValue('cp_blog_blog_title'));
+		$this->setConfigurationValue('cp_blog_blog_category', $form_state->getValue('cp_blog_blog_category'));
 	}
 }

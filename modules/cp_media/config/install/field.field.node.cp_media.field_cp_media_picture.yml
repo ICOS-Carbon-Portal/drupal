@@ -2,17 +2,17 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_cp_images_picture
-    - node.type.cp_images
+    - field.storage.node.field_cp_media_picture
+    - node.type.cp_media
   module:
     - image
-id: node.cp_images.field_cp_images_picture
-field_name: field_cp_images_picture
+id: node.cp_media.field_cp_media_picture
+field_name: field_cp_media_picture
 entity_type: node
-bundle: cp_images
+bundle: cp_media
 label: 'Picture'
 description: ''
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''

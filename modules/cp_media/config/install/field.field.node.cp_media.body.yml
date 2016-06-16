@@ -2,16 +2,18 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_cp_blog_text
-    - node.type.cp_blog
-id: node.cp_blog.field_cp_blog_text
-field_name: field_cp_blog_text
+    - field.storage.node.body
+    - node.type.cp_media
+  module:
+    - text
+id: node.cp_media.body
+field_name: body
 entity_type: node
-bundle: cp_blog
-label: Blog
+bundle: cp_media
+label: 'Body'
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:

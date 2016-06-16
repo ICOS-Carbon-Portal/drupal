@@ -25,13 +25,13 @@ content:
     third_party_settings: {  }
     type: image
   field_cp_images_category:
-    weight: 111
+    weight: 112
     label: above
     settings: { }
     third_party_settings: {  }
-    type: string
+    type: string    
   field_cp_images_carousel:
-    weight: 112
+    weight: 114
     label: above
     settings:
       format: default
@@ -40,7 +40,7 @@ content:
     third_party_settings: {  }
     type: boolean    
   field_cp_images_historical:
-    weight: 113
+    weight: 116
     label: above
     settings:
       format: default
@@ -49,7 +49,7 @@ content:
     third_party_settings: {  }
     type: boolean
   field_cp_images_deprecated:
-    weight: 114
+    weight: 118
     label: above
     settings:
       format: default

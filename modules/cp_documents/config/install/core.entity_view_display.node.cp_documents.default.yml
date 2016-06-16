@@ -1,7 +1,7 @@
 langcode: en
 status: true
 dependencies:
-  config:
+  config:  
     - field.field.node.cp_documents.field_cp_documents_document
     - field.field.node.cp_documents.field_cp_documents_picture
     - field.field.node.cp_documents.field_cp_documents_category
@@ -16,7 +16,7 @@ id: node.cp_documents.default
 targetEntityType: node
 bundle: cp_documents
 mode: default
-content:
+content:  
   field_cp_documents_document:
     weight: 110
     settings:
@@ -24,7 +24,7 @@ content:
     third_party_settings: {  }
     type: file_default
   field_cp_documents_picture:
-    weight: 111
+    weight: 112
     label: above
     settings:
       image_style: ''
@@ -32,13 +32,13 @@ content:
     third_party_settings: {  }
     type: image
   field_cp_documents_category:
-    weight: 112
+    weight: 114
     label: above
     settings: { }
     third_party_settings: {  }
-    type: string  
+    type: string    
   field_cp_documents_historical:
-    weight: 113
+    weight: 116
     label: above
     settings:
       format: default
@@ -47,7 +47,7 @@ content:
     third_party_settings: {  }
     type: boolean
   field_cp_documents_deprecated:
-    weight: 114
+    weight: 118
     label: above
     settings:
       format: default

@@ -24,26 +24,26 @@ content:
     third_party_settings: {  }
     type: image_image
   field_cp_images_category:
-    weight: 41
+    weight: 42
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: string_textfield    
   field_cp_images_carousel:
-    weight: 42
+    weight: 44
     settings:
       display_label: false
     third_party_settings: {  }
     type: boolean_checkbox    
   field_cp_images_historical:
-    weight: 43
+    weight: 46
     settings:
       display_label: false
     third_party_settings: {  }
     type: boolean_checkbox
   field_cp_images_deprecated:
-    weight: 44
+    weight: 48
     settings:
       display_label: false
     third_party_settings: {  }

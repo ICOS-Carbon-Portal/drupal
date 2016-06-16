@@ -10,7 +10,7 @@ third_party_settings:
     parent: 'main:'
 name: 'CP Contact'
 type: cp_contact
-description: 'Carbon Portal contact form.'
+description: 'Carbon Portal contact.'
 help: ''
 new_revision: false
 preview_mode: 1

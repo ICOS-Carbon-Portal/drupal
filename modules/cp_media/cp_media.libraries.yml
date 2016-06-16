@@ -1,0 +1,12 @@
+style:
+  css:
+    theme:
+      css/cp_media.css: {}
+      
+script:     
+  js:
+    js/cp_media.js: {}
+    
+  dependencies:
+    - core/jquery
+    - core/jquery.once    

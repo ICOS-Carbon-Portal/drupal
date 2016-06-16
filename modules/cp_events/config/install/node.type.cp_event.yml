@@ -10,7 +10,7 @@ third_party_settings:
     parent: 'main:'
 name: 'CP Event'
 type: cp_event
-description: 'Carbon Portal event form.'
+description: 'Carbon Portal event.'
 help: ''
 new_revision: false
 preview_mode: 1

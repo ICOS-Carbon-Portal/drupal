@@ -1,19 +1,5 @@
 <?php
 
-use Drupal\Core\Routing\RouteMatchInterface;
-
-function cp_events_help($route_name, RouteMatchInterface $route_match) {
-  switch ($route_name) {
-	case 'help.page.cp_events':
-      $output = '';
-      $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('CP Events Module') . '</p>';
-      return $output;
-
-    default:
-  }
-}
-
 function cp_events_theme() {
 	$theme['cp_events_archive'] = [
 			'variables' => ['elements' => null],

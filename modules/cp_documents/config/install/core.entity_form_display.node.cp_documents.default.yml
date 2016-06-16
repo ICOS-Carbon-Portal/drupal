@@ -16,7 +16,7 @@ id: node.cp_documents.default
 targetEntityType: node
 bundle: cp_documents
 mode: default
-content:  
+content: 
   field_cp_documents_document:
     weight: 40
     settings:
@@ -24,27 +24,27 @@ content:
     third_party_settings: {  }
     type: file_generic
   field_cp_documents_picture:
-    weight: 41
+    weight: 42
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
   field_cp_documents_category:
-    weight: 42
+    weight: 44
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: string_textfield     
   field_cp_documents_historical:
-    weight: 43
+    weight: 46
     settings:
       display_label: false
     third_party_settings: {  }
     type: boolean_checkbox
   field_cp_documents_deprecated:
-    weight: 44
+    weight: 48
     settings:
       display_label: false
     third_party_settings: {  }

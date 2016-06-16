@@ -10,7 +10,7 @@ third_party_settings:
     parent: 'main:'
 name: 'CP Blog'
 type: cp_blog
-description: 'Carbon Portal blog form.'
+description: 'Carbon Portal blog.'
 help: ''
 new_revision: false
 preview_mode: 1

@@ -23,13 +23,13 @@ bundle: cp_event
 mode: default
 content:  
   field_cp_event_text:
-    weight: 103
+    weight: 110
     label: above
     settings: {  }
     third_party_settings: {  }
     type: basic_string   
   field_cp_event_picture:
-    weight: 104
+    weight: 112
     label: above
     settings:
       image_style: ''
@@ -37,7 +37,7 @@ content:
     third_party_settings: {  }
     type: image
   field_cp_event_link:
-    weight: 105
+    weight: 114
     label: above
     settings:
       trim_length: 80
@@ -48,7 +48,7 @@ content:
     third_party_settings: {  }
     type: link
   field_cp_event_from_date:
-    weight: 106
+    weight: 116
     label: above
     settings:
       format_type: html_date
@@ -56,7 +56,7 @@ content:
     third_party_settings: {  }
     type: datetime_default 
   field_cp_event_to_date:
-    weight: 107
+    weight: 118
     label: above
     settings:
       format_type: html_date
@@ -64,7 +64,7 @@ content:
     third_party_settings: {  }
     type: datetime_default
   field_cp_event_news:
-    weight: 108
+    weight: 120
     label: above
     settings:
       format: default
@@ -73,7 +73,7 @@ content:
     third_party_settings: {  }
     type: boolean
   field_cp_event_historical:
-    weight: 109
+    weight: 122
     label: above
     settings:
       format: default
@@ -82,7 +82,7 @@ content:
     third_party_settings: {  }
     type: boolean
   field_cp_event_deprecated:
-    weight: 110
+    weight: 124
     label: above
     settings:
       format: default

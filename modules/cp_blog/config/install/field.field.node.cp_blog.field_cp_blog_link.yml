@@ -2,14 +2,14 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_cp_event_link
-    - node.type.cp_event
+    - field.storage.node.field_cp_blog_link
+    - node.type.cp_blog
   module:
     - link
-id: node.cp_event.field_cp_event_link
-field_name: field_cp_event_link
+id: node.cp_blog.field_cp_blog_link
+field_name: field_cp_blog_link
 entity_type: node
-bundle: cp_event
+bundle: cp_blog
 label: Link
 description: ''
 required: false

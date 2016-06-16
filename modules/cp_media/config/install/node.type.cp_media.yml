@@ -8,9 +8,9 @@ third_party_settings:
     available_menus:
       - main
     parent: 'main:'
-name: 'CP Image'
-type: cp_images
-description: 'Carbon Portal image.'
+name: 'CP Media'
+type: cp_media
+description: 'Carbon Portal media.'
 help: ''
 new_revision: false
 preview_mode: 1

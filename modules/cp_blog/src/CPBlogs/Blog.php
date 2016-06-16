@@ -8,9 +8,13 @@ class Blog {
 	private $title;
 	private $created;
 	private $changed;
+	private $text;
 	private $picture_url;
 	private $picture_title;
-	private $text;
+	private $link_url;
+	private $link_title;
+	private $category;
+	private $historical;
 	private $deprecated;
 	
 	function __construct() {
@@ -49,6 +53,14 @@ class Blog {
 		$this->changed = $changed;
 	}
 	
+	public function getText() {
+		return $this->text;
+	}
+	
+	public function setText($text) {
+		$this->text = $text;
+	}
+	
 	public function getPictureUrl() {
 		return $this->picture_url;
 	}
@@ -64,13 +76,37 @@ class Blog {
 	public function setPictureTitle($picture_title) {
 		$this->picture_title = $picture_title;
 	}
-	
-	public function getText() {
-		return $this->text;
+
+	public function getLinkUrl() {
+		return $this->link_url;
 	}
 	
-	public function setText($text) {
-		$this->text = $text;
+	public function setLinkUrl($link_url) {
+		$this->link_url = $link_url;
+	}
+	
+	public function getLinkTitle() {
+		return $this->link_title;
+	}
+	
+	public function setLinkTitle($link_title) {
+		$this->link_title = $link_title;
+	}
+
+	public function getCategory() {
+		return $this->category;
+	}
+	
+	public function setCategory($category) {
+		$this->category = $category;
+	}
+	
+	public function getHistorical() {
+		return $this->historical;
+	}
+	
+	public function setHistorical($historical) {
+		$this->historical = $historical;
 	}
 	
 	public function getDeprecated() {

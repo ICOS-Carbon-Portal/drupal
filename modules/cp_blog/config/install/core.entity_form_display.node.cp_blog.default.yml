@@ -2,8 +2,11 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.cp_blog.field_cp_blog_picture
     - field.field.node.cp_blog.field_cp_blog_text
+    - field.field.node.cp_blog.field_cp_blog_picture
+    - field.field.node.cp_blog.field_cp_blog_link
+    - field.field.node.cp_blog.field_cp_blog_category
+    - field.field.node.cp_blog.field_cp_blog_historical
     - field.field.node.cp_blog.field_cp_blog_deprecated
     - node.type.cp_blog
   module:
@@ -17,31 +20,51 @@ targetEntityType: node
 bundle: cp_blog
 mode: default
 content:
-  created:
-    type: datetime_timestamp
-    weight: 10
-    settings: {  }
+  field_cp_blog_text:
+    weight: 40
+    settings:
+      rows: 5
+      placeholder: ''
     third_party_settings: {  }
+    type: string_textarea 
   field_cp_blog_picture:
-    weight: 33
+    weight: 42
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
-  field_cp_blog_text:
-    weight: 34
+  field_cp_blog_link:
+    weight: 44
     settings:
-      rows: 5
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default 
+  field_cp_blog_category:
+    weight: 46
+    settings:
+      size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textarea
-  field_cp_blog_deprecated:
-    weight: 35
+    type: string_textfield          
+  field_cp_blog_historical:
+    weight: 48
     settings:
       display_label: false
     third_party_settings: {  }
-    type: boolean_checkbox          
+    type: boolean_checkbox    
+  field_cp_blog_deprecated:
+    weight: 50
+    settings:
+      display_label: false
+    third_party_settings: {  }
+    type: boolean_checkbox 
+  created:
+    type: datetime_timestamp
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }             
   path:
     type: path
     weight: 30
