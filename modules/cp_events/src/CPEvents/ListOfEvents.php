@@ -15,7 +15,7 @@ class ListOfEvents {
 		$list = array();
 		
 		foreach ($this->_collect_events() as $c) {
-			$c = $this->_add_text($c);
+			$c = $this->_add_body_text($c);
 			$c = $this->_add_picture($c);
 			$c = $this->_add_link($c);
 			$c = $this->_add_from_date($c);
@@ -81,6 +81,27 @@ class ListOfEvents {
 		
 		return $event;
 	}
+	
+	function _add_body_text($event) {
+	
+		$result = db_query('
+			select body_value
+			from {node__body}
+			where entity_id = :id
+			',
+	
+			array(':id' => $event->getId())
+		)->fetchAll();
+
+
+		foreach ($result as $record) {
+			if ($record) {
+				$event->setText($record->body_value);
+			}
+		}
+
+		return $event;
+	}	
 
 	function _add_picture($event) {
 	
