@@ -15,7 +15,7 @@ class ListOfBlogs {
 		$list = array();
 		
 		foreach ($this->_collect_blogs() as $b) {
-			$b = $this->_add_text($b);
+			$b = $this->_add_body_text($b);
 			$b = $this->_add_picture($b);
 			$b = $this->_add_link($b);
 			$b = $this->_add_category($b);
@@ -58,6 +58,27 @@ class ListOfBlogs {
 		
 		return $list;	
 	}
+
+	function _add_body_text($blog) {
+	
+		$result = db_query('
+			select body_value
+			from {node__body}
+			where entity_id = :id
+			',
+	
+			array(':id' => $blog->getId())
+		)->fetchAll();
+
+
+		foreach ($result as $record) {
+			if ($record) {
+				$blog->setText($record->body_value);
+			}
+		}
+
+		return $blog;
+	}
 	
 	function _add_text($blog) {
 	
@@ -68,9 +89,9 @@ class ListOfBlogs {
 			',
 	
 			array(':id' => $blog->getId())
-			)->fetchAll();
-	
-	
+		)->fetchAll();
+		
+				
 		foreach ($result as $record) {
 			if ($record) {
 				$blog->setText($record->field_cp_blog_text_value);
@@ -78,7 +99,7 @@ class ListOfBlogs {
 		}
 	
 		return $blog;
-	}
+	}	
 	
 	function _add_picture($blog) {
 	
@@ -91,7 +112,7 @@ class ListOfBlogs {
 			',
 	
 			array(':id' => $blog->getId())
-			)->fetchAll();
+		)->fetchAll();
 
 
 		foreach ($result as $record) {
@@ -113,7 +134,7 @@ class ListOfBlogs {
 			',
 	
 			array(':id' => $blog->getId())
-			)->fetchAll();
+		)->fetchAll();
 
 
 		foreach ($result as $record) {
@@ -135,7 +156,7 @@ class ListOfBlogs {
 			',
 	
 			array(':id' => $blog->getId())
-			)->fetchAll();
+		)->fetchAll();
 
 
 		foreach ($result as $record) {
@@ -156,7 +177,7 @@ class ListOfBlogs {
 			',
 	
 			array(':id' => $blog->getId())
-			)->fetchAll();
+		)->fetchAll();
 
 
 		foreach ($result as $record) {
