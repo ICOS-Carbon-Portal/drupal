@@ -178,17 +178,17 @@ class ListOfEvents {
 			where entity_id = :id
 			',
 	
-				array(':id' => $event->getId())
-				)->fetchAll();
-	
-	
-				foreach ($result as $record) {
-					if ($record) {
-						$event->setNews($record->field_cp_event_news_value);
-					}
-				}
-	
-				return $event;
+			array(':id' => $event->getId())
+		)->fetchAll();
+
+
+		foreach ($result as $record) {
+			if ($record) {
+				$event->setNews($record->field_cp_event_news_value);
+			}
+		}
+
+		return $event;
 	}
 	
 	function _add_historical($event) {

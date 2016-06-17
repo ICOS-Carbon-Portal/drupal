@@ -118,7 +118,7 @@ class ListOfImages {
 			',
 	
 			array(':id' => $image->getId())
-			)->fetchAll();
+		)->fetchAll();
 
 
 		foreach ($result as $record) {
