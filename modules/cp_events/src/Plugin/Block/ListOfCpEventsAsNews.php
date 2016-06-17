@@ -5,6 +5,7 @@ namespace Drupal\cp_events\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\cp_events\CPEvents\SortedListOfEvents;
 use Drupal\Core\StreamWrapper\PublicStream;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * @Block(
@@ -30,10 +31,16 @@ class ListOfCpEventsAsNews extends BlockBase {
 	}
 	
 	function _build_html($list) {
+		$config = $this->getConfiguration();
 	
 		$output = '<div id="cp_events_as_news">';
 	
 		$url = '/' . PublicStream::basePath() . '/';
+		
+		$date_format = 'Y-m-d';
+		if (isset($config['cp_events_as_news_date_format'])) {
+			if ($config['cp_events_as_news_date_format'] == 'day-month-year') { $date_format = 'd-m-Y'; }
+		}
 	
 		foreach ($list as $e) {
 			
@@ -49,7 +56,7 @@ class ListOfCpEventsAsNews extends BlockBase {
 					$date = date('Y-m-d', $e->getChanged());
 				}
 				
-				$output .= '<div class="from_date">' . $date . '</div>';
+				$output .= '<div class="from_date">' . date($date_format, strtotime($date)) . '</div>';
 				
 				$output .= '<div class="heading"><a href="/event/'.$e->getId().'">' . $e->getTitle() . '</a></div>';
 				
@@ -88,4 +95,37 @@ class ListOfCpEventsAsNews extends BlockBase {
 	
 		return $output;
 	}
+	
+	/**
+	 * {@inheritdoc}
+	 */
+	public function blockForm($form, FormStateInterface $form_state) {
+		$config = $this->getConfiguration();
+	
+		$form = parent::blockForm($form, $form_state);
+	
+		$date_format = '';
+		if (isset($config['cp_events_as_news_date_format'])) {
+			$date_format = $config['cp_events_as_news_date_format'];
+		}
+	
+		$date_format_options = array('year-month-day' => 'year-month-day', 'day-month-year' => 'day-month-year');
+	
+		$form['cp_events_as_news_date_format'] = array (
+				'#type' => 'select',
+				'#title' => $this->t('Select a date format'),
+				'#description' => '',
+				'#options' => $date_format_options,
+				'#default_value' => $date_format
+		);
+	
+		return $form;
+	}
+	
+	/**
+	 * {@inheritdoc}
+	 */
+	public function blockSubmit($form, FormStateInterface $form_state) {
+		$this->setConfigurationValue('cp_events_as_news_date_format', $form_state->getValue('cp_events_as_news_date_format'));
+	}	
 }

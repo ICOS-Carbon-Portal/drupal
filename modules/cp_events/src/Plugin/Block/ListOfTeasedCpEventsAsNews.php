@@ -38,10 +38,15 @@ class ListOfTeasedCpEventsAsNews extends BlockBase {
 			$counter = $config['cp_events_teased_events_as_news_counts'];
 		}
 		
+		$date_format = 'Y-m-d';
+		if (isset($config['cp_events_as_news_teased_events_date_format'])) {
+			if ($config['cp_events_as_news_teased_events_date_format'] == 'day-month-year') { $date_format = 'd-m-Y'; }
+		}
+		
 		$output = '<div id="cp_events_as_news">';
 	
 		$url = '/' . PublicStream::basePath() . '/';
-	
+			
 		$co = 0;
 		foreach ($list as $e) {
 			
@@ -57,7 +62,7 @@ class ListOfTeasedCpEventsAsNews extends BlockBase {
 					$date = date('Y-m-d', $e->getChanged());
 				}
 				
-				$output .= '<div class="from_date">' . $date . '</div>';
+				$output .= '<div class="from_date">' . date($date_format, strtotime($date)) . '</div>';
 				
 				$output .= '<div class="heading"><a href="/event/'.$e->getId().'">' . $e->getTitle() . '</a></div>';
 				
@@ -117,6 +122,21 @@ class ListOfTeasedCpEventsAsNews extends BlockBase {
 				'#description' => $this->t(''),
 				'#default_value' => $counter
 		);
+		
+		$date_format = '';
+		if (isset($config['cp_events_as_news_teased_events_date_format'])) {
+			$date_format = $config['cp_events_as_news_teased_events_date_format'];
+		}
+		
+		$date_format_options = array('year-month-day' => 'year-month-day', 'day-month-year' => 'day-month-year');
+		
+		$form['cp_events_as_news_teased_events_date_format'] = array (
+				'#type' => 'select',
+				'#title' => $this->t('Select a date format'),
+				'#description' => '',
+				'#options' => $date_format_options,
+				'#default_value' => $date_format
+		);
 	
 		return $form;	 
 	}
@@ -126,5 +146,6 @@ class ListOfTeasedCpEventsAsNews extends BlockBase {
 	 */
 	public function blockSubmit($form, FormStateInterface $form_state) {
 		$this->setConfigurationValue('cp_events_teased_events_as_news_counts', $form_state->getValue('cp_events_teased_events_as_news_counts'));
+		$this->setConfigurationValue('cp_events_as_news_teased_events_date_format', $form_state->getValue('cp_events_as_news_teased_events_date_format'));
 	}
 }

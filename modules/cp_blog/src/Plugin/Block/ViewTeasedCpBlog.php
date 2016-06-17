@@ -52,7 +52,12 @@ class ViewTeasedCpBlog extends BlockBase {
 				
 				$output .= '<div class="cp_blog_teased">';
 				
-				$output .= '<div class="date">' . date('Y-m-d', $blog->getChanged()) . '</div>';
+				$date_format = 'Y-m-d';
+				if (isset($config['cp_blog_date_format'])) {
+					if ($config['cp_blog_date_format'] == 'day-month-year') { $date_format = 'd-m-Y'; }
+				}
+				
+				$output .= '<div class="date">' . date($date_format, $blog->getChanged()) . '</div>';
 				
 				$output .= '<div class="heading">' . $blog->getTitle() . '</div>';
 						
@@ -130,6 +135,21 @@ class ViewTeasedCpBlog extends BlockBase {
 				'#default_value' => $blog_category
 		);
 		
+		$date_format = '';
+		if (isset($config['cp_blog_date_format'])) {
+			$date_format = $config['cp_blog_date_format'];
+		}
+		
+		$date_format_options = array('year-month-day' => 'year-month-day', 'day-month-year' => 'day-month-year');
+		
+		$form['cp_blog_date_format'] = array (
+				'#type' => 'select',
+				'#title' => $this->t('Select a date format'),
+				'#description' => '',
+				'#options' => $date_format_options,
+				'#default_value' => $date_format
+		);
+		
 		return $form;
 	}
 	
@@ -139,5 +159,6 @@ class ViewTeasedCpBlog extends BlockBase {
 	 */
 	public function blockSubmit($form, FormStateInterface $form_state) {
 		$this->setConfigurationValue('cp_blog_blog_category', $form_state->getValue('cp_blog_blog_category'));
+		$this->setConfigurationValue('cp_blog_date_format', $form_state->getValue('cp_blog_date_format'));
 	}
 }

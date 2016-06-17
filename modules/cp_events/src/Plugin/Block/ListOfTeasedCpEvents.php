@@ -38,6 +38,11 @@ class ListOfTeasedCpEvents extends BlockBase {
 			$counter = $config['cp_events_teased_events_counts'];
 		}
 		
+		$date_format = 'Y-m-d';
+		if (isset($config['cp_events_teased_events_date_format'])) {
+			if ($config['cp_events_teased_events_date_format'] == 'day-month-year') { $date_format = 'd-m-Y'; }
+		}
+		
 		$output = '<div id="cp_events">';
 	
 		$url = '/' . PublicStream::basePath() . '/';
@@ -59,7 +64,7 @@ class ListOfTeasedCpEvents extends BlockBase {
 				
 				$to_date = '';
 				if ($e->getToDate() != null || $e->getToDate() != '') {
-					$to_date = ' -- ' . $e->getToDate();
+					$to_date = ' -- ' . date($date_format, strtotime($e->getToDate()));
 				
 				}
 				
@@ -67,7 +72,7 @@ class ListOfTeasedCpEvents extends BlockBase {
 						
 					$output .= '<div class="tease-event">';
 					
-					$output .= '<div class="from_date">' . $from_date . $to_date . '</div>';
+					$output .= '<div class="from_date">' . date($date_format, strtotime($from_date)) . $to_date . '</div>';
 					
 					$output .= '<div class="heading"><a href="/event/'.$e->getId().'">' . $e->getTitle() . '</a></div>';
 					
@@ -128,6 +133,21 @@ class ListOfTeasedCpEvents extends BlockBase {
 				'#description' => $this->t(''),
 				'#default_value' => $counter
 		);
+		
+		$date_format = '';
+		if (isset($config['cp_events_teased_events_date_format'])) {
+			$date_format = $config['cp_events_teased_events_date_format'];
+		}
+		
+		$date_format_options = array('year-month-day' => 'year-month-day', 'day-month-year' => 'day-month-year');
+		
+		$form['cp_events_teased_events_date_format'] = array (
+				'#type' => 'select',
+				'#title' => $this->t('Select a date format'),
+				'#description' => '',
+				'#options' => $date_format_options,
+				'#default_value' => $date_format
+		);
 	
 		return $form;	 
 	}
@@ -137,5 +157,6 @@ class ListOfTeasedCpEvents extends BlockBase {
 	 */
 	public function blockSubmit($form, FormStateInterface $form_state) {
 		$this->setConfigurationValue('cp_events_teased_events_counts', $form_state->getValue('cp_events_teased_events_counts'));
+		$this->setConfigurationValue('cp_events_teased_events_date_format', $form_state->getValue('cp_events_teased_events_date_format'));
 	}
 }
