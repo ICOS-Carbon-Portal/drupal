@@ -84,7 +84,14 @@ class ListOfTeasedCpEvents extends BlockBase {
 					
 					$text = $e->getText();
 					if (strlen($e->getText()) > 199 ) {
-						$text = substr($e->getText(), 0, 199);
+						//$text = substr($e->getText(), 0, 199);
+						
+						// When using formatted text via CK Editor..
+						$text_start = strpos($e->getText(), '<p>');
+						$text_stop = strpos($e->getText(), '</p>');
+						
+						$text = substr($e->getText(), $text_start, $text_stop - $text_start);
+						
 						$text .= '<br/><a href="/event/' . $e->getId() . '">Read more..</a>';
 					}
 					
