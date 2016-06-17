@@ -71,10 +71,14 @@ class ViewTeasedCpBlog extends BlockBase {
 				
 				if (strlen($blog->getText()) > 1 ) {
 					
-					$stop = 80;
-					if (strlen($blog->getText()) < 80) { $stop = strlen($blog->getText()); }
+					//$stop = 80;
+					//if (strlen($blog->getText()) < 80) { $stop = strlen($blog->getText()); }
 					
-					$output .= '<div class="teaser">' . substr($blog->getText(), 0, $stop) . '<span class="dots">...</span></div>';
+					// When using formatted text via CK Editor..
+					$text_start = strpos($blog->getText(), '<p>');
+					$text_stop = strpos($blog->getText(), '</p>');
+					
+					$output .= '<div class="teaser">' . substr($blog->getText(), $text_start, $text_stop - $text_start) . '<span class="dots">...</span></div>';
 				}
 				
 						
