@@ -55,7 +55,7 @@ class ListOfTeasedCpEvents extends BlockBase {
 			if ($co < $counter && $e->getNews() == 0 && $e->getHistorical() == 0) {	
 				
 				$from_date = '';
-				if ($e->getFromDate() != null || $e->getFromDate() != '') {
+				if ($e->getFromDate() != null && $e->getFromDate() != '') {
 					$from_date = $e->getFromDate();
 						
 				} else {
@@ -63,7 +63,7 @@ class ListOfTeasedCpEvents extends BlockBase {
 				}
 				
 				$to_date = '';
-				if ($e->getToDate() != null || $e->getToDate() != '') {
+				if ($e->getToDate() != null && $e->getToDate() != '') {
 					$to_date = ' -- ' . date($date_format, strtotime($e->getToDate()));
 				
 				}
@@ -76,11 +76,11 @@ class ListOfTeasedCpEvents extends BlockBase {
 					
 					$output .= '<div class="heading"><a href="/event/'.$e->getId().'">' . $e->getTitle() . '</a></div>';
 					
-					if ($e->getPictureUrl() != null || $e->getPictureUrl() != '') {
-						$picture_url = $url . str_replace('public://', '', $e->getPictureUrl());
+					if ($e->getPictureUri() != null && $e->getPictureUri() != '') {
+						$picture_url = $url . str_replace('public://', '', $e->getPictureUri());
 						
 						$picture_title = '';
-						if ($e->getPictureTitle() != null || $e->getPictureTitle() != '') { $picture_title = $e->getPictureTitle(); }
+						if ($e->getPictureTitle() != null && $e->getPictureTitle() != '') { $picture_title = $e->getPictureTitle(); }
 						
 						$output .= '<div class="picture">';
 						$output .= '<img src="' . $picture_url . '" alt="' . $picture_title . '" title="' . $picture_title . '" />';

@@ -49,7 +49,7 @@ class ListOfCpEvents extends BlockBase {
 				$output .= '<div class="full-event">';
 			
 				$from_date = '';
-				if ($e->getFromDate() != null || $e->getFromDate() != '') {
+				if ($e->getFromDate() != null && $e->getFromDate() != '') {
 					$from_date = $e->getFromDate();
 					
 				} else {
@@ -57,7 +57,7 @@ class ListOfCpEvents extends BlockBase {
 				}
 				
 				$to_date = '';
-				if ($e->getToDate() != null || $e->getToDate() != '') {
+				if ($e->getToDate() != null && $e->getToDate() != '') {
 					$to_date = ' -- ' . date($date_format, strtotime($e->getToDate()));
 				
 				}
@@ -66,11 +66,11 @@ class ListOfCpEvents extends BlockBase {
 				
 				$output .= '<div class="heading"><a href="/event/'.$e->getId().'">' . $e->getTitle() . '</a></div>';
 				
-				if ($e->getPictureUrl() != null || $e->getPictureUrl() != '') {
-					$picture_url = $url . str_replace('public://', '', $e->getPictureUrl());
+				if ($e->getPictureUri() != null && $e->getPictureUri() != '') {
+					$picture_url = $url . str_replace('public://', '', $e->getPictureUri());
 				
 					$picture_title = '';
-					if ($e->getPictureTitle() != null || $e->getPictureTitle() != '') { $picture_title = $e->getPictureTitle(); }
+					if ($e->getPictureTitle() != null && $e->getPictureTitle() != '') { $picture_title = $e->getPictureTitle(); }
 						
 					$output .= '<div class="picture">';
 					$output .= '<img src="' . $picture_url . '" alt="' . $picture_title . '" title="' . $picture_title . '" />';
@@ -85,12 +85,12 @@ class ListOfCpEvents extends BlockBase {
 				
 				$output .= '<div class="text">' . $text . '</div>';
 				
-				if ($e->getLinkUrl() != null || $e->getLinkUrl() != '') {
-					$link_title = $e->getLinkUrl();
+				if ($e->getLinkUri() != null && $e->getLinkUri() != '') {
+					$link_title = $e->getLinkUri();
 						
-					if ($e->getLinkTitle() != null || $e->getLinkTitle() != '') { $link_title = $e->getLinkTitle(); }
+					if ($e->getLinkTitle() != null && $e->getLinkTitle() != '') { $link_title = $e->getLinkTitle(); }
 						
-					$output .= '<div class="link"><a href="' . $e->getLinkUrl() . '">' . $link_title . '</a></div>';
+					$output .= '<div class="link"><a href="' . $e->getLinkUri() . '">' . $link_title . '</a></div>';
 				}
 				
 				$output .= '</div>';

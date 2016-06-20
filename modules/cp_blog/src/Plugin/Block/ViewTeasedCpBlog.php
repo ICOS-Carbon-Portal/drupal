@@ -61,9 +61,9 @@ class ViewTeasedCpBlog extends BlockBase {
 				
 				$output .= '<div class="heading">' . $blog->getTitle() . '</div>';
 						
-				if ($blog->getPictureUrl() != null || $blog->getPictureUrl() != '') {
+				if ($blog->getPictureUri() != null || $blog->getPictureUri() != '') {
 					$url = '/' . PublicStream::basePath() . '/';
-					$picture_url = $url . str_replace('public://', '', $blog->getPictureUrl());
+					$picture_url = $url . str_replace('public://', '', $blog->getPictureUri());
 						
 					$picture_title = '';
 					if ($blog->getPictureTitle() != null || $blog->getPictureTitle() != '') { $picture_title = $blog->getPictureTitle(); }

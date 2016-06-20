@@ -43,13 +43,26 @@
 }
 
 .full-event .from_date,
+.full-event .date_separator,
+.full-event .to_date,
 .full-event .heading {
 	padding-bottom: 1em;
 }
 
-.full-event .from_date {
+.full-event .from_date,
+.full-event .to_date {
 	color: #F06322;
 	font-weight: bold;
+}
+
+.full-event .from_date,
+.full-event .date_separator,
+.full-event .to_date {
+	display: inline;	
+}
+
+.full-event .date_separator {
+	padding: 0 1em 0 1em;
 }
 
 .full-event .heading {

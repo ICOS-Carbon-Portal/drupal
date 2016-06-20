@@ -42,11 +42,17 @@
 	border-bottom: 0;
 }
 
-.cp_blog .heading {
+.cp_blog .heading, .cp_blog_earlier .heading {
 	font-size: 2.5rem;
 	color: #0a96f0;
 }
 
-.cp_blog .picture {
+.cp_blog .picture, .cp_blog_earlier .picture {
+	float: right;
 	padding-bottom: 2rem;
+	margin-left: 10px;
+}
+
+.cp_blog_earlier {
+	padding-top: 8rem;
 }

@@ -75,7 +75,7 @@ class CpImagesCarousel extends BlockBase {
 					
 				$picture_uri = $url . str_replace('public://', '', $image->getPictureUri());
 				$picture_title = '';
-				if ($image->getPictureTitle() != null || $image->getPictureTitle() != '') { $picture_title = $image->getPictureTitle(); }
+				if ($image->getPictureTitle() != null && $image->getPictureTitle() != '') { $picture_title = $image->getPictureTitle(); }
 				
 				
 				

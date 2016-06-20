@@ -104,11 +104,11 @@ class ListOfBlogs {
 	function _add_picture($blog) {
 	
 		$result = db_query('
-			select file.uri, picture.field_cp_blog_picture_alt
-			from {node__field_cp_blog_picture} picture
-			join {file_managed} file
-			on picture.field_cp_blog_picture_target_id = file.fid
-			where picture.entity_id = :id
+			select fm.uri, p.field_cp_blog_picture_alt
+			from {node__field_cp_blog_picture} p
+			join {file_managed} fm
+			on p.field_cp_blog_picture_target_id = fm.fid
+			where p.entity_id = :id
 			',
 	
 			array(':id' => $blog->getId())
@@ -117,7 +117,7 @@ class ListOfBlogs {
 
 		foreach ($result as $record) {
 			if ($record) {
-				$blog->setPictureUrl($record->uri);
+				$blog->setPictureUri($record->uri);
 				$blog->setPictureTitle($record->field_cp_blog_picture_alt);
 			}
 		}
@@ -139,7 +139,7 @@ class ListOfBlogs {
 
 		foreach ($result as $record) {
 			if ($record) {
-				$blog->setLinkUrl($record->field_cp_blog_link_uri);
+				$blog->setLinkUri($record->field_cp_blog_link_uri);
 				$blog->setLinkTitle($record->field_cp_blog_link_title);
 			}
 		}

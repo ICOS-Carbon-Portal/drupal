@@ -5,3 +5,11 @@ cp_event.content:
     _title: ''
   requirements:
     _permission: 'access content'
+    
+cp_events.settings:
+  path: '/admin/config/cp_events_settings'
+  defaults:
+    _form: '\Drupal\cp_events\Controller\Settings'
+    _title: 'CP Events Settings'
+  requirements:
+    _permission: 'administer site configuration'    

@@ -30,8 +30,14 @@ class CPEventPageController extends ControllerBase {
 	    	),
 	    );
 	}
-  
+
 	function _build_html($event) {
+		$config = \Drupal::config('cp_events.settings');
+		
+		$date_format = 'Y-m-d';
+		if ($config->get('cp_events_page_date_format') != null && $config->get('cp_events_page_date_format') == 'day-month-year') {
+			 $date_format = 'd-m-Y';
+		}
   
 	  	$output = '<div id="cp_events">';
 	  
@@ -39,17 +45,34 @@ class CPEventPageController extends ControllerBase {
 	  
 		$output .= '<div class="full-event">';
 	  
-	  	if ($event->getFromDate() != null || $event->getFromDate() != '') {
-	  		$output .= '<div class="from_date">' . $event->getFromDate() . '</div>';
+		$from_date = '';
+	  	if ($event->getFromDate() != null && $event->getFromDate() != '') {
+	  		$from_date = date($date_format, strtotime($event->getFromDate()));
+	  		
+	  	} else {
+	  		if ($event->getNews() == 0) {
+	  			$from_date = date($date_format, strtotime($event->getCreated()));
+	  		} else {
+	  			$from_date = date($date_format, strtotime($event->getChanged()));
+	  		}
+	  	}
+	  	
+	  	$to_date = '';
+	  	if ($event->getToDate() != null && $event->getToDate() != '') {
+	  		$to_date = '<span class="date_separator">--</span><div class="to_date">' . date($date_format, strtotime($event->getToDate())) . '</div>';
+	  	
 	  	}
 	  
+	  	$output .= '<div class="from_date">' . $from_date . '</div>';
+	  	$output .= $to_date;
+	  	
 	  	$output .= '<div class="heading">' . $event->getTitle() . '</div>';
 	  
-	  	if ($event->getPictureUrl() != null || $event->getPictureUrl() != '') {
-	  		$picture_url = $url . str_replace('public://', '', $event->getPictureUrl());
+	  	if ($event->getPictureUri() != null && $event->getPictureUri() != '') {
+	  		$picture_url = $url . str_replace('public://', '', $event->getPictureUri());
 	  					
 	  		$picture_title = '';
-	  		if ($event->getPictureTitle() != null || $event->getPictureTitle() != '') { $picture_title = $event->getPictureTitle(); }
+	  		if ($event->getPictureTitle() != null && $event->getPictureTitle() != '') { $picture_title = $event->getPictureTitle(); }
 	  					
 	  		$output .= '<div class="text"><img src="' . $picture_url . '" alt="' . $picture_title . '" title="' . $picture_title . '" />' . $event->getText() . '</div>';
 	  	
@@ -58,12 +81,12 @@ class CPEventPageController extends ControllerBase {
 	  		
 	  	}
   
-  		if ($event->getLinkUrl() != null || $event->getLinkUrl() != '') {
-  			$link_title = $event->getLinkUrl();
+  		if ($event->getLinkUri() != null && $event->getLinkUri() != '') {
+  			$link_title = $event->getLinkUri();
   			
-  			if ($event->getLinkTitle() != null || $event->getLinkTitle() != '') { $link_title = $event->getLinkTitle(); }
+  			if ($event->getLinkTitle() != null && $event->getLinkTitle() != '') { $link_title = $event->getLinkTitle(); }
   			
-  			$output .= '<div class="link"><a href="' . $event->getLinkUrl() . '">' . $link_title . '</a></div>';
+  			$output .= '<div class="link"><a href="' . $event->getLinkUri() . '">' . $link_title . '</a></div>';
   		}
   				
   		$output .= '</div>';

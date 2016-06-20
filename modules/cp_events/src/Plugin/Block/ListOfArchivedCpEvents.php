@@ -26,7 +26,7 @@ class ListOfArchivedCpEvents extends BlockBase {
 			if ($e->getHistorical() == 1) {
 				
 				$date = '';
-				if ($e->getFromDate() != null || $e->getFromDate() != '') {
+				if ($e->getFromDate() != null && $e->getFromDate() != '') {
 					$date = $e->getFromDate();
 				
 				} else {

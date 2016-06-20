@@ -72,13 +72,13 @@ class CpDocuments extends BlockBase {
 					$url = '/' . PublicStream::basePath() . '/';				
 					$document_url = $url . str_replace('public://', '', $document->getDocumentUri());	
 					$document_description = '';
-					if ($document->getDocumentDescription() != null || $document->getDocumentDescription() != '') { 
+					if ($document->getDocumentDescription() != null && $document->getDocumentDescription() != '') { 
 						$document_description = $document->getDocumentDescription(); 
 					}
 						
 					
 					$icon = '';
-					if ($document->getPictureUri() != null || $document->getPictureUri() != '') {
+					if ($document->getPictureUri() != null && $document->getPictureUri() != '') {
 						$picture_url = $url . str_replace('public://', '', $document->getPictureUri());
 						$icon = '<img src="' . $picture_url . '" />';	
 					}

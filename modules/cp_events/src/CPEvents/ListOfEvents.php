@@ -106,11 +106,11 @@ class ListOfEvents {
 	function _add_picture($event) {
 	
 		$result = db_query('
-			select file.uri, picture.field_cp_event_picture_alt
-			from {node__field_cp_event_picture} picture
-			join {file_managed} file
-			on picture.field_cp_event_picture_target_id = file.fid
-			where picture.entity_id = :id
+			select fm.uri, p.field_cp_event_picture_alt
+			from {node__field_cp_event_picture} p
+			join {file_managed} fm
+			on p.field_cp_event_picture_target_id = fm.fid
+			where p.entity_id = :id
 			',
 	
 			array(':id' => $event->getId())
@@ -119,7 +119,7 @@ class ListOfEvents {
 
 		foreach ($result as $record) {
 			if ($record) {
-				$event->setPictureUrl($record->uri);
+				$event->setPictureUri($record->uri);
 				$event->setPictureTitle($record->field_cp_event_picture_alt);
 			}
 		}
@@ -141,7 +141,7 @@ class ListOfEvents {
 
 		foreach ($result as $record) {
 			if ($record) {
-				$event->setLinkUrl($record->field_cp_event_link_uri);
+				$event->setLinkUri($record->field_cp_event_link_uri);
 				$event->setLinkTitle($record->field_cp_event_link_title);
 			}
 		}

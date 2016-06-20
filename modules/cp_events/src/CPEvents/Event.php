@@ -9,9 +9,9 @@ class Event {
 	private $created;
 	private $changed;
 	private $text;
-	private $picture_url;
+	private $picture_uri;
 	private $picture_title;
-	private $link_url;
+	private $link_uri;
 	private $link_title;
 	private $from_date;
 	private $to_date;
@@ -63,12 +63,12 @@ class Event {
 		$this->text = $text;
 	}
 	
-	public function getPictureUrl() {
-		return $this->picture_url;
+	public function getPictureUri() {
+		return $this->picture_uri;
 	}
 	
-	public function setPictureUrl($picture_url) {
-		$this->picture_url = $picture_url;
+	public function setPictureUri($picture_uri) {
+		$this->picture_uri = $picture_uri;
 	}
 	
 	public function getPictureTitle() {
@@ -79,20 +79,12 @@ class Event {
 		$this->picture_title = $picture_title;
 	}
 	
-	public function getPhoto() {
-		return $this->photo;
+	public function getLinkUri() {
+		return $this->link_uri;
 	}
 	
-	public function setPhoto($photo) {
-		$this->photo = $photo;
-	}
-	
-	public function getLinkUrl() {
-		return $this->link_url;
-	}
-	
-	public function setLinkUrl($link_url) {
-		$this->link_url = $link_url;
+	public function setLinkUri($link_uri) {
+		$this->link_uri = $link_uri;
 	}
 	
 	public function getLinkTitle() {
