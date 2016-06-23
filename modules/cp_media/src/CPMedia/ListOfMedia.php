@@ -18,7 +18,7 @@ class ListOfMedia {
 			$m = $this->_add_picture($m);
 			$m = $this->_add_video($m);
 			$m = $this->_add_audio($m);
-			$m = $this->_add_text($m);
+			$m = $this->_add_body_text($m);
 			$m = $this->_add_category($m);
 			$m = $this->_add_historical($m);
 				
@@ -159,7 +159,27 @@ class ListOfMedia {
 
 		return $media;
 	}	
+
+	function _add_body_text($media) {
 	
+		$result = db_query('
+			select body_value
+			from {node__body}
+			where entity_id = :id
+			',
+	
+			array(':id' => $media->getId())
+		)->fetchAll();
+
+
+		foreach ($result as $record) {
+			if ($record) {
+				$media->setText($record->body_value);
+			}
+		}
+
+		return $media;
+	}
 	
 	function _add_category($media) {
 	

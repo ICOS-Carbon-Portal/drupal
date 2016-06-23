@@ -2,7 +2,7 @@
 
 	<h2>{{ elements['CP_MEDIA']['ELEMENT'].getTitle() }}</h2>
 	
-	<p>{{ elements['CP_MEDIA']['ELEMENT'].getText() }}</p>
+	<p>{{ elements['CP_MEDIA']['ELEMENT'].getText() | raw }}</p>
 
 	
 	{% if elements['CP_MEDIA']['PICTURE'] %}

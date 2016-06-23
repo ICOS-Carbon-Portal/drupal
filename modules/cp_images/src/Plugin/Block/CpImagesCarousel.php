@@ -45,7 +45,7 @@ class CpImagesCarousel extends BlockBase {
 		}
 		
 		
-		$output .= '<div id="cp_images_carousel" class="carousel slide" data-ride="carousel" data-interval="5000">';
+		$output = '<div id="cp_images_carousel" class="carousel slide" data-ride="carousel" data-interval="5000">';
 		
 		
 // 		$output .= '<div class="control_left">';
