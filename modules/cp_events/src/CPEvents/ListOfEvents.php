@@ -36,8 +36,8 @@ class ListOfEvents {
 		$result = db_query('
 			select n.nid, nfd.title, nfd.created, nfd.changed	
 			from {node} as n 
-				join {node__field_cp_event_deprecated} as d on n.nid = d.entity_id
-				join {node_field_data} as nfd on n.nid = nfd.nid
+			join {node__field_cp_event_deprecated} as d on n.nid = d.entity_id
+			join {node_field_data} as nfd on n.nid = nfd.nid
 			where n.type = :type
 			and d.field_cp_event_deprecated_value = 0
 			',

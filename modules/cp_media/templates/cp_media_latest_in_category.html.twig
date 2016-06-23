@@ -1,0 +1,36 @@
+<div class="cp_media">
+
+	<h2>{{ elements['CP_MEDIA']['ELEMENT'].getTitle() }}</h2>
+	
+	<p>{{ elements['CP_MEDIA']['ELEMENT'].getText() }}</p>
+
+	
+	{% if elements['CP_MEDIA']['PICTURE'] %}
+		<div class="picture">
+			<img src="{{ elements['CP_MEDIA']['ELEMENT'].getPictureUri() }}" alt="{{ element[0].getPictureTitle() }}" title="{{ elements['CP_MEDIA']['ELEMENT'].getPictureTitle() }}" />
+		</div>	
+	{% endif %}	
+	
+	
+	{% if elements['CP_MEDIA']['VIDEO'] %}
+		<div class="video">
+			<video src="{{ elements['CP_MEDIA']['ELEMENT'].getVideoUri() }}" controls>
+				Sorry, Your browser doesn't support the video format.
+				<br /><a href="{{ elements['CP_MEDIA']['ELEMENT'].getVideoUri() }}">However, you can download the videofile instead.</a> 
+			</video>
+			<p>{{ elements['CP_MEDIA']['ELEMENT'].getVideoDescription() }}</p>
+		</div>
+	{% endif %}	
+	
+	
+	{% if elements['CP_MEDIA']['AUDIO'] %}
+		<div class="audio">
+			<audio src="{{ elements['CP_MEDIA']['ELEMENT'].getAudioUri() }}" controls>
+				Sorry, Your browser doesn't support the audio format.
+				<br /><a href="{{ elements['CP_MEDIA']['ELEMENT'].getVideoUri() }}">However, you can download the audiofile instead.</a> 
+			</audio>
+			<p>{{ elements['CP_MEDIA']['ELEMENT'].getAudioDescription() }}</p>
+		</div>	
+	{% endif %}	
+	
+</div>	

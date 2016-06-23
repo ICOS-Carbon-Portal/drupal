@@ -34,8 +34,8 @@ class ListOfDocuments {
 		$result = db_query('
 			select n.nid, nfd.title, nfd.created, nfd.changed	
 			from {node} as n 
-				join {node__field_cp_documents_deprecated} as d on n.nid = d.entity_id
-				join {node_field_data} as nfd on n.nid = nfd.nid
+			join {node__field_cp_documents_deprecated} as d on n.nid = d.entity_id
+			join {node_field_data} as nfd on n.nid = nfd.nid
 			where n.type = :type
 			and d.field_cp_documents_deprecated_value = 0
 			',
@@ -63,10 +63,10 @@ class ListOfDocuments {
 	function _add_document($document) {
 	
 		$result = db_query('
-			select fm.uri, fm.filename, f.field_cp_documents_document_description
+			select fm.uri, fm.filename, d.field_cp_documents_document_description
 			from {file_managed} as fm
-			join {node__field_cp_documents_document} as f on fm.fid = f.field_cp_documents_document_target_id
-			where f.entity_id = :id
+			join {node__field_cp_documents_document} as d on fm.fid = d.field_cp_documents_document_target_id
+			where d.entity_id = :id
 			',
 	
 			array(':id' => $document->getId())

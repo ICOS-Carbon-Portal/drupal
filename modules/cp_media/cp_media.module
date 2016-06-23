@@ -1,0 +1,10 @@
+<?php
+
+function cp_media_theme() {
+	$theme['cp_media_latest_in_category'] = [
+			'variables' => ['elements' => null],
+			'template' => 'cp_media_latest_in_category',
+	];
+
+	return $theme;
+}

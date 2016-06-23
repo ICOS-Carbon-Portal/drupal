@@ -8,7 +8,7 @@
 	    handleIngressAndTitle();
 	    
 	    fixTweetsAndBlog();
-        
+	    
     	$(function() {
     		
     		if ($(window).width() < 800) {
@@ -17,8 +17,11 @@
     		
     		if ($(window).width() > 1300) {
     			fixTweetsAndBlogMaxPos();
+    			fixMediaMax();
+    			
     		} else {
     			fixTweetsAndBlogMinPos();
+    			fixMediaMin();
     		}
     		
     		$(window).resize(function () {
@@ -28,8 +31,11 @@
     			
     			if ($(window).width() > 1300) {
         			fixTweetsAndBlogMaxPos();
+        			fixMediaMax();
+        			
         		} else {
         			fixTweetsAndBlogMinPos();
+        			fixMediaMin();
         		}
     			
     		});
@@ -134,8 +140,8 @@ function handleIngressAndTitle() {
 
 
 /** 
-* Tweets and Teasing blog on home page
-* The method assume an embedded Tweet and a Teased CP Blog in a respectively block on main content.
+* Tweets and Teasing blog on home page.
+* The following methods assume an embedded Tweet and a Teased CP Blog in a respectively block on main content.
 */
 function fixTweetsAndBlog() {
 	jQuery('.main-content #block-tweets').css({'background-color':'#f6f6f2'});
@@ -159,4 +165,16 @@ function fixTweetsAndBlogMinPos() {
 	
     var picW = jQuery('.main-content #block-viewteasedcpblog .picture img').width();
     jQuery('.main-content #block-viewteasedcpblog .teaser').css({'width':picW});
+}
+
+/** 
+* Media on home page.
+* The two methods assume a CP Media block on main content.
+*/
+function fixMediaMin() {
+	jQuery('.main-content #block-cpmedialatestincategory').css({'padding-top':'0px'});
+}
+
+function fixMediaMax() {
+	jQuery('.main-content #block-cpmedialatestincategory').css({'padding-top':'80px'});
 }
