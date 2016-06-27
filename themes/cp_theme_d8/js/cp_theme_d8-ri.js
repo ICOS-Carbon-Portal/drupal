@@ -172,9 +172,9 @@ function fixTweetsAndBlogMinPos() {
 * The two methods assume a CP Media block on main content.
 */
 function fixMediaMin() {
-	jQuery('.main-content #block-cpmedialatestincategory').css({'padding-top':'0px'});
+	jQuery('.main-content #block-latestcpmedia').css({'padding-top':'0px'});
 }
 
 function fixMediaMax() {
-	jQuery('.main-content #block-cpmedialatestincategory').css({'padding-top':'80px'});
+	jQuery('.main-content #block-latestcpmedia').css({'padding-top':'80px'});
 }

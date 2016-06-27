@@ -9,11 +9,11 @@ use Drupal\Core\StreamWrapper\PublicStream;
 
 /**
  * @Block(
- *   id = "cp_media_latest_in_category",
- *   admin_label = @Translation("CP Media latest in category"),
+ *   id = "cp_media_latest_movie",
+ *   admin_label = @Translation("Latest CP Media movie"),
  * )
  */
-class CpMedia extends BlockBase {
+class CpMediaLatestMovie extends BlockBase {
 	
 	function build() {
 		$listOfMedia = new SortedListOfMedia();
@@ -47,13 +47,6 @@ class CpMedia extends BlockBase {
 						$has_media = true;
 					}
 					
-					if ($media->getAudioUri() != null) {
-						$audio_uri = $url . str_replace('public://', '', $media->getAudioUri());
-						$media->setAudioUri($audio_uri);
-						$list_of_elements['CP_MEDIA']['AUDIO'] = 'audio';
-						$has_media = true;
-					}
-					
 					if ($has_media) {
 						$list_of_elements['CP_MEDIA']['ELEMENT'] = $media;
 					}
@@ -64,7 +57,7 @@ class CpMedia extends BlockBase {
 		}		
 		
 		return array(
-			'#theme' => 'cp_media_latest_in_category',
+			'#theme' => 'cp_media_movie',
 			'#elements' => $list_of_elements,
 			'#attached' => array(
 				'library' =>  array(
