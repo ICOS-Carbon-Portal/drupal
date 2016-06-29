@@ -1,0 +1,50 @@
+langcode: en
+status: true
+dependencies:
+  config:  
+    - field.field.node.cp_files.field_cp_files_files
+    - field.field.node.cp_files.field_cp_files_category
+    - field.field.node.cp_files.field_cp_files_historical
+    - field.field.node.cp_files.field_cp_files_deprecated    
+    - node.type.cp_files
+  module:
+    - file
+    - user
+id: node.cp_files.default
+targetEntityType: node
+bundle: cp_files
+mode: default
+content:  
+  field_cp_files_files:
+    weight: 110
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_default
+  field_cp_files_category:
+    weight: 112
+    label: above
+    settings: { }
+    third_party_settings: {  }
+    type: string    
+  field_cp_files_historical:
+    weight: 114
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+  field_cp_files_deprecated:
+    weight: 116
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean        
+hidden:
+  body: true
+  links: true

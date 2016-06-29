@@ -1,0 +1,14 @@
+style:
+  css:
+    theme:
+      css/cp_files.css: {}
+      css/bootstrap.min.css: {}
+      
+script:     
+  js:
+    js/cp_files.js: {}
+    js/bootstrap.min.js: {}
+    
+  dependencies:
+    - core/jquery
+    - core/jquery.once    

@@ -37,7 +37,6 @@ class CpMediaLatestMovie extends BlockBase {
 						$picture_uri = $url . str_replace('public://', '', $media->getPictureUri());
 						$media->setPictureUri($picture_uri);	
 						$list_of_elements['CP_MEDIA']['PICTURE'] = 'picture';
-						$has_media = true;
 					}
 					
 					if ($media->getVideoUri() != null) { 
