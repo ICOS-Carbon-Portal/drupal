@@ -15,6 +15,7 @@ class ListOfDocuments {
 		$list = array();
 		
 		foreach ($this->_collect_documents() as $d) {
+			$d = $this->_add_body($d);
 			$d = $this->_add_document($d);
 			$d = $this->_add_picture($d);
 			$d = $this->_add_category($d);
@@ -58,6 +59,28 @@ class ListOfDocuments {
 		
 		return $list;	
 	}
+
+	
+	function _add_body($document) {
+	
+		$result = db_query('
+			select body_value
+			from {node__body}
+			where entity_id = :id
+			',
+	
+			array(':id' => $document->getId())
+		)->fetchAll();
+
+
+		foreach ($result as $record) {
+			if ($record) {
+				$document->setBody($record->body_value);
+			}
+		}
+
+		return $document;
+	}	
 	
 	
 	function _add_document($document) {

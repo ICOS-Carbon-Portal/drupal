@@ -39,7 +39,7 @@ class CpDocuments extends BlockBase {
 		$id = str_replace(' ', '_', $id);
 		$id = str_replace('.', '_', $id);
 		
-		$category_name = $config['cp_documents_category_name'];	
+		$category = $config['cp_documents_category'];	
 		$category_icon = $config['cp_documents_category_icon'];
 		
 		$path = drupal_get_path('module', 'cp_documents');
@@ -51,7 +51,7 @@ class CpDocuments extends BlockBase {
 		$output .= '<div id="cp_document_accordion_' . $id . '_heading" class="panel-heading" role="tab">';
 		$output .= '<h3 class="panel-title">';
 		$output .= '<a role="button" data-toggle="collapse" data-parent="#cp_document_accordion_' . $id . '" href="#cp_document_accordion_' . $id . '_collapse" aria-expanded="true" aria-controls="cp_document_accordion_' . $id . '_collapse">';
-		$output .= $category_name;
+		$output .= $category;
 		$output .= '</a>';
 		$output .= '<img src="/' . $path . '/images/' . $category_icon . '.svg" />';
 		$output .= '</h3>';
@@ -64,7 +64,7 @@ class CpDocuments extends BlockBase {
 			foreach ($list as $document) {
 				
 				if ($document->getHistorical() == '0'
-						&& $category_name == $document->getCategory()
+						&& $category == $document->getCategory()
 						&& $document->getDocumentUri() != null
 						&& $document->getDocumentUri() != '') {
 					
@@ -144,21 +144,21 @@ class CpDocuments extends BlockBase {
  			$category_options[$document->getCategory()] = $document->getCategory();
  		}
 		
-		$category_name = '';
-		if (isset($config['cp_documents_category_name'])) {
-			$category_name = $config['cp_documents_category_name'];
+		$category = '';
+		if (isset($config['cp_documents_category'])) {
+			$category = $config['cp_documents_category'];
 		}
 		
 		if (empty($category_options)) {
 			$category_options['DOCUMENTS'] = 'DOCUMENTS';
 		}
 		
-		$form['cp_documents_category_name'] = array (
+		$form['cp_documents_category'] = array (
 				'#type' => 'select',
 				'#title' => $this->t('Select a category'),
 				'#description' => $this->t(''),
 				'#options' => $category_options,
-				'#default_value' => $category_name
+				'#default_value' => $category
 		);
 		
 		
@@ -200,7 +200,7 @@ class CpDocuments extends BlockBase {
 	 */
 	public function blockSubmit($form, FormStateInterface $form_state) {
 		$this->setConfigurationValue('cp_documents_id', $form_state->getValue('cp_documents_id'));
-		$this->setConfigurationValue('cp_documents_category_name', $form_state->getValue('cp_documents_category_name'));
+		$this->setConfigurationValue('cp_documents_category', $form_state->getValue('cp_documents_category'));
 		$this->setConfigurationValue('cp_documents_category_icon', $form_state->getValue('cp_documents_category_icon'));
 	}	
 }

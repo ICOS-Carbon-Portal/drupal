@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cp_movies_category
+    - node.type.cp_movies
+id: node.cp_movies.field_cp_movies_category
+field_name: field_cp_movies_category
+entity_type: node
+bundle: cp_movies
+label: Category
+description: 'Specify which category this movie belongs to.'
+required: true
+translatable: false
+default_value:
+  -
+    value: MOVIE
+default_value_callback: ''
+settings: { }
+field_type: string

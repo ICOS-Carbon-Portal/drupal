@@ -1,0 +1,59 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.cp_movies.field_cp_movies_movie  
+    - field.field.node.cp_movies.field_cp_movies_picture
+    - field.field.node.cp_movies.field_cp_movies_category
+    - field.field.node.cp_movies.field_cp_movies_historical
+    - field.field.node.cp_movies.field_cp_movies_deprecated    
+    - node.type.cp_movies
+  module:
+    - image
+    - user
+id: node.cp_movies.default
+targetEntityType: node
+bundle: cp_movies
+mode: default
+content:
+  field_cp_movies_movie:
+    weight: 110
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: file_default 
+  field_cp_movies_picture:
+    weight: 112
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_cp_movies_category:
+    weight: 114
+    label: above
+    settings: { }
+    third_party_settings: {  }
+    type: string              
+  field_cp_movies_historical:
+    weight: 116
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+  field_cp_movies_deprecated:
+    weight: 118
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean        
+hidden:
+  body: true
+  links: true

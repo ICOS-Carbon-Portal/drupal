@@ -1,0 +1,27 @@
+<div class="cp_movies">
+
+	{% if elements['CP_MOVIES']['MOVIE'] %}
+	
+		<h2>{{ elements['CP_MOVIES']['ELEMENT'].getTitle() }}</h2>
+		
+		<p>{{ elements['CP_MOVIES']['ELEMENT'].getBody() | raw }}</p>
+	
+		{% set poster = '' %}
+		
+		{% if elements['CP_MOVIES']['PICTURE'] %}
+			{% set poster = elements['CP_MOVIES']['ELEMENT'].getPictureUri() %}	
+		{% endif %}		
+	
+		<div class="movie">
+			<video src="{{ elements['CP_MOVIES']['ELEMENT'].getMovieUri() }}" poster="{{ poster }}" controls>
+				Sorry, Your browser doesn't support the video format.
+				<br /><a href="{{ elements['CP_MOVIE']['ELEMENT'].getMovieUri() }}">However, you can download the videofile instead.</a> 
+			</video>
+			
+			<p>{{ elements['CP_MOVIES']['ELEMENT'].getMovieDescription() }}</p>
+			
+		</div>
+		
+	{% endif %}	
+	
+</div>	

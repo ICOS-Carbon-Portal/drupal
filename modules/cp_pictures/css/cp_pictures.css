@@ -1,0 +1,37 @@
+#cp_pictures_carousel { }
+
+#cp_pictures_carousel .carousel-control {
+  position: relative !important; 
+  background-image: none !important; 
+  font-size: xx-large !important;
+}
+
+#cp_pictures_carousel .glyphicon-chevron-left { 
+  top: 0% !important; 
+}
+
+#cp_pictures_carousel .glyphicon-chevron-right { 
+  top: 0% !important; 
+}
+
+#cp_pictures_carousel .carousel-indicators li { 
+  display: none !important; 
+}
+
+#cp_pictures_carousel .carousel-control {
+  position: relative !important;
+  z-index: 100;
+}
+
+#cp_pictures_carousel .control_left {
+  position: relative !important;
+  z-index: 100;
+  left: 20px !important;
+  top: 50px;
+}
+#cp_pictures_carousel .control_right {
+  position: relative !important;
+  z-index: 100;
+  left: 96% !important;
+  top: 50px;
+}

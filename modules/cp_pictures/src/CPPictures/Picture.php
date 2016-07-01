@@ -1,22 +1,19 @@
 <?php
 
-namespace Drupal\cp_documents\CPDocuments;
+namespace Drupal\cp_pictures\CPPictures;
 
-class Document {
+class Picture {
 	
 	private $id;
 	private $title;
 	private $body;
 	private $created;
 	private $changed;
-	private $document_uri;
-	private $document_name;
-	private $document_description;
 	private $picture_uri;
 	private $picture_name;
-	private $picture_title;
+	private $picture_description;
 	private $picture_width;
-	private $picture_height;	
+	private $picture_height;
 	private $category;
 	private $historical;
 	private $deprecated;
@@ -40,7 +37,7 @@ class Document {
 	public function setTitle($title) {
 		$this->title = $title;
 	}
-
+	
 	public function getBody() {
 		return $this->body;
 	}
@@ -65,30 +62,6 @@ class Document {
 		$this->changed = $changed;
 	}	
 	
-	public function getDocumentUri() {
-		return $this->document_uri;
-	}
-	
-	public function setDocumentUri($document_uri) {
-		$this->document_uri = $document_uri;
-	}
-	
-	public function getDocumentName() {
-		return $this->document_name;
-	}
-	
-	public function setDocumentName($document_name) {
-		$this->document_name = $document_name;
-	}
-	
-	public function getDocumentDescription() {
-		return $this->document_description;
-	}
-	
-	public function setDocumentDescription($document_description) {
-		$this->document_description = $document_description;
-	}
-	
 	public function getPictureUri() {
 		return $this->picture_uri;
 	}
@@ -105,12 +78,12 @@ class Document {
 		$this->picture_name = $picture_name;
 	}
 	
-	public function getPictureTitle() {
-		return $this->picture_title;
+	public function getPictureDescription() {
+		return $this->picture_description;
 	}
 	
-	public function setPictureTitle($picture_title) {
-		$this->picture_title = $picture_title;
+	public function setPictureDescription($picture_description) {
+		$this->picture_description = $picture_description;
 	}
 	
 	public function getPictureWidth() {
@@ -127,7 +100,7 @@ class Document {
 	
 	public function setPictureHeight($picture_height) {
 		$this->picture_height = $picture_height;
-	}	
+	}
 	
 	public function getCategory() {
 		return $this->category;
@@ -136,7 +109,7 @@ class Document {
 	public function setCategory($category) {
 		$this->category = $category;
 	}
-
+	
 	public function getHistorical() {
 		return $this->historical;
 	}

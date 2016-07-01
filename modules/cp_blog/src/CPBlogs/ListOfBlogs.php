@@ -15,7 +15,7 @@ class ListOfBlogs {
 		$list = array();
 		
 		foreach ($this->_collect_blogs() as $b) {
-			$b = $this->_add_body_text($b);
+			$b = $this->_add_body($b);
 			$b = $this->_add_picture($b);
 			$b = $this->_add_link($b);
 			$b = $this->_add_category($b);
@@ -59,7 +59,7 @@ class ListOfBlogs {
 		return $list;	
 	}
 
-	function _add_body_text($blog) {
+	function _add_body($blog) {
 	
 		$result = db_query('
 			select body_value

@@ -1,0 +1,10 @@
+name: CP Movies
+description: Carbon Portal movies fields and list.
+package: CP
+
+type: module
+core: 8.x
+
+libraries:
+  - cp_movies/style
+  - cp_movies/script
