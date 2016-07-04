@@ -93,7 +93,8 @@ body {
 	
 	#cp_theme_d8_menu ul li a {
 		display: block;
-		padding: 0.6em;
+		padding: 0.47em 1.4em 0.47em 1.4em;
+		font-size: 16px;
 		text-decoration: none;
 		white-space: nowrap;
 		color: #ffffff;
