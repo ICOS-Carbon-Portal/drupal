@@ -10,19 +10,19 @@ body {
 /** Header **/
 #header { 
 	background-size: cover;
-	background-image: url(../images/icos-no_header_small.jpeg);
+	background-image: url(../images/icos-no_header_small.png);
 		
 }
 
 @media all and (min-width: 513px) {
 	#header {
-		background-image: url(../images/icos-no_header_medium.jpeg);
+		background-image: url(../images/icos-no_header_medium.png);
 	}
 }
 
 @media all and (min-width: 1025px) {
 	#header {
-		background-image: url(../images/icos-no_header.jpeg);
+		background-image: url(../images/icos-no_header.png);
 	}
 }
 
