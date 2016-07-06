@@ -14,7 +14,7 @@ use Drupal\Core\Form\FormStateInterface;
  * )
  */
 class ViewTeasedCpBlog extends BlockBase {
-
+	
 	function build() {
 		$listOfBlogs = new SortedListOfBlogs();
 		$list = $listOfBlogs->getListLatestFirst();
@@ -28,6 +28,9 @@ class ViewTeasedCpBlog extends BlockBase {
 						'cp_blogs/style',
 						'cp_blogs/script'
 					),
+				),
+				'#cache' => array(
+						'max-age' => 1
 				),
 			);
 		
@@ -48,7 +51,7 @@ class ViewTeasedCpBlog extends BlockBase {
 		
 		foreach ($list as $blog) {
 			
-			if ($blog->getCategory() == $blog_category) {
+			if ($blog->getCategory() == $blog_category && $blog->getHistorical() == 0) {
 				
 				$output .= '<div class="cp_blog_teased">';
 				
@@ -76,14 +79,28 @@ class ViewTeasedCpBlog extends BlockBase {
 				
 				if (strlen($blog->getText()) > 1 ) {
 					
-					//$stop = 80;
-					//if (strlen($blog->getText()) < 80) { $stop = strlen($blog->getText()); }
+					$max_stop = 160;
+					$start = 0;
+					$stop = $max_stop;
+					$dots = '';
+					
+					if (strlen($blog->getText()) < $max_stop) { 
+						$stop = strlen($blog->getText());
+						
+					} else {
+						$dots = '<span class="dots">...</span></div>';
+					}
 					
 					// When using formatted text via CK Editor..
-					$text_start = strpos($blog->getText(), '<p>');
-					$text_stop = strpos($blog->getText(), '</p>');
+					$start = strpos($blog->getText(), '<p>');
+					$stop = strpos($blog->getText(), '</p>');
 					
-					$output .= '<div class="teaser">' . substr($blog->getText(), $text_start, $text_stop - $text_start) . '<span class="dots">...</span></div>';
+					if ($stop > $max_stop) { 
+						$stop = $max_stop;
+						
+					}
+					
+					$output .= '<div class="teaser">' . substr($blog->getText(), $start, $stop - $start) . $dots;
 				}
 				
 						

@@ -136,11 +136,11 @@
 }
 
 .archive-event .panel-heading {
-	background-color: #f8f5f3 !important;
+	background-color: #0A96F0 !important;
 }
 
 .archive-event .panel-title a {
-	color: #0a96f0;
+	color: #ffffff;
 	font-weight: bold;
 	text-decoration: none;
 	border-bottom: 0;
@@ -156,6 +156,15 @@
 	border-bottom: 0;
 }
 
+.archive-event .to_date,
+.archive-event .from_date {
+	display: inline;
+}
+
+.archive-event .to_date span {
+	padding: 0 10px 0 10px;
+}
+
 .layout-main-wrapper {
 	min-height: 0px !important;
 }
@@ -163,4 +172,8 @@
 .featured-bottom {
 	background: rgba(255,255,255,1) !important;
 	border-top: 0 !important;
+}
+
+.featured-bottom h2 {
+	text-align: left !important;
 }

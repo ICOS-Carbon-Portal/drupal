@@ -156,6 +156,15 @@
 	border-bottom: 0;
 }
 
+.archive-event .to_date,
+.archive-event .from_date {
+	display: inline;
+}
+
+.archive-event .to_date span {
+	padding: 0 10px 0 10px;
+}
+
 .layout-main-wrapper {
 	min-height: 0px !important;
 }
