@@ -48,7 +48,7 @@ class ListOfArchivedCpEvents extends BlockBase {
 						$date = date($date_format, strtotime($e->getFromDate()));
 					
 					} else {
-						$date = date($date_format, strtotime($e->getChanged()));
+						$date = date($date_format, $e->getChanged());
 						
 					}
 					
