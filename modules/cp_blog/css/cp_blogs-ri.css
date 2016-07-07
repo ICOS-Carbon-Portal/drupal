@@ -53,6 +53,20 @@
 	margin-left: 10px;
 }
 
-.cp_blog_earlier {
-	padding-top: 8rem;
+.cp_blog .text, .cp_blog .picture, .cp_blog_earlier .text, .cp_blog_earlier .picture  {
+	width: 50%;
+}
+
+.cp_blog_earlier .panel-heading {
+	color: #0A96F0 !important;
+}
+
+.cp_blog_earlier .panel_heading_date {
+	font-size: 1.5rem;
+	padding: 0 10px 0 0;
+}
+
+.cp_blog_earlier .panel_heading_title {
+	font-size: 2rem;
+	padding: 0 0 0 0;
 }

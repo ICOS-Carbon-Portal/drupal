@@ -60,6 +60,20 @@ class CPBlogPageController extends ControllerBase {
 			if ($blog->getId() != $b->getId() && $blog->getCategory() == $b->getCategory()) {
 				$output .= '<div class="cp_blog_earlier">';
 				
+				$output .= '<div class="panel-group">';
+				$output .= '<div class="panel panel-default">';
+				
+				$output .= '<div class="panel-heading">';
+				$output .= '<h4 class="panel-title">';
+				$output .= '<a data-toggle="collapse" href="#cp_blog_earlier_panel_'. $b->getId() .'">';
+				$output .= '<span class="panel_heading_date">' . date('Y-m-d', $b->getChanged()) . '</span><span class="panel_heading_title">' . $b->getTitle() . '</span>'; 
+				$output .= '</a>';
+				$output .= '</h4>';
+				$output .= '</div>';
+				
+				$output .= '<div id="cp_blog_earlier_panel_'. $b->getId() .'" class="panel-collapse collapse">';
+				$output .= '<div class="panel-body">';
+				
 				$output .= '<div class="date">' . date('Y-m-d', $b->getChanged()) . '</div>';
 				
 				$output .= '<div class="heading">' . $b->getTitle() . '</div>';
@@ -78,11 +92,16 @@ class CPBlogPageController extends ControllerBase {
 				$output .= '<div class="text">' . $b->getText() . '</div>';
 				
 				$output .= '</div>';
+				$output .= '</div>';
+				
+				$output .= '</div>';
+				$output .= '</div>';
+				
+				$output .= '</div>';
 				
 			}
 		}
 		
-	
 		return $output;
 	}
 }

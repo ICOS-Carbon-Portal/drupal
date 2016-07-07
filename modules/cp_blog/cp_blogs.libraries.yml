@@ -1,11 +1,13 @@
 style:
   css:
     theme:
-      css/cp_blogs.css: {}
+      css/cp_blogs-ri.css: {}
+      css/bootstrap.min.css: {}
       
 script:     
   js:
-    js/cp_blogs.js: {}
+    js/cp_blogs-ri.js: {}
+    js/bootstrap.min.js: {}
     
   dependencies:
     - core/jquery

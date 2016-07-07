@@ -3,26 +3,19 @@
   Drupal.behaviors.cp_blogs = {
     attach: function(context, settings) {
       
-    	setPictureMaxWidth();
+    	setMinHeight();
     	
         $(window).resize(function () {
-        	setPictureMaxWidth();
+        	setMinHeight();
         });
                 
     }
   };
 }(jQuery));
 
-function setPictureMaxWidth() {
-	var blogW = jQuery('.cp_blog').width();
-	
-	if (jQuery('.cp_blog .picture img').width() > blogW / 2) {
-		jQuery('.cp_blog .picture img').css({'width':blogW /2});
+function setMinHeight() {
+	if (jQuery('.cp_blog .text').height() < jQuery('.cp_blog .picture').height()) {
+		var h = jQuery('.cp_blog .date').height() + jQuery('.cp_blog .heading').height() + jQuery('.cp_blog .picture').height() + 20;
+		jQuery('.cp_blog').css({'height':h});
 	}
-	
-	jQuery('.cp_blog_earlier .picture img').each(function(i, e) {
-		if (jQuery(e).width() > blogW / 2) {
-			jQuery(e).css({'width':blogW /2});
-		}
-	});
 }

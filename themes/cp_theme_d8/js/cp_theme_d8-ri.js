@@ -5,9 +5,9 @@
     	
 	    checkCpUserConsent();
 	    
-	    handleIngressAndTitle();
-	    
+	    handleIngressAndTitle(); 
 	    fixTweetsAndBlog();
+	    fixMedia();
 	    
     	$(function() {
     		
@@ -145,36 +145,40 @@ function handleIngressAndTitle() {
 */
 function fixTweetsAndBlog() {
 	jQuery('.main-content #block-tweets').css({'background-color':'#f6f6f2'});
-    jQuery('.main-content #block-viewteasedcpblog').css({'background-color':'#f6f6f2'});
+    jQuery('.main-content .block-view-teased-cp-blog').css({'background-color':'#f6f6f2'});
 }
 
 function fixTweetsAndBlogMaxPos() {
 	var w = jQuery('.main-content').width() / 2;
-	var blogH = jQuery('.main-content #block-viewteasedcpblog').height();
+	var blogH = jQuery('.main-content .block-view-teased-cp-blog').height();
     var tweetPos = jQuery('.main-content #block-tweets').position();
     
     jQuery('.main-content #block-tweets').css({'width':w-20, 'height':blogH});
-    jQuery('.main-content #block-viewteasedcpblog').css({'width':w, 'position':'absolute', 'top':tweetPos.top, 'left':w});
+    jQuery('.main-content .block-view-teased-cp-blog').css({'width':w, 'position':'absolute', 'top':tweetPos.top, 'left':w});
     
-    jQuery('.main-content #block-viewteasedcpblog .teaser').css({'width':'100%'});  
+    jQuery('.main-content .block-view-teased-cp-blog .teaser').css({'width':'100%'});  
 }
 
 function fixTweetsAndBlogMinPos() {
 	jQuery('.main-content #block-tweets').css({'width': '100%', 'height': '100%'});
-	jQuery('.main-content #block-viewteasedcpblog').css({'display':'block', 'width':'100%', 'position':'relative', 'top':'0', 'left':'0'});
+	jQuery('.main-content .block-view-teased-cp-blog').css({'display':'block', 'width':'100%', 'position':'relative', 'top':'0', 'left':'0'});
 	
     var picW = jQuery('.main-content #block-viewteasedcpblog .picture img').width();
-    jQuery('.main-content #block-viewteasedcpblog .teaser').css({'width':picW});
+    jQuery('.main-content .block-view-teased-cp-blog .teaser').css({'width':picW});
 }
 
 /** 
 * Media on home page.
-* The two methods assume a CP Media block on main content.
+* The following methods assume a CP Media block on main content.
 */
+function fixMedia() {
+	jQuery('.main-content #block-latestcpmovie .cp_movies').css({'background-color':'#f6f6f2'});
+}
+
 function fixMediaMin() {
-	jQuery('.main-content #block-latestcpmedia').css({'padding-top':'0px'});
+	jQuery('.main-content #block-latestcpmovie').css({'padding-top':'0px'});
 }
 
 function fixMediaMax() {
-	jQuery('.main-content #block-latestcpmedia').css({'padding-top':'80px'});
+	jQuery('.main-content #block-latestcpmovie').css({'padding-top':'80px'});
 }
