@@ -1,38 +1,67 @@
 <?php
 
 function cp_statistics_page_bottom(array &$page_bottom) {
-
+	
 	\Drupal::service('page_cache_kill_switch')->trigger();
 	
+	$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+	$page = $_SERVER['REQUEST_URI'];
+	$referrer = '';
+	if (isset($_SERVER["HTTP_REFERER"])) { $referrer = $_SERVER["HTTP_REFERER"]; }
+	$browser = $_SERVER["HTTP_USER_AGENT"];
+	$inlogged = 'no';
+	if (! \Drupal::currentUser()->isAnonymous()) { $inlogged = 'yes'; }
+	$date = new \DateTime();
+	
+	$body = array(
+			"ip" => $ip,
+			"page" => $page,
+			"referrer" => $referrer,
+			"browser" => $browser,
+			"inlogged" => $inlogged,
+			"timestamp" => $date->getTimestamp(),
+			"year" => $date->format('Y'),
+			"month" => $date->format('m'),
+			"day" => $date->format('d'),
+			"clock" => $date->format('H:i:s'),
+	);
+	
+	cp_statistics_restheart($body);
+	
+	$page_bottom['cp_statistics'] = ['#markup' => ''];
+}
+
+function cp_statistics_restheart($body) {
+	
+	$curl = curl_init("restheart:8080/db/drupal_cp_visits");
+	curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "post");
+	curl_setopt($curl, CURLOPT_HEADER, false);
+	curl_setopt($curl, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
+	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+	
+	curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($body));
+	curl_exec($curl);
+}
+
+function cp_statistics_internal_db($body) {
+
 	$db = \Drupal::service('database');
 	$result = $db->query('show tables like \'cp_statistics_visit\'')->fetchAll();
 	
-	
 	if ($result) {
 		
-	 	$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-	 	$page = $_SERVER['REQUEST_URI'];
-	 	$referrer = '';
-	 	if (isset($_SERVER["HTTP_REFERER"])) { $referrer = $_SERVER["HTTP_REFERER"]; }
-	 	$browser = $_SERVER["HTTP_USER_AGENT"];
-	 	$inlogged = 'no';
-	 	if (! \Drupal::currentUser()->isAnonymous()) { $inlogged = 'yes'; }
-	 	$date = new \DateTime();
-	
 	 	$insert = $db->insert('cp_statistics_visit');	 	
 	 	$insert->fields(array(
-	 			'ip' => $ip, 
-	 			'page' => $page, 
-	 			'referrer' => $referrer,
-	 			'browser' => $browser,
-	 			'inlogged' => $inlogged,
-	 			'timestamp' => $date->getTimestamp(),
-	 			'year' => $date->format('Y'),
-	 			'month' => $date->format('m'),
-	 			'day' => $date->format('d'),
-	 			'clock' => $date->format('H:i:s')		
+	 			'ip' => $body['ip'], 
+	 			'page' => $body['page'], 
+	 			'referrer' => $body['referrer'],
+	 			'browser' => $body['browser'],
+	 			'inlogged' => $body['inlogged'],
+	 			'timestamp' => $body['timestamp'],
+	 			'year' => $body['year'],
+	 			'month' => $body['month'],
+	 			'day' => $body['day'],
+	 			'clock' => $body['clock']		
 	 	))->execute();
-	}
-
- 	$page_bottom['cp_statistics'] = ['#markup' => ''];
+	}	
 }

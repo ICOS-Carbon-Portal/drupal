@@ -8,6 +8,8 @@ drupal:
    - ../themes:/var/www/html/themes
    - ../modules:/var/www/html/modules
    - ../files/default:/var/www/html/sites/default/:rw
+  external_links:
+    - restheart:restheart   
 mariadb:
   image: mariadb:10.0.21
   ports:
