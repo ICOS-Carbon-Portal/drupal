@@ -4,4 +4,12 @@ cp_statistics.create_visit_table:
     _controller: '\Drupal\cp_statistics\Controller\CPStatisticsDB::createVisitTable'
     _title: ''
   requirements:
-    _permission: 'administer site configuration'    
+    _permission: 'administer site configuration'   
+     
+cp_statistics.export:
+  path: '/cp_statistics/export'
+  defaults:
+    _controller: '\Drupal\cp_statistics\Controller\CPStatisticsExport::export'
+    _title: ''
+  requirements:
+    _permission: 'administer site configuration'      
