@@ -1,0 +1,30 @@
+.cp_files { }
+
+.cp_files .panel-heading {
+	background-color: #0a96f0 !important;
+	color: #ffffff !important;
+}
+
+.cp_files .panel-title img { width: 70px; }
+
+.cp_files .panel-title a {
+    display: block;
+    float: right;
+}
+
+.cp_file { padding-bottom: 20px; }
+
+.cp_file .file {
+	display: inline;
+}
+
+.cp_file .file {  }
+
+.cp_file .file a, .cp_file .file a.link {
+	vertical-align: bottom;
+	border-bottom: 0px;
+}
+
+.cp_file .description { 
+	padding-top: 2px;
+}
