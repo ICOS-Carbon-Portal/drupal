@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ns_co2_measurements
+    - node.type.ns_stationdata
+id: node.ns_stationdata.field_ns_co2_measurements
+field_name: field_ns_co2_measurements
+entity_type: node
+bundle: ns_stationdata
+label: 'CO2 measurements'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

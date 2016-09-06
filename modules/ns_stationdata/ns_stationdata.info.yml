@@ -1,0 +1,9 @@
+name: NordSpec Station Data
+description: NordSpec Station Data fields and list.
+package: NS
+
+type: module
+core: 8.x
+
+libraries:
+  - ns_stationdata/style

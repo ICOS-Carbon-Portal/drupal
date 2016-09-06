@@ -1,0 +1,11 @@
+<?php
+
+function ns_stationdata_theme() {
+	$theme['ns_stationdata'] = [];
+
+	return $theme;
+}
+
+function ns_stationdata_page_attachments(array &$page) {
+	$page['#attached']['library'][] = 'ns_stationdata/style';
+}

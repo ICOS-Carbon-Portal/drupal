@@ -1,0 +1,102 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.ns_stationdata.body 
+    - field.field.node.ns_stationdata.field_ns_country
+    - field.field.node.ns_stationdata.field_ns_latitude
+    - field.field.node.ns_stationdata.field_ns_longitude
+    - field.field.node.ns_stationdata.field_ns_measurement_height
+    - field.field.node.ns_stationdata.field_ns_vegetation_type
+    - field.field.node.ns_stationdata.field_ns_variables
+    - field.field.node.ns_stationdata.field_ns_sensors
+    - field.field.node.ns_stationdata.field_ns_co2_measurements
+    - field.field.node.ns_stationdata.field_ns_station_pi
+    - field.field.node.ns_stationdata.field_ns_years
+    - node.type.ns_stationdata
+  module:
+    - text
+    - user
+id: node.ns_stationdata.default
+targetEntityType: node
+bundle: ns_stationdata
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+  field_ns_country:
+    weight: 102
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_ns_latitude:
+    weight: 103
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_ns_longitude:
+    weight: 104
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_ns_measurement_height:
+    weight: 105
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_ns_vegetation_type:
+    weight: 106
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_ns_variables:
+    weight: 107
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_ns_sensors:
+    weight: 108
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_ns_co2_measurements:
+    weight: 109
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_ns_station_pi:
+    weight: 110
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string 
+  field_ns_years:
+    weight: 111
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden:
+  links: true

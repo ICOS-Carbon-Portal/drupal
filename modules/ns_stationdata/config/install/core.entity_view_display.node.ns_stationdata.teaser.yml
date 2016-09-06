@@ -1,0 +1,45 @@
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.ns_stationdata.body
+    - field.field.node.ns_stationdata.field_ns_country
+    - field.field.node.ns_stationdata.field_ns_latitude
+    - field.field.node.ns_stationdata.field_ns_longitude
+    - field.field.node.ns_stationdata.field_ns_measurement_height
+    - field.field.node.ns_stationdata.field_ns_vegetation_type
+    - field.field.node.ns_stationdata.field_ns_variables
+    - field.field.node.ns_stationdata.field_ns_sensors
+    - field.field.node.ns_stationdata.field_ns_co2_measurements
+    - field.field.node.ns_stationdata.field_ns_station_pi
+    - field.field.node.ns_stationdata.field_ns_years
+    - node.type.ns_stationdata
+  module:
+    - text
+    - user
+id: node.ns_stationdata.teaser
+targetEntityType: node
+bundle: ns_stationdata
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  links:
+    weight: 100
+hidden:
+  field_ns_country: true
+  field_ns_latitude: true
+  field_ns_longitude: true
+  field_ns_measurement_height: true
+  field_ns_vegetation_type: true
+  field_ns_variables: true
+  field_ns_sensors: true
+  field_ns_co2_measurements: true
+  field_ns_station_pi: true
+  field_ns_years: true

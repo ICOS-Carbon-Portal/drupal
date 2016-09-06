@@ -1,0 +1,20 @@
+name: NordSpec Theme
+description: 'A NordSpec theme.'
+package: CP
+
+type: theme
+core: 8.x
+
+base theme: bartik
+
+libraries:
+  - ns_theme/style
+  
+regions:
+  header: Header
+  highlighted: Highlighted
+  content: Content
+  sidebar_second: 'Sidebar second'
+  footer_first: 'Footer first'
+  footer_second: 'Footer second'
+  footer_third: 'Footer third'

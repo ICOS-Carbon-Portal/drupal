@@ -1,0 +1,9 @@
+<?php
+
+function ns_theme_preprocess_page(&$variables, $hook) {
+
+}
+
+
+
+
