@@ -1,4 +1,4 @@
-Stylesheetet för blocket ListOfNSStationdata läggs på sidan som blocket ligger i.
+Stylesheetet for the block ListOfNSStationdata which shall be placed on the page containing the block.
 ==================================================================================
 @media all and (min-width: 1120px) {
   table#ns_stationdata_list { position: absolute; bottom: 60px; width: 400px; }
