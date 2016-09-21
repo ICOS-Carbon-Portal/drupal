@@ -1,0 +1,12 @@
+style:
+  css:
+    theme:
+      css/cp_media-ri.css: {}
+      
+script:     
+  js:
+    js/cp_media-ri.js: {}
+    
+  dependencies:
+    - core/jquery
+    - core/jquery.once    

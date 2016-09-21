@@ -116,32 +116,19 @@ checkedCpUserConsent = false;
 
 
 /**
- * This method assume two fields: 
- * Boolean field_cp_page_show_title, 
- * Text (plain, long) field_cp_page_ingress 
+ * This method assume the field cp_page_ingress:  
+ * Text (plain, long) Machine name: field_cp_page_ingress 
  */
 function handleIngressAndTitle() {
-	jQuery('.field--name-field-cp-page-show-title .field__label').hide();
-	jQuery('.field--name-field-cp-page-show-title .field__item').hide();
+	jQuery('.page-title').css({'padding':'0 0 1rem 0', 'border-bottom':'0.1rem dashed #c7c8ca'});
 	jQuery('.field--name-field-cp-page-ingress .field__label').hide();
-	
-	if (jQuery('.field--name-field-cp-page-show-title .field__item').text() === 'Not show title') {
-		jQuery('.field--name-field-cp-page-ingress .field__item').hide();
-		jQuery('.page-title').hide();
-		
-		jQuery('#main-wrapper').css({'height':'0px', 'min-height':'0px'});
-		jQuery('#main').css({'margin-top':'0px', 'margin-bottom':'0px'});
-		
-	} else {
-		jQuery('.page-title').css({'padding':'0 0 1rem 0', 'border-bottom':'0.1rem dashed #c7c8ca'});
-		jQuery('.field--name-field-cp-page-ingress .field__item').css({'padding':'0 0 3rem 0', 'font-size':'1.4rem', 'font-weight':'bold', 'text-transform':'uppercase', 'text-align':'center'});	
-	}
+	jQuery('.field--name-field-cp-page-ingress .field__item').css({'padding':'0 0 3rem 0', 'font-size':'1.4rem', 'font-weight':'bold', 'text-transform':'uppercase', 'text-align':'center'});
 }
 
 
 /** 
 * Tweets and Teasing blog on home page.
-* The following methods assume an embedded Tweet and a Teased CP Blog in a respectively block on main content.
+* The following methods assume an embedded Tweet and a Teased CP Blog in a respectively block on main content. And also CP Event's at right sidebar.
 */
 function fixTweetsAndBlog() {
 	jQuery('.main-content #block-tweets').css({'background-color':'#f6f6f2'});
@@ -151,7 +138,15 @@ function fixTweetsAndBlog() {
 function fixTweetsAndBlogMaxPos() {
 	var w = jQuery('.main-content').width() / 2;
 	var blogH = jQuery('.main-content .block-view-teased-cp-blog').height();
-    var tweetPos = jQuery('.main-content #block-tweets').position();
+	
+	var eventOff = jQuery('#block-listofteasedcpevents').offset();
+	var tweetOff = jQuery('#block-tweets').offset();
+	
+	if (tweetOff.top < eventOff.top) {
+		jQuery('.main-content #block-tweets').css({'position':'relative', 'top':eventOff.top - tweetOff.top});
+	}
+	
+	var tweetPos = jQuery('.main-content #block-tweets').position();
     
     jQuery('.main-content #block-tweets').css({'width':w-20, 'height':blogH});
     jQuery('.main-content .block-view-teased-cp-blog').css({'width':w, 'position':'absolute', 'top':tweetPos.top, 'left':w});
@@ -172,13 +167,27 @@ function fixTweetsAndBlogMinPos() {
 * The following methods assume a CP Media block on main content.
 */
 function fixMedia() {
-	jQuery('.main-content #block-latestcpmovie .cp_movies').css({'background-color':'#f6f6f2'});
+	jQuery('.main-content #block-latestcpmedia .cp_media_latest').css({'background-color':'#f6f6f2'});
+	jQuery('.main-content #block-latestcpmedia .cp_media_latest .media').css({'background-color':'#f6f6f2'});
+	jQuery('.main-content #block-latestcpmedia .cp_media_latest .text').css({'background-color':'#f6f6f2'});
+	jQuery('.main-content #block-latestcpmedia .cp_media_latest h2').css({'padding-top':20});
+	jQuery('.main-content #block-latestcpmedia .cp_media_latest .media .text').css({'width':'50%'});
+	jQuery('.main-content #block-latestcpmedia .cp_media_latest .media video').css({'width':'50%'});
+	jQuery('.main-content #block-latestcpmedia .cp_media_latest .media .desc').css({'width':'50%'});
 }
 
 function fixMediaMin() {
-	jQuery('.main-content #block-latestcpmovie').css({'padding-top':'0px'});
+	jQuery('.main-content #block-latestcpmedia').css({'padding-top':0});
+	jQuery('.main-content #block-latestcpmedia .cp_media_latest .text').css({'position':'relative', 'top':0, 'left':0});
+	jQuery('.main-content #block-latestcpmedia .cp_media_latest video').css({'position':'relative', 'top':0, 'left':0});
+	jQuery('.main-content #block-latestcpmedia .cp_media_latest .desc').css({'position':'relative', 'top':0, 'left':0});
 }
 
 function fixMediaMax() {
-	jQuery('.main-content #block-latestcpmovie').css({'padding-top':'80px'});
+	var w = jQuery('.main-content').width() / 2;
+	var textH = jQuery('.main-content #block-latestcpmedia .cp_media_latest .text').height();
+	jQuery('.main-content #block-latestcpmedia').css({'padding-top':'120px'});
+	jQuery('.main-content #block-latestcpmedia .cp_media_latest .text').css({'position':'relative', 'top':0, 'left':w});
+	jQuery('.main-content #block-latestcpmedia .cp_media_latest video').css({'position':'relative', 'top':'-' + textH + 'px', 'left':0});
+	jQuery('.main-content #block-latestcpmedia .cp_media_latest .desc').css({'position':'relative', 'top':'-' + textH + 'px', 'left':0});
 }
