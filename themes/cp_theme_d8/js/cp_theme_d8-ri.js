@@ -3,11 +3,10 @@
   Drupal.behaviors.cp_theme_d8 = {
     attach: function(context, settings) {
     	
-	    checkCpUserConsent();
-	    
+	    checkCpUserConsent();   
 	    handleIngressAndTitle(); 
-	    fixTweetsAndBlog();
-	    fixMedia();
+	    fixHome();
+	    fixMaterials();
 	    
     	$(function() {
     		
@@ -16,12 +15,10 @@
     		}
     		
     		if ($(window).width() > 1300) {
-    			fixTweetsAndBlogMaxPos();
-    			fixMediaMax();
+    			fixHomeMax();
     			
     		} else {
-    			fixTweetsAndBlogMinPos();
-    			fixMediaMin();
+    			fixHomeMin();
     		}
     		
     		$(window).resize(function () {
@@ -30,12 +27,10 @@
         		}
     			
     			if ($(window).width() > 1300) {
-        			fixTweetsAndBlogMaxPos();
-        			fixMediaMax();
+        			fixHomeMax();
         			
         		} else {
-        			fixTweetsAndBlogMinPos();
-        			fixMediaMin();
+        			fixHomeMin();
         		}
     			
     		});
@@ -60,10 +55,6 @@ function fixSmallsizeMenu() {
 		}
 	);
 }
-
-
-
-
 
 function getCookieByName(cn) {
     var n = cn + "=";
@@ -114,7 +105,6 @@ function checkCpUserConsent() {
 
 checkedCpUserConsent = false;
 
-
 /**
  * This method assume the field cp_page_ingress:  
  * Text (plain, long) Machine name: field_cp_page_ingress 
@@ -125,22 +115,22 @@ function handleIngressAndTitle() {
 	jQuery('.field--name-field-cp-page-ingress .field__item').css({'padding':'0 0 3rem 0', 'font-size':'1.4rem', 'font-weight':'bold', 'text-transform':'uppercase', 'text-align':'center'});
 }
 
-
 /** 
-* Tweets and Teasing blog on home page.
-* The following methods assume an embedded Tweet and a Teased CP Blog in a respectively block on main content. And also CP Event's at right sidebar.
+* Home page
+* Tweets, Teasing blog and Station map on home page.
+* The following methods assume an embedded Tweet, a Teased CP Blog and a iframe in a respectively block on main content.
+* The methods also depends of a CP Event's at right sidebar.
 */
-function fixTweetsAndBlog() {
-	jQuery('.main-content #block-tweets').css({'background-color':'#f6f6f2'});
-    jQuery('.main-content .block-view-teased-cp-blog').css({'background-color':'#f6f6f2'});
+function fixHome() {
+	jQuery('.main-content #block-tweets').css({'background-color':'#f6f6f2', 'height':440});
+    jQuery('.main-content .block-view-teased-cp-blog').css({'background-color':'#f6f6f2', 'height':440});
 }
 
-function fixTweetsAndBlogMaxPos() {
+function fixHomeMax() {
 	var w = jQuery('.main-content').width() / 2;
-	var blogH = jQuery('.main-content .block-view-teased-cp-blog').height();
-	
 	var eventOff = jQuery('#block-listofteasedcpevents').offset();
 	var tweetOff = jQuery('#block-tweets').offset();
+	var tweetH = jQuery('#block-tweets').height();
 	
 	if (tweetOff.top < eventOff.top) {
 		jQuery('.main-content #block-tweets').css({'position':'relative', 'top':eventOff.top - tweetOff.top});
@@ -148,46 +138,30 @@ function fixTweetsAndBlogMaxPos() {
 	
 	var tweetPos = jQuery('.main-content #block-tweets').position();
     
-    jQuery('.main-content #block-tweets').css({'width':w-20, 'height':blogH});
-    jQuery('.main-content .block-view-teased-cp-blog').css({'width':w, 'position':'absolute', 'top':tweetPos.top, 'left':w});
-    
+    jQuery('.main-content #block-tweets').css({'width':w - 20});
+    jQuery('.main-content .block-view-teased-cp-blog').css({'width':w - 20, 'position':'absolute', 'top':tweetPos.top, 'left':w});
     jQuery('.main-content .block-view-teased-cp-blog .teaser').css({'width':'100%'});  
+    
+    jQuery('.main-content .block-view-teased-cp-blog').css({'margin-top':0});
+    jQuery('.main-content #stationmap').css({'margin-top':220});
+    
 }
 
-function fixTweetsAndBlogMinPos() {
-	jQuery('.main-content #block-tweets').css({'width': '100%', 'height': '100%'});
+function fixHomeMin() {
+	jQuery('.main-content #block-tweets').css({'width': '100%'});
 	jQuery('.main-content .block-view-teased-cp-blog').css({'display':'block', 'width':'100%', 'position':'relative', 'top':'0', 'left':'0'});
 	
     var picW = jQuery('.main-content #block-viewteasedcpblog .picture img').width();
     jQuery('.main-content .block-view-teased-cp-blog .teaser').css({'width':picW});
+    
+    jQuery('.main-content .block-view-teased-cp-blog').css({'margin-top':220});
+    jQuery('.main-content #stationmap').css({'margin-top':220});
 }
 
 /** 
-* Media on home page.
-* The following methods assume a CP Media block on main content.
+* Materials page.
 */
-function fixMedia() {
-	jQuery('.main-content #block-latestcpmedia .cp_media_latest').css({'background-color':'#f6f6f2'});
-	jQuery('.main-content #block-latestcpmedia .cp_media_latest .media').css({'background-color':'#f6f6f2'});
-	jQuery('.main-content #block-latestcpmedia .cp_media_latest .text').css({'background-color':'#f6f6f2'});
-	jQuery('.main-content #block-latestcpmedia .cp_media_latest h2').css({'padding-top':20});
-	jQuery('.main-content #block-latestcpmedia .cp_media_latest .media .text').css({'width':'50%'});
-	jQuery('.main-content #block-latestcpmedia .cp_media_latest .media video').css({'width':'50%'});
-	jQuery('.main-content #block-latestcpmedia .cp_media_latest .media .desc').css({'width':'50%'});
-}
-
-function fixMediaMin() {
-	jQuery('.main-content #block-latestcpmedia').css({'padding-top':0});
-	jQuery('.main-content #block-latestcpmedia .cp_media_latest .text').css({'position':'relative', 'top':0, 'left':0});
-	jQuery('.main-content #block-latestcpmedia .cp_media_latest video').css({'position':'relative', 'top':0, 'left':0});
-	jQuery('.main-content #block-latestcpmedia .cp_media_latest .desc').css({'position':'relative', 'top':0, 'left':0});
-}
-
-function fixMediaMax() {
-	var w = jQuery('.main-content').width() / 2;
-	var textH = jQuery('.main-content #block-latestcpmedia .cp_media_latest .text').height();
-	jQuery('.main-content #block-latestcpmedia').css({'padding-top':'120px'});
-	jQuery('.main-content #block-latestcpmedia .cp_media_latest .text').css({'position':'relative', 'top':0, 'left':w});
-	jQuery('.main-content #block-latestcpmedia .cp_media_latest video').css({'position':'relative', 'top':'-' + textH + 'px', 'left':0});
-	jQuery('.main-content #block-latestcpmedia .cp_media_latest .desc').css({'position':'relative', 'top':'-' + textH + 'px', 'left':0});
+function fixMaterials() {
+	jQuery('.layout-main-wrapper').css({'min-height':0});
+	jQuery('.block-cp-cmis-documents').css({'border-bottom':0});
 }

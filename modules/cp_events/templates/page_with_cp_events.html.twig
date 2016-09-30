@@ -1,0 +1,113 @@
+
+<div id="cp_events_page">
+
+	<div class="news_section">
+	
+		<div class="latest_news">
+		
+			<h3 class="heading">Latest news</h3>
+			
+			<span class="date">
+				{{ elements['news']['list'][0].getFromDate() }}
+			</span>
+			
+			<a href="/event/{{ elements['news']['list'][0].getid() }}">
+				<h3 class="title">{{ elements['news']['list'][0].getTitle() }}</h3>
+			</a>
+			
+			{% if elements['news']['list'][0].getPictureUri() %}
+				<img class="picture" src="{{ elements['news']['list'][0].getPictureUri() }}" />
+			{% endif %}
+			
+		</div>
+		
+		
+		<div class="news_list">
+		
+			<h3 class="heading">News</h3>
+			
+			{% for news in elements['news']['list'] | slice(0, elements['news']['count']) %}
+				<div class="item">
+					<span class="date">{{ news.getFromDate() }}</span>
+					<a href="/event/{{ news.getid() }}"><p class="title">{{ news.getTitle() }}</p></a>
+				</div>			
+			{% endfor %} 	
+			
+		</div>
+		
+	</div>
+	
+	
+	<h3 class="heading">Latest events</h3>
+	
+	<div class="events_section">
+		
+		<div class="events_list">
+			
+			<div class="items">
+			
+				{% for event in elements['events']['list'] %}
+					<div id="event_{{ event.getId() }}" class="item">
+						<a href="javascript:void(0)" id="{{ event.getId() }}" class="event_body_handler event_button">
+							<p class="title">{{ event.getTitle() }}</p>	
+					
+							<span class="date">			
+								{{ event.getFromDate() }}
+							
+								{% if event.getToDate() %}
+									to {{ event.getToDate() }}	
+								{% endif %}
+							</span>
+							
+						</a>
+						
+						<div class="event_active" style="display: none"></div>
+						
+						<div class="text" style="display: none">{{ event.getText() }}</div>
+						
+						<div class="link_uri" style="display: none">{{ event.getLinkUri() }}</div>
+						<div class="link_title" style="display: none">{{ event.getLinkTitle() }}</div>
+					</div>		
+					
+				{% endfor %}
+				
+			</div>
+				
+		</div>
+		
+		<div id="event_container">
+		
+			<div class="event_body">
+			
+				<h3 class="title">{{ elements['events']['list'][0].getTitle() }}</h3>
+				
+				<p class="date">			
+					{{ elements['events']['list'][0].getFromDate() }}
+				
+					{% if elements['events']['list'][0].getToDate() %}
+						to {{ elements['events']['list'][0].getToDate() }}	
+					{% endif %}
+					
+				</p>
+				
+				<div class="text">
+					{{ elements['events']['list'][0].getText() | raw }}
+				</div>
+				
+				<div class="link">
+					{% if elements['events']['list'][0].getLinkUri() %}
+						<a href="{{ elements['events']['list'][0].getLinkUri() }}" class="event_body_button">
+							{{ elements['events']['list'][0].getLinkTitle() }}
+						</a>	
+					{% endif %}
+				</div>
+				
+				
+			
+			</div>	
+				
+		</div>
+		
+	</div>
+
+</div>
