@@ -131,13 +131,15 @@ function fixHomeMax() {
 	var eventOff = jQuery('#block-listofteasedcpevents').offset();
 	var tweetOff = jQuery('#block-tweets').offset();
 	var tweetH = jQuery('#block-tweets').height();
+	if (! (eventOff && tweetOff)) { return; }
 	
 	if (tweetOff.top < eventOff.top) {
 		jQuery('.main-content #block-tweets').css({'position':'relative', 'top':eventOff.top - tweetOff.top});
 	}
 	
 	var tweetPos = jQuery('.main-content #block-tweets').position();
-    
+	if (! tweetPos) { return; }
+	
     jQuery('.main-content #block-tweets').css({'width':w - 20});
     jQuery('.main-content .block-view-teased-cp-blog').css({'width':w - 20, 'position':'absolute', 'top':tweetPos.top, 'left':w});
     jQuery('.main-content .block-view-teased-cp-blog .teaser').css({'width':'100%'});  
