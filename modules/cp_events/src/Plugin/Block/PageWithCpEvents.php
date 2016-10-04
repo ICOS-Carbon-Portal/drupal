@@ -64,6 +64,8 @@ class PageWithCpEvents extends BlockBase {
 		$list_of_elements['news']['list'] = array_reverse($news);
 		$list_of_elements['news']['count'] = $config['cp_events_page_news_counts'];
 		
+		$list_of_elements['site_home'] = "https://$_SERVER[HTTP_HOST]";
+		
 		return array(
 				'#theme' => 'page_with_cp_events',
 				'#elements' => $list_of_elements,
