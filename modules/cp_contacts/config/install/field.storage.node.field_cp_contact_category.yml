@@ -3,12 +3,12 @@ status: true
 dependencies:
   module:
     - node
-id: node.field_cp_contact_name
-field_name: field_cp_contact_name
+id: node.field_cp_contact_category
+field_name: field_cp_contact_category
 entity_type: node
 type: string
 settings:
-  max_length: 40
+  max_length: 100
   is_ascii: false
   case_sensitive: false
 module: core

@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.cp_contact.field_cp_contact_name
     - field.field.node.cp_contact.field_cp_contact_email
     - field.field.node.cp_contact.field_cp_contact_phone
     - field.field.node.cp_contact.field_cp_contact_photo
     - field.field.node.cp_contact.field_cp_contact_organization
     - field.field.node.cp_contact.field_cp_contact_title
+    - field.field.node.cp_contact.field_cp_contact_category
     - field.field.node.cp_contact.field_cp_contact_index
     - node.type.cp_contact
   module:
@@ -18,47 +18,47 @@ id: node.cp_contact.default
 targetEntityType: node
 bundle: cp_contact
 mode: default
-content:
-  field_cp_contact_name:
-    weight: 40
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield    
+content:   
   field_cp_contact_email:
-    weight: 42
+    weight: 40
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: email_default
   field_cp_contact_phone:
-    weight: 44
+    weight: 42
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
   field_cp_contact_photo:
-    weight: 46
+    weight: 44
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
   field_cp_contact_organization:
-    weight: 48
+    weight: 46
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: options_select
   field_cp_contact_title:
-    weight: 50
+    weight: 48
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+  field_cp_contact_category:
+    weight: 50
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield     
   field_cp_contact_index:
     weight: 52
     settings:

@@ -74,6 +74,7 @@ class ListOfNodes {
 		$top_nodes = array();
 		foreach ($this->nodes as $node) {
 			if ($node->getDepth() == '1') {
+				$node->setPath(str_replace('internal:/', '', $node->getPath()));
 				$top_nodes[] = $node;	
 			}
 		}

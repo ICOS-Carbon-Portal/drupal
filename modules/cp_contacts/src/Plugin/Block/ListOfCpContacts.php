@@ -5,6 +5,7 @@ namespace Drupal\cp_contacts\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\cp_contacts\Plugin\Block\Contact;
 use Drupal\Core\StreamWrapper\PublicStream;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Cache\Cache;
 
 /**
@@ -34,33 +35,41 @@ class ListOfCpContacts extends BlockBase {
 	
 	function _build_html($list) {
 		
+		$config = $this->getConfiguration();
+		
 		$output = '<div id="cp_contacts">';
 		
 		$url = '/' . PublicStream::basePath() . '/';
 		
 		$co = 1;
 		
-		foreach ($list as $c) {
+		if (isset($config['cp_contact_contact_category'])) {
+			$contact_category = $config['cp_contact_contact_category'];
 			
-			$photo = $url . str_replace('public://', '', $c->getPhoto());
-			$output .= '<div class="contact row-' . $co . '">';
-			
-			$output .= '<div class="region-left">';
-			$output .= '<img src="' . $photo . '" width="100" height="100" alt="" />';
-			$output .= '</div>';
-			
-			$output .= '<div class="region-right">';
-			$output .= '<div class="name">' . $c->getName() . '</div>';
-			$output .= '<div class="title">' . $c->getTitle() . '</div>';
-			$output .= '<div class="organization">' . $c->getOrganization() . '</div>';
-			$output .= '<div class="email"><a href="mailto:' . $c->getEmail() . '">' . $c->getEmail() . '</a></div>';
-			$output .= '<div class="phone"><a href="tel:' . $c->getPhone() . '">' . $c->getPhone() . '</a></div>';
-			$output .= '</div>';
-			
-			$output .= '</div>';
-			
-			$co ++;
-			if ($co == 4) { $co = 1; }
+			foreach ($list as $c) {
+				if ($c->getCategory() == $contact_category) {
+					
+					$photo = $url . str_replace('public://', '', $c->getPhoto());
+					$output .= '<div class="contact row-' . $co . '">';
+					
+					$output .= '<div class="region-left">';
+					$output .= '<img src="' . $photo . '" width="100" height="100" alt="" />';
+					$output .= '</div>';
+					
+					$output .= '<div class="region-right">';
+					$output .= '<div class="name">' . $c->getName() . '</div>';
+					$output .= '<div class="title">' . $c->getTitle() . '</div>';
+					$output .= '<div class="organization">' . $c->getOrganization() . '</div>';
+					$output .= '<div class="email"><a href="mailto:' . $c->getEmail() . '">' . $c->getEmail() . '</a></div>';
+					$output .= '<div class="phone"><a href="tel:' . $c->getPhone() . '">' . $c->getPhone() . '</a></div>';
+					$output .= '</div>';
+					
+					$output .= '</div>';
+					
+					$co ++;
+					if ($co == 4) { $co = 1; }
+				}
+			}
 		}
 		
 		$output .= '</div>';
@@ -68,17 +77,61 @@ class ListOfCpContacts extends BlockBase {
 		return $output;
 	}
 	
+	/**
+	 * {@inheritdoc}
+	 */
+	public function blockForm($form, FormStateInterface $form_state) {
+		$config = $this->getConfiguration();
+	
+		$form = parent::blockForm($form, $form_state);
+	
+		$contact_options = array();
+		$contact_options['none'] = '';
+		$list = $this->_prepare_contacts();
+		foreach ($list as $contact) {
+			$contact_options[$contact->getCategory()] = $contact->getCategory();
+		}
+	
+		$contact_category = '';
+		if (isset($config['cp_contact_contact_category'])) {
+			$contact_category = $config['cp_contact_contact_category'];
+		}
+		
+		$description = '';
+		if (empty($contact_options)) {
+			$description = 'You have none contact. You have to create a CP Contact first.';
+		}
+	
+		$form['cp_contact_contact_category'] = array (
+				'#type' => 'select',
+				'#title' => $this->t('Select a contact'),
+				'#description' => $description,
+				'#options' => $contact_options,
+				'#default_value' => $contact_category
+		);
+	
+		return $form;
+	}
+	
+	
+	/**
+	 * {@inheritdoc}
+	 */
+	public function blockSubmit($form, FormStateInterface $form_state) {
+		$this->setConfigurationValue('cp_contact_contact_category', $form_state->getValue('cp_contact_contact_category'));
+	}	
+	
 	function _prepare_contacts() {
 		
 		$list = array();
 		
 		foreach ($this->_collect_contacts() as $c) {
-			$c = $this->_add_name($c);
 			$c = $this->_add_email($c);
 			$c = $this->_add_phone($c);
 			$c = $this->_add_photo($c);
 			$c = $this->_add_organization($c);
 			$c = $this->_add_title($c);
+			$c = $this->_add_category($c);
 			$c = $this->_add_index($c);
 				
 			$list[] = $c;
@@ -105,9 +158,10 @@ class ListOfCpContacts extends BlockBase {
 		$list = array();
 		
 		$result = db_query('
-			select nid 	
-			from {node}
-			where type = :type
+			select n.nid, nfd.title 	
+			from {node} as n
+				join {node_field_data} as nfd on n.nid = nfd.nid
+			where n.type = :type
 			',
 				
 			array(':type' => 'cp_contact')
@@ -118,33 +172,13 @@ class ListOfCpContacts extends BlockBase {
 			if ($record) {
 				$contact = new Contact();
 				$contact->setId($record->nid);
+				$contact->setName($record->title);
 				
 				$list[] = $contact;
 			}
 		}
 		
 		return $list;	
-	}
-	
-	function _add_name($contact) {
-	
-		$result = db_query('
-			select field_cp_contact_name_value
-			from {node__field_cp_contact_name}
-			where entity_id = :id
-			',
-	
-			array(':id' => $contact->getId())
-		)->fetchAll();
-	
-	
-		foreach ($result as $record) {
-			if ($record) {
-				$contact->setName($record->field_cp_contact_name_value);
-			}
-		}
-	
-		return $contact;
 	}
 	
 	function _add_email($contact) {
@@ -251,6 +285,27 @@ class ListOfCpContacts extends BlockBase {
 			}
 		}
 
+		return $contact;
+	}
+
+	function _add_category($contact) {
+	
+		$result = db_query('
+			select field_cp_contact_category_value
+			from {node__field_cp_contact_category}
+			where entity_id = :id
+			',
+	
+			array(':id' => $contact->getId())
+		)->fetchAll();
+
+
+		foreach ($result as $record) {
+			if ($record) {
+				$contact->setCategory($record->field_cp_contact_category_value);
+			}
+		}
+	
 		return $contact;
 	}
 	

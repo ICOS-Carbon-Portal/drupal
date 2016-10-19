@@ -11,6 +11,7 @@ class Contact {
 	private $photo;
 	private $organization;
 	private $title;
+	private $category;
 	private $index;
 	
 	function __construct() {
@@ -72,6 +73,14 @@ class Contact {
 	public function setTitle($title) {
 		$this->title = $title;
 	}
+	
+	public function getCategory() {
+		return $this->category;
+	}
+	
+	public function setCategory($category) {
+		$this->category = $category;
+	}	
 	
 	public function getIndex() {
 		return $this->index;

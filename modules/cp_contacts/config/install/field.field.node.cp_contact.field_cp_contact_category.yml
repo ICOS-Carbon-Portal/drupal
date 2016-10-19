@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cp_contact_category
+    - node.type.cp_blog
+id: node.cp_blog.field_cp_contact_category
+field_name: field_cp_contact_category
+entity_type: node
+bundle: cp_contact
+label: Category
+description: 'Specify which category this contact belongs to.'
+required: true
+translatable: false
+default_value:
+  -
+    value: CONTACT
+default_value_callback: ''
+settings: { }
+field_type: string
