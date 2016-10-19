@@ -50,24 +50,22 @@ class ListOfCpContacts extends BlockBase {
 				if ($c->getCategory() == $contact_category) {
 					
 					$photo = $url . str_replace('public://', '', $c->getPhoto());
-					$output .= '<div class="contact row-' . $co . '">';
 					
-					$output .= '<div class="region-left">';
+					$output .= '<div class="contact">';
+					$output .= '<div class="picture">';
 					$output .= '<img src="' . $photo . '" width="100" height="100" alt="" />';
 					$output .= '</div>';
 					
-					$output .= '<div class="region-right">';
+					$output .= '<div class="data">';
 					$output .= '<div class="name">' . $c->getName() . '</div>';
 					$output .= '<div class="title">' . $c->getTitle() . '</div>';
 					$output .= '<div class="organization">' . $c->getOrganization() . '</div>';
+					$output .= '<div class="category">' . $c->getCategory() . '</div>';
 					$output .= '<div class="email"><a href="mailto:' . $c->getEmail() . '">' . $c->getEmail() . '</a></div>';
 					$output .= '<div class="phone"><a href="tel:' . $c->getPhone() . '">' . $c->getPhone() . '</a></div>';
+					$output .= '<div class="address">' . $c->getAddress() . '</div>';
 					$output .= '</div>';
-					
-					$output .= '</div>';
-					
-					$co ++;
-					if ($co == 4) { $co = 1; }
+					$output .= '</div>';	
 				}
 			}
 		}
@@ -96,16 +94,11 @@ class ListOfCpContacts extends BlockBase {
 		if (isset($config['cp_contact_contact_category'])) {
 			$contact_category = $config['cp_contact_contact_category'];
 		}
-		
-		$description = '';
-		if (empty($contact_options)) {
-			$description = 'You have none contact. You have to create a CP Contact first.';
-		}
 	
 		$form['cp_contact_contact_category'] = array (
 				'#type' => 'select',
-				'#title' => $this->t('Select a contact'),
-				'#description' => $description,
+				'#title' => $this->t('Select a group of contacts'),
+				'#description' => '',
 				'#options' => $contact_options,
 				'#default_value' => $contact_category
 		);
@@ -129,8 +122,9 @@ class ListOfCpContacts extends BlockBase {
 			$c = $this->_add_email($c);
 			$c = $this->_add_phone($c);
 			$c = $this->_add_photo($c);
-			$c = $this->_add_organization($c);
 			$c = $this->_add_title($c);
+			$c = $this->_add_organization($c);
+			$c = $this->_add_address($c);
 			$c = $this->_add_category($c);
 			$c = $this->_add_index($c);
 				
@@ -246,6 +240,27 @@ class ListOfCpContacts extends BlockBase {
 		return $contact;
 	}
 	
+	function _add_title($contact) {
+	
+		$result = db_query('
+			select field_cp_contact_title_value
+			from {node__field_cp_contact_title}
+			where entity_id = :id
+			',
+	
+			array(':id' => $contact->getId())
+		)->fetchAll();
+
+
+		foreach ($result as $record) {
+			if ($record) {
+				$contact->setTitle($record->field_cp_contact_title_value);
+			}
+		}
+
+		return $contact;
+	}	
+	
 	function _add_organization($contact) {
 	
 		$result = db_query('
@@ -267,11 +282,11 @@ class ListOfCpContacts extends BlockBase {
 		return $contact;
 	}
 	
-	function _add_title($contact) {
+	function _add_address($contact) {
 	
 		$result = db_query('
-			select field_cp_contact_title_value
-			from {node__field_cp_contact_title}
+			select field_cp_contact_address_value
+			from {node__field_cp_contact_address}
 			where entity_id = :id
 			',
 	
@@ -281,7 +296,7 @@ class ListOfCpContacts extends BlockBase {
 
 		foreach ($result as $record) {
 			if ($record) {
-				$contact->setTitle($record->field_cp_contact_title_value);
+				$contact->setAddress($record->field_cp_contact_address_value);
 			}
 		}
 

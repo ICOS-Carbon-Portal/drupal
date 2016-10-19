@@ -9,8 +9,9 @@ class Contact {
 	private $email;
 	private $phone;
 	private $photo;
-	private $organization;
 	private $title;
+	private $organization;
+	private $address;
 	private $category;
 	private $index;
 	
@@ -58,6 +59,14 @@ class Contact {
 		$this->photo = $photo;
 	}
 	
+	public function getTitle() {
+		return $this->title;
+	}
+	
+	public function setTitle($title) {
+		$this->title = $title;
+	}
+	
 	public function getOrganization() {
 		return $this->organization;
 	}
@@ -66,12 +75,12 @@ class Contact {
 		$this->organization = $organization;
 	}
 
-	public function getTitle() {
-		return $this->title;
+	public function getAddress() {
+		return $this->address;
 	}
 	
-	public function setTitle($title) {
-		$this->title = $title;
+	public function setAddress($address) {
+		$this->address = $address;
 	}
 	
 	public function getCategory() {

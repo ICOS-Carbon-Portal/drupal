@@ -3,14 +3,15 @@ status: true
 dependencies:
   module:
     - node
-id: node.field_cp_contact_category
-field_name: field_cp_contact_category
+id: node.field_cp_contact_address
+field_name: field_cp_contact_address
 entity_type: node
-type: list_string
+type: string
 settings:
-  allowed_values: { }
-  allowed_values_function: ''
-module: options
+  max_length: 100
+  is_ascii: false
+  case_sensitive: false
+module: core
 locked: false
 cardinality: 1
 translatable: true

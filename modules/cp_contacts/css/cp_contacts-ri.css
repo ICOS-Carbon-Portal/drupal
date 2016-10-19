@@ -16,15 +16,12 @@
 	left: 120px;
 }
 
-#cp_contacts .address,
-#cp_contacts .category {
-	display: none;
-}
-	
 #cp_contacts .name,
 #cp_contacts .title,
 #cp_contacts .organization,
-#cp_contacts .email {
+#cp_contacts .category, 
+#cp_contacts .email,
+#cp_contacts .phone {
 	padding-bottom: 1rem;
 }
 
@@ -38,12 +35,14 @@
 	text-transform: none;
 }
 
-#cp_contacts .title {
-	font-size: 85%;
-}
-
-#cp_contacts .organization {
-	font-size: 80%;
+#cp_contacts .title,
+#cp_contacts .organization,
+#cp_contacts .category,
+#cp_contacts .email a,
+#cp_contacts .phone a,
+#cp_contacts .address {
+	font-size: 100%;
+	width: 50%;
 }
 
 #cp_contacts .email a,
