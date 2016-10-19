@@ -362,37 +362,56 @@ h1.page-title {
 
 
 /** Body content **/
-.cp_body_content {}
+.cp_body_content {
+	display: inline-block;
+}
 
+.cp_body_content .col_1 {
+	display: block;
+	width: 100%;
+}
+	
 @media all and (max-width: 1289px) {
-	.cp_body_content  .col-2-1,
-	.cp_body_content  .col-2-2 {
-		display: inline;
+	.cp_body_content .col_2_1,
+	.cp_body_content .col_2_2,
+	.cp_body_content .col_3_1,
+	.cp_body_content .col_3_2,
+	.cp_body_content .col_3_3 {
+		display: block;
 	}
 	
-	.cp_body_content .col-2-1 .inner,
-	.cp_body_content .col-2-2 .inner {
+	.cp_body_content .col_2_1 .inner,
+	.cp_body_content .col_2_2 .inner,
+	.cp_body_content .col_3_1 .inner,
+	.cp_body_content .col_3_2 .inner,
+	.cp_body_content .col_3_3 .inner {
 		width: 100%;
 	}
 }
 
 @media all and (min-width: 1290px) {
-	.cp_body_content  .col-2-1 {
-		width: 66.66%; 
+	.cp_body_content .col_2_1 {
+		width: 800px; 
 		float: left;
 	}
 	
-	.cp_body_content  .col-2-2 {
-		width: 33.33%; 
-		float: right;
+	.cp_body_content .col_2_2, 
+	.cp_body_content .col_3_1,
+	.cp_body_content .col_3_2,
+	.cp_body_content .col_3_3 {
+		width: 400px; 
+		float: left;
 	}
 	
-	.cp_body_content .col-2-1 .inner {
-		width: 95%;
+	.cp_body_content .col_2_1 .inner,
+	.cp_body_content .col_3_1 .inner,
+	.cp_body_content .col_3_2 .inner,
+	.cp_body_content .col_3_3 .inner {
+		width: 90%;
 	}
 	
-	.cp_body_content .col-2-2 .inner {
-		margin-left: 5%;
+	.cp_body_content .col_2_2 .inner {
+		margin-left: 10%;
 	}
 }
 
@@ -408,13 +427,13 @@ h1.page-title {
 	padding: 1rem 0 1rem 0;
 }
 
-.cp_body_content .link-box { 
+.cp_body_content .link_box { 
 	margin: 0;
 	padding: 0;
 	border: 0;
 }
 
-.cp_body_content .link-box a {
+.cp_body_content .link_box a {
 	display: inline-block;
 	cursor: pointer;
 	margin-left: 1rem;
@@ -425,7 +444,7 @@ h1.page-title {
 	text-transform: uppercase;
 }
 
-.cp_body_content .link-box a:after {
+.cp_body_content .link_box a:after {
 	height: 0;
 	width: 0;
 	position: absolute;
@@ -438,4 +457,28 @@ h1.page-title {
 	pointer-events: none;
 	content: " ";
 }
+
+.cp_body_content .button_box { 
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.cp_body_content .button_box a {
+    display: inline-block;
+    cursor: pointer;
+    margin: 1rem 1rem 1rem 0;
+    padding: 1rem 4rem;
+    border: none;
+    border-radius: 0.2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    background-color: #0a96f0;
+    background-clip: padding-box;
+    color: #fff;   
+}
+
+
+
+
 
