@@ -3,9 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.node.cp_pictures.field_cp_pictures_picture
-    - field.field.node.cp_pictures.field_cp_pictures_category
-    - field.field.node.cp_pictures.field_cp_pictures_historical
-    - field.field.node.cp_pictures.field_cp_pictures_deprecated    
+    - field.field.node.cp_pictures.field_cp_pictures_category   
     - node.type.cp_pictures
   module:
     - image
@@ -28,25 +26,7 @@ content:
     label: above
     settings: { }
     third_party_settings: {  }
-    type: string       
-  field_cp_pictures_historical:
-    weight: 114
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
-  field_cp_pictures_deprecated:
-    weight: 116
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean        
+    type: string               
 hidden:
   body: true
   links: true

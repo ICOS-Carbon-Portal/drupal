@@ -10,7 +10,7 @@ id: node.cp_blog.body
 field_name: body
 entity_type: node
 bundle: cp_blog
-label: 'Body'
+label: 'Blog'
 description: ''
 required: false
 translatable: true

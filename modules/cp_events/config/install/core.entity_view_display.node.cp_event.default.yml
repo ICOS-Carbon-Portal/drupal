@@ -9,7 +9,6 @@ dependencies:
     - field.field.node.cp_event.field_cp_event_to_date
     - field.field.node.cp_event.field_cp_event_news
     - field.field.node.cp_event.field_cp_event_historical
-    - field.field.node.cp_event.field_cp_event_deprecated
     - node.type.cp_event
   module:
     - image
@@ -80,16 +79,7 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    type: boolean
-  field_cp_event_deprecated:
-    weight: 124
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean            
+    type: boolean      
 hidden:
   body: true
   links: true

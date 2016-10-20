@@ -75,7 +75,7 @@ class CpPicturesCarousel extends BlockBase {
 		$co = 0;
 		foreach ($pictures as $picture) {
 			
-			if ($picture->getHistorical() == '0' && $picture->getCategory() == $category) {
+			if ($picture->getCategory() == $category) {
 					
 				$picture_uri = $url . str_replace('public://', '', $picture->getPictureUri());
 				$picture_title = '';

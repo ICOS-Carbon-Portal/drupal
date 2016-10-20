@@ -4,9 +4,7 @@ dependencies:
   config:  
     - field.field.node.cp_documents.field_cp_documents_document
     - field.field.node.cp_documents.field_cp_documents_picture
-    - field.field.node.cp_documents.field_cp_documents_category
-    - field.field.node.cp_documents.field_cp_documents_historical
-    - field.field.node.cp_documents.field_cp_documents_deprecated    
+    - field.field.node.cp_documents.field_cp_documents_category    
     - node.type.cp_documents
   module:
     - file
@@ -36,25 +34,7 @@ content:
     label: above
     settings: { }
     third_party_settings: {  }
-    type: string    
-  field_cp_documents_historical:
-    weight: 116
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
-  field_cp_documents_deprecated:
-    weight: 118
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean        
+    type: string           
 hidden:
   body: true
   links: true

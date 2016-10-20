@@ -19,7 +19,6 @@ class ListOfMovies {
 			$m = $this->_add_movie($m);
 			$m = $this->_add_picture($m);
 			$m = $this->_add_category($m);
-			$m = $this->_add_historical($m);
 				
 			$list[] = $m;
 		}
@@ -35,10 +34,9 @@ class ListOfMovies {
 		$result = db_query('
 			select n.nid, nfd.title, nfd.created, nfd.changed	
 			from {node} as n 
-				join {node__field_cp_movies_deprecated} as d on n.nid = d.entity_id
-				join {node_field_data} as nfd on n.nid = nfd.nid
+			join {node_field_data} as nfd on n.nid = nfd.nid
 			where n.type = :type
-			and d.field_cp_movies_deprecated_value = 0
+			and nfd.status = 1
 			',
 			
 			array(':type' => 'cp_movies')
@@ -155,27 +153,4 @@ class ListOfMovies {
 
 		return $movie;
 	}
-
-	
-	function _add_historical($movie) {
-	
-		$result = db_query('
-			select field_cp_movies_historical_value
-			from {node__field_cp_movies_historical}
-			where entity_id = :id
-			',
-	
-			array(':id' => $movie->getId())
-		)->fetchAll();
-
-
-		foreach ($result as $record) {
-			if ($record) {
-				$movie->setHistorical($record->field_cp_movies_historical_value);
-			}
-		}
-
-		return $movie;
-	}
-	
 }

@@ -19,7 +19,6 @@ class ListOfDocuments {
 			$d = $this->_add_document($d);
 			$d = $this->_add_picture($d);
 			$d = $this->_add_category($d);
-			$d = $this->_add_historical($d);
 				
 			$list[] = $d;
 		}
@@ -35,10 +34,9 @@ class ListOfDocuments {
 		$result = db_query('
 			select n.nid, nfd.title, nfd.created, nfd.changed	
 			from {node} as n 
-			join {node__field_cp_documents_deprecated} as d on n.nid = d.entity_id
 			join {node_field_data} as nfd on n.nid = nfd.nid
 			where n.type = :type
-			and d.field_cp_documents_deprecated_value = 0
+			and nfd.status = 1
 			',
 			
 			array(':type' => 'cp_documents')
@@ -155,27 +153,4 @@ class ListOfDocuments {
 
 		return $document;
 	}
-
-	
-	function _add_historical($document) {
-	
-		$result = db_query('
-			select field_cp_documents_historical_value
-			from {node__field_cp_documents_historical}
-			where entity_id = :id
-			',
-	
-			array(':id' => $document->getId())
-		)->fetchAll();
-
-
-		foreach ($result as $record) {
-			if ($record) {
-				$document->setHistorical($record->field_cp_documents_historical_value);
-			}
-		}
-
-		return $document;
-	}
-	
 }

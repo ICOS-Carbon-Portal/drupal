@@ -10,8 +10,6 @@ class Files {
 	private $changed;
 	private $files;	
 	private $category;
-	private $historical;
-	private $deprecated;
 	
 
 	function __construct() {
@@ -64,21 +62,5 @@ class Files {
 	
 	public function setCategory($category) {
 		$this->category = $category;
-	}
-
-	public function getHistorical() {
-		return $this->historical;
-	}
-	
-	public function setHistorical($historical) {
-		$this->historical = $historical;
-	}
-	
-	public function getDeprecated() {
-		return $this->deprecated;
-	}
-	
-	public function setDeprecated($deprecated) {
-		$this->deprecated = $deprecated;
 	}
 }

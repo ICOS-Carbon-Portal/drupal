@@ -3,8 +3,8 @@ status: true
 dependencies:
   module:
     - node
-id: node.field_cp_contact_category
-field_name: field_cp_contact_category
+id: node.field_cp_contact_group
+field_name: field_cp_contact_group
 entity_type: node
 type: list_string
 settings:

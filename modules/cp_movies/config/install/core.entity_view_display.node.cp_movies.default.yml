@@ -4,9 +4,7 @@ dependencies:
   config:
     - field.field.node.cp_movies.field_cp_movies_movie  
     - field.field.node.cp_movies.field_cp_movies_picture
-    - field.field.node.cp_movies.field_cp_movies_category
-    - field.field.node.cp_movies.field_cp_movies_historical
-    - field.field.node.cp_movies.field_cp_movies_deprecated    
+    - field.field.node.cp_movies.field_cp_movies_category   
     - node.type.cp_movies
   module:
     - image
@@ -35,25 +33,7 @@ content:
     label: above
     settings: { }
     third_party_settings: {  }
-    type: string              
-  field_cp_movies_historical:
-    weight: 116
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
-  field_cp_movies_deprecated:
-    weight: 118
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean        
+    type: string                     
 hidden:
   body: true
   links: true

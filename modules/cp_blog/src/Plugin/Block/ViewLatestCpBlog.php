@@ -59,7 +59,7 @@ class ViewLatestCpBlog extends BlockBase {
 		
 		$output .= '</div>';
 				
-		$output .= '<div class="text">' . $blog->getText() . '</div>';
+		$output .= '<div class="text">' . $blog->getBody() . '</div>';
 		
 		$output .= '</div>';
 	

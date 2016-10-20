@@ -4,11 +4,11 @@ dependencies:
   config:
     - field.field.node.cp_contact.field_cp_contact_email
     - field.field.node.cp_contact.field_cp_contact_phone
+    - field.field.node.cp_contact.field_cp_contact_address
     - field.field.node.cp_contact.field_cp_contact_photo
     - field.field.node.cp_contact.field_cp_contact_title
     - field.field.node.cp_contact.field_cp_contact_organization
-    - field.field.node.cp_contact.field_cp_contact_address
-    - field.field.node.cp_contact.field_cp_contact_category
+    - field.field.node.cp_contact.field_cp_contact_group
     - field.field.node.cp_contact.field_cp_contact_index
     - node.type.cp_contact
   module:
@@ -33,8 +33,15 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-  field_cp_contact_photo:
+  field_cp_contact_address:
     weight: 114
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string    
+  field_cp_contact_photo:
+    weight: 116
     label: above
     settings:
       image_style: ''
@@ -42,26 +49,19 @@ content:
     third_party_settings: {  }
     type: image
   field_cp_contact_title:
-    weight: 116
+    weight: 118
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string    
   field_cp_contact_organization:
-    weight: 118
+    weight: 120
     label: above
     settings: { }
     third_party_settings: {  }
     type: list_default
-  field_cp_contact_address:
-    weight: 120
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-  field_cp_contact_category:
+  field_cp_contact_group:
     weight: 122
     label: above
     settings: { }

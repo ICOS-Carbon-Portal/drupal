@@ -17,7 +17,6 @@ class Event {
 	private $to_date;
 	private $news;
 	private $historical;
-	private $deprecated;
 	
 	function __construct() {
 	
@@ -125,13 +124,5 @@ class Event {
 	
 	public function setHistorical($historical) {
 		$this->historical = $historical;
-	}
-	
-	public function getDeprecated() {
-		return $this->deprecated;
-	}
-	
-	public function setDeprecated($deprecated) {
-		$this->deprecated = $deprecated;
 	}
 }

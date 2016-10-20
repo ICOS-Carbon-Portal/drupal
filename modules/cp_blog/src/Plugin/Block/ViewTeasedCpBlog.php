@@ -51,7 +51,7 @@ class ViewTeasedCpBlog extends BlockBase {
 		
 		foreach ($list as $blog) {
 			
-			if ($blog->getCategory() == $blog_category && $blog->getHistorical() == 0) {
+			if ($blog->getCategory() == $blog_category) {
 				
 				$output .= '<div class="cp_blog_teased">';
 				
@@ -77,30 +77,30 @@ class ViewTeasedCpBlog extends BlockBase {
 				}
 				
 				
-				if (strlen($blog->getText()) > 1 ) {
+				if (strlen($blog->getBody()) > 1 ) {
 					
 					$max_stop = 160;
 					$start = 0;
 					$stop = $max_stop;
 					$dots = '';
 					
-					if (strlen($blog->getText()) < $max_stop) { 
-						$stop = strlen($blog->getText());
+					if (strlen($blog->getBody()) < $max_stop) { 
+						$stop = strlen($blog->getBody());
 						
 					} else {
 						$dots = '<span class="dots">...</span></div>';
 					}
 					
 					// When using formatted text via CK Editor..
-					$start = strpos($blog->getText(), '<p>');
-					$stop = strpos($blog->getText(), '</p>');
+					$start = strpos($blog->getBody(), '<p>');
+					$stop = strpos($blog->getBody(), '</p>');
 					
 					if ($stop > $max_stop) { 
 						$stop = $max_stop;
 						
 					}
 					
-					$output .= '<div class="teaser">' . substr($blog->getText(), $start, $stop - $start) . $dots;
+					$output .= '<div class="teaser">' . substr($blog->getBody(), $start, $stop - $start) . $dots;
 				}
 				
 						

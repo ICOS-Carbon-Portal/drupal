@@ -8,11 +8,11 @@ class Contact {
 	private $name;
 	private $email;
 	private $phone;
+	private $address;
 	private $photo;
 	private $title;
 	private $organization;
-	private $address;
-	private $category;
+	private $group;
 	private $index;
 	
 	function __construct() {
@@ -51,6 +51,14 @@ class Contact {
 		$this->phone = $phone;
 	}
 	
+	public function getAddress() {
+		return $this->address;
+	}
+	
+	public function setAddress($address) {
+		$this->address = $address;
+	}
+	
 	public function getPhoto() {
 		return $this->photo;
 	}
@@ -75,20 +83,12 @@ class Contact {
 		$this->organization = $organization;
 	}
 
-	public function getAddress() {
-		return $this->address;
+	public function getGroup() {
+		return $this->group;
 	}
 	
-	public function setAddress($address) {
-		$this->address = $address;
-	}
-	
-	public function getCategory() {
-		return $this->category;
-	}
-	
-	public function setCategory($category) {
-		$this->category = $category;
+	public function setGroup($group) {
+		$this->group = $group;
 	}	
 	
 	public function getIndex() {

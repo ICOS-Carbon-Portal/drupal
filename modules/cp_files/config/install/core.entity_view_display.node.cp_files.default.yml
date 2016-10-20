@@ -3,9 +3,7 @@ status: true
 dependencies:
   config:  
     - field.field.node.cp_files.field_cp_files_files
-    - field.field.node.cp_files.field_cp_files_category
-    - field.field.node.cp_files.field_cp_files_historical
-    - field.field.node.cp_files.field_cp_files_deprecated    
+    - field.field.node.cp_files.field_cp_files_category   
     - node.type.cp_files
   module:
     - file
@@ -26,25 +24,7 @@ content:
     label: above
     settings: { }
     third_party_settings: {  }
-    type: string    
-  field_cp_files_historical:
-    weight: 114
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
-  field_cp_files_deprecated:
-    weight: 116
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean        
+    type: string           
 hidden:
   body: true
   links: true

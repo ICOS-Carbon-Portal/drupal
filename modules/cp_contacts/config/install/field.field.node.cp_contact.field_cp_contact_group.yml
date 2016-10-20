@@ -2,10 +2,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_cp_contact_category
+    - field.storage.node.field_cp_contact_group
     - node.type.cp_contact
-id: node.cp_contact.field_cp_contact_category
-field_name: field_cp_contact_category
+id: node.cp_contact.field_cp_contact_group
+field_name: field_cp_contact_group
 entity_type: node
 bundle: cp_contact
 label: 'Group'

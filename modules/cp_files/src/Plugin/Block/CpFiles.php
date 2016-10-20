@@ -63,8 +63,7 @@ class CpFiles extends BlockBase {
 			
 			foreach ($list as $files) {
 				
-				if ($files->getHistorical() == '0'
-						&& $category_name == $files->getCategory()) {
+				if ($category_name == $files->getCategory()) {
 				
 						
 					foreach ($files->getFiles() as $file) {

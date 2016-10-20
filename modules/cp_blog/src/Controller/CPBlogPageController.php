@@ -51,7 +51,7 @@ class CPBlogPageController extends ControllerBase {
 			$output .= '</div>';
 		}
 
-		$output .= '<div class="text">' . $blog->getText() . '</div>';
+		$output .= '<div class="text">' . $blog->getBody() . '</div>';
 
 		$output .= '</div>';
 		
@@ -89,7 +89,7 @@ class CPBlogPageController extends ControllerBase {
 					$output .= '</div>';
 				}
 				
-				$output .= '<div class="text">' . $b->getText() . '</div>';
+				$output .= '<div class="text">' . $b->getBody() . '</div>';
 				
 				$output .= '</div>';
 				$output .= '</div>';

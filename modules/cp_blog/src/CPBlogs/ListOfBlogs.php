@@ -19,7 +19,6 @@ class ListOfBlogs {
 			$b = $this->_add_picture($b);
 			$b = $this->_add_link($b);
 			$b = $this->_add_category($b);
-			$b = $this->_add_historical($b);
 				
 			$list[] = $b;
 		}
@@ -33,11 +32,10 @@ class ListOfBlogs {
 		
 		$result = db_query('
 			select n.nid, nfd.title, nfd.created, nfd.changed	
-			from {node} as n 
-				join {node__field_cp_blog_deprecated} as d on n.nid = d.entity_id
-				join {node_field_data} as nfd on n.nid = nfd.nid
+			from {node} as n
+			join {node_field_data} as nfd on n.nid = nfd.nid
 			where n.type = :type
-			and d.field_cp_blog_deprecated_value = 0
+			and nfd.status = 1
 			',
 			
 			array(':type' => 'cp_blog')
@@ -73,7 +71,7 @@ class ListOfBlogs {
 
 		foreach ($result as $record) {
 			if ($record) {
-				$blog->setText($record->body_value);
+				$blog->setBody($record->body_value);
 			}
 		}
 
@@ -162,27 +160,6 @@ class ListOfBlogs {
 		foreach ($result as $record) {
 			if ($record) {
 				$blog->setCategory($record->field_cp_blog_category_value);
-			}
-		}
-
-		return $blog;
-	}
-	
-	function _add_historical($blog) {
-	
-		$result = db_query('
-			select field_cp_blog_historical_value
-			from {node__field_cp_blog_historical}
-			where entity_id = :id
-			',
-	
-			array(':id' => $blog->getId())
-		)->fetchAll();
-
-
-		foreach ($result as $record) {
-			if ($record) {
-				$blog->setHistorical($record->field_cp_blog_historical_value);
 			}
 		}
 

@@ -28,8 +28,7 @@ class CpMoviesLatest extends BlockBase {
 				
 			foreach ($list as $movie) {
 		
-				if ($movie->getHistorical() == '0'
-						&& $category == $movie->getCategory()
+				if ($category == $movie->getCategory()
 						&& $movie->getMovieUri() != null) {
 					
 					$url = '/' . PublicStream::basePath() . '/';

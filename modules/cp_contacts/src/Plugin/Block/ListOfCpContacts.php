@@ -44,10 +44,10 @@ class ListOfCpContacts extends BlockBase {
 		$co = 1;
 		
 		if (isset($config['cp_contact_contact_category'])) {
-			$contact_category = $config['cp_contact_contact_category'];
+			$contact_group = $config['cp_contact_contact_group'];
 			
 			foreach ($list as $c) {
-				if ($c->getCategory() == $contact_category) {
+				if ($c->getGroup() == $contact_group) {
 					
 					$photo = $url . str_replace('public://', '', $c->getPhoto());
 					
@@ -87,20 +87,20 @@ class ListOfCpContacts extends BlockBase {
 		$contact_options['none'] = '';
 		$list = $this->_prepare_contacts();
 		foreach ($list as $contact) {
-			$contact_options[$contact->getCategory()] = $contact->getCategory();
+			$contact_options[$contact->getGroup()] = $contact->getGroup();
 		}
 	
-		$contact_category = '';
-		if (isset($config['cp_contact_contact_category'])) {
-			$contact_category = $config['cp_contact_contact_category'];
+		$contact_group = '';
+		if (isset($config['cp_contact_contact_group'])) {
+			$contact_group = $config['cp_contact_contact_group'];
 		}
 	
-		$form['cp_contact_contact_category'] = array (
+		$form['cp_contact_contact_group'] = array (
 				'#type' => 'select',
 				'#title' => $this->t('Select a group of contacts'),
 				'#description' => '',
 				'#options' => $contact_options,
-				'#default_value' => $contact_category
+				'#default_value' => $contact_group
 		);
 	
 		return $form;
@@ -111,7 +111,7 @@ class ListOfCpContacts extends BlockBase {
 	 * {@inheritdoc}
 	 */
 	public function blockSubmit($form, FormStateInterface $form_state) {
-		$this->setConfigurationValue('cp_contact_contact_category', $form_state->getValue('cp_contact_contact_category'));
+		$this->setConfigurationValue('cp_contact_contact_group', $form_state->getValue('cp_contact_contact_group'));
 	}	
 	
 	function _prepare_contacts() {
@@ -121,11 +121,11 @@ class ListOfCpContacts extends BlockBase {
 		foreach ($this->_collect_contacts() as $c) {
 			$c = $this->_add_email($c);
 			$c = $this->_add_phone($c);
+			$c = $this->_add_address($c);
 			$c = $this->_add_photo($c);
 			$c = $this->_add_title($c);
 			$c = $this->_add_organization($c);
-			$c = $this->_add_address($c);
-			$c = $this->_add_category($c);
+			$c = $this->_add_group($c);
 			$c = $this->_add_index($c);
 				
 			$list[] = $c;
@@ -154,8 +154,9 @@ class ListOfCpContacts extends BlockBase {
 		$result = db_query('
 			select n.nid, nfd.title 	
 			from {node} as n
-				join {node_field_data} as nfd on n.nid = nfd.nid
+			join {node_field_data} as nfd on n.nid = nfd.nid
 			where n.type = :type
+			and nfd.status = 1
 			',
 				
 			array(':type' => 'cp_contact')
@@ -217,6 +218,27 @@ class ListOfCpContacts extends BlockBase {
 		return $contact;
 	}
 
+	function _add_address($contact) {
+	
+		$result = db_query('
+			select field_cp_contact_address_value
+			from {node__field_cp_contact_address}
+			where entity_id = :id
+			',
+	
+			array(':id' => $contact->getId())
+		)->fetchAll();
+
+
+		foreach ($result as $record) {
+			if ($record) {
+				$contact->setAddress($record->field_cp_contact_address_value);
+			}
+		}
+
+		return $contact;
+	}
+	
 	function _add_photo($contact) {
 	
 		$result = db_query('
@@ -281,12 +303,12 @@ class ListOfCpContacts extends BlockBase {
 
 		return $contact;
 	}
-	
-	function _add_address($contact) {
+
+	function _add_group($contact) {
 	
 		$result = db_query('
-			select field_cp_contact_address_value
-			from {node__field_cp_contact_address}
+			select field_cp_contact_group_value
+			from {node__field_cp_contact_group}
 			where entity_id = :id
 			',
 	
@@ -296,28 +318,7 @@ class ListOfCpContacts extends BlockBase {
 
 		foreach ($result as $record) {
 			if ($record) {
-				$contact->setAddress($record->field_cp_contact_address_value);
-			}
-		}
-
-		return $contact;
-	}
-
-	function _add_category($contact) {
-	
-		$result = db_query('
-			select field_cp_contact_category_value
-			from {node__field_cp_contact_category}
-			where entity_id = :id
-			',
-	
-			array(':id' => $contact->getId())
-		)->fetchAll();
-
-
-		foreach ($result as $record) {
-			if ($record) {
-				$contact->setCategory($record->field_cp_contact_category_value);
+				$contact->setCategory($record->field_cp_contact_group_value);
 			}
 		}
 	
