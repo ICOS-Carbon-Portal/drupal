@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:  
     - field.field.node.cp_files.field_cp_files_files
+    - field.field.node.cp_files.field_cp_files_picture
     - field.field.node.cp_files.field_cp_files_category   
     - node.type.cp_files
   module:
@@ -19,8 +20,16 @@ content:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_default
-  field_cp_files_category:
+  field_cp_files_picture:
     weight: 112
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image    
+  field_cp_files_category:
+    weight: 114
     label: above
     settings: { }
     third_party_settings: {  }

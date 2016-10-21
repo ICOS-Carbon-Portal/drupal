@@ -1,0 +1,10 @@
+<?php
+
+function cp_files_theme() {
+	$theme['cp_movie'] = [
+			'variables' => ['elements' => null],
+			'template' => 'cp_movie',
+	];
+
+	return $theme;
+}

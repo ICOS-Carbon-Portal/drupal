@@ -16,7 +16,9 @@ class ListOfFiles {
 		$list = array();
 		
 		foreach ($this->_collect_files() as $f) {
+			$f = $this->_add_body($f);
 			$f = $this->_add_files($f);
+			$f = $this->_add_picture($f);
 			$f = $this->_add_category($f);
 				
 			$list[] = $f;
@@ -58,6 +60,28 @@ class ListOfFiles {
 	}
 	
 	
+	function _add_body($files) {
+	
+		$result = db_query('
+			select body_value
+			from {node__body}
+			where entity_id = :id
+			',
+	
+			array(':id' => $files->getId())
+		)->fetchAll();
+
+
+		foreach ($result as $record) {
+			if ($record) {
+				$files->setBody($record->body_value);
+			}
+		}
+
+		return $files;
+	}	
+	
+	
 	function _add_files($files) {
 	
 		$list = array();
@@ -91,6 +115,31 @@ class ListOfFiles {
 		return $files;
 	}
 
+	function _add_picture($files) {
+	
+		$result = db_query('
+			select fm.uri, fm.filename, p.field_cp_files_picture_alt, p.field_cp_files_picture_width, p.field_cp_files_picture_height
+			from {file_managed} as fm
+			join {node__field_cp_files_picture} as p on fm.fid = p.field_cp_files_picture_target_id
+			where p.entity_id = :id
+			',
+	
+			array(':id' => $files->getId())
+		)->fetchAll();
+
+
+		foreach ($result as $record) {
+			if ($record) {
+				$files->setPictureUri($record->uri);
+				$files->setPictureName($record->filename);
+				$files->setPictureTitle($record->field_cp_files_picture_alt);
+				$files->setPictureWidth($record->field_cp_files_picture_width);
+				$files->setPictureHeight($record->field_cp_files_picture_height);
+			}
+		}
+
+		return $files;
+	}
 	
 	function _add_category($files) {
 	

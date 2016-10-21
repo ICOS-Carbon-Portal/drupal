@@ -1,3 +1,4 @@
+/** files **/
 .cp_files { }
 
 .cp_files .panel-heading {
@@ -28,3 +29,11 @@
 .cp_file .description { 
 	padding-top: 2px;
 }
+
+
+/** movie **/
+.cp_movie, .cp_movie video {
+	width: 450px;
+}
+
+ 

@@ -60,7 +60,7 @@ class ListOfCpContacts extends BlockBase {
 					$output .= '<div class="name">' . $c->getName() . '</div>';
 					$output .= '<div class="title">' . $c->getTitle() . '</div>';
 					$output .= '<div class="organization">' . $c->getOrganization() . '</div>';
-					$output .= '<div class="category">' . $c->getCategory() . '</div>';
+					$output .= '<div class="category">' . $c->getGroup() . '</div>';
 					$output .= '<div class="email"><a href="mailto:' . $c->getEmail() . '">' . $c->getEmail() . '</a></div>';
 					$output .= '<div class="phone"><a href="tel:' . $c->getPhone() . '">' . $c->getPhone() . '</a></div>';
 					$output .= '<div class="address">' . $c->getAddress() . '</div>';
@@ -318,7 +318,7 @@ class ListOfCpContacts extends BlockBase {
 
 		foreach ($result as $record) {
 			if ($record) {
-				$contact->setCategory($record->field_cp_contact_group_value);
+				$contact->setGroup($record->field_cp_contact_group_value);
 			}
 		}
 	
