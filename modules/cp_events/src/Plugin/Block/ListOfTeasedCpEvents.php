@@ -88,13 +88,19 @@ class ListOfTeasedCpEvents extends BlockBase {
 					}
 					
 					$body = $e->getBody();
-					if (strlen($e->getBody()) > 199 ) {
+					
+					if (strlen($e->getBody()) > 200 ) {
 						$body_start = strpos($e->getBody(), '<p>');
 						$body_stop = strpos($e->getBody(), '</p>');
 						
-						$body = substr($e->getBody(), $body_start, $body_stop - $body_start);
+						if ($body_stop < 200) {
+							$body = substr($e->getBody(), $body_start, $body_stop);
+							
+						} else {
+							$body = substr($e->getBody(), $body_start, 200) . '..</p>';
+						}
 						
-						$body .= '<br/><a href="/event/' . $e->getId() . '">Read more..</a>';
+						$body .= '<a href="/event/' . $e->getId() . '">Read more..</a>';
 					}
 					
 					$output .= '<div class="text">' . $body . '</div>';
