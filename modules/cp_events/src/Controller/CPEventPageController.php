@@ -51,9 +51,9 @@ class CPEventPageController extends ControllerBase {
 	  		
 	  	} else {
 	  		if ($event->getNews() == 0) {
-	  			$from_date = date($date_format, strtotime($event->getCreated()));
+	  			$from_date = date($date_format, $event->getCreated());
 	  		} else {
-	  			$from_date = date($date_format, strtotime($event->getChanged()));
+	  			$from_date = date($date_format, $event->getChanged());
 	  		}
 	  	}
 	  	
