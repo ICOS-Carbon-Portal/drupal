@@ -10,7 +10,7 @@ id: node.cp_event.body
 field_name: body
 entity_type: node
 bundle: cp_event
-label: 'Body'
+label: 'Event'
 description: ''
 required: false
 translatable: true

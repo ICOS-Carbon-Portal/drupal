@@ -2,13 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.cp_event.field_cp_event_text
     - field.field.node.cp_event.field_cp_event_picture
     - field.field.node.cp_event.field_cp_event_link
     - field.field.node.cp_event.field_cp_event_from_date
     - field.field.node.cp_event.field_cp_event_to_date
     - field.field.node.cp_event.field_cp_event_news
     - field.field.node.cp_event.field_cp_event_historical
+    - field.field.node.cp_event.body
     - node.type.cp_event
   module:
     - image
@@ -20,50 +20,51 @@ id: node.cp_event.default
 targetEntityType: node
 bundle: cp_event
 mode: default
-content:
-  field_cp_event_text:
-    weight: 40
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textarea    
+content:   
   field_cp_event_picture:
-    weight: 42
+    weight: 40
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
   field_cp_event_link:
-    weight: 44
+    weight: 42
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
   field_cp_event_from_date:
-    weight: 46
+    weight: 44
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
   field_cp_event_to_date:
-    weight: 48
+    weight: 46
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
   field_cp_event_news:
-    weight: 50
+    weight: 48
     settings:
       display_label: false
     third_party_settings: {  }
     type: boolean_checkbox
   field_cp_event_historical:
-    weight: 52
+    weight: 50
     settings:
       display_label: false
     third_party_settings: {  }
     type: boolean_checkbox
+  body:
+    type: text_textarea_with_summary
+    weight: 0
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }    
   created:
     type: datetime_timestamp
     weight: 10
@@ -90,7 +91,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
 hidden:
-  body: true
   promote: true
   sticky: true
   

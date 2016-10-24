@@ -2,13 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.cp_event.field_cp_event_text
     - field.field.node.cp_event.field_cp_event_picture
     - field.field.node.cp_event.field_cp_event_link
     - field.field.node.cp_event.field_cp_event_from_date
     - field.field.node.cp_event.field_cp_event_to_date
     - field.field.node.cp_event.field_cp_event_news
     - field.field.node.cp_event.field_cp_event_historical
+    - field.field.node.cp_event.body
     - node.type.cp_event
   module:
     - image
@@ -79,8 +79,14 @@ content:
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    type: boolean      
+    type: boolean
+  body:
+    type: text_summary_or_trimmed
+    weight: 0
+    label: above
+    settings:
+      trim_length: 600
+    third_party_settings: {  }          
 hidden:
-  body: true
   links: true
 

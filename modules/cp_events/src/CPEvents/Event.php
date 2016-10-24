@@ -8,7 +8,7 @@ class Event {
 	private $title;
 	private $created;
 	private $changed;
-	private $text;
+	private $body;
 	private $picture_uri;
 	private $picture_title;
 	private $link_uri;
@@ -54,12 +54,12 @@ class Event {
 		$this->changed = $changed;
 	}
 	
-	public function getText() {
-		return $this->text;
+	public function getBody() {
+		return $this->body;
 	}
 	
-	public function setText($text) {
-		$this->text = $text;
+	public function setBody($body) {
+		$this->body = $body;
 	}
 	
 	public function getPictureUri() {

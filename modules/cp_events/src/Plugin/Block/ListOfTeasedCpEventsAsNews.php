@@ -77,20 +77,17 @@ class ListOfTeasedCpEventsAsNews extends BlockBase {
 					$output .= '</div>';
 				}
 				
-				$text = $e->getText();
-				if (strlen($e->getText()) > 199 ) {
-					//$text = substr($e->getText(), 0, 199);
+				$body = $e->getBody();
+				if (strlen($e->getBody()) > 199 ) {
+					$body_start = strpos($e->getBody(), '<p>');
+					$body_stop = strpos($e->getBody(), '</p>');
 					
-					// When using formatted text via CK Editor..
-					$text_start = strpos($e->getText(), '<p>');
-					$text_stop = strpos($e->getText(), '</p>');
+					$body = substr($e->getBody(), $body_start, $body_stop - $body_start);
 					
-					$text = substr($e->getText(), $text_start, $text_stop - $text_start);
-					
-					$text .= '<br/><a href="/event/' . $e->getId() . '">Read more..</a>';
+					$body .= '<br/><a href="/event/' . $e->getId() . '">Read more..</a>';
 				}
 				
-				$output .= '<div class="text">' . $text . '</div>';
+				$output .= '<div class="text">' . $body . '</div>';
 					
 				$output .= '</div>';
 				

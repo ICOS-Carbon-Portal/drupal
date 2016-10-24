@@ -78,7 +78,7 @@
 						>
 						</div>
 						
-						<div class="text" style="display: none">{{ event.getText() }}</div>
+						<div class="text" style="display: none">{{ event.getBody() }}</div>
 						
 						<div class="link_uri" style="display: none">{{ event.getLinkUri() }}</div>
 						<div class="link_title" style="display: none">{{ event.getLinkTitle() }}</div>
@@ -108,7 +108,7 @@
 				</p>
 				
 				<div class="text">
-					{{ elements['events']['list'][0].getText() | raw }}
+					{{ elements['events']['list'][0].getBody() | raw }}
 				</div>
 				
 				<div class="link">

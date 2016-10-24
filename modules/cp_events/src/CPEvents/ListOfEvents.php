@@ -15,16 +15,16 @@ class ListOfEvents {
 		
 		$list = array();
 		
-		foreach ($this->_collect_events() as $c) {
-			$c = $this->_add_text($c);
-			$c = $this->_add_picture($c);
-			$c = $this->_add_link($c);
-			$c = $this->_add_from_date($c);
-			$c = $this->_add_to_date($c);
-			$c = $this->_add_news($c);
-			$c = $this->_add_historical($c);
+		foreach ($this->_collect_events() as $e) {
+			$e = $this->_add_body($e);
+			$e = $this->_add_picture($e);
+			$e = $this->_add_link($e);
+			$e = $this->_add_from_date($e);
+			$e = $this->_add_to_date($e);
+			$e = $this->_add_news($e);
+			$e = $this->_add_historical($e);
 				
-			$list[] = $c;
+			$list[] = $e;
 		}
 		
 		return $list;
@@ -63,24 +63,24 @@ class ListOfEvents {
 	}	
 	
 	
-	function _add_text($event) {
-		
+	function _add_body($event) {
+	
 		$result = db_query('
-			select field_cp_event_text_value	
-			from {node__field_cp_event_text}
+			select body_value
+			from {node__body}
 			where entity_id = :id
 			',
-		
+	
 			array(':id' => $event->getId())
 		)->fetchAll();
-		
-		
+
+
 		foreach ($result as $record) {
 			if ($record) {
-				$event->setText($record->field_cp_event_text_value);
+				$event->setBody($record->body_value);
 			}
 		}
-		
+
 		return $event;
 	}
 	
