@@ -10,12 +10,13 @@ class ListOfEvents {
 		return $this->_prepare_events();
 	}
 	
+	
 	function _prepare_events() {
 		
 		$list = array();
 		
 		foreach ($this->_collect_events() as $c) {
-			$c = $this->_add_body($c);
+			$c = $this->_add_text($c);
 			$c = $this->_add_picture($c);
 			$c = $this->_add_link($c);
 			$c = $this->_add_from_date($c);
@@ -28,6 +29,7 @@ class ListOfEvents {
 		
 		return $list;
 	}
+	
 	
 	function _collect_events() {
 		
@@ -58,28 +60,6 @@ class ListOfEvents {
 		}
 		
 		return $list;	
-	}
-	
-	
-	function _add_body($event) {
-	
-		$result = db_query('
-			select body_value
-			from {node__body}
-			where entity_id = :id
-			',
-	
-			array(':id' => $event->getId())
-		)->fetchAll();
-
-
-		foreach ($result as $record) {
-			if ($record) {
-				$event->setText($record->body_value);
-			}
-		}
-
-		return $event;
 	}	
 	
 	
