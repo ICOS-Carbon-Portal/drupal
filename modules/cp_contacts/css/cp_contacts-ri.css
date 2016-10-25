@@ -1,8 +1,17 @@
 .cp_contacts { }
 
-.cp_contacts .contact {
-	float: left;
-	width: 33%;	
+@media all and (max-width: 1289px) {
+	.cp_contacts .contact {
+		float: none;
+		width: 100%;	
+	}
+}
+
+@media all and (min-width: 1290px) {
+	.cp_contacts .contact {
+		float: left;
+		width: 33%;	
+	}
 }
 
 .cp_contacts .picture {
