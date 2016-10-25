@@ -26,8 +26,7 @@ class ListOfCpContacts extends BlockBase {
 				'library' =>  array(
 					'cp_contacts/style',
 					'cp_contacts/script'
-				),
-					
+				),	
 			),
 			'#cache' => array(
 					'max-age' => 1
@@ -98,7 +97,7 @@ class ListOfCpContacts extends BlockBase {
 		$form['cp_contact_contact_group'] = array (
 				'#type' => 'select',
 				'#title' => $this->t('Select a group of contacts'),
-				'#description' => '',
+				'#description' => 'It is mandatory to select a group.',
 				'#options' => $contact_options,
 				'#default_value' => $contact_group
 		);
