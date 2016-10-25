@@ -387,6 +387,13 @@ h1.page-title {
 	.cp_body_content .col_3_3 .inner {
 		width: 100%;
 	}
+	
+	.divider {
+		margin-top: 0;
+		margin-bottom: 0;
+		border: 0;
+		border-top: 0;
+	}	
 }
 
 @media all and (min-width: 1290px) {
@@ -412,6 +419,13 @@ h1.page-title {
 	
 	.cp_body_content .col_2_2 .inner {
 		margin-left: 10%;
+	}
+	
+	.divider {
+		margin-top: 20px;
+		margin-bottom: 20px;
+		border: 0;
+		border-top: 1px solid #eee;
 	}
 }
 
