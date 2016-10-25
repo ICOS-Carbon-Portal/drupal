@@ -20,8 +20,6 @@ class ListOfCpContacts extends BlockBase {
 		
 		$list = $this->_prepare_contacts();
 		
-		Cache::invalidateTags(array('block_view config:block.block.listofcpcontacts', 'config:block.block.listofcpcontacts'));
-		
 		return array(
 			'#markup' => $this->_build_html($list),
 			'#attached' => array(
@@ -29,7 +27,11 @@ class ListOfCpContacts extends BlockBase {
 					'cp_contacts/style',
 					'cp_contacts/script'
 				),
+					
 			),
+			'#cache' => array(
+					'max-age' => 1
+			),				
 		);
 	}
 	
@@ -37,15 +39,13 @@ class ListOfCpContacts extends BlockBase {
 		
 		$config = $this->getConfiguration();
 		
-		$output = '<div id="cp_contacts">';
+		$output = '<div class="cp_contacts">';
 		
 		$url = '/' . PublicStream::basePath() . '/';
 		
-		$co = 1;
-		
-		if (isset($config['cp_contact_contact_category'])) {
+		if (isset($config['cp_contact_contact_group'])) {
 			$contact_group = $config['cp_contact_contact_group'];
-			
+		
 			foreach ($list as $c) {
 				if ($c->getGroup() == $contact_group) {
 					
