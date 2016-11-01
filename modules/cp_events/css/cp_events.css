@@ -128,7 +128,7 @@
 }
 
 .archive-event .post {
-	background-color: #f8f5f3;
+	background-color: #bd7931;
 }
 
 .archive-event .post1 {
@@ -136,7 +136,7 @@
 }
 
 .archive-event .panel-heading {
-	background-color: #f8f5f3 !important;
+	background-color: #bd7931 !important;
 }
 
 .archive-event .panel-title a {
@@ -172,4 +172,131 @@
 .featured-bottom {
 	background: rgba(255,255,255,1) !important;
 	border-top: 0 !important;
+}
+
+#cp_events_page {
+	
+}
+
+#cp_events_page .heading,
+#cp_events_page .title {
+	margin: 0 0 1em 0;
+	font-size: 1.5em;
+}
+
+#cp_events_page a,
+#cp_events_page a:link,
+#cp_events_page a:hover,
+#cp_events_page .link {
+	text-decoration: none;
+	border-bottom: 0;
+}
+
+@media all and (min-width: 681px) {
+	#cp_events_page .news_section .latest_news {
+		width: 680px;
+	}	
+}
+
+@media all and (max-width: 680px) {
+	#cp_events_page .news_section .latest_news {
+		width: 100%;
+	}	
+}
+
+#cp_events_page .news_section .latest_news .picture {
+	width: 100%;
+}
+
+#cp_events_page .news_section .news_list .item,
+#cp_events_page .events_section .events_list .items .item {
+	padding: 1rem 0 1rem 0;
+	margin: 0 8rem 0 0;
+	border-bottom: 0.1rem dashed #c7c8ca;
+}
+
+#cp_events_page .news_section .news_list .item .title,
+#cp_events_page .events_section .events_list .items .item .title {
+	margin: 0;
+	font-size: 100%;
+}
+
+@media all and (min-width: 1100px) {
+	#cp_events_page .events_section {
+		/* border: 0.1rem solid #c7c8ca; */
+	}
+	
+	#cp_events_page .events_section #event_container {
+		border-left: 0.2rem solid #c7c8ca;
+		padding-left: 4rem;
+	}
+}
+
+@media all and (max-width: 1099px) {
+	#cp_events_page .events_section {
+		border: 0;
+	}
+	
+	#cp_events_page .events_section #event_container {
+		border-left: 0;
+	}
+}
+
+.event_button {
+	display: inline-block;
+	background-color: #fff;
+	color: inherit;
+	margin: 0 0 0 0;
+	padding: 20px 0 20px 10px;
+	width: 80%;
+	border: 0;
+}
+
+.event_button:hover,
+.event_selected {
+	background-color: #bd7931;
+	color: #fff;
+}
+
+.event_active {
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #bd7931;
+  margin-left: -4px;
+}
+
+.event_body_button {
+	background-color: #0a96f0;
+	font-size: 1.4rem;
+	color: #FFF;
+	text-decoration: none;
+	text-transform: uppercase;
+	display: inline-block;
+	border: medium none;
+	cursor: pointer;
+	padding: 1.6rem 6rem;
+	margin: 4rem 1rem 1rem 0;
+	border-radius: 0.2rem;
+	background-clip: padding-box;
+}
+
+.event_share_button {
+	display: block;
+	width: 48px;
+	height: 48px;
+	border-radius: 50px;
+	font-size: 100%;
+	color: #fff;
+	line-height: 48px;
+	text-align: center;
+	background-color: #0a96f0;
+	margin: 4rem 0 0 0;
+}
+
+.twitter {
+	background-image: url(../images/twitter.png);
+	background-repeat: no-repeat;
+	background-position: center;
 }
