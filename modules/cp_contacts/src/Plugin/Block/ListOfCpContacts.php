@@ -48,7 +48,13 @@ class ListOfCpContacts extends BlockBase {
 			foreach ($list as $c) {
 				if ($c->getGroup() == $contact_group) {
 					
-					$photo = $url . str_replace('public://', '', $c->getPhoto());
+					if ($c->getPhoto()) {
+						$photo = $url . str_replace('public://', '', $c->getPhoto());
+						
+					} else {
+						$photo = '/' . drupal_get_path('module', 'cp_contacts') . '/images/person_male.jpg';
+					}
+					
 					
 					$output .= '<div class="contact">';
 					$output .= '<div class="picture">';
