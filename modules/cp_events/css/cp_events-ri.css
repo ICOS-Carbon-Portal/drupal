@@ -146,9 +146,18 @@
 	border-bottom: 0;
 }
 
-.archive-event .from_date,
-.archive-event .heading a {
-
+.archive-event .panel a:link,
+.archive-event .panel a:visited,
+.archive-event .panel a:hover,
+.archive-event .panel a:active,
+.archive-event .panel a:focus,
+.archive-event a .panel-title:link,
+.archive-event a .panel-title:visited,
+.archive-event a .panel-title:hover,
+.archive-event a .panel-title:active,
+.archive-event a .panel-title:focus {
+	text-decoration: none;
+	border-bottom: 0;
 }
 
 .archive-event .heading a {
