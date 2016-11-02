@@ -1,16 +1,30 @@
 /** files **/
 .cp_files { }
 
-.cp_files .panel-heading {
-	background-color: #bd7931 !important;
-	color: #ffffff !important;
+.cp_files .panel-default {
+	border-color: #fff;
 }
 
-.cp_files .panel-title img { width: 70px; }
+.cp_files .panel-heading {
+	background-color: #bd7931 !important;
+}
 
-.cp_files .panel-title a {
-    display: block;
-    float: right;
+.cp_files .panel-heading img { width: 70px; }
+
+.cp_files .panel-heading .panel-title {
+	display: inline;
+	float: right;
+	font-size: 26px;
+	color: #fff;
+}
+
+.cp_files .panel a:link,
+.cp_files .panel a:visited,
+.cp_files .panel a:hover,
+.cp_files .panel a:active,
+.cp_files .panel a:focus {
+	text-decoration: none;
+	border-bottom: 0;
 }
 
 .cp_file { padding-bottom: 20px; }

@@ -48,14 +48,14 @@ class CpFiles extends BlockBase {
 		
 		$output .= '<div id="cp_files_accordion_' . $id . '" class="panel-group" role="tablist" aria-multiselectable="true">';
 		$output .= '<div class="panel panel-default">';
-		$output .= '<div id="cp_files_accordion_' . $id . '_heading" class="panel-heading" role="tab">';
-		$output .= '<h3 class="panel-title">';
 		$output .= '<a role="button" data-toggle="collapse" data-parent="#cp_files_accordion_' . $id . '" href="#cp_files_accordion_' . $id . '_collapse" aria-expanded="true" aria-controls="cp_files_accordion_' . $id . '_collapse">';
-		$output .= $category_name;
-		$output .= '</a>';
+		$output .= '<div id="cp_files_accordion_' . $id . '_heading" class="panel-heading" role="tab">';
 		$output .= '<img src="/' . $path . '/images/' . $category_icon . '.svg" />';
+		$output .= '<h3 class="panel-title">';
+		$output .= $category_name;
 		$output .= '</h3>';
 		$output .= '</div>';
+		$output .= '</a>';
 		$output .= '<div id="cp_files_accordion_' . $id . '_collapse" class="panel-collapse collapse" role="tabpanel" aria-labelledby="cp_files_accordion_' . $id . '_heading">';
 		$output .= '<div class="panel-body">';
 		
