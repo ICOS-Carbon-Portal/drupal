@@ -4,7 +4,7 @@
     attach: function(context, settings) {
     	
 	    checkCpUserConsent();
-	    
+	    fixHome();
         
     	$(function() {
     		
@@ -12,10 +12,24 @@
     			fixSmallsizeMenu();		
     		}
     		
+    		if ($(window).width() > 1200) {
+    			fixHomeMax();
+    			
+    		} else {
+    			fixHomeMin();
+    		}
+    		
     		$(window).resize(function () {
     			if ($(window).width() < 800) {
         			fixSmallsizeMenu();	
         			
+        		}
+    			
+    			if ($(window).width() > 1200) {
+        			fixHomeMax();
+        			
+        		} else {
+        			fixHomeMin();
         		}
     		});
     		
@@ -92,6 +106,44 @@ function checkCpUserConsent() {
 }
 
 checkedCpUserConsent = false;
+
+
+/** 
+* Home page
+* Tweets on home page.
+* The following methods assume an embedded Tweet block and  CP Files Movie block on main content.
+*/
+function fixHome() {
+	var w = jQuery('.main-content').width() / 2;
+	jQuery('.main-content #block-tweets').css({'background-color':'#fff', 'height':460});
+	jQuery('.main-content #block-tweets .content').css({'height':460, 'overflow-y':'scroll'});
+    jQuery('.main-content .block-cp-movies').css({'background-color':'#fff', 'height':460});
+}
+
+function fixHomeMax() {
+	var w = jQuery('.main-content').width() / 2;
+	jQuery('.main-content #block-tweets').css({'position':'relative', 'left':w + 20, 'margin-bottom':0});
+	jQuery('.main-content #block-tweets').css({'width':w - 20});
+	jQuery('.main-content .block-cp-movies').css({'width':w -20});
+	
+	var tweetOff = jQuery('#block-tweets').offset();
+	var movieOff = jQuery('#block-cpmovie').offset();
+	if (tweetOff.top > movieOff.top) {
+		jQuery('.main-content #block-tweets').css({'bottom':tweetOff.top - movieOff.top});
+	}
+}
+
+function fixHomeMin() {
+	jQuery('.main-content #block-tweets').css({'position':'relative', 'left':0, 'margin-bottom':40});
+	jQuery('.main-content #block-tweets').css({'width':450});
+	jQuery('.main-content .block-cp-movies').css({'width':450});
+	
+	var tweetOff = jQuery('#block-tweets').offset();
+	var movieOff = jQuery('#block-cpmovie').offset();
+	if (tweetOff.top == movieOff.top) {
+		jQuery('.main-content #block-tweets').css({'bottom':0});
+	}
+}
 
 
 

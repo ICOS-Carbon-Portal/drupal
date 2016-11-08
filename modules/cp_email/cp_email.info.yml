@@ -1,0 +1,10 @@
+name: CP Email
+description: Carbon Portal email service.
+package: CP
+
+type: module
+core: 8.x
+
+libraries:
+  - cp_email/style
+  - cp_email/script

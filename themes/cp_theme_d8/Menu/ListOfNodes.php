@@ -94,8 +94,11 @@ class ListOfNodes {
 	}
 	
 	function _build_menu($node, &$output, $nodes) {
-		
 		$url = '/';
+		
+		if (strpos($node->getPath(), 'http') === 0) {
+			$url = '';
+		}
 		
 		if ($node->getHasChildren() == '1') {
 			
