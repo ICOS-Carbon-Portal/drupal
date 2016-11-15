@@ -1,3 +1,17 @@
+.block-cp-email {}
+
+.cp-email-form {}
+
+.cp-email-form label {}
+
+.cp-email-form input {}
+
+.cp-email-form .form-text {}
+
+.cp-email-form textarea {}
+
+.cp-email-form .form-textarea { }
+
 .cp-email-feedback-form label { display: block; }
 
 .cp-email-feedback-form input { }

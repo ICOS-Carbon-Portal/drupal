@@ -1,3 +1,5 @@
 settings:
-  email: ''
+  receiver: ''
   subject: ''
+  feedback_receiver: ''
+  feedback_subject: ''

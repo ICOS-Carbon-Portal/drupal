@@ -122,7 +122,7 @@ function fixHome() {
 
 function fixHomeMax() {
 	var w = jQuery('.main-content').width() / 2;
-	jQuery('.main-content #block-tweets').css({'position':'relative', 'left':w + 20, 'margin-bottom':0});
+	jQuery('.main-content #block-tweets').css({'position':'relative', 'left':w + 10, 'margin-bottom':0});
 	jQuery('.main-content #block-tweets').css({'width':w - 20});
 	jQuery('.main-content .block-cp-movies').css({'width':w -20});
 	

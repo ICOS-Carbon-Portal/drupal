@@ -9,4 +9,13 @@ script:
     
   dependencies:
     - core/jquery
-    - core/jquery.once    
+    - core/jquery.once  
+    
+human-control:     
+  js:
+    https://www.google.com/recaptcha/api.js: { type: external }
+    js/human_control.js: {}
+    
+  dependencies:
+    - core/jquery
+    - core/jquery.once      

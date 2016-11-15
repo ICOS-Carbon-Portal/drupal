@@ -1,3 +1,11 @@
+cp_email.form:
+  path: '/email-form/{config}'
+  defaults:
+    _form: '\Drupal\cp_email\Plugin\Form\CPEmailForm'
+    _title: 'CP Email Form'
+  requirements:
+    _permission: 'access content'
+    
 cp_email.feedback.form:
   path: '/feedback-form'
   defaults:

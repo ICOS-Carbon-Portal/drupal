@@ -3,8 +3,6 @@
 namespace Drupal\cp_email\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Session\AccountInterface;
-use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
@@ -32,16 +30,16 @@ class CpEmailFeedbackBlock extends BlockBase {
 		$form = parent::blockForm($form, $form_state);
 		$config = \Drupal::service('config.factory')->getEditable('cp_email.settings');
 		
-		$form['email'] = array (
+		$form['receiver'] = array (
 				'#type' => 'textfield',
-				'#title' => $this->t('Email to the receiver'),
-				'#default_value' => $config->get('settings.email')
+				'#title' => $this->t('The receiver email'),
+				'#default_value' => $config->get('settings.feedback_receiver')
 		);
 		
 		$form['subject'] = array (
 				'#type' => 'textfield',
-				'#title' => $this->t('Subject'),
-				'#default_value' => $config->get('settings.subject')
+				'#title' => $this->t('The subject'),
+				'#default_value' => $config->get('settings.feedback_subject')
 		);
 	
 		return $form;	 
@@ -53,8 +51,8 @@ class CpEmailFeedbackBlock extends BlockBase {
 	 */
 	public function blockSubmit($form, FormStateInterface $form_state) {
 		$config = \Drupal::service('config.factory')->getEditable('cp_email.settings');
-		$config->set('settings.email', $form_state->getValue('email'));
-		$config->set('settings.subject', $form_state->getValue('subject'));
+		$config->set('settings.feedback_receiver', $form_state->getValue('receiver'));
+		$config->set('settings.feedback_subject', $form_state->getValue('subject'));
 		$config->save();
 	}
 }
