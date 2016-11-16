@@ -15,12 +15,13 @@ class CpEmailBlock extends BlockBase {
 	
 	function build() {
 		$config = $this->getConfiguration();
+		
 		$build['#markup'] = '';
 		$build['form'] = \Drupal::formBuilder()->getForm('\Drupal\cp_email\Plugin\Form\CPEmailForm', $config);
 		$build['#attached']['library'][] = 'cp_email/style';
+		$build['#attached']['library'][] = 'cp_email/script';
 		
 		if ($config['cp_email_human_control'] && $config['cp_email_human_control_key'] != '') {
-			$build['#attached']['library'][] = 'cp_email/human-control';
 			$build['#attached']['drupalSettings'] = array(	
 				'human_control_key' => $config['cp_email_human_control_key'],
 				'human_control_label' => $config['cp_email_human_control_label'],
