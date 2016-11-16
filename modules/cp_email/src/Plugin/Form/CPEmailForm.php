@@ -80,8 +80,6 @@ class CPEmailForm extends FormBase {
 		$receiver = $form_state->getValue('cp_email_receiver');
   		$sender = $form_state->getValue('cp_email_sender');
 		
-  		$output = '';
-  		
   		if (valid_email_address($sender)) {
   			
 	  		if ($receiver != '') {
@@ -97,18 +95,16 @@ class CPEmailForm extends FormBase {
 				$email['subject'] = $form_state->getValue('cp_email_subject');
 				$email['body'] = $form_state->getValue('cp_email_message');
 				
-				$output = $form_state->getValue('cp_email_complete_message');;
-				
-				if (! $handler->mail($email)) {
-					$output = 'An error has occurred. Please try again about a minute.';
+				if ($handler->mail($email)) {
+					drupal_set_message($form_state->getValue('cp_email_complete_message'));
+					
+				} else {
+					drupal_set_message('An error has occurred. Please try again about a minute.', 'error');
 				}
-				
 			}
 			
   		} else {
-  			$output = $sender . ' is not a valid email address.';
+  			drupal_set_message($sender . ' is not a valid email address.', 'error');
   		}
-  		
-		drupal_set_message($output);
 	} 
 }

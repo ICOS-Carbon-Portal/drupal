@@ -1,0 +1,12 @@
+style:
+  css:
+    theme:
+      css/cp_statistics.css: {}
+      
+script:     
+  js:
+    js/cp_statistics.js: {}
+    
+  dependencies:
+    - core/jquery
+    - core/jquery.once              
