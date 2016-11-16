@@ -1,7 +1,0 @@
-cp_feedback.form:
-  path: '/feedback-form'
-  defaults:
-    _form: '\Drupal\cp_feedback\Plugin\Form\CPFeedbackForm'
-    _title: 'CP Feedback Form'
-  requirements:
-    _permission: 'access content'
