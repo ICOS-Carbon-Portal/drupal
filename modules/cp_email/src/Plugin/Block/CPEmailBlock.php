@@ -22,19 +22,22 @@ class CpEmailBlock extends BlockBase {
 		$build['#attached']['library'][] = 'cp_email/script';
 		
 		if ($config['cp_email_human_control'] && $config['cp_email_human_control_key'] != '') {
-			$build['#attached']['drupalSettings'] = array(	
-				'human_control_key' => $config['cp_email_human_control_key'],
-				'human_control_label' => $config['cp_email_human_control_label'],
-				'type' => 'setting',		
-			);
+			$build['#markup'] = $this->_build_html($config['cp_email_human_control_key'], $config['cp_email_human_control_label']);
+			$build['#attached']['drupalSettings'] = array(
+					'human_control_key' => $config['cp_email_human_control_key'],
+					'type' => 'setting',
+			);			
 		}
 		
 		return $build;
-	
 	}
 	
-	function _build_html() {
-		$output = '';
+	function _build_html($key, $label) {
+		$output = '<p class="human_control_element_label">' . $label . '</p>';
+		$output .= '<div id="human_control_element_' . $key . '" class="human_control_element">';
+		$output .= '<form action="?" method="post"><div class="g-recaptcha" data-sitekey="' . $key . '" data-callback="verifyHumanControl"></div><br/><input type="submit" value="Submit"></form>';
+		$output .= '</div>';
+		
 		return $output;
 	}
 	

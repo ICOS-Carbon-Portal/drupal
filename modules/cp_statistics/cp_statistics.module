@@ -1,5 +1,14 @@
 <?php
 
+function cp_statistics_theme() {
+	$theme['cp_statistics'] = [
+			'variables' => ['elements' => null],
+			'template' => 'cp_statistics',
+	];
+
+	return $theme;
+}
+
 function cp_statistics_page_bottom(array &$page_bottom) {
 	
 	\Drupal::service('page_cache_kill_switch')->trigger();
