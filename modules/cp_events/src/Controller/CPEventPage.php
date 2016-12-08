@@ -6,7 +6,7 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\cp_events\CPEvents\ListOfEvents;
 use Drupal\Core\StreamWrapper\PublicStream;
 
-class CPEventPageController extends ControllerBase {
+class CPEventPage extends ControllerBase {
 	
 	public function content($event_id) {
 	  	

@@ -1,7 +1,7 @@
 cp_event.content:
   path: '/event/{event_id}'
   defaults:
-    _controller: '\Drupal\cp_events\Controller\CPEventPageController::content'
+    _controller: '\Drupal\cp_events\Controller\CPEventPage::content'
     _title: ''
   requirements:
     _permission: 'access content'
