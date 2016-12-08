@@ -27,6 +27,9 @@ class ListOfTeasedCpEvents extends BlockBase {
 					'cp_events/script'
 				),
 			),
+			'#cache' => array(
+					'max-age' => 1
+			),				
 		);
 	}
 	

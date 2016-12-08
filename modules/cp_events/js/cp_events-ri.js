@@ -106,6 +106,7 @@ function loadEventBody(eventId) {
 			jQuery(this).children('.event_active').css({'display':'none'});
 		});
 		
+		jQuery('#cp_events_page .events_section #event_container .event_body .edit-this').html('');
 		jQuery('#cp_events_page .events_section #event_container .event_body .title').html('');
 		jQuery('#cp_events_page .events_section #event_container .event_body .date').html('');
 		jQuery('#cp_events_page .events_section #event_container .event_body .text').html('');
@@ -119,6 +120,7 @@ function loadEventBody(eventId) {
 		var linkTitle = jQuery('#cp_events_page #event_' + eventId + ' .link_title').text();	
 		var siteHome = jQuery('#cp_events_page .events_section #event_container .event_body .site_home').text();
 		
+		jQuery('#cp_events_page .events_section #event_container .event_body .edit-this').append('<a href="/node/' + eventId + '/edit?destination=node/' + eventId + '">Edit this</a>');
 		jQuery('#cp_events_page .events_section #event_container .event_body .title').html( title );
 		jQuery('#cp_events_page .events_section #event_container .event_body .date').html( date );
 		jQuery('#cp_events_page .events_section #event_container .event_body .text').html( text );

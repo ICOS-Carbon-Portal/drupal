@@ -11,8 +11,6 @@ class Blog {
 	private $body;
 	private $picture_uri;
 	private $picture_title;
-	private $link_uri;
-	private $link_title;
 	private $category;
 	
 	function __construct() {
@@ -73,22 +71,6 @@ class Blog {
 	
 	public function setPictureTitle($picture_title) {
 		$this->picture_title = $picture_title;
-	}
-
-	public function getLinkUri() {
-		return $this->link_uri;
-	}
-	
-	public function setLinkUri($link_uri) {
-		$this->link_uri = $link_uri;
-	}
-	
-	public function getLinkTitle() {
-		return $this->link_title;
-	}
-	
-	public function setLinkTitle($link_title) {
-		$this->link_title = $link_title;
 	}
 
 	public function getCategory() {

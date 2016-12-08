@@ -3,16 +3,13 @@ status: true
 dependencies:
   config:
     - field.field.node.cp_blog.field_cp_blog_picture
-    - field.field.node.cp_blog.field_cp_blog_link
     - field.field.node.cp_blog.field_cp_blog_category
     - field.field.node.cp_blog.body    
     - node.type.cp_blog
   module:
     - image
-    - link
-    - datetime
+    - path
     - text
-    - user
 id: node.cp_blog.default
 targetEntityType: node
 bundle: cp_blog
@@ -26,19 +23,8 @@ content:
       image_link: ''
     third_party_settings: {  }
     type: image 
-  field_cp_blog_link:
-    weight: 112
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    type: link 
   field_cp_blog_category:
-    weight: 114
+    weight: 112
     label: above
     settings: { }
     third_party_settings: {  }

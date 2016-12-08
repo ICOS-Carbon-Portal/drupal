@@ -1,0 +1,10 @@
+<?php
+
+function cp_blogs_theme() {
+	$theme['list_of_cp_blogs'] = [
+			'variables' => ['elements' => null],
+			'template' => 'list_of_cp_blogs',
+	];
+
+	return $theme;
+}

@@ -47,18 +47,17 @@ class ViewTeasedCpBlog extends BlockBase {
 			$blog_category = $config['cp_blog_blog_category'];
 		}
 		
-		$output = '';
+		$date_format = 'Y-m-d';
+		$settings = \Drupal::service('config.factory')->getEditable('cp_blog.settings');
+		if ($settings->get('settings.date_format') == 'day-month-year') { $date_format = 'd-m-Y'; }
+		
+		$output = '<h2>' . $blog_category . '</h2>';
 		
 		foreach ($list as $blog) {
 			
 			if ($blog->getCategory() == $blog_category) {
 				
 				$output .= '<div class="cp_blog_teased">';
-				
-				$date_format = 'Y-m-d';
-				if (isset($config['cp_blog_date_format'])) {
-					if ($config['cp_blog_date_format'] == 'day-month-year') { $date_format = 'd-m-Y'; }
-				}
 				
 				$output .= '<div class="date">' . date($date_format, $blog->getChanged()) . '</div>';
 				
@@ -76,7 +75,6 @@ class ViewTeasedCpBlog extends BlockBase {
 					$output .= '</div>';
 				}
 				
-				
 				if (strlen($blog->getBody()) > 1 ) {
 					
 					$max_stop = 160;
@@ -91,26 +89,23 @@ class ViewTeasedCpBlog extends BlockBase {
 						$dots = '<span class="dots">...</span></div>';
 					}
 					
-					// When using formatted text via CK Editor..
 					$start = strpos($blog->getBody(), '<p>');
 					$stop = strpos($blog->getBody(), '</p>');
 					
 					if ($stop > $max_stop) { 
-						$stop = $max_stop;
-						
+						$stop = $max_stop;	
 					}
 					
 					$output .= '<div class="teaser">' . substr($blog->getBody(), $start, $stop - $start) . $dots;
 				}
-				
 						
 				$output .= '<div class="link"><a href="/blog/' . $blog->getId() . '">Read the blog</a></div>';
+				$output .= '<div class="link"><a href="/blogs/' . $blog->getCategory() . '">More blog posts</a></div>';
 				
 				$output .= '</div>';
 				
 				break;
 			}
-	
 		}
 		
 		return $output;
@@ -152,10 +147,9 @@ class ViewTeasedCpBlog extends BlockBase {
 				'#default_value' => $blog_category
 		);
 		
-		$date_format = '';
-		if (isset($config['cp_blog_date_format'])) {
-			$date_format = $config['cp_blog_date_format'];
-		}
+		$date_format = 'year-month-day';
+		$settings = \Drupal::service('config.factory')->getEditable('cp_blog.settings');
+		if ($settings->get('settings.date_format') == 'day-month-year') { $date_format = 'day-month-year'; }
 		
 		$date_format_options = array('year-month-day' => 'year-month-day', 'day-month-year' => 'day-month-year');
 		
@@ -170,12 +164,15 @@ class ViewTeasedCpBlog extends BlockBase {
 		return $form;
 	}
 	
-	
 	/**
 	 * {@inheritdoc}
 	 */
 	public function blockSubmit($form, FormStateInterface $form_state) {
 		$this->setConfigurationValue('cp_blog_blog_category', $form_state->getValue('cp_blog_blog_category'));
 		$this->setConfigurationValue('cp_blog_date_format', $form_state->getValue('cp_blog_date_format'));
+		
+		$settings = \Drupal::service('config.factory')->getEditable('cp_blog.settings');
+		$settings->set('settings.date_format', $form_state->getValue('cp_blog_date_format'));
+		$settings->save();
 	}
 }

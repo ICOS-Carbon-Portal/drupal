@@ -33,6 +33,12 @@ class CPEventPageController extends ControllerBase {
 
 	function _build_html($event) {
 		$config = \Drupal::config('cp_events.settings');
+
+		$user = \Drupal::currentUser();	
+		$edit = '';
+		if ($user->hasPermission('edit any cp_event content')) {
+			$edit = '<div class="edit-this"><a href="/node/' . $event->getId() . '/edit?destination=node/' . $event->getId() . '">Edit this</a></div>';
+		}
 		
 		$date_format = 'Y-m-d';
 		if ($config->get('cp_events_page_date_format') != null && $config->get('cp_events_page_date_format') == 'day-month-year') {
@@ -40,6 +46,8 @@ class CPEventPageController extends ControllerBase {
 		}
   
 	  	$output = '<div id="cp_events">';
+	  	
+	  	$output .= $edit;
 	  
 	  	$url = '/' . PublicStream::basePath() . '/';
 	  

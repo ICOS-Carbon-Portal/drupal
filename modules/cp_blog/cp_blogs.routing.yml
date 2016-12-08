@@ -1,7 +1,15 @@
 cp_blogs.content:
   path: '/blog/{blog_id}'
   defaults:
-    _controller: '\Drupal\cp_blogs\Controller\CPBlogPageController::content'
+    _controller: '\Drupal\cp_blogs\Controller\CPBlogPage::content'
     _title: ''
   requirements:
     _permission: 'access content'
+    
+cp_blogs.list:
+  path: '/blogs/{blog_category}'
+  defaults:
+    _controller: '\Drupal\cp_blogs\Controller\ListOfCPBlogs::content'
+    _title: ''
+  requirements:
+    _permission: 'access content'    

@@ -17,7 +17,6 @@ class ListOfBlogs {
 		foreach ($this->_collect_blogs() as $b) {
 			$b = $this->_add_body($b);
 			$b = $this->_add_picture($b);
-			$b = $this->_add_link($b);
 			$b = $this->_add_category($b);
 				
 			$list[] = $b;
@@ -122,28 +121,6 @@ class ListOfBlogs {
 
 		return $blog;
 	}	
-
-	function _add_link($blog) {
-	
-		$result = db_query('
-			select field_cp_blog_link_uri, field_cp_blog_link_title
-			from {node__field_cp_blog_link}
-			where entity_id = :id
-			',
-	
-			array(':id' => $blog->getId())
-		)->fetchAll();
-
-
-		foreach ($result as $record) {
-			if ($record) {
-				$blog->setLinkUri($record->field_cp_blog_link_uri);
-				$blog->setLinkTitle($record->field_cp_blog_link_title);
-			}
-		}
-
-		return $blog;
-	}
 
 	function _add_category($blog) {
 	

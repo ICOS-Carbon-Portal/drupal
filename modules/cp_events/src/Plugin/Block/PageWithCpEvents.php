@@ -31,6 +31,8 @@ class PageWithCpEvents extends BlockBase {
 		$events = array();
 		$news = array();
 		
+		$now = time();
+		
 		foreach ($list as $e) {
 			if ($e->getHistorical() == 0) {
 				
@@ -52,7 +54,15 @@ class PageWithCpEvents extends BlockBase {
 				}
 				
 				if ($e->getNews() != 1) {
-					$events[] = $e;
+					
+					if ($e->getToDate() != null && $e->getToDate() != '') {
+						if (strtotime($e->getToDate()) > $now) {
+							$events[] = $e;
+						}
+					} else {
+						$events[] = $e;
+					}
+					
 				} else {
 					$news[] = $e;
 				}
