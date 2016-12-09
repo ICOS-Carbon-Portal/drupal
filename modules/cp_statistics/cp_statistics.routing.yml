@@ -12,4 +12,12 @@ cp_statistics.export:
     _controller: '\Drupal\cp_statistics\Controller\CPStatisticsExport::export'
     _title: ''
   requirements:
-    _permission: 'administer site configuration'      
+    _permission: 'administer site configuration'
+    
+cp_statistics.settings:
+  path: '/admin/config/cp_statistics_settings'
+  defaults:
+    _form: '\Drupal\cp_statistics\Controller\Settings'
+    _title: 'CP Statistics Settings'
+  requirements:
+    _permission: 'administer site configuration'       
