@@ -48,7 +48,7 @@ class ViewTeasedCpBlog extends BlockBase {
 		}
 		
 		$date_format = 'Y-m-d';
-		$settings = \Drupal::service('config.factory')->getEditable('cp_blog.settings');
+		$settings = \Drupal::service('config.factory')->getEditable('cp_blogs.settings');
 		if ($settings->get('settings.date_format') == 'day-month-year') { $date_format = 'd-m-Y'; }
 		
 		$output = '<h2>' . $blog_category . '</h2>';
@@ -148,7 +148,7 @@ class ViewTeasedCpBlog extends BlockBase {
 		);
 		
 		$date_format = 'year-month-day';
-		$settings = \Drupal::service('config.factory')->getEditable('cp_blog.settings');
+		$settings = \Drupal::service('config.factory')->getEditable('cp_blogs.settings');
 		if ($settings->get('settings.date_format') == 'day-month-year') { $date_format = 'day-month-year'; }
 		
 		$date_format_options = array('year-month-day' => 'year-month-day', 'day-month-year' => 'day-month-year');
@@ -171,7 +171,7 @@ class ViewTeasedCpBlog extends BlockBase {
 		$this->setConfigurationValue('cp_blog_blog_category', $form_state->getValue('cp_blog_blog_category'));
 		$this->setConfigurationValue('cp_blog_date_format', $form_state->getValue('cp_blog_date_format'));
 		
-		$settings = \Drupal::service('config.factory')->getEditable('cp_blog.settings');
+		$settings = \Drupal::service('config.factory')->getEditable('cp_blogs.settings');
 		$settings->set('settings.date_format', $form_state->getValue('cp_blog_date_format'));
 		$settings->save();
 	}

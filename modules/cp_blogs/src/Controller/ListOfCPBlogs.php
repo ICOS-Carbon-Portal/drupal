@@ -14,7 +14,7 @@ class ListOfCPBlogs extends ControllerBase {
 		$list = $listOfBlogs->getListLatestFirst();
 	  	
 		$date_format = 'Y-m-d';
-		$settings = \Drupal::service('config.factory')->getEditable('cp_blog.settings');
+		$settings = \Drupal::service('config.factory')->getEditable('cp_blogs.settings');
 		if ($settings->get('settings.date_format') == 'day-month-year') { $date_format = 'd-m-Y'; }
 		
 		$list_of_elements = array();

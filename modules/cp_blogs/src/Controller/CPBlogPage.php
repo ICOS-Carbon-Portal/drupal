@@ -39,7 +39,7 @@ class CPBlogPage extends ControllerBase {
   
 	function _build_html($blog) {
 		
-		$settings = \Drupal::service('config.factory')->getEditable('cp_blog.settings');
+		$settings = \Drupal::service('config.factory')->getEditable('cp_blogs.settings');
 		$date_format = 'Y-m-d';
 		if ($settings->get('settings.date_format') == 'day-month-year') { $date_format = 'd-m-Y'; }
 		
