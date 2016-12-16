@@ -37,13 +37,13 @@ class ViewLatestCpBlog extends BlockBase {
 	
 	function _build_html($blog) {
 	
-		$output = '<div class="latest-blog">';
+		$output = '<div class="latest_blog">';
 				
 		$output .= '<div class="date">' . date('Y-m-d', $blog->getCreated()) . '</div>';
 		
 		$output .= '<div>';
 		
-		$output .= '<div class="heading">' . $blog->getTitle() . '</div>';
+		$output .= '<div class="title">' . $blog->getTitle() . '</div>';
 				
 		if ($blog->getPictureUri() != null && $blog->getPictureUri() != '') {
 			$url = '/' . PublicStream::basePath() . '/';

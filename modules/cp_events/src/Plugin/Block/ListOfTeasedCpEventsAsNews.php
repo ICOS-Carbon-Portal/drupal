@@ -55,7 +55,7 @@ class ListOfTeasedCpEventsAsNews extends BlockBase {
 			
 			if ($co < $counter && $e->getNews() != 0 && $e->getHistorical() == 0) {	
 				
-				$output .= '<div class="tease-event">';
+				$output .= '<div class="tease_event">';
 				
 				$date = '';
 				if ($e->getFromDate() != null && $e->getFromDate() != '') {

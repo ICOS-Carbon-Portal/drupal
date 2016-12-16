@@ -73,7 +73,7 @@ class ListOfTeasedCpEvents extends BlockBase {
 				
 				if (strtotime($from_date) > $old_date) {
 						
-					$output .= '<div class="tease-event">';
+					$output .= '<div class="tease_event">';
 					
 					$output .= '<div class="from_date">' . date($date_format, strtotime($from_date)) . $to_date . '</div>';
 					

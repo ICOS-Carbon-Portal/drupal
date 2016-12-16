@@ -67,7 +67,7 @@ class ListOfCpEvents extends BlockBase {
 	}
 	
 	function _add_event($e, $url, $date_format) {
-		$output = '<div class="full-event">';
+		$output = '<div class="full_event">';
 		
 		$from_date = '';
 		if ($e->getFromDate() != null && $e->getFromDate() != '') {

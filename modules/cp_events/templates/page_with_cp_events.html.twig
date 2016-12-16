@@ -94,7 +94,7 @@
 		
 			<div class="event_body">
 			
-				<div class="edit-this" 
+				<div class="edit_this" 
 					{% if not user.hasPermission('edit any cp_event content') %}
 						style="display:none"
 					{% endif %}>
@@ -129,12 +129,17 @@
 					{% endif %}
 				</div>
 				
-				<div class="share">
-					<a href="javascript:void(0)" 
-						class="event_share_button twitter" 
-						onclick="shareTwitterEvent( {{ elements['events']['list'][0].getId() }}, '{{ elements['events']['list'][0].getTitle() }}', '{{ elements['site_home'] }}' )">
-					</a>
-				</div>
+			<div class="share">
+				<a href="javascript:void(0)" 
+					class="social_share_button social_share_twitter" 
+					onclick="shareTwitterEvent( {{ elements['events']['list'][0].getId() }}, '{{ elements['events']['list'][0].getTitle() }}', '{{ elements['site_home'] }}' )">
+				</a>
+				
+				<a href="javascript:void(0)" 
+					class="social_share_button social_share_linkedin" 
+					onclick="shareLinkedinEvent( {{ elements['events']['list'][0].getId() }}, '{{ elements['site_home'] }}' )">
+				</a>
+			</div>
 			
 			</div>	
 				

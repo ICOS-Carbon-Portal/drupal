@@ -36,7 +36,7 @@ class CPEventPage extends ControllerBase {
 		$user = \Drupal::currentUser();	
 		$edit = '';
 		if ($user->hasPermission('edit any cp_event content')) {
-			$edit = '<div class="edit-this"><a href="/node/' . $event->getId() . '/edit?destination=node/' . $event->getId() . '">Edit this</a></div>';
+			$edit = '<div class="edit_this"><a href="/node/' . $event->getId() . '/edit?destination=node/' . $event->getId() . '">Edit this</a></div>';
 		}
 		
 		$date_format = 'Y-m-d';
@@ -49,7 +49,7 @@ class CPEventPage extends ControllerBase {
 	  
 	  	$url = '/' . PublicStream::basePath() . '/';
 	  
-		$output .= '<div class="full-event">';
+		$output .= '<div class="full_event">';
 	  
 		$from_date = '';
 	  	if ($event->getFromDate() != null && $event->getFromDate() != '') {

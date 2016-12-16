@@ -18,7 +18,7 @@ class ListOfCPBlogs extends ControllerBase {
 		if ($settings->get('settings.date_format') == 'day-month-year') { $date_format = 'd-m-Y'; }
 		
 		$list_of_elements = array();
-		$list_of_elements['page-title'] = $blog_category;
+		$list_of_elements['page_title'] = $blog_category;
 		
 		foreach ($list as $b) {
 			if ($b->getCategory() == $blog_category) {

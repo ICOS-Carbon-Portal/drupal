@@ -57,11 +57,13 @@ class ViewTeasedCpBlog extends BlockBase {
 			
 			if ($blog->getCategory() == $blog_category) {
 				
-				$output .= '<div class="cp_blog_teased">';
+				$output .= '<div class="teased_cp_blog">';
+				
+				$output .= '<a href="/blog/' . $blog->getId() . '">';
 				
 				$output .= '<div class="date">' . date($date_format, $blog->getChanged()) . '</div>';
 				
-				$output .= '<div class="heading">' . $blog->getTitle() . '</div>';
+				$output .= '<div class="title">' . $blog->getTitle() . '</div>';
 						
 				if ($blog->getPictureUri() != null || $blog->getPictureUri() != '') {
 					$url = '/' . PublicStream::basePath() . '/';
@@ -98,10 +100,8 @@ class ViewTeasedCpBlog extends BlockBase {
 					
 					$output .= '<div class="teaser">' . substr($blog->getBody(), $start, $stop - $start) . $dots;
 				}
-						
-				$output .= '<div class="link"><a href="/blog/' . $blog->getId() . '">Read the blog</a></div>';
-				$output .= '<div class="link"><a href="/blogs/' . $blog->getCategory() . '">More blog posts</a></div>';
 				
+				$output .= '</a>';
 				$output .= '</div>';
 				
 				break;

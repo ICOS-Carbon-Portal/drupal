@@ -1,9 +1,9 @@
-.latest-blog .date {
+.latest_blog .date {
 	color: #0a96f0;
 	font-weight: bold;
 }
 
-.latest-blog .heading {
+.latest_blog .title {
 	color: #0a96f0;
 	font-size: 2rem;
 	line-height: 2rem;
@@ -13,7 +13,7 @@
 	width: 70%;
 }
 
-.latest-blog .picture {
+.latest_blog .picture {
 	float: right;
 	width: 30%;
 	padding-left: 1rem;
@@ -21,30 +21,41 @@
 }
 
 @media all and (min-width: 800px) {
-	.latest-blog {
+	.latest_blog {
 		width: 100%;
 	}
 }
 
 @media all and (max-width: 799px) {
-	.latest-blog {
+	.latest_blog {
 		width: 100%;
 	}	
 }
 
-.cp_blog_teased .date {
+.teased_cp_blog a,
+.teased_cp_blog a:link,
+.teased_cp_blog a:active,
+.teased_cp_blog a:focus,
+.teased_cp_blog a:hover {
+	text-decoration: none;
+	border-bottom: 0;
+	border: 0;
+	outline: 0;
+}
+
+.teased_cp_blog .date {
 	color: #0a96f0;
 	font-weight: bold;
 }
 
-.cp_blog_teased .heading {
+.teased_cp_blog .title {
 	font-size: 1.8rem;
 	color: #0a96f0;
 }
 
-.cp_blog_teased .link, .cp_blog_teased .link:hover, .cp_blog_teased .link a, .cp_blog_teased .link a:hover {
-	text-decoration: none;
-	border-bottom: 0;
+.teased_cp_blog .teaser {
+	font-size: 0.914em;
+	color: #333;
 }
 
 @media all and (min-width: 800px) {
@@ -54,7 +65,7 @@
 
 	.cp_blog .text img {
 		max-width: 400px;
-	}	
+	}		
 }
 
 @media all and (max-width: 799px) {
@@ -64,7 +75,7 @@
 
 	.cp_blog .text img {
 		max-width: 200px;
-	}		
+	}			
 }
 
 .cp_blog .date {
@@ -72,17 +83,81 @@
 	font-weight: bold;
 }
 
-.cp_blog .heading, .cp_blog_earlier .heading {
+.cp_blog .title {
 	font-size: 2.5rem;
 	color: #0a96f0;
 }
 
 .cp_blog .text img {
-	float: right;
-	padding-left: 2rem;
 	padding-bottom: 2rem;
 }
 
+@media all and (min-width: 1200px) {
+	.cp_blog {
+		float: left;
+	}
+	
+	.cp_blog .text img {
+		float: right;
+		padding-left: 2rem;
+	}	
+	
+	.recent_cp_blogs {
+		margin-left: 2rem;
+	}
+	
+	.recent_cp_blogs {
+		float: left;
+	}
+	
+	.recent_cp_blogs .title {
+		float: left;
+	}	
+}
+
+@media all and (max-width: 1199px) {
+	.cp_blog {
+		float: none;
+	}
+	
+	.cp_blog .text img {
+		float: none;
+		padding-left: 0;
+	}		
+	
+	.recent_cp_blogs {
+		margin-left: 0;		
+	}
+
+	.recent_cp_blogs {
+		float: none;
+	}	
+		
+	.recent_cp_blogs .title {
+		float: none;
+	}		
+}
+
+.recent_cp_blogs div {
+	float: left;
+}
+
+.recent_cp_blogs ul {
+	padding: 0;
+	list-style: none;
+}
+
+.recent_cp_blogs .blog {
+	padding-bottom: 1.5rem;
+}
+
+.recent_cp_blogs .date {
+	margin-right: 1rem;
+}
+
+.recent_cp_blogs .title {
+}
+	
 #cp_blogs_list { }
 
 .blogs_list .panel {

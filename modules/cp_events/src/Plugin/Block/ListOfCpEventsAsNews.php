@@ -46,7 +46,7 @@ class ListOfCpEventsAsNews extends BlockBase {
 			
 			if ($e->getNews() != 0 && $e->getHistorical() == 0) {
 			
-				$output .= '<div class="full-event">';
+				$output .= '<div class="full_event">';
 				
 				$date = '';
 				if ($e->getFromDate() != null && $e->getFromDate() != '') {

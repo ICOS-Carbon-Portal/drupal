@@ -350,3 +350,37 @@ h1.page-title {
 
 #cpuserconsent .agree input[type="checkbox"] { margin-left: 2rem; vertical-align: sub; width: 2rem; height: 2rem; transform: scale(1.5); -webkit-transform: scale(1.5); cursor: pointer; }
 
+
+/** Body content **/
+
+.social_share_button {
+	display: inline-block;
+	height: 48px;
+	background-color: transparent;
+	margin: 4rem 1rem 0 0;
+}
+
+a.social_share_button,
+a.social_share_button:link,
+a.social_share_button:active,
+a.social_share_button:focus,
+a.social_share_button:hover {
+	text-decoration: none;
+	border-bottom: 0;
+	border: 0;
+	outline: 0;
+}
+
+.social_share_twitter {
+	background-image: url(../images/twitter_button.png);
+	background-repeat: no-repeat;
+	width: 48px;
+}
+
+.social_share_linkedin {
+	background-image: url(../images/linkedin_button.png);
+	background-repeat: no-repeat;
+	width: 48px;
+}
+
+

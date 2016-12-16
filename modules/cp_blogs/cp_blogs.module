@@ -1,6 +1,11 @@
 <?php
 
 function cp_blogs_theme() {
+	$theme['page_with_cp_blog'] = [
+			'variables' => ['elements' => null],
+			'template' => 'page_with_cp_blog',
+	];
+	
 	$theme['list_of_cp_blogs'] = [
 			'variables' => ['elements' => null],
 			'template' => 'list_of_cp_blogs',

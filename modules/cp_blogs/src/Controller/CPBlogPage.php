@@ -13,17 +13,46 @@ class CPBlogPage extends ControllerBase {
 	  	$listOfBlogs = new SortedListOfBlogs();
 		$list = $listOfBlogs->getListLatestFirst();
 	  	
-	  	$blog = null;
+		$settings = \Drupal::service('config.factory')->getEditable('cp_blogs.settings');
+		$date_format = 'Y-m-d';
+		
+		if ($settings->get('settings.date_format') == 'day-month-year') { $date_format = 'd-m-Y'; }
+		
+		$list_of_elements = array();
+		$list_of_elements['site_home'] = "https://$_SERVER[HTTP_HOST]";
+		
+		$recent_span = time() - (90 * 24 * 60 * 60);
+		
+		$blog_category = '';
+	  	$has_blog = null;
+	  	
 	  	foreach ($list as $b) {
 	  		if ($b->getId() == $blog_id) {
-	  			$blog = $b;
-	  			break;
-	  		}
+	  			$b->setChanged(date($date_format, $b->getChanged()));
+	  			$this->_formatPictureUri($b);
+	  			$list_of_elements['blog'] = $b;
+	  			$list_of_elements['page_title'] = $b->getCategory();
+	  			$list_of_elements['blog_category'] = $b->getCategory();
+	  			$has_blog = 1;
+	  		}	
 	  	}
 	  	
-	  	if ($blog) {
+	  	if ($has_blog) {
+	  		
+	  		foreach ($list as $b) {
+	  			if (($b->getCategory() == $list_of_elements['blog_category'])
+	  					&& ($b->getId() != $blog_id)
+	  					&& ($b->getChanged() > $recent_span)) {
+	  		
+	  						$b->setChanged(date($date_format, $b->getChanged()));
+	  						$this->_formatPictureUri($b);
+	  						$list_of_elements['recent_blogs'][] = $b;
+	  			}
+	  		}
+	  		
 		    return array(
-		        '#markup' => $this->_build_html($blog),
+	        	'#theme' => 'page_with_cp_blog',
+				'#elements' => $list_of_elements,
 		    	'#attached' => array(
 		    		'library' =>  array(
 		    			'cp_blogs/style',
@@ -36,37 +65,18 @@ class CPBlogPage extends ControllerBase {
 	  		return array('#markup' => '');
 	  	} 	
 	}
-  
-	function _build_html($blog) {
+ 
+	function _formatPictureUri($blog) {
+		if ($blog->getPictureUri() != null && $blog->getPictureUri() != '') {
+			$blog->setPictureUri('/' . PublicStream::basePath() . '/' . str_replace('public://', '', $blog->getPictureUri()));
 		
-		$settings = \Drupal::service('config.factory')->getEditable('cp_blogs.settings');
-		$date_format = 'Y-m-d';
-		if ($settings->get('settings.date_format') == 'day-month-year') { $date_format = 'd-m-Y'; }
-		
-		$url = $GLOBALS['base_url'] . '/' . PublicStream::basePath() . '/';
-		
-		$output = '<h1 class="page-title">' . $blog->getCategory() . '</h1>';
-		
-		$output .= '<div class="cp_blog">';
-
-		$output .= '<div class="date">' . date($date_format, $blog->getChanged()) . '</div>';
-
-		$output .= '<div class="heading">' . $blog->getTitle() . '</div>';
-
-		if ($blog->getPictureUri() != null && $blog->getPictureUri() != '') {		
-			$picture_url = $url . str_replace('public://', '', $blog->getPictureUri());
-
-			$picture_title = '';
-			if ($blog->getPictureTitle() != null && $blog->getPictureTitle() != '') { $picture_title = $blog->getPictureTitle(); }
-				
-			$output .= '<div class="text"><img src="' . $picture_url . '" alt="' . $picture_title . '" title="' . $picture_title . '" />' . $blog->getBody() . '</div>';
+			if ($blog->getPictureTitle() != null && $blog->getPictureTitle() != '') { 
+				$blog->setPictureTitle($blog->getPictureTitle()); 
+			}
 			
 		} else {
-	  		$output .= '<div class="text">' . $blog->getBody() . '</div>';	
-	  	}
-
-		$output .= '</div>';
-		
-		return $output;
+			$blog->setPictureUri('');
+			$blog->setPictureTitle('');
+		}		
 	}
 }

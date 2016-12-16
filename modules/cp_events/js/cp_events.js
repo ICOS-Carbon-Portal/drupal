@@ -35,7 +35,7 @@
 }(jQuery));
 
 function setCorrectHeight() {
-	jQuery('.full-event .text img').each( function() {	
+	jQuery('.full_event .text img').each( function() {	
 		jQuery(this).parent().css({'min-height': jQuery(this).height()});		
 	});
 }
@@ -150,6 +150,14 @@ function shareTwitterEvent(eventId, eventTitle, siteHome) {
 	var message = encodeURIComponent(eventTitle) + '%20-%20' + siteHome +  '/event/' + eventId;
 	var url = 'https://twitter.com/intent/tweet/?text=' + message;
 	
-	var windowFeatures = 'menubar=no, toolbar=no, location=no, resizable=yes, scrollbars=no, status=no, width=600, height=200';
-	window.open(url, 'share_twitter', windowFeatures);
+	var windowFeatures = 'menubar=no, toolbar=no, location=no, resizable=yes, scrollbars=no, status=no, width=600, height=300';
+	window.open(url, 'share_twitter_event', windowFeatures);
+}
+
+function shareLinkedinEvent(eventId, siteHome) {
+	var message = siteHome +  '/event/' + eventId;
+	var url = 'https://www.linkedin.com/uas/connect/user-signin?session_redirect=https%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fcws%2Fshare%3Furl%3D' + message;
+	
+	var windowFeatures = 'menubar=no, toolbar=no, location=no, resizable=yes, scrollbars=no, status=no, width=600, height=300';
+	window.open(url, 'share_linkedin_event', windowFeatures);
 }
