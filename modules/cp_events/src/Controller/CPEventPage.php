@@ -13,92 +13,88 @@ class CPEventPage extends ControllerBase {
 	  	$listOfEvents = new ListOfEvents();
 	  	$list = $listOfEvents->getListOfEvents();
 	  	
-	  	$event = null;
+	  	$date_format = 'Y-m-d';
+	  	$settings = \Drupal::service('config.factory')->getEditable('cp_events.settings');
+	  	
+	  	if ($settings->get('settings.date_format') == 'day-month-year') { $date_format = 'd-m-Y'; }
+	  	
+	  	$has_event = 0;
 	  	foreach ($list as $e) {
 	  		if ($e->getId() == $event_id) {
-	  			$event = $e;
-	  		}
-	  	}
-	  	
-	    return array(
-	        '#markup' => $this->_build_html($event),
-	    	'#attached' => array(
-	    		'library' =>  array(
-	    			'cp_events/style',
-	    			'cp_events/script'
-	    		),
-	    	),
-	    );
-	}
+	  		
+	  			$has_event = 1;
+	  			
+	  			if ($e->getFromDate() != null && $e->getFromDate() != '') {
+	  				$e->setFromDate(date($date_format, strtotime($e->getFromDate())));
+	  				 
+	  			} else {
+	  				if ($e->getNews() == 0) {
+	  					$e->setFromDate(date($date_format, $e->getCreated()));
+	  				} else {
+	  					$e->setFromDate(date($date_format, $e->getChanged()));
+	  				}
+	  			}
+	  			
+	  			if ($e->getToDate() != null && $e->getToDate() != '') {
+	  				
+	  				$now = time();
+	  				$user = \Drupal::currentUser();
+	  				if (strtotime($e->getToDate()) < $now) {
+	  					if ($user->hasPermission('edit any cp_event content')) {
+	  						$has_event = 1;
+	  					} else {
+	  						$has_event = 0;
+	  					}
+	  				}
+	  				
+	  				$e->setToDate(date($date_format, strtotime($e->getToDate())));
+	  			
+	  			}	  			
+	  			
+	  			$this->_formatPictureUri($e);
+	  			$this->_formatLinkUri($e);
+	  			$list_of_elements['event'] = $e;
 
-	function _build_html($event) {
-		
-		$user = \Drupal::currentUser();	
-		$edit = '';
-		if ($user->hasPermission('edit any cp_event content')) {
-			$edit = '<div class="edit_this"><a href="/node/' . $event->getId() . '/edit?destination=node/' . $event->getId() . '">Edit this</a></div>';
-		}
-		
-		$date_format = 'Y-m-d';
-		$settings = \Drupal::service('config.factory')->getEditable('cp_events.settings');
-		if ($settings->get('settings.date_format') == 'day-month-year') { $date_format = 'd-m-Y'; }
-  
-	  	$output = '<div id="cp_events">';
-	  	
-	  	$output .= $edit;
-	  
-	  	$url = '/' . PublicStream::basePath() . '/';
-	  
-		$output .= '<div class="full_event">';
-	  
-		$from_date = '';
-	  	if ($event->getFromDate() != null && $event->getFromDate() != '') {
-	  		$from_date = date($date_format, strtotime($event->getFromDate()));
-	  		
-	  	} else {
-	  		if ($event->getNews() == 0) {
-	  			$from_date = date($date_format, $event->getCreated());
-	  		} else {
-	  			$from_date = date($date_format, $event->getChanged());
+	  			break;
 	  		}
 	  	}
 	  	
-	  	$to_date = '';
-	  	if ($event->getToDate() != null && $event->getToDate() != '') {
-	  		$to_date = '<span class="date_separator">--</span><div class="to_date">' . date($date_format, strtotime($event->getToDate())) . '</div>';
-	  	
-	  	}
-	  
-	  	$output .= '<div class="from_date">' . $from_date . '</div>';
-	  	$output .= $to_date;
-	  	
-	  	$output .= '<div class="heading">' . $event->getTitle() . '</div>';
-	  
-	  	if ($event->getPictureUri() != null && $event->getPictureUri() != '') {
-	  		$picture_url = $url . str_replace('public://', '', $event->getPictureUri());
-	  					
-	  		$picture_title = '';
-	  		if ($event->getPictureTitle() != null && $event->getPictureTitle() != '') { $picture_title = $event->getPictureTitle(); }
-	  					
-	  		$output .= '<div class="text"><img src="' . $picture_url . '" alt="' . $picture_title . '" title="' . $picture_title . '" />' . $event->getBody() . '</div>';
-	  	
+	  	if ($has_event) {
+		    return array(
+		        '#theme' => 'selected_cp_event',
+				'#elements' => $list_of_elements,
+		    	'#attached' => array(
+		    		'library' =>  array(
+		    			'cp_events/style',
+		    			'cp_events/script'
+		    		),
+		    	),
+		    );
+
 	  	} else {
-	  		$output .= '<div class="text">' . $event->getBody() . '</div>';
-	  		
-	  	}
-  
-  		if ($event->getLinkUri() != null && $event->getLinkUri() != '') {
-  			$link_title = $event->getLinkUri();
-  			
-  			if ($event->getLinkTitle() != null && $event->getLinkTitle() != '') { $link_title = $event->getLinkTitle(); }
-  			
-  			$output .= '<div class="link"><a href="' . $event->getLinkUri() . '">' . $link_title . '</a></div>';
-  		}
-  				
-  		$output .= '</div>';
-  		
-  		$output .= '</div>';
-  
-  		return $output;
+		    	return array('#markup' => '');
+		    }
+	}
+	
+	function _formatPictureUri($event) {
+		if ($event->getPictureUri() != null && $event->getPictureUri() != '') {
+			$event->setPictureUri('/' . PublicStream::basePath() . '/' . str_replace('public://', '', $event->getPictureUri()));
+	
+			if ($event->getPictureTitle() != null && $event->getPictureTitle() != '') {
+				$event->setPictureTitle($event->getPictureTitle());
+			}
+				
+		} else {
+			$event->setPictureUri('');
+			$event->setPictureTitle('');
+		}
+	}
+	
+	function _formatLinkUri($event) {
+		if ($event->getLinkUri() != null && $event->getLinkUri() != '') {	
+			if ($event->getLinkTitle() == null || $event->getLinkTitle() == '') { 
+				$event->setLinkTitle($event->getLinkUri());
+			}	
+		}
 	}
 }

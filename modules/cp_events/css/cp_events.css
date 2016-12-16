@@ -3,7 +3,7 @@
 }
 
 .tease_event .from_date,
-.tease_event .heading,
+.tease_event .title,
 .tease_event .picture {
 	padding-bottom: 1em;
 }
@@ -13,7 +13,7 @@
 	font-weight: bold;
 }
 
-.tease_event .heading a {
+.tease_event .title a {
 	color: #F06322;
 	font-size: 2rem;
 	line-height: 2rem;
@@ -45,7 +45,7 @@
 .full_event .from_date,
 .full_event .date_separator,
 .full_event .to_date,
-.full_event .heading {
+.full_event .title {
 	padding-bottom: 1em;
 }
 
@@ -65,14 +65,14 @@
 	padding: 0 1em 0 1em;
 }
 
-.full_event .heading {
+.full_event .title {
 	color: #F06322;
 	font-size: 2rem;
 	line-height: 2rem;
 	border-bottom: 0;
 }
 
-.full_event .heading a {
+.full_event .title a {
 	color: #F06322;
 	font-size: 2rem;
 	line-height: 2rem;
@@ -175,20 +175,20 @@
 }
 
 .archive_event .post,
-.archive_event .post .heading a {
+.archive_event .post .title a {
 	color: #414042;
 }
 
 .archive_event .post1,
-.archive_event .post1 .heading a {
+.archive_event .post1 .title a {
 	color: #414042;
 }
 
-.archive_event .post .heading a:hover {
+.archive_event .post .title a:hover {
 	color: #000;
 }
 
-.archive_event .post1 .heading a:hover {
+.archive_event .post1 .title a:hover {
 	color: #000;
 }
 
@@ -205,7 +205,6 @@
 	
 }
 
-#cp_events_page .heading,
 #cp_events_page .title {
 	margin: 0 0 1em 0;
 	font-size: 1.5em;

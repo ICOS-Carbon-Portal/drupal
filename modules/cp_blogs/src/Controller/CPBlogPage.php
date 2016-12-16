@@ -24,7 +24,7 @@ class CPBlogPage extends ControllerBase {
 		$recent_span = time() - (90 * 24 * 60 * 60);
 		
 		$blog_category = '';
-	  	$has_blog = null;
+	  	$has_blog = 0;
 	  	
 	  	foreach ($list as $b) {
 	  		if ($b->getId() == $blog_id) {
@@ -33,7 +33,9 @@ class CPBlogPage extends ControllerBase {
 	  			$list_of_elements['blog'] = $b;
 	  			$list_of_elements['page_title'] = $b->getCategory();
 	  			$list_of_elements['blog_category'] = $b->getCategory();
+	  			
 	  			$has_blog = 1;
+	  			break;
 	  		}	
 	  	}
 	  	

@@ -10,6 +10,11 @@ function cp_events_theme() {
 			'variables' => ['elements' => null],
 			'template' => 'page_with_cp_events',
 	];
+	
+	$theme['selected_cp_event'] = [
+			'variables' => ['elements' => null],
+			'template' => 'selected_cp_event',
+	];
 
 	return $theme;
 }

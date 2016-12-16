@@ -1,0 +1,50 @@
+<div class="cp_event">
+
+	<div class="edit_this" 
+		{% if not user.hasPermission('edit any cp_event content') %}
+			style="display:none"
+		{% endif %}>
+		<a href="/node/{{ elements['event'].getId() }}/edit?destination=node/{{ elements['event'].getId() }}">
+			Edit this
+		</a>
+	</div>
+				
+	
+	<div class="full_event">			
+				
+		<div class="from_date">{{ elements['event'].getFromDate() }}</div>
+		
+		{% if elements['event'].getToDate() %}
+			<span class="date_separator">--</span>
+			<div class="to_date">{{ elements['event'].getToDate() }}</div>		
+		{% endif %} 
+		
+		<div class="title">{{ elements['event'].getTitle() }}</div>
+		
+		{% if elements['event'].getPictureUri() %}
+			<div class="text"><img src="{{ elements['event'].getPictureUri() }}" alt="{{ elements['event'].getPictureTitle() }}" title="{{ elements['event'].getPictureTitle() }}" />{{ elements['event'].getBody() | raw  }}</div>
+			
+		{% else %}
+			<div class="text">{{ elements['event'].getBody() | raw  }}</div>
+			
+		{% endif %} 
+	
+		{% if elements['event'].getLinkUri() %}
+			<div class="link"><a href="{{ elements['event'].getLinkUri() }}">{{ elements['event'].getLinkTitle() }}</a></div>
+		{% endif %} 
+	
+		<div class="share">
+			<a href="javascript:void(0)" 
+				class="social_share_button social_share_twitter" 
+				onclick="shareTwitterEvent( {{ elements['event'].getId() }}, '{{ elements['event'].getTitle() }}', '{{ elements['site_home'] }}' )">
+			</a>
+			
+			<a href="javascript:void(0)" 
+				class="social_share_button social_share_linkedin" 
+				onclick="shareLinkedinEvent( {{ elements['event'].getId() }}, '{{ elements['site_home'] }}' )">
+			</a>
+		</div>
+	
+	</div>
+	
+</div>

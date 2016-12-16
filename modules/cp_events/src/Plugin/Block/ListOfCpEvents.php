@@ -85,7 +85,7 @@ class ListOfCpEvents extends BlockBase {
 			
 		$output .= '<div class="from_date">' . date($date_format, strtotime($from_date)) . $to_date . '</div>';
 			
-		$output .= '<div class="heading"><a href="/event/'.$e->getId().'">' . $e->getTitle() . '</a></div>';
+		$output .= '<div class="title"><a href="/event/'.$e->getId().'">' . $e->getTitle() . '</a></div>';
 			
 		if ($e->getPictureUri() != null && $e->getPictureUri() != '') {
 			$picture_url = $url . str_replace('public://', '', $e->getPictureUri());
