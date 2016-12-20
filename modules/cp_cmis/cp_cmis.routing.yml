@@ -12,4 +12,12 @@ cp_cmis.fetcher:
     _controller: '\Drupal\cp_cmis\Controller\CMISResourceFetcher::fetch'
     _title: ''
   requirements:
-    _permission: 'access content'    
+    _permission: 'access content'  
+    
+cp_cmis.list:
+  path: '/documents/{resource}'
+  defaults:
+    _controller: '\Drupal\cp_cmis\Controller\ListOfDocuments::contents'
+    _title: ''
+  requirements:
+    _permission: 'access content'     

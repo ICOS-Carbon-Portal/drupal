@@ -6,7 +6,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Block\BlockPluginInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\cp_cmis\CMIS\Service;
-use Drupal\cp_cmis\Plugin\Block\CMISIcons;
+use Drupal\cp_cmis\CMIS\CMISIcons;
 
 
 /**

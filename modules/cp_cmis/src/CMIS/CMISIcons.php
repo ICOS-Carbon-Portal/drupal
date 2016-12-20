@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\cp_cmis\Plugin\Block;
+namespace Drupal\cp_cmis\CMIS;
 
 class CMISIcons {
 	

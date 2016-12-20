@@ -12,13 +12,13 @@ class CMISResourceFetcher extends ControllerBase {
 
 	public function fetch($id) {
 		
-		$config = \Drupal::config('cp_cmis.settings');
+		$settings = \Drupal::config('cp_cmis.settings');
 		
-		if (($config->get('url') != null && $config->get('url') != '')
-				&& ($config->get('username') != null && $config->get('username') != '')
-				&& ($config->get('password') != null && $config->get('password') != '')) {
+		if (($settings->get('url') != null && $settings->get('url') != '')
+				&& ($settings->get('username') != null && $settings->get('username') != '')
+				&& ($settings->get('password') != null && $settings->get('password') != '')) {
 					
-					$service = new \CMISService($config->get('url'), $config->get('username'), $config->get('password'));
+					$service = new \CMISService($settings->get('url'), $settings->get('username'), $settings->get('password'));
 					
 					$title = $service->getTitle($id);
 					

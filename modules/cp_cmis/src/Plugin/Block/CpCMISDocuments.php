@@ -6,7 +6,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Block\BlockPluginInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\cp_cmis\CMIS\Service;
-use Drupal\cp_cmis\Plugin\Block\CMISIcons;
+use Drupal\cp_cmis\CMIS\CMISIcons;
 
 
 /**
@@ -43,7 +43,7 @@ class CpCMISDocuments extends BlockBase implements BlockPluginInterface {
 		$id = str_replace(' ', '_', $id);
 		$id = str_replace('.', '_', $id);
 		
-		$heading = $config['cp_cmis_documents_heading'];
+		$title = $config['cp_cmis_documents_title'];
 		$icon = $config['cp_cmis_documents_icon'];
 			
 		$path = drupal_get_path('module', 'cp_cmis');
@@ -59,7 +59,7 @@ class CpCMISDocuments extends BlockBase implements BlockPluginInterface {
 		$output .= '<h3 class="panel-title">';
 		$output .= '<img src="/' . $path . '/icons/' . $icon . '.svg" />';
 		$output .= '<a role="button" data-toggle="collapse" data-parent="#cp_cmis_document_accordion_' . $id . '" href="#cp_cmis_document_accordion_' . $id . '_collapse" aria-expanded="true" aria-controls="cp_cmis_document_accordion_' . $id . '_collapse">';
-		$output .= $heading;
+		$output .= $title;
 		$output .= '</a>';
 		$output .= '</h3>';
 		$output .= '</div>';
@@ -127,15 +127,15 @@ class CpCMISDocuments extends BlockBase implements BlockPluginInterface {
 		);
 	
 	
-		$heading = '';
-		if ($config['cp_cmis_documents_heading'] != null) {
-			$heading = $config['cp_cmis_documents_heading'];
+		$title = '';
+		if ($config['cp_cmis_documents_title'] != null) {
+			$title = $config['cp_cmis_documents_title'];
 		}
 		
-		$form['cp_cmis_documents_heading'] = array (
+		$form['cp_cmis_documents_title'] = array (
 				'#type' => 'textfield',
-				'#title' => $this->t('Heading'),
-				'#default_value' => $heading
+				'#title' => $this->t('Title'),
+				'#default_value' => $title
 		);
 		
 		
@@ -188,7 +188,7 @@ class CpCMISDocuments extends BlockBase implements BlockPluginInterface {
 	 */
 	public function blockSubmit($form, FormStateInterface $form_state) {
 		$this->setConfigurationValue('cp_cmis_documents_id', $form_state->getValue('cp_cmis_documents_id'));
-		$this->setConfigurationValue('cp_cmis_documents_heading', $form_state->getValue('cp_cmis_documents_heading'));
+		$this->setConfigurationValue('cp_cmis_documents_title', $form_state->getValue('cp_cmis_documents_title'));
 		$this->setConfigurationValue('cp_cmis_documents_url', $form_state->getValue('cp_cmis_documents_url'));
 		$this->setConfigurationValue('cp_cmis_documents_icon', $form_state->getValue('cp_cmis_documents_icon'));
 	}

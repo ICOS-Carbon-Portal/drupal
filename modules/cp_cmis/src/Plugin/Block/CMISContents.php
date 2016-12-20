@@ -21,8 +21,8 @@ class CMISContents extends BlockBase implements BlockPluginInterface {
 	 */
 	public function build() {
 		
-		$config = \Drupal::config('cp_cmis.settings');
-		$paths = explode(',', $config->get('paths'));
+		$settings = \Drupal::config('cp_cmis.settings');
+		$paths = explode(',', $settings->get('paths'));
 		
 		$this->service = new Service();
 		

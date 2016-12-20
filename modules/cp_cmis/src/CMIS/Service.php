@@ -12,13 +12,13 @@ class Service {
 	
 	function __construct() {
 		
-		$config = \Drupal::config('cp_cmis.settings');
+		$settings = \Drupal::config('cp_cmis.settings');
 		
-		if (($config->get('url') != null && $config->get('url') != '')
-				&& ($config->get('username') != null && $config->get('username') != '')
-				&& ($config->get('password') != null && $config->get('password') != '')) {
+		if (($settings->get('url') != null && $settings->get('url') != '')
+				&& ($settings->get('username') != null && $settings->get('username') != '')
+				&& ($settings->get('password') != null && $settings->get('password') != '')) {
 			
-					$this->service = new \CMISService($config->get('url'), $config->get('username'), $config->get('password'));
+					$this->service = new \CMISService($settings->get('url'), $settings->get('username'), $settings->get('password'));
 		}	
 	}
 	
@@ -39,7 +39,7 @@ class Service {
 							$document = new Document();
 							$document->setId($object->properties['cmis:objectId']);
 							$document->setName($object->properties['cmis:name']);
-							$document->setDescription($object->properties['cmis:description']);
+							//$document->setDescription($object->properties['cmis:description']);
 							$document->setLastModifiedBy($object->properties['cmis:lastModifiedBy']);
 							$document->setLastModifiedDate($object->properties['cmis:lastModificationDate']);
 							

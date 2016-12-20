@@ -28,27 +28,34 @@ class Settings extends ConfigFormBase {
 	 */
 	public function buildForm(array $form, FormStateInterface $form_state) {
 		 
-		$config = $this->config('cp_cmis.settings');
+		$settings = $this->config('cp_cmis.settings');
 	
 		$form['cp_cmis_url'] = array (
 			'#type' => 'textfield',
 			'#title' => $this->t('URL'),
 			'#description' => $this->t(''),
-			'#default_value' => $config->get('url')
+			'#default_value' => $settings->get('url')
 		);
 		
 		$form['cp_cmis_username'] = array (
 			'#type' => 'textfield',
 			'#title' => $this->t('Username'),
 			'#description' => $this->t(''),
-			'#default_value' => $config->get('username')
+			'#default_value' => $settings->get('username')
 		);
 		
 		$form['cp_cmis_password'] = array (
 			'#type' => 'textfield',
 			'#title' => $this->t('Password'),
 			'#description' => $this->t(''),
-			'#default_value' => $config->get('password')
+			'#default_value' => $settings->get('password')
+		);
+		
+		$form['cp_cmis_public_base_path'] = array (
+				'#type' => 'textfield',
+				'#title' => $this->t('Public base path'),
+				'#description' => $this->t(''),
+				'#default_value' => $settings->get('public_base_path')
 		);
 		
 		$form['cp_cmis_paths'] = array(
@@ -56,7 +63,7 @@ class Settings extends ConfigFormBase {
 				'#title' => t('Assign a comma separated list of path\'s.'),
 				'#description' => t('Insert a comma separated list of path\'s to the folders you want to list contents from.'),
 				'#required' => FALSE,
-				'#default_value' => $config->get('paths')
+				'#default_value' => $settings->get('paths')
 		);
 	
 		return parent::buildForm($form, $form_state);	 
@@ -67,13 +74,14 @@ class Settings extends ConfigFormBase {
 	 * {@inheritdoc}
 	 */
 	public function submitForm(array &$form, FormStateInterface $form_state) {
-		$config = $this->config('cp_cmis.settings');
+		$settings = $this->config('cp_cmis.settings');
 		
-		$config->set('url', $form_state->getValue('cp_cmis_url'));
-		$config->set('username', $form_state->getValue('cp_cmis_username'));
-		$config->set('password', $form_state->getValue('cp_cmis_password'));
-		$config->set('paths', $form_state->getValue('cp_cmis_paths'));
-		$config->save();
+		$settings->set('url', $form_state->getValue('cp_cmis_url'));
+		$settings->set('username', $form_state->getValue('cp_cmis_username'));
+		$settings->set('password', $form_state->getValue('cp_cmis_password'));
+		$settings->set('public_base_path', $form_state->getValue('cp_cmis_public_base_path'));
+		$settings->set('paths', $form_state->getValue('cp_cmis_paths'));
+		$settings->save();
 		
 		parent::submitForm($form, $form_state);
 	}
