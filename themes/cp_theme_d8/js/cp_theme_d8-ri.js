@@ -117,14 +117,18 @@ function handleIngressAndTitle() {
 /** 
 * Home page
 * Tweets, Teasing blog and Station map on home page.
-* The following methods assume an embedded Tweet, a Teased CP Blog and a iframe in a respectively block on main content.
+* The following methods assume an embedded Tweet, a Teased CP Blog and a iframe (Google Map) in a respectively block on main content.
 * The methods also depends of a CP Event's at right sidebar.
 */
 function fixHome() {
 	jQuery('.main-content #block-tweets').css({'background-color':'#f6f6f2', 'height':440});
 	jQuery('.main-content #block-tweets .content').css({'height':440, 'overflow-y':'scroll'});
     jQuery('.main-content .block-view-teased-cp-blog').css({'background-color':'#f6f6f2', 'height':440});
-    jQuery('.main-content #block-stationmap').css({'border-left':'20px solid #f6f6f2', 'border-top':'5px solid #f6f6f2', 'border-right':'20px solid #f6f6f2', 'border-bottom':'20px solid #f6f6f2', 'background-color':'#f6f6f2'});
+    jQuery('.main-content #block-stationmap').css({'height':400});
+    jQuery('.main-content #block-stationmap').css({'border-top':'5px solid #f6f6f2', 'background-color':'#f6f6f2'});
+    jQuery('.main-content #block-stationmap h2').css({'margin-left':'2rem'});
+    jQuery('.main-content #block-stationmap > .content').css({'border-left':'20px solid #f6f6f2', 'border-right':'20px solid #f6f6f2'});
+    jQuery('.main-content #block-stationmap .to_bigger_map').css({'background-color':'#f6f6f2'});
 }
 
 function fixHomeMax() {
@@ -146,15 +150,15 @@ function fixHomeMax() {
 	
     jQuery(tweetEl).css({'width':w+40, 'border-left':'20px solid #f6f6f2', 'border-right':'40px solid #fff'});
     
-    jQuery('.main-content .block-view-teased-cp-blog').css({'width':w-40, 'position':'absolute', 'top':tweetPos.top, 'left':w+40, 'border-left':'20px solid #f6f6f2', 'border-right':'20px solid #f6f6f2'});
+    jQuery('.main-content .block-view-teased-cp-blog').css({'width':w-40, 'position':'absolute', 'top':tweetPos.top, 'left':w+20, 'border-left':'20px solid #f6f6f2', 'border-right':'20px solid #f6f6f2'});
     jQuery('.main-content .block-view-teased-cp-blog .teaser').css({'width':'100%'});  
     
-    jQuery('.main-content .block-view-teased-cp-blog').css({'margin-top':0});
+    jQuery('.main-content .block-view-teased-cp-blog').css({'margin-top':0, 'border-top':0});
     
-    jQuery('#block-stationmap').css({'width':w, 'margin-top':200}); 
+    jQuery('#block-stationmap').css({'width':'100%', 'margin-top':140, 'margin-bottom': 0}); 
     
-    if (eventEl.height() < 1040) {	
-    	jQuery('#block-listofteasedcpevents').css({'padding-bottom':1040-eventEl.height()});
+    if (eventEl.height() < 980) {	
+    	jQuery('#block-listofteasedcpevents').css({'padding-bottom':980-eventEl.height()});
     }
     
 }
@@ -163,10 +167,10 @@ function fixHomeMin() {
 	jQuery('.main-content #block-tweets').css({'width': '480px', 'border-left':0, 'border-right':0});
 	jQuery('.main-content .block-view-teased-cp-blog').css({'display':'block', 'width':'480px', 'position':'relative', 'top':'0', 'left':'0'});
 	
-	jQuery('.main-content .block-view-teased-cp-blog').css({'margin-top':200});
+	jQuery('.main-content .block-view-teased-cp-blog').css({'margin-top':0, 'border-top':'10px solid #f6f6f2'});
 	
-	jQuery('#block-stationmap').css({'width':'480px', 'margin-top':200});
+	jQuery('#block-stationmap').css({'width':'480px', 'margin-top':0, 'margin-bottom': 100});
 	
-	jQuery('#block-listofteasedcpevents').css({'padding-bottom':'0'});
+	jQuery('#block-listofteasedcpevents').css({'padding-bottom':0});
    
 }
