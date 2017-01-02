@@ -8,16 +8,10 @@ use Drupal\smtp\Plugin\Mail\SMTPMailSystem;
 
 class CPEmailFeedbackForm extends FormBase {
   
-	/**
-	 * {@inheritdoc}.
-	 */
 	public function getFormId() {
     	return 'cp_email_feedback_form';
 	}
   
-	/**
-	 * {@inheritdoc}
-	 */
 	public function buildForm(array $form, FormStateInterface $form_state) {
   	
   		$sender = '';
@@ -35,8 +29,7 @@ class CPEmailFeedbackForm extends FormBase {
   			'#required' => true,
   			'#disabled' => $disabled,
   			'#default_value' => $sender,
-  			'#element_validate' => array('validateForm'),
-  			
+  			'#element_validate' => array('validateForm'),	
   		);
   
   		$form['message'] = array (
@@ -55,9 +48,6 @@ class CPEmailFeedbackForm extends FormBase {
   		return $form;
   	}
   
-	/**
-	 * {@inheritdoc}
-	 */
 	public function validateForm(array &$form, FormStateInterface $form_state) {
   		if (! valid_email_address($form_state->getValue('sender'))) {
   			$form_state->setErrorByName('email-error', t('This is not a valid email address.'));
@@ -66,16 +56,13 @@ class CPEmailFeedbackForm extends FormBase {
   		return true;
   	}  
   
-	/**
-	 * {@inheritdoc}
-	 */
 	public function submitForm(array &$form, FormStateInterface $form_state) {
   		$sender = $form_state->getValue('sender');
 		$message = $form_state->getValue('message');
 
-		$config = \Drupal::service('config.factory')->getEditable('cp_email.settings');
-		$receiver = $config->get('settings.feedback_receiver');
-		$subject = $config->get('settings.feedback_subject');
+		$settings = \Drupal::service('config.factory')->getEditable('cp_email.settings');
+		$receiver = $settings->get('settings.feedback_receiver');
+		$subject = $settings->get('settings.feedback_subject');
 	
 		if ($receiver != '') {
 			

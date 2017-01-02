@@ -41,9 +41,6 @@ class CpEmailBlock extends BlockBase {
 		return $output;
 	}
 	
-	/**
-	 * {@inheritdoc}
-	 */
 	public function blockForm($form, FormStateInterface $form_state) {
 	
 		$form = parent::blockForm($form, $form_state);
@@ -150,10 +147,6 @@ class CpEmailBlock extends BlockBase {
 		return $form;
 	}
 	
-	
-	/**
-	 * {@inheritdoc}
-	 */
 	public function blockSubmit($form, FormStateInterface $form_state) {
 		$this->setConfigurationValue('cp_email_id', $form_state->getValue('cp_email_id'));
 		$this->setConfigurationValue('cp_email_receiver', $form_state->getValue('cp_email_receiver'));

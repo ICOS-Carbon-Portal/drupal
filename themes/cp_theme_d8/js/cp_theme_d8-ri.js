@@ -121,6 +121,8 @@ function handleIngressAndTitle() {
 * The methods also depends of a CP Event's at right sidebar.
 */
 function fixHome() {
+	jQuery('#block-listofteasedcpnews').css({'min-height':800});
+	jQuery('#block-listofteasedcpevents').css({'min-height':1040});
 	jQuery('.main-content #block-tweets').css({'background-color':'#f6f6f2', 'height':440});
 	jQuery('.main-content #block-tweets .content').css({'height':440, 'overflow-y':'scroll'});
     jQuery('.main-content .block-view-teased-cp-blog').css({'background-color':'#f6f6f2', 'height':440});

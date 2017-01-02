@@ -7,17 +7,11 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\smtp\Plugin\Mail\SMTPMailSystem;
 
 class CPEmailForm extends FormBase {
-  
-	/**
-	 * {@inheritdoc}.
-	 */
+  	
 	public function getFormId() {
     	return 'cp_email_form';
 	}
   
-	/**
-	 * {@inheritdoc}
-	 */
 	public function buildForm(array $form, FormStateInterface $form_state, $config = null) {
 		
   		$sender = '';
@@ -46,8 +40,7 @@ class CPEmailForm extends FormBase {
   			'#type' => 'textfield',
   			'#title' => t($config['cp_email_label_sender']),
   			'#required' => true,
-  			'#default_value' => $sender,
-  			
+  			'#default_value' => $sender,	
   		);
   
   		$form['cp_email_message'] = array (
@@ -66,16 +59,16 @@ class CPEmailForm extends FormBase {
   		return $form;
   	}
   	
-  	/**
-  	 * {@inheritdoc}
-  	 */
   	public function validateForm(array &$form, FormStateInterface $form_state) {
+  		if (! valid_email_address($form_state->getValue('cp_email_sender'))) {
+  			drupal_set_message($form_state->getValue('cp_email_sender') . ' is not a valid email address.', 'error');
+  			
+  			return false;
+  		}
+  		
   		return true;
   	}  	
   
-	/**
-	 * {@inheritdoc}
-	 */
 	public function submitForm(array &$form, FormStateInterface $form_state) {
 		$receiver = $form_state->getValue('cp_email_receiver');
   		$sender = $form_state->getValue('cp_email_sender');
@@ -104,7 +97,7 @@ class CPEmailForm extends FormBase {
 			}
 			
   		} else {
-  			drupal_set_message($sender . ' is not a valid email address.', 'error');
+  			//drupal_set_message($sender . ' is not a valid email address.', 'error');
   		}
 	} 
 }

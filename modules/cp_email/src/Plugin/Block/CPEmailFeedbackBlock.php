@@ -22,37 +22,30 @@ class CpEmailFeedbackBlock extends BlockBase {
 		
 	}
 
-	/**
-	 * {@inheritdoc}
-	 */
 	public function blockForm($form, FormStateInterface $form_state) {
 		
 		$form = parent::blockForm($form, $form_state);
-		$config = \Drupal::service('config.factory')->getEditable('cp_email.settings');
+		$settings = \Drupal::service('config.factory')->getEditable('cp_email.settings');
 		
 		$form['receiver'] = array (
 				'#type' => 'textfield',
 				'#title' => $this->t('The receiver email'),
-				'#default_value' => $config->get('settings.feedback_receiver')
+				'#default_value' => $settings->get('settings.feedback_receiver')
 		);
 		
 		$form['subject'] = array (
 				'#type' => 'textfield',
 				'#title' => $this->t('The subject'),
-				'#default_value' => $config->get('settings.feedback_subject')
+				'#default_value' => $settings->get('settings.feedback_subject')
 		);
 	
 		return $form;	 
 	}
 	
-	
-	/**
-	 * {@inheritdoc}
-	 */
 	public function blockSubmit($form, FormStateInterface $form_state) {
-		$config = \Drupal::service('config.factory')->getEditable('cp_email.settings');
-		$config->set('settings.feedback_receiver', $form_state->getValue('receiver'));
-		$config->set('settings.feedback_subject', $form_state->getValue('subject'));
-		$config->save();
+		$settings = \Drupal::service('config.factory')->getEditable('cp_email.settings');
+		$settings->set('settings.feedback_receiver', $form_state->getValue('receiver'));
+		$settings->set('settings.feedback_subject', $form_state->getValue('subject'));
+		$settings->save();
 	}
 }
