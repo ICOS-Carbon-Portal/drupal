@@ -20,4 +20,12 @@ cp_statistics.settings:
     _form: '\Drupal\cp_statistics\Controller\Settings'
     _title: 'CP Statistics Settings'
   requirements:
-    _permission: 'administer site configuration'       
+    _permission: 'administer site configuration'   
+    
+cp_statistics.show_statistics:
+  path: '/cp_statistics/show_statistics'
+  defaults:
+    _controller: '\Drupal\cp_statistics\Controller\CPStatisticsPage::showStatistics'
+    _title: ''
+  requirements:
+    _permission: 'administer site configuration'        
