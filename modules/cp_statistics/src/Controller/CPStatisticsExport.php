@@ -8,7 +8,7 @@ class CPStatisticsExport extends ControllerBase {
 	
 	public function export() {
 	  	
-		$result = db_query('select id, ip, page, referrer, browser, inlogged, timestamp, year, month, day, clock from cp_statistics_visit');
+		$result = db_query('select id, ip, page, referrer, browser, inlogged, timestamp, year, month, day, clock, country_code, lat, lon from cp_statistics_visit');
 				
 		$curl = curl_init("restheart:8080/db/drupal_cp_visits");
 		curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "post");
@@ -30,7 +30,10 @@ class CPStatisticsExport extends ControllerBase {
 					"year" => $row->year,
 					"month" => $row->month,
 					"day" => $row->day,
-					"clock" => $row->clock
+					"clock" => $row->clock,
+					"country_code" => $row->country_code,
+					"lat" => $row->lat,
+					"lon" => $row->lon
 			);
 		
 			

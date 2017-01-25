@@ -9,4 +9,12 @@ script:
     
   dependencies:
     - core/jquery
-    - core/jquery.once              
+    - core/jquery.once
+    
+script_restheart:
+  js:
+    js/cp_statistics_via_restheart.js: {}
+    
+  dependencies:
+    - core/jquery
+    - core/jquery.once                  

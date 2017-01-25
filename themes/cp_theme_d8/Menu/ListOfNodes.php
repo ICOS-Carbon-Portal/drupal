@@ -74,7 +74,6 @@ class ListOfNodes {
 		$top_nodes = array();
 		foreach ($this->nodes as $node) {
 			if ($node->getDepth() == '1') {
-				$node->setPath(str_replace('internal:/', '', $node->getPath()));
 				$top_nodes[] = $node;	
 			}
 		}
@@ -165,7 +164,9 @@ class ListOfNodes {
 			
 			// Add values
 			$node = $this->_add_attributes($node);
-			$node->setPath(str_replace('entity:', '', $node->getPath()));
+			$node_path = str_replace('entity:', '', $node->getPath());
+			$node_path = str_replace('internal:/', '', $node_path);
+			$node->setPath($node_path);
 			
 			// Fix weight
 			$node->setWeight($node->getWeight() + 50);

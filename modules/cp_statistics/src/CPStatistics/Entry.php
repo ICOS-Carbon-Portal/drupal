@@ -15,6 +15,9 @@ class Entry {
 	private $month;
 	private $day;
 	private $clock;
+	private $countryCode;
+	private $lat;
+	private $lon;
 
 	function __construct() {
 	}
@@ -105,5 +108,29 @@ class Entry {
 	
 	public function setClock($clock) {
 		$this->clock = $clock;
+	}
+	
+	public function getCountryCode() {
+		return $this->countryCode;
+	}
+	
+	public function setCountryCode($countryCode) {
+		$this->countryCode = $countryCode;
+	}
+	
+	public function getLat() {
+		return $this->lat;
+	}
+	
+	public function setLat($lat) {
+		$this->lat = $lat;
+	}
+	
+	public function getLon() {
+		return $this->lon;
+	}
+	
+	public function setLon($lon) {
+		$this->lon = $lon;
 	}
 }

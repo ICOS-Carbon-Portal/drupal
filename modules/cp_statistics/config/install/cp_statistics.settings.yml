@@ -1,2 +1,4 @@
 settings:
-  portal: 'cp'
+  internal_or_restheart: ''
+  restheart_post_path: ''
+  restheart_get_path: ''

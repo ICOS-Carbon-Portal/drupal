@@ -7,25 +7,23 @@ use Drupal\Core\Form\FormStateInterface;
 
 /**
  * @Block(
- *   id = "cp_statistics",
- *   admin_label = @Translation("CP statistics"),
+ *   id = "cp_statistics_via_restheart",
+ *   admin_label = @Translation("CP statistics via Restheart"),
  * )
  */
-class CpStatisticsBlock extends BlockBase {
+class CPStatisticsViaRestheartBlock extends BlockBase {
 	
 	function build() {
 		$config = $this->getConfiguration();
 
 		if ($config['cp_statistics_data_url'] != '') {
-			$elements['CP_STATISTICS'] = '';
 			
 			return array(
-				'#theme' => 'cp_statistics',
-				'#elements' => $elements,
+				'#markup' => '<div id="cp_statistics"></div>',
 				'#attached' => array(
 					'library' =>  array(
 						'cp_statistics/style',
-						'cp_statistics/script'
+						'cp_statistics/script_restheart'
 					),
 					'drupalSettings' => array(
 						'data_url' => $config['cp_statistics_data_url'],
@@ -51,7 +49,7 @@ class CpStatisticsBlock extends BlockBase {
 		
 		$form['cp_statistics_data_url'] = array (
 				'#type' => 'textfield',
-				'#title' => $this->t('URL to the Rest service'),
+				'#title' => $this->t('URL to the Restheart service'),
 				'#default_value' => $data_url
 		);
 		return $form;

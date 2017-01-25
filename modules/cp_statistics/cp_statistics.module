@@ -10,7 +10,6 @@ function cp_statistics_theme() {
 }
 
 function cp_statistics_page_bottom(array &$page_bottom) {
-	
 	\Drupal::service('page_cache_kill_switch')->trigger();
 	
 	$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
@@ -37,22 +36,23 @@ function cp_statistics_page_bottom(array &$page_bottom) {
 	
 	$settings = \Drupal::config('cp_statistics.settings');
 	
-	if ($settings->get('settings.portal') == 'cp') { 
-		cp_statistics_cp_restheart($body); 
+	if ($settings->get('settings.internal_or_restheart') == 'internal') {
+		cp_statistics_internal($body);
 	
-	} else if ($settings->get('settings.portal') == 'ri') {
-		cp_statistics_internal_db($body);
+	} else if ($settings->get('settings.internal_or_restheart') == 'restheart'
+			&& $settings->get('settings.restheart_post_path') != '') { 
+				
+		cp_statistics_restheart($body, $settings->get('settings.restheart_post_path')); 
 	}
 	
 	$page_bottom['cp_statistics'] = ['#markup' => ''];
 }
 
-function cp_statistics_internal_db($body) {
-
+function cp_statistics_internal($body) {
 	$db = \Drupal::service('database');
-	$result = $db->query('show tables like \'cp_statistics_visit\'')->fetchAll();
+	$exists = $db->query('show tables like \'cp_statistics_visit\'')->fetchAll();
 
-	if ($result) {
+	if ($exists) {
 
 		$insert = $db->insert('cp_statistics_visit');
 		$insert->fields(array(
@@ -70,9 +70,8 @@ function cp_statistics_internal_db($body) {
 	}
 }
 
-function cp_statistics_cp_restheart($body) {
-	
-	$curl = curl_init("restheart:8080/db/drupal_cp_visits");
+function cp_statistics_restheart($body, $restheart_path) {
+	$curl = curl_init("restheart:$restheart_path");
 	curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "post");
 	curl_setopt($curl, CURLOPT_HEADER, false);
 	curl_setopt($curl, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
@@ -80,4 +79,68 @@ function cp_statistics_cp_restheart($body) {
 	
 	curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($body));
 	curl_exec($curl);
+}
+
+function cp_statistics_cron() {
+	$settings = \Drupal::config('cp_statistics.settings');
+
+	if ($settings->get('settings.internal_or_restheart') == 'internal') {
+		cp_statistics_internal_update_position();
+	
+	
+	} else if ($settings->get('settings.internal_or_restheart') != 'restheart'
+			&& $settings->get('settings.restheart_get_path') != ''
+			&& $settings->get('settings.restheart_post_path') != '') {
+		
+	}
+}
+
+function cp_statistics_internal_update_position() {
+	$db = \Drupal::service('database');
+	$exists = $db->query('show tables like \'cp_statistics_visit\'')->fetchAll();
+	
+	if ($exists) {
+		$date = new \DateTime();
+		\Drupal::logger('cp_statistics')->notice('Cron job: ' . $date->format('Y-m-d H:i:s'));
+		
+		$result = $db->query('select id, ip, country_code from cp_statistics_visit')->fetchAll();
+		
+		$list = [];
+		
+		if (! empty($result)) {
+			foreach ($result as $row) {
+				if ($row->country_code == '') {
+					$list[] = array('id' => $row->id, 'ip' => $row->ip);
+				}
+			}
+		}
+		
+		if (! empty($list)) {
+			$co_limit = 10000;
+			$co = 1;
+			
+			foreach ($list as $item) {
+				$id = $item['id'];
+				$ip = $item['ip'];
+				
+				if ($co < $co_limit) {
+					$geolocationSrc = file_get_contents("http://freegeoip.net/json/$ip");	
+					$geolocation = (json_decode($geolocationSrc, true));
+					
+					if (! empty($geolocation)) {
+						$code = $geolocation['country_code'];
+						$lat = $geolocation['latitude'];
+						$lon = $geolocation['longitude'];
+						
+						$update = $db->update('cp_statistics_visit');
+						$update->condition('id', $id);
+						$update->fields(['country_code' => $code, 'lat' => $lat, 'lon' => $lon]);
+						$update->execute();
+						
+						$co ++;
+					}
+				}
+			}
+		}
+	}
 }

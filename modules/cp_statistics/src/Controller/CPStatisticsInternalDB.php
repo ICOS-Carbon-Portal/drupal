@@ -4,16 +4,16 @@ namespace Drupal\cp_statistics\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 
-class CPStatisticsDB extends ControllerBase {
+class CPStatisticsInternalDB extends ControllerBase {
 	
 	public function createVisitTable() {
 	  	
 		$do_create = true;
 		
 		$db = \Drupal::service('database');
-		$result = $db->query('show tables like \'cp_statistics_visit\'')->fetchAll();
+		$exists = $db->query('show tables like \'cp_statistics_visit\'')->fetchAll();
 		
-		if (empty($result)) {
+		if (empty($exists)) {
 			$table = array(
 					'description' => 'CP Statistics visit table',
 						
@@ -92,6 +92,24 @@ class CPStatisticsDB extends ControllerBase {
 									'type' => 'varchar',
 									'not null' => TRUE,
 									'length' => 10
+							),
+							'country_code' => array(
+									'description' => 'Country code',
+									'type' => 'varchar',
+									'not null' => FALSE,
+									'length' => 10
+							),
+							'lat' => array(
+									'description' => 'Latitude',
+									'type' => 'varchar',
+									'not null' => FALSE,
+									'length' => 40
+							),
+							'lon' => array(
+									'description' => 'Longitude',
+									'type' => 'varchar',
+									'not null' => FALSE,
+									'length' => 40
 							),
 					),
 						

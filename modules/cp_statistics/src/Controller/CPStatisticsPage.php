@@ -2,95 +2,54 @@
 
 namespace Drupal\cp_statistics\Controller;
 
-use Drupal\cp_statistics\CPStatistics\Entry;
+use Drupal\cp_statistics\CPStatistics\InternalDataService;
+use Drupal\Core\Form\FormBase;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\ChangedCommand;
+use Drupal\Core\Ajax\CssCommand;
+use Drupal\Core\Ajax\HtmlCommand;
+use Drupal\Core\Ajax\InvokeCommand;
 
-use Drupal\Core\Controller\ControllerBase;
 
-class CPStatisticsPage extends ControllerBase {
+class CPStatisticsPage extends FormBase {
 	
-	public function showStatistics() {
-		
-		$list = $this->_collect_statistics_ip('2016', '12');
-		
-		$output = '<div>'.count($list).'</div>';
-		
-		return array('#markup' => $output);
-	}
-
-	function _collect_statistics_year() {
-		$db = \Drupal::service('database');
-	
-		$result = $db->query('
-				select distinct year
-				from cp_statistics_visit'
-			)->fetchAll();
-	
-		$list = array();
-	
-		if (! empty($result)) {
-			foreach ($result as $row) {
-				$list[] = $row->year;
-			}
-		}
-	
-		return $list;
+	public function getFormId() {
+		return 'cp_statistics';
 	}
 	
-	function _collect_statistics_ip($year, $month) {
-		$db = \Drupal::service('database');
+	public function buildForm(array $form, FormStateInterface $form_state) {
 		
-		$result = $db->query('
-				select distinct ip
-				from cp_statistics_visit
-				where year = :year
-				and month = :month',
+		$form['cp_statistics_years'] = array(
+				'#type' => 'select',
+				'#title' => 'Select year',
+				'#options' => [
+						'2016' => $this->t('2016'),
+						'2017' => $this->t('2017'),
+  				],
+				'#ajax' => array(
+						'callback' => 'Drupal\cp_statistics\Controller\CPStatisticsPage::loadByYear',
+						'effect' => 'fade',
+						'event' => 'change',
+						'progress' => array(
+								'type' => 'throbber',
+								'message' => NULL,
+						),
+				),
+		);
 				
-				array(':year' => $year, ':month' => $month)			
-			)->fetchAll();
-		
-		$list = array();
-		
-		if (! empty($result)) {
-			foreach ($result as $row) {
-				$entry = new Entry();
-				$entry->setIp($row->ip);
-				$list[] = $entry;
-			}
-		}
-		
-		return $list;
+		return $form;
 	}
 	
-	function _collect_statistics_entries($id) {
-		$db = \Drupal::service('database');
+	public function validateForm(array &$form, FormStateInterface $form_state) {
 	
-		$result = $db->query('
-				select ip, page, referrer, browser, inlogged, timestamp, year, month, day, clock
-				from cp_statistics_visit
-				where id = :id',
+	}
 	
-				array(':id' => $id)
-			)->fetchAll();
+	public function submitForm(array &$form, FormStateInterface $form_state) {
 	
-		$list = array();
+	}
 	
-		if (! empty($result)) {
-			foreach ($result as $row) {
-				$entry = new Entry();
-				$entry->setIp($row->ip);
-				$entry->setPage($row->page);
-				$entry->setReferrer($row->referrer);
-				$entry->setBrowser($row->browser);
-				$entry->setInlogged($row->inlogged);
-				$entry->setTimestamp($row->timestamp);
-				$entry->setYear($row->year);
-				$entry->setMonth($row->month);
-				$entry->setDay($row->day);
-				$entry->setClock($row->clock);
-				$list[] = $entry;
-			}
-		}
-
-		return $list;
+	public function loadByYear(array &$form, FormStateInterface $form_state) {
+		return null;
 	}
 }
