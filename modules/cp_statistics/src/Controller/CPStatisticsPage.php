@@ -2,54 +2,33 @@
 
 namespace Drupal\cp_statistics\Controller;
 
-use Drupal\cp_statistics\CPStatistics\InternalDataService;
-use Drupal\Core\Form\FormBase;
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Ajax\AjaxResponse;
-use Drupal\Core\Ajax\ChangedCommand;
-use Drupal\Core\Ajax\CssCommand;
-use Drupal\Core\Ajax\HtmlCommand;
-use Drupal\Core\Ajax\InvokeCommand;
+use Drupal\Core\Controller\ControllerBase;
 
+class CPStatisticsPage extends ControllerBase {
 
-class CPStatisticsPage extends FormBase {
-	
-	public function getFormId() {
-		return 'cp_statistics';
-	}
-	
-	public function buildForm(array $form, FormStateInterface $form_state) {
+	function show() {
 		
-		$form['cp_statistics_years'] = array(
-				'#type' => 'select',
-				'#title' => 'Select year',
-				'#options' => [
-						'2016' => $this->t('2016'),
-						'2017' => $this->t('2017'),
-  				],
-				'#ajax' => array(
-						'callback' => 'Drupal\cp_statistics\Controller\CPStatisticsPage::loadByYear',
-						'effect' => 'fade',
-						'event' => 'change',
-						'progress' => array(
-								'type' => 'throbber',
-								'message' => NULL,
-						),
+		return array(
+			'#markup' => $this->build_html(),
+			'form' => \Drupal::formBuilder()->getForm('\Drupal\cp_statistics\Form\CPStatisticsForm'),
+			'#attached' => array(
+				'library' =>  array(
+				'cp_statistics/style',
+				'cp_statistics/script'
 				),
+			),
 		);
-				
-		return $form;
 	}
-	
-	public function validateForm(array &$form, FormStateInterface $form_state) {
-	
+
+	function build_html() {
+		$output = '<div id="cp_statistics">';
+		$output .= '<h3 class="page-title">Visit statistics</h3>';
+		$output .= '<div id="cp_statistics_selection"></div>';
+		$output .= '<h4 id="cp_statistics_selected_year"></h4>';
+		$output .= '<div id="cp_statistics_view"></div>';
+		$output .= '</div>';
+
+		return $output;
 	}
-	
-	public function submitForm(array &$form, FormStateInterface $form_state) {
-	
-	}
-	
-	public function loadByYear(array &$form, FormStateInterface $form_state) {
-		return null;
-	}
+
 }

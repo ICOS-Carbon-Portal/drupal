@@ -4,8 +4,8 @@ cp_statistics.create_visit_table:
     _controller: '\Drupal\cp_statistics\Controller\CPStatisticsInternalDB::createVisitTable'
     _title: ''
   requirements:
-    _permission: 'administer site configuration'   
-     
+    _permission: 'administer site configuration'
+
 cp_statistics.export:
   path: '/cp_statistics/export'
   defaults:
@@ -13,19 +13,27 @@ cp_statistics.export:
     _title: ''
   requirements:
     _permission: 'administer site configuration'
-    
+
 cp_statistics.settings:
   path: '/admin/config/cp_statistics_settings'
   defaults:
     _form: '\Drupal\cp_statistics\Controller\Settings'
     _title: 'CP Statistics Settings'
   requirements:
-    _permission: 'administer site configuration'   
-    
+    _permission: 'administer site configuration'
+
 cp_statistics.show_statistics:
   path: '/cp_statistics/show_statistics'
   defaults:
-    _form: '\Drupal\cp_statistics\Controller\CPStatisticsPage'
+    _controller: '\Drupal\cp_statistics\Controller\CPStatisticsPage::show'
     _title: ''
   requirements:
-    _permission: 'administer site configuration'        
+    _permission: 'administer site configuration'
+
+cp_statistics.get_statistics_data:
+  path: '/cp_statistics/get_statistics_data/{service}/{year}/{month}'
+  defaults:
+    _controller: '\Drupal\cp_statistics\Controller\CPStatisticsAjaxResponse::getData'
+    _title: ''
+  requirements:
+    _permission: 'access content'       

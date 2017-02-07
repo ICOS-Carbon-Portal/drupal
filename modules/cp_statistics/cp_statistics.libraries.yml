@@ -6,6 +6,7 @@ style:
 script:     
   js:
     js/cp_statistics.js: {}
+    js/d3.min.js: {}
     
   dependencies:
     - core/jquery

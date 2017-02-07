@@ -157,12 +157,11 @@ function fixHomeMax() {
     
     jQuery('.main-content .block-view-teased-cp-blog').css({'margin-top':0, 'border-top':0});
     
-    jQuery('#block-stationmap').css({'width':'100%', 'margin-top':140, 'margin-bottom': 0}); 
-    
     if (eventEl.height() < 980) {	
     	jQuery('#block-listofteasedcpevents').css({'padding-bottom':980-eventEl.height()});
     }
     
+    jQuery('#block-stationmap').css({'width':'100%', 'margin-top':140, 'margin-bottom': 0}); 
 }
 
 function fixHomeMin() {
@@ -171,8 +170,7 @@ function fixHomeMin() {
 	
 	jQuery('.main-content .block-view-teased-cp-blog').css({'margin-top':0, 'border-top':'10px solid #f6f6f2'});
 	
-	jQuery('#block-stationmap').css({'width':'480px', 'margin-top':0, 'margin-bottom': 100});
-	
 	jQuery('#block-listofteasedcpevents').css({'padding-bottom':0});
-   
+	
+	jQuery('#block-stationmap').css({'width':'480px', 'margin-top':0, 'margin-bottom': 100});
 }

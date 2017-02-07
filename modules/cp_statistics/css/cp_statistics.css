@@ -1,0 +1,54 @@
+#cp_statistics {
+	
+}
+
+#cp_statistics_selection {
+
+}
+
+#cp_statistics_selection select.form-select {
+	width: 260px;
+	padding: 4px 4px 4px 4px;
+	background-color: #f2f2f2;
+	font-size: 16px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;	
+}
+
+#cp_statistics_view {
+	
+}
+
+#cp_statistics_view .cp_statistics_month {
+	float: left;
+}
+
+#cp_statistics_view .cp_statistics_month {
+	border-right: solid 2rem #fff;
+}
+
+#cp_statistics_view .cp_statistics_month .inner {
+	
+}
+
+#cp_statistics_view .chart {
+	
+}
+
+#cp_statistics_view .chart .legend {
+	padding: 0 0 20px 0;
+}
+
+#cp_statistics_view .chart .legend div {
+	color: #000;
+	font-weight: bold;
+	padding: 2px 2px 2px 2px;
+}
+
+#cp_statistics_selected_year,
+.cp_statistics_total, 
+.cp_statistics_unique,
+.chart_title {
+	font-size: 1.5em;
+}
