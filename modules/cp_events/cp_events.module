@@ -15,6 +15,11 @@ function cp_events_theme() {
 			'variables' => ['elements' => null],
 			'template' => 'selected_cp_event',
 	];
+	
+	$theme['cp_events_all_news'] = [
+			'variables' => ['elements' => null],
+			'template' => 'cp_events_all_news',
+	];	
 
 	return $theme;
 }

@@ -46,16 +46,19 @@
 .teased_cp_blog .date {
 	color: #0a96f0;
 	font-weight: bold;
+	padding-top: 10px;
 }
 
 .teased_cp_blog .title {
 	font-size: 1.8rem;
 	color: #0a96f0;
+	padding-bottom: 10px;
 }
 
 .teased_cp_blog .teaser {
 	font-size: 0.914em;
 	color: #333;
+	padding-top: 10px;
 }
 
 @media all and (min-width: 800px) {
