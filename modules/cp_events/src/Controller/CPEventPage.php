@@ -18,6 +18,8 @@ class CPEventPage extends ControllerBase {
 	  	
 	  	if ($settings->get('settings.date_format') == 'day-month-year') { $date_format = 'd-m-Y'; }
 	  	
+	  	$list_of_elements['site_home'] = "https://$_SERVER[HTTP_HOST]";
+	  	
 	  	$has_event = 0;
 	  	foreach ($list as $e) {
 	  		if ($e->getId() == $event_id) {
