@@ -161,3 +161,11 @@ function shareLinkedinEvent(eventId, siteHome) {
 	var windowFeatures = 'menubar=no, toolbar=no, location=no, resizable=yes, scrollbars=no, status=no, width=600, height=300';
 	window.open(url, 'share_linkedin_event', windowFeatures);
 }
+
+function shareFacebookEvent(eventId, eventTitle, siteHome) {
+	var message = 'u=' + siteHome +  '/event/' + eventId + '&t=' + encodeURIComponent(eventTitle);
+	var url = 'https://www.facebook.com/sharer/sharer.php?' + message;
+	
+	var windowFeatures = 'menubar=no, toolbar=no, location=no, resizable=yes, scrollbars=no, status=no, width=600, height=300';
+	window.open(url, 'share_facebook_event', windowFeatures);
+}

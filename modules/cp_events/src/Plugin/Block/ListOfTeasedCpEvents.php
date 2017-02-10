@@ -103,8 +103,10 @@ class ListOfTeasedCpEvents extends BlockBase {
 							$body = substr($e->getBody(), $body_start, 200) . '..</p>';
 						}
 						
-						$body .= '<a href="/event/' . $e->getId() . '">Read more..</a>';
+						$body .= '<p><a href="/event/' . $e->getId() . '">Read more..</a></p>';
 					}
+					
+					$body = preg_replace('/<br\s*\/>/', '', $body);
 					
 					$output .= '<div class="text">' . $body . '</div>';
 						

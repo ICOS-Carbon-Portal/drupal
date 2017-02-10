@@ -510,3 +510,9 @@ a.social_share_button:hover {
 	background-repeat: no-repeat;
 	width: 48px;
 }
+
+.social_share_facebook {
+	background-image: url(../images/facebook_button.png);
+	background-repeat: no-repeat;
+	width: 48px;
+}
