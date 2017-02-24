@@ -71,14 +71,19 @@ function cp_statistics_internal($body) {
 }
 
 function cp_statistics_restheart($body, $restheart_path) {
-	$curl = curl_init("restheart:$restheart_path");
+	
+	$curl = curl_init($restheart_path);
 	curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "post");
 	curl_setopt($curl, CURLOPT_HEADER, false);
 	curl_setopt($curl, CURLOPT_HTTPHEADER, array("Content-Type: application/json"));
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-	
 	curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($body));
-	curl_exec($curl);
+	
+	if (! curl_exec($curl)) {
+		\Drupal::logger('cp_statistics')->notice('CURL: ' . curl_error($curl));
+	}
+	
+	curl_close($curl);
 }
 
 function cp_statistics_cron() {

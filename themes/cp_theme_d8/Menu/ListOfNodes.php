@@ -49,14 +49,13 @@ class ListOfNodes {
 						$delimiter = '<span>&raquo;</span>';
 					//}
 					
-					$url = '/';
-					$this->breadcrumbs[] = '<li><a href="' . $url . $node->getPath().'">' . $node->getTitle() . '</a>' . $delimiter . '</li>';
+					$this->breadcrumbs[] = '<li><a href="/' . $node->getPath().'">' . $node->getTitle() . '</a>' . $delimiter . '</li>';
 					
 					$in --;
 				}
 			}
 			
-			$this->breadcrumbs[] = '<li><a href="' . $url . $active_node->getPath().'">' . $active_node->getTitle() . '</a></li>';
+			$this->breadcrumbs[] = '<li><a href="/' . $active_node->getPath().'">' . $active_node->getTitle() . '</a></li>';
 			$this->breadcrumbs[] = '</ul>';
 			
 		} 

@@ -4,6 +4,7 @@ namespace Drupal\cp_statistics\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\cp_statistics\CPStatistics\InternalDataService;
+use Drupal\cp_statistics\CPStatistics\RestheartDataService;
 use Symfony\Component\HttpFoundation\Response;
 
 class CPStatisticsAjaxResponse extends ControllerBase {
@@ -51,33 +52,44 @@ class CPStatisticsAjaxResponse extends ControllerBase {
 	}
 
 	private function getYears() {
-		$data = new InternalDataService();
-		return $data->getYears();
+		return $this->getService()->getYears();
 	}
 	
 	private function getMonths($year) {
-		$data = new InternalDataService();
-		return $data->getMonths($year);
+		return $this->getService()->getMonths($year);
 	}
 	
 	private function getTotalVisits($year, $month) {
-		$data = new InternalDataService();
-		return $data->getTotalVisits($year, $month);
+		return $this->getService()->getTotalVisits($year, $month);
 	}
 	
 	private function getUniqueVisitors($year, $month) {
-		$data = new InternalDataService();
-		return $data->getUniqueVisitors($year, $month);
+		return $this->getService()->getUniqueVisitors($year, $month);
 	}
 	
 	private function getUniqueVisitorsPerPage($year, $month, $number_of_pages) {
-		$data = new InternalDataService();
-		return $data->getUniqueVisitorsPerPage($year, $month, $number_of_pages);
+		return $this->getService()->getUniqueVisitorsPerPage($year, $month, $number_of_pages);
 	}
 	
 	private function getPages() {
-		$data = new InternalDataService();
-		return $data->getPages();
+		return $this->getService()->getPages();
+	}
+	
+	private function getService() {
+		$service = '';
+		
+		$settings = \Drupal::config('cp_statistics.settings');
+		
+		if ($settings->get('settings.internal_or_restheart') == 'internal') {
+			$service = new InternalDataService();
+			
+		} else if ($settings->get('settings.internal_or_restheart') == 'restheart'
+				&& $settings->get('settings.restheart_get_path') != '') {
+					
+			$service = new RestheartDataService($settings->get('settings.restheart_get_path'));
+		}
+		
+		return $service;
 	}
 }
 
