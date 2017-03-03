@@ -22,16 +22,24 @@ cp_statistics.settings:
   requirements:
     _permission: 'administer site configuration'
 
-cp_statistics.show_statistics:
-  path: '/cp_statistics/show_statistics'
+cp_statistics.overview:
+  path: '/cp_statistics/overview'
   defaults:
-    _controller: '\Drupal\cp_statistics\Controller\CPStatisticsPage::show'
+    _controller: '\Drupal\cp_statistics\Controller\CPStatisticsOverview::show'
     _title: ''
   requirements:
-    _permission: 'administer site configuration'
+    _permission: 'access content'
+    
+cp_statistics.review:
+  path: '/cp_statistics/review/{year}/{month}'
+  defaults:
+    _controller: '\Drupal\cp_statistics\Controller\CPStatisticsReview::show'
+    _title: ''
+  requirements:
+    _permission: 'access content'    
 
-cp_statistics.get_statistics_data:
-  path: '/cp_statistics/get_statistics_data/{service}/{year}/{month}'
+cp_statistics.get_data:
+  path: '/cp_statistics/get_data/{service}/{year}/{month}'
   defaults:
     _controller: '\Drupal\cp_statistics\Controller\CPStatisticsAjaxResponse::getData'
     _title: ''

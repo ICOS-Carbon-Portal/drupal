@@ -33,27 +33,7 @@ class InternalDataService implements IDataService {
 		)->fetchAll();
 		
 		foreach ($result as $row) {
-			$list['months_in_' . $year][] = array('month' => $row->month);
-		}
-		
-		return $list;
-	}
-	
-	public function getTotalVisits($year, $month) {
-		$list = array();
-		
-		$result = db_query('
-				select count(ip) as total_ip 
-				from cp_statistics_visit 
-				where year = :year
-				and month = :month
-				',
-			
-				array(':year' => $year, ':month' => $month)
-		);
-		foreach ($result as $row) {
-			
-			$list['total_visits_in_'. $year . '_' . $month][] = array('total_visits' => $row->total_ip);
+			$list['months'][] = array('month' => $row->month);
 		}
 		
 		return $list;
@@ -65,7 +45,7 @@ class InternalDataService implements IDataService {
 		$rp = new RelevantPages();
 		$pages = $rp->collectRelevantContent();
 		
-		$list_of_ip = array();
+		$listOfIp = array();
 		
 		foreach ($pages as $page) {
 			$alias = $page->getPage();
@@ -86,18 +66,19 @@ class InternalDataService implements IDataService {
 			)->fetchAll();
 			
 			foreach ($result as $row) {
-				if (! array_key_exists($row->ip ,$list_of_ip)) {
-					$list_of_ip[$row->ip] = $row->ip;
+				if (! array_key_exists($row->ip ,$listOfIp)) {
+					$listOfIp[$row->ip] = $row->ip;
+					$list['unique_visitors']['data'][] = array('ip' => $row->ip);
 				}
 			}
 		}
 		
-		$list['unique_visits_in_' . $year . '_' . $month][] = array('unique_visits' => count($list_of_ip));
+		$list['unique_visitors']['total'] = array('number' => count($listOfIp));
 		
 		return $list;
 	}
 	
-	public function getUniqueVisitorsPerPage($year, $month, $number_of_pages) {
+	public function getNumbersOfUniqueVisitors($year, $month, $numberOfPages) {
 		$list = array();
 		
 		$rp = new RelevantPages();
@@ -122,25 +103,25 @@ class InternalDataService implements IDataService {
 					array(':year' => $year, ':month' => $month, ':page' => $page->getPage(), ':alias' => $alias)
 			)->fetchAll();
 			
-			$number_of_ip = 0;
+			$numberOfIp = 0;
 			foreach ($result as $row) {
 				if ($row->number_of_ip) {
-					$number_of_ip += $row->number_of_ip;
+					$numberOfIp += $row->number_of_ip;
 				}
 			}
 			
-			$page->setNumberOfVisits($number_of_ip);
+			$page->setNumberOfVisits($numberOfIp);
 		}
 		
 		usort($pages, array($this,'compare_desc'));
 		
-		if ($number_of_pages == 0) {
-			$number_of_pages = count($pages) * 2;
+		if ($numberOfPages == 0) {
+			$numberOfPages = count($pages);
 		}
 		
 		foreach ($pages as $page) {
 			
-			if ($number_of_pages > 0 && $page->getNumberOfVisits()) {
+			if ($numberOfPages > 0 && $page->getNumberOfVisits()) {
 			
 				$path = $page->getPage();
 				if ($page->getAlias()) {
@@ -149,7 +130,7 @@ class InternalDataService implements IDataService {
 				
 				$list['pages'][] = array('page' => $path, 'unique_visits' => $page->getNumberOfVisits());
 				
-				$number_of_pages --;
+				$numberOfPages --;
 			}
 		}
 		

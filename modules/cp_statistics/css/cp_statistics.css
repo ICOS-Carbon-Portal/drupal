@@ -2,10 +2,6 @@
 	
 }
 
-#cp_statistics_selection {
-
-}
-
 #cp_statistics_selection select.form-select {
 	width: 260px;
 	padding: 4px 4px 4px 4px;
@@ -16,20 +12,26 @@
 	border-radius: 5px;	
 }
 
+#cp_statistics_title {
+	font-size: 1.5em;
+}
+
+#cp_statistics_title,
 #cp_statistics_view {
-	
+	padding-top: 20px;
 }
 
-#cp_statistics_view .cp_statistics_month {
-	float: left;
+#cp_statistics_selection {
+
 }
 
-#cp_statistics_view .cp_statistics_month {
-	border-right: solid 2rem #fff;
+#cp_statistics_view .month {
+	border-top: solid 1px #000099;
+	padding-bottom: 10px;
 }
 
-#cp_statistics_view .cp_statistics_month .inner {
-	
+#cp_statistics_view .month .inner {
+	padding: 20px 0 100px 0;
 }
 
 #cp_statistics_view .chart {
@@ -37,7 +39,9 @@
 }
 
 #cp_statistics_view .chart .legend {
-	padding: 0 0 20px 0;
+	float: left;
+	width: 40%;
+	border-right: solid 20px transparent;
 }
 
 #cp_statistics_view .chart .legend div {
@@ -46,9 +50,25 @@
 	padding: 2px 2px 2px 2px;
 }
 
-#cp_statistics_selected_year,
-.cp_statistics_total, 
-.cp_statistics_unique,
-.chart_title {
-	font-size: 1.5em;
+#cp_statistics_view #unique_visitors h5 .number {
+	font-weight: bold;
 }
+
+#cp_statistics_view #unique_visitors h5 .small_text {
+	font-size: xx-small;
+	text-transform: lowercase;	
+}
+
+#cp_statistics_view #pages {
+	border-top: solid 1px #000099;
+	width: 40%;
+}
+
+#cp_statistics_view #pages .page {
+	padding-left: 10px;
+}
+
+#cp_statistics_view #pages .odd {
+	background-color: #ccffff;
+}
+

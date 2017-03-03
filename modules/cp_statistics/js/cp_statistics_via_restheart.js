@@ -70,15 +70,15 @@ function cp_statistics_build() {
 	
     jQuery.each(years._embedded["rh:result"], function(key, val) {
     	
-    	var stat = cp_statistics_get_unique_ip_per_year(val._id, 1);
+    	var stat = cp_statistics_get_unique_ip_per_year(val.year, 1);
     	
-    	var year = '<div><span class="year">' + val._id + '</span><span class="uniqueip">' + stat._size + '</span></div>';
+    	var year = '<div><span class="year">' + val.year + '</span><span class="uniqueip">' + stat._size + '</span></div>';
     	jQuery('#cp_statistics').append(year);
     	
     	jQuery.each(['01','02','03','04','05','06','07','08','09','10','11','12'], function(key2, val2) {
-    		var stat2 = cp_statistics_get_unique_ip_per_year_and_month(val._id, val2, 1);
+    		var stat2 = cp_statistics_get_unique_ip_per_year_and_month(val.year, val2, 1);
     		
-    		var uniqueip = '<div><span class="month">' + val2 + '</span><span class="uniqueip">' +stat2._size+'</span></div>'
+    		var uniqueip = '<div><span class="month">' + val2 + '</span><span class="uniqueip">' + stat2._size + '</span></div>'
     		jQuery('#cp_statistics').append(uniqueip);
     	});
     	

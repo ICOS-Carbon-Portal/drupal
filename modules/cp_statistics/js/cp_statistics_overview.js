@@ -2,7 +2,7 @@
  'use strict';
  Drupal.behaviors.cp_statistics = {
   attach: function(context, settings) {  
-	$(context).find('#cp-statistics-page-form').once('correct').each(function () {
+	$(context).find('#cp-statistics-year-form').once('correct').each(function () {
 		var form = $(this);
 		form.detach();
 		$('#cp_statistics_selection').append(form);
@@ -12,17 +12,19 @@
 
 }(jQuery));
 
-jQuery('#edit-cp-statistics-page-year').change(function() {
+jQuery('#edit-cp-statistics-year').change(function() {
 	loadCPStatistics(jQuery(this).val());	
 });
 
 function loadCPStatistics(year) {
-	jQuery.getJSON('/cp_statistics/get_statistics_data/months/' + year + '/q', function(result) {
+	
+	var y = jQuery('#edit-cp-statistics-year').val();
+	jQuery('#cp_statistics_title').text('The 20 most visited pages per month in ' + y);
+	
+	jQuery.getJSON('/cp_statistics/get_data/months/' + year + '/q', function(result) {
 		if (result) {
 			jQuery('#cp_statistics_view').empty();
 		}
-		
-		jQuery('#cp_statistics_title').html('Visit statistics for ' . year);
 
 		var monthNames = {
 				'01': {
@@ -66,54 +68,62 @@ function loadCPStatistics(year) {
 		jQuery.each(result, function(i, field) {			
 			jQuery(field).each(function(i, e) {
 				var month = e.month;
-				var element = '<div id="cp_statistics_month_' + month + '" class="cp_statistics_month">'
+				var element = '<div id="cp_statistics_month_' + month + '" class="month">'
 						+ '<div class="inner">'
-						+ '<h5 class="">' + monthNames[month].name + '</h5>'
-						+ '<div class="numbers"></div>'
-						+ '<div class="chart"></div>';
+						+ '<h5 class="">' + monthNames[month].name + '&nbsp;&nbsp;&nbsp;&nbsp;<a href="/cp_statistics/review/' + year + '/' + month + '" target="_blank">Review</a></h5>'
+						+ '<div class="chart"></div>'
 						+ '</div>'
 						+ '</div>';
-						
+				
 				jQuery('#cp_statistics_view').append(element);
 				
-				//showTotal(year, month);
-				showUnique(year, month);
 				showChart(year, month);
 			});
 		});
 	});
 }
 
-function showTotal(year, month) {
-	jQuery.getJSON('/cp_statistics/get_statistics_data/totalvisitors/' + year + '/' + month + '', function(result) {
-		jQuery.each(result, function(i, field) {
-			jQuery('#cp_statistics_month_' + month + ' .numbers').append('<p class="cp_statistics_total">Total visits: ' + field[0].total_visits + '</p>');
-		});
-	});
-}
-
-function showUnique(year, month) {
-	jQuery.getJSON('/cp_statistics/get_statistics_data/uniquevisitors/' + year + '/' + month + '', function(result) {
-		jQuery.each(result, function(i, field) {
-			jQuery('#cp_statistics_month_' + month + ' .numbers').append('<p class="cp_statistics_unique">Unique visits: ' + field[0].unique_visits + '</p>');
-		});
-	});
-}
-
 function showChart(year, month) {
+	
+	var opts = {
+			  lines: 13
+			, length: 28
+			, width: 14
+			, radius: 42
+			, scale: 1
+			, corners: 1
+			, color: '#000'
+			, opacity: 0.25
+			, rotate: 0
+			, direction: 1
+			, speed: 1
+			, trail: 60
+			, fps: 20
+			, zIndex: 2e9
+			, className: 'spinner'
+			, top: '50%'
+			, left: '50%'
+			, shadow: false
+			, hwaccel: false
+			, position: 'absolute'
+	};
+	
+	var target = document.getElementById('cp_statistics_view');
+	var spinner = new Spinner(opts).spin(target);	
+	
 	var width = 400;
     var height = 400;
     var outerRadius = 200;
     var colors = d3.scale.category20();
 	
-	jQuery.getJSON('/cp_statistics/get_statistics_data/uniquevisitorsper10page/' + year + '/' + month + '', function(result) {
+	jQuery.getJSON('/cp_statistics/get_data/numbersofuniquevisitorsper20page/' + year + '/' + month + '', function(result) {
 		var data = [];
 		
 		jQuery.each(result, function(i, field) {
 		    var pages = [];
 		    
 			jQuery.each(field, function(i, item) {
-				pages.push({'page': item.page, 'visits': item.unique_visits});	
+				pages.push({'page': item.page, 'visits': item.unique_visits});	page
 			});
 			
 			jQuery.each(pages, function(i, e) {
@@ -122,10 +132,10 @@ function showChart(year, month) {
 			
 		});
 	    
-		var arc = '<div class="arc"></div>';
 		var legend = '<div class="legend"></div>';
+		var arc = '<div class="arc"></div>';
 		
-		jQuery('#cp_statistics_month_' + month + ' .chart').append('<h6 class="chart_title">The ten most visited pages</h6>');
+		jQuery('#cp_statistics_month_' + month + ' .chart').append('');
 		jQuery('#cp_statistics_month_' + month + ' .chart').append(legend);
 		jQuery('#cp_statistics_month_' + month + ' .chart').append(arc);
 		
@@ -183,14 +193,15 @@ function showChart(year, month) {
 	    }
 	    
 	    jQuery.each(data, function(i, e) {
-	    	console.log(colors(i));
-	    	var legendEl = '<div style="background-color:'+colors(i)+'">' + e.label + ' (' + e.visits + ')</div>';
+	    	var legendEl = '<div style="background-color:'+colors(i)+'">' + e.label + '&nbsp;&nbsp;&nbsp;&nbsp;(' + e.visits + ')</div>';
 	    	jQuery('#cp_statistics_month_' + month + ' .chart .legend').append(legendEl);
-	    });  
+	    }); 
+	    
+	    spinner.stop();
 	});
 }
 
-var y = jQuery('#edit-cp-statistics-page-year :first-child').val();
+var y = jQuery('#edit-cp-statistics-year :first-child').val();
 jQuery('#cp_statistics_selected_year').text(y);
 loadCPStatistics(y);
 

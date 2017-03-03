@@ -12,7 +12,6 @@ class CPStatisticsAjaxResponse extends ControllerBase {
 	public function getData($service, $year, $month) {
 		$response = new Response();
 		$response->headers->set('Content-Type', 'application/json');
-		//$response->setContent(json_encode(array('service' => $service, 'year' => $year, 'month' => $month)));
 		
 		$message;
 		
@@ -25,17 +24,21 @@ class CPStatisticsAjaxResponse extends ControllerBase {
 			case 'months':
 				$message = $this->getMonths($year);
 				break;
-			
-			case 'totalvisitors':
-				$message = $this->getTotalVisits($year, $month);
-				break;
 					
 			case 'uniquevisitors':
 				$message = $this->getUniqueVisitors($year, $month);
 				break;
 					
-			case 'uniquevisitorsper10page':
-				$message = $this->getUniqueVisitorsPerPage($year, $month, 10);
+			case 'numbersofuniquevisitorsper10page':
+				$message = $this->getNumbersOfUniqueVisitors($year, $month, 10);
+				break;
+				
+			case 'numbersofuniquevisitorsper20page':
+				$message = $this->getNumbersOfUniqueVisitors($year, $month, 20);
+				break;
+				
+			case 'numbersofuniquevisitorsperallpage':
+				$message = $this->getNumbersOfUniqueVisitors($year, $month, 0);
 				break;
 				
 			case 'pages':
@@ -59,16 +62,12 @@ class CPStatisticsAjaxResponse extends ControllerBase {
 		return $this->getService()->getMonths($year);
 	}
 	
-	private function getTotalVisits($year, $month) {
-		return $this->getService()->getTotalVisits($year, $month);
-	}
-	
 	private function getUniqueVisitors($year, $month) {
 		return $this->getService()->getUniqueVisitors($year, $month);
 	}
 	
-	private function getUniqueVisitorsPerPage($year, $month, $number_of_pages) {
-		return $this->getService()->getUniqueVisitorsPerPage($year, $month, $number_of_pages);
+	private function getNumbersOfUniqueVisitors($year, $month, $numberOfPages) {
+		return $this->getService()->getNumbersOfUniqueVisitors($year, $month, $numberOfPages);
 	}
 	
 	private function getPages() {
