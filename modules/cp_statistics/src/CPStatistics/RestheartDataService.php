@@ -24,8 +24,8 @@ class RestheartDataService implements IDataService {
 		$context = stream_context_create($contextSettings);
 		$result =json_decode(file_get_contents($this->service . $query, false, $context), true);
 		
-		foreach ($result['_embedded']['rh:result'] as $row) {
-			$list['years'][] = $row['year'];
+		foreach ($result['_embedded']['rh:result'] as $post) {
+			$list['years'][] = $post['year'];
 		}
 		
 		return $list;
@@ -40,8 +40,8 @@ class RestheartDataService implements IDataService {
 		$context = stream_context_create($contextSettings);	
 		$result =json_decode(file_get_contents($this->service . $query, false, $context), true);
 		
-		foreach ($result['_embedded']['rh:result'] as $row) {
-			$list['months'][] = array('month' => $row['month']);
+		foreach ($result['_embedded']['rh:result'] as $post) {
+			$list['months'][] = array('month' => $post['month']);
 		}
 		
 		return $list;
@@ -59,10 +59,10 @@ class RestheartDataService implements IDataService {
 			$alias = $page->getPage();
 			if ($page->getAlias()) { $alias = $page->getAlias(); }
 			
-			foreach ($this->collectUniqueVisitorsPerPage($year, $month, $alias) as $row) {
-				if (! array_key_exists($row->getIp() ,$listOfIp)) {
-					$listOfIp[$row->getIp()] = $row->getIp();
-					$list['unique_visitors']['data'][] = array('ip' => $row->getIp());
+			foreach ($this->collectUniqueVisitorsPerPage($year, $month, $alias) as $post) {
+				if (! array_key_exists($post->getIp() ,$listOfIp)) {
+					$listOfIp[$post->getIp()] = $post->getIp();
+					$list['unique_visitors']['data'][] = array('ip' => $post->getIp());
 				}	
 			}
 		}
@@ -90,8 +90,8 @@ class RestheartDataService implements IDataService {
 			
 			$numberOfIp = 0;
 			if (isset($result['_embedded'])) {
-				foreach ($result['_embedded']['rh:result'] as $row) {
-					$numberOfIp = $row['count'];
+				foreach ($result['_embedded']['rh:result'] as $post) {
+					$numberOfIp = $post['count'];
 				}
 			}
 			
@@ -179,9 +179,9 @@ class RestheartDataService implements IDataService {
 	private function getUniqueVisitorsPerPageData($list, $data) {
 		
 		if($data  && isset($data['_embedded'])) {
-			foreach ($data['_embedded']['rh:result'] as $row) {
+			foreach ($data['_embedded']['rh:result'] as $post) {
 				$entry = new Entry();
-				$entry->setIp($row['ip']);
+				$entry->setIp($post['ip']);
 				$list[] = $entry;
 			}
 		}
