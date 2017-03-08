@@ -6,7 +6,7 @@ style:
 script_overview:     
   js:
     js/cp_statistics_overview.js: {}
-    js/d3.min.js: {}
+    js/d3.3.5.17.min.js: {}
     js/spin.js: {}
     
   dependencies:
@@ -16,7 +16,7 @@ script_overview:
 script_review:     
   js:
     js/cp_statistics_review.js: {}
-    js/d3.min.js: {}
+    js/d3.3.5.17.min.js: {}
     js/spin.js: {}
     
   dependencies:

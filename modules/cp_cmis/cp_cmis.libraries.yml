@@ -2,12 +2,10 @@ style:
   css:
     theme:
       css/cp_cmis.css: {}
-      css/bootstrap.min.css: {}
       
 script:     
   js:
     js/cp_cmis.js: {}
-    js/bootstrap.min.js: {}
     
   dependencies:
     - core/drupal
@@ -19,26 +17,22 @@ style_files:
   css:
     theme:
       css/cp_cmis_files.css: {}
-      css/bootstrap.min.css: {}
-      css/bootstrap-sortable.css: {}
+      css/bootstrap-sortable.2.2.0.css: {}
           
 script_files:     
   js:
     js/cp_cmis_files.js: {}
-    js/bootstrap.min.js: {}
-    js/bootstrap-sortable.js: {}
-    js/moment.min.js: {}
+    js/bootstrap-sortable.2.2.0.js: {}
+    js/moment.2.3.1.min.js: {}
     
 style_documents:
   css:
     theme:
-      css/cp_cmis_documents-ri.css: {}
-      css/bootstrap.min.css: {}
+      css/cp_cmis_documents.css: {}
           
 script_documents:     
   js:
-    js/cp_cmis_documents.js: {}
-    js/bootstrap.min.js: {}   
+    js/cp_cmis_documents.js: {}  
     
   dependencies:
     - core/drupal

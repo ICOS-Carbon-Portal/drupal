@@ -1,14 +1,12 @@
 style:
   css:
     theme:
-      css/cp_documents-ri.css: {}
+      css/cp_documents.css: {}
       css/cp_documents_layout_fix.css: {}
-      css/bootstrap.min.css: {}
       
 script:     
   js:
     js/cp_documents.js: {}
-    js/bootstrap.min.js: {}
     
   dependencies:
     - core/jquery

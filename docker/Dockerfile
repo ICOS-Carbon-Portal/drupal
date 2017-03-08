@@ -19,15 +19,15 @@ run { \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
 	
 run { \
-		echo 'upload_max_filesize=10M'; \
-		echo 'post_max_size=10M'; \
+		echo 'upload_max_filesize=100M'; \
+		echo 'post_max_size=100M'; \
 		echo 'date.timezone=UTC'; \
 	} > /usr/local/etc/php/conf.d/php-conf.ini
 
 workdir /var/www/html
 
-env DRUPAL_VERSION 8.1.1
-env DRUPAL_MD5 529f3d72964c612695f68e0a6078b8ae
+env DRUPAL_VERSION 8.2.6
+env DRUPAL_MD5 57526a827771ea8a06db1792f1602a85
 
 run curl -fSL "http://ftp.drupal.org/files/projects/drupal-${DRUPAL_VERSION}.tar.gz" -o drupal.tar.gz \
 	&& echo "${DRUPAL_MD5} *drupal.tar.gz" | md5sum -c - \
