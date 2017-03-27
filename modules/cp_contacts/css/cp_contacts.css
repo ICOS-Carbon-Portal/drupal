@@ -13,15 +13,15 @@
 		width: 33%;	
 	}
 }	
-	
-.cp_contacts .picture {
-	width: 100px;	
-}
 
 .cp_contacts .data {
 	position: relative;
 	bottom: 95px;
 	left: 120px;
+}
+
+.cp_contacts .picture {
+	width: 100px;	
 }
 
 .cp_contacts .address,
@@ -52,6 +52,11 @@
 
 .cp_contacts .organization {
 	font-size: 80%;
+}
+
+.cp_contacts .title,
+.cp_contacts .organization {
+	width: 70%;
 }
 
 .cp_contacts .email a,

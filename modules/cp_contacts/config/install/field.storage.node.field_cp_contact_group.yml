@@ -3,6 +3,7 @@ status: true
 dependencies:
   module:
     - node
+    - options
 id: node.field_cp_contact_group
 field_name: field_cp_contact_group
 entity_type: node
@@ -12,7 +13,7 @@ settings:
   allowed_values_function: ''
 module: options
 locked: false
-cardinality: 1
+cardinality: -1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

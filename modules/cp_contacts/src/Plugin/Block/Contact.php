@@ -12,7 +12,7 @@ class Contact {
 	private $photo;
 	private $title;
 	private $organization;
-	private $group;
+	private $groups;
 	private $index;
 	
 	function __construct() {
@@ -83,12 +83,12 @@ class Contact {
 		$this->organization = $organization;
 	}
 
-	public function getGroup() {
-		return $this->group;
+	public function getGroups() {
+		return $this->groups;
 	}
 	
-	public function setGroup($group) {
-		$this->group = $group;
+	public function setGroups($groups) {
+		$this->groups = $groups;
 	}	
 	
 	public function getIndex() {

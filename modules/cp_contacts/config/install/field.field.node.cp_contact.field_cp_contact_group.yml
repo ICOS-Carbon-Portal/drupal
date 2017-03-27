@@ -4,12 +4,14 @@ dependencies:
   config:
     - field.storage.node.field_cp_contact_group
     - node.type.cp_contact
+  module:
+    - options
 id: node.cp_contact.field_cp_contact_group
 field_name: field_cp_contact_group
 entity_type: node
 bundle: cp_contact
-label: 'Group'
-description: 'Specify which group this contact belongs to.'
+label: Group
+description: 'Specify which group(s) this contact belongs to.'
 required: false
 translatable: false
 default_value: {  }

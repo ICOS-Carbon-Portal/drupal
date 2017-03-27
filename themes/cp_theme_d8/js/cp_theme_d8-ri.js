@@ -13,7 +13,7 @@
     			fixSmallsizeMenu();		
     		}
     		
-    		if ($(window).width() > 1300) {
+    		if ($(window).width() > 1260) {
     			fixHomeMax();
     			
     		} else {
@@ -25,7 +25,7 @@
         			fixSmallsizeMenu();		
         		}
     			
-    			if ($(window).width() > 1300) {
+    			if ($(window).width() > 1260) {
         			fixHomeMax();
         			
         		} else {
@@ -121,56 +121,45 @@ function handleIngressAndTitle() {
 * The methods also depends of a CP Event's at right sidebar.
 */
 function fixHome() {
-	jQuery('#block-listofteasedcpnews').css({'min-height':800});
-	jQuery('#block-listofteasedcpevents').css({'min-height':980});
-	jQuery('.main-content #block-tweets').css({'background-color':'#f6f6f2', 'height':440});
-	jQuery('.main-content #block-tweets .content').css({'height':440, 'overflow-y':'scroll'});
-    jQuery('.main-content .block-view-teased-cp-blog').css({'background-color':'#f6f6f2', 'height':440});
-    jQuery('.main-content #block-stationmap').css({'height':400});
-    jQuery('.main-content #block-stationmap').css({'border-top':'5px solid #f6f6f2', 'background-color':'#f6f6f2'});
-    jQuery('.main-content #block-stationmap h2').css({'margin-left':'2rem'});
-    jQuery('.main-content #block-stationmap > .content').css({'border-left':'20px solid #f6f6f2', 'border-right':'20px solid #f6f6f2'});
-    jQuery('.main-content #block-stationmap .to_bigger_map').css({'background-color':'#f6f6f2'});
+	jQuery('#block-tweets').css({'background-color':'#f6f6f2', 'width':480, 'height':440});
+	jQuery('#block-tweets .content').css({'height':440, 'overflow-y':'scroll'});
+	jQuery('#block-viewteasedcpblog').css({'background-color':'#f6f6f2', 'height':440, 'border-left':'20px solid #f6f6f2', 'border-right':'20px solid #f6f6f2'});
+	jQuery('#block-viewteasedcpblog .teaser').css({'width':'100%'});
+	jQuery('#block-viewteasedcpblog .content h2').css({'padding-top':20});
+	
+	jQuery('#block-stationmap').css({'border-top':'5px solid #f6f6f2', 'background-color':'#f6f6f2'});
+    jQuery('#block-stationmap h2').css({'margin-left':'2rem'});
+    jQuery('#block-stationmap > .content').css({'border-left':'20px solid #f6f6f2', 'border-right':'20px solid #f6f6f2'});
+    jQuery('#block-stationmap .to_bigger_map').css({'background-color':'#f6f6f2'});
+    jQuery('#block-stationmap .content .text-formatted').css({'height':0});
 }
 
 function fixHomeMax() {
-	var eventEl = jQuery('#block-listofteasedcpevents');
-	var tweetEl = jQuery('#block-tweets');	
+	jQuery('#content').css({'min-height':'auto'});
 	
-	if (typeof eventEl === 'undefined' ||  typeof tweetEl === 'undefined') { return false; }
+	jQuery('#block-listofteasedcpnews').css({'height':780});
+	jQuery('#block-listofteasedcpevents').css({'height':1045});
 	
-	var w = jQuery('.main-content').width() / 2;
-	var eventOff = eventEl.offset();
-	var tweetOff = tweetEl.offset();
-	var tweetH = tweetEl.height();
+	jQuery('#block-tweets').css({'position':'relative', 'top':5});
 	
-	if (tweetOff.top < eventOff.top) {
-		jQuery(tweetEl).css({'position':'relative', 'top':eventOff.top - tweetOff.top});
-	}
+	jQuery('#block-viewteasedcpblog').css({'position':'relative', 'bottom':455, 'left':500});
+	jQuery('#block-viewteasedcpblog').css({'width':444});
 	
-	var tweetPos = jQuery(tweetEl).position();
-	
-    jQuery(tweetEl).css({'width':w+40, 'border-left':'20px solid #f6f6f2', 'border-right':'40px solid #fff'});
+    jQuery('#block-stationmap').css({'position':'relative', 'bottom':415, 'width':940, 'height':565}); 
     
-    jQuery('.main-content .block-view-teased-cp-blog').css({'width':w-40, 'position':'absolute', 'top':tweetPos.top, 'left':w+20, 'border-left':'20px solid #f6f6f2', 'border-right':'20px solid #f6f6f2'});
-    jQuery('.main-content .block-view-teased-cp-blog .teaser').css({'width':'100%'});  
-    
-    jQuery('.main-content .block-view-teased-cp-blog').css({'margin-top':0, 'border-top':0});
-    
-    if (eventEl.height() < 980) {	
-    	jQuery('#block-listofteasedcpevents').css({'padding-bottom':980-eventEl.height()});
-    }
-    
-    jQuery('#block-stationmap').css({'width':'100%', 'margin-top':140, 'margin-bottom': 0}); 
 }
 
 function fixHomeMin() {
-	jQuery('.main-content #block-tweets').css({'width': '480px', 'border-left':0, 'border-right':0});
-	jQuery('.main-content .block-view-teased-cp-blog').css({'display':'block', 'width':'480px', 'position':'relative', 'top':'0', 'left':'0'});
+	jQuery('#content').css({'min-height':2300});
 	
-	jQuery('.main-content .block-view-teased-cp-blog').css({'margin-top':0, 'border-top':'10px solid #f6f6f2'});
+	jQuery('#block-listofteasedcpnews').css({'height':'auto'});
+	jQuery('#block-listofteasedcpevents').css({'height':'auto'});
 	
-	jQuery('#block-listofteasedcpevents').css({'padding-bottom':0});
+	jQuery('#block-tweets').css({'position':'relative', 'top':0});
 	
-	jQuery('#block-stationmap').css({'width':'480px', 'margin-top':0, 'margin-bottom': 100});
+	jQuery('#block-viewteasedcpblog').css({'position':'relative', 'bottom':0, 'left':0});
+	jQuery('#block-viewteasedcpblog').css({'width':480});
+	
+	jQuery('#block-stationmap').css({'position':'relative', 'bottom':-20, 'width':480, 'height':440});
+	
 }

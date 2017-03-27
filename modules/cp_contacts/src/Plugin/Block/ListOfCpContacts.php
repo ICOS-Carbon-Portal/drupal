@@ -46,7 +46,7 @@ class ListOfCpContacts extends BlockBase {
 			$contact_group = $config['cp_contact_contact_group'];
 		
 			foreach ($list as $c) {
-				if ($c->getGroup() == $contact_group) {
+				if (in_array($contact_group, $c->getGroups())) {
 					
 					if ($c->getPhoto()) {
 						$photo = $url . str_replace('public://', '', $c->getPhoto());
@@ -65,7 +65,7 @@ class ListOfCpContacts extends BlockBase {
 					$output .= '<div class="name">' . $c->getName() . '</div>';
 					$output .= '<div class="title">' . $c->getTitle() . '</div>';
 					$output .= '<div class="organization">' . $c->getOrganization() . '</div>';
-					$output .= '<div class="group">' . $c->getGroup() . '</div>';
+					$output .= '<div class="group">' . $contact_group. '</div>';
 					$output .= '<div class="email"><a href="mailto:' . $c->getEmail() . '">' . $c->getEmail() . '</a></div>';
 					$output .= '<div class="phone"><a href="tel:' . $c->getPhone() . '">' . $c->getPhone() . '</a></div>';
 					$output .= '<div class="address">' . $c->getAddress() . '</div>';
@@ -320,12 +320,13 @@ class ListOfCpContacts extends BlockBase {
 			array(':id' => $contact->getId())
 		)->fetchAll();
 
-
+		$groups = array();
 		foreach ($result as $record) {
 			if ($record) {
-				$contact->setGroup($record->field_cp_contact_group_value);
+				$groups[] = $record->field_cp_contact_group_value;
 			}
 		}
+		$contact->setGroups($groups);
 	
 		return $contact;
 	}
