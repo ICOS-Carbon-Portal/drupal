@@ -90,9 +90,9 @@ class ListOfCpContacts extends BlockBase {
 	
 		$contact_options = array();
 		$contact_options['none'] = '';
-		$list = $this->_prepare_contacts();
-		foreach ($list as $contact) {
-			$contact_options[$contact->getGroup()] = $contact->getGroup();
+		
+		foreach ($this->_get_groups() as $group) {
+			$contact_options[$group] = $group;
 		}
 	
 		$contact_group = '';
@@ -117,7 +117,25 @@ class ListOfCpContacts extends BlockBase {
 	 */
 	public function blockSubmit($form, FormStateInterface $form_state) {
 		$this->setConfigurationValue('cp_contact_contact_group', $form_state->getValue('cp_contact_contact_group'));
-	}	
+	}
+	
+	function _get_groups() {
+		$groups = array();
+		
+		$result = db_query('
+			select distinct field_cp_contact_group_value
+			from {node__field_cp_contact_group}
+			'
+		)->fetchAll();
+				
+		foreach ($result as $record) {
+			if ($record) {
+				$groups[] = $record->field_cp_contact_group_value;
+			}
+		}
+		
+		return $groups;
+	}
 	
 	function _prepare_contacts() {
 		
