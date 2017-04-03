@@ -14,7 +14,9 @@
 	}
 }
 
-.cp_contacts .data {
+.cp_contacts .data { }
+
+.cp_contacts .data_to_right {
 	position: relative;
 	bottom: 95px;
 	left: 120px;
@@ -27,9 +29,9 @@
 .cp_contacts .name,
 .cp_contacts .title,
 .cp_contacts .organization,
-.cp_contacts .group, 
+.cp_contacts .address,
 .cp_contacts .email,
-.cp_contacts .phone {
+.cp_contacts .phone  {
 	padding-bottom: 1rem;
 }
 

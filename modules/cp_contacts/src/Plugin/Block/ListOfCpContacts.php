@@ -16,6 +16,8 @@ use Drupal\Core\Cache\Cache;
  */
 class ListOfCpContacts extends BlockBase {
 	
+	private $default_visible_elements = array('title' => 'Title', 'organization' => 'Organization', 'address' => 'Address', 'email' => 'Email', 'phone' => 'Phone', 'photo' => 'Photo');
+	
 	function build() {
 		
 		$list = $this->_prepare_contacts();
@@ -42,33 +44,59 @@ class ListOfCpContacts extends BlockBase {
 		
 		$url = '/' . PublicStream::basePath() . '/';
 		
+		$visible_elements = $this->default_visible_elements;
+		if (isset($config['cp_contact_visible_elements'])) {
+			$visible_elements = $config['cp_contact_visible_elements'];
+		}
+		
 		if (isset($config['cp_contact_contact_group'])) {
 			$contact_group = $config['cp_contact_contact_group'];
 		
 			foreach ($list as $c) {
 				if (in_array($contact_group, $c->getGroups())) {
 					
-					if ($c->getPhoto()) {
-						$photo = $url . str_replace('public://', '', $c->getPhoto());
+					$output .= '<div class="contact">';
+					
+					$data_to_right = '';
+					
+					if ($visible_elements['photo']) {
+						if ($c->getPhoto()) {
+							$photo = $url . str_replace('public://', '', $c->getPhoto());
+							
+						} else {
+							$photo = '/' . drupal_get_path('module', 'cp_contacts') . '/images/person_male.jpg';
+						}
 						
-					} else {
-						$photo = '/' . drupal_get_path('module', 'cp_contacts') . '/images/person_male.jpg';
+						$output .= '<div class="picture">';
+						$output .= '<img src="' . $photo . '" width="100" height="100" alt="" />';
+						$output .= '</div>';
+						
+						$data_to_right = 'data_to_right';
 					}
 					
-					
-					$output .= '<div class="contact">';
-					$output .= '<div class="picture">';
-					$output .= '<img src="' . $photo . '" width="100" height="100" alt="" />';
-					$output .= '</div>';
-					
-					$output .= '<div class="data">';
+					$output .= '<div class="data ' . $data_to_right . '">';
 					$output .= '<div class="name">' . $c->getName() . '</div>';
-					$output .= '<div class="title">' . $c->getTitle() . '</div>';
-					$output .= '<div class="organization">' . $c->getOrganization() . '</div>';
-					$output .= '<div class="group">' . $contact_group. '</div>';
-					$output .= '<div class="email"><a href="mailto:' . $c->getEmail() . '">' . $c->getEmail() . '</a></div>';
-					$output .= '<div class="phone"><a href="tel:' . $c->getPhone() . '">' . $c->getPhone() . '</a></div>';
-					$output .= '<div class="address">' . $c->getAddress() . '</div>';
+					
+					if ($visible_elements['title']) {
+						$output .= '<div class="title">' . $c->getTitle() . '</div>';
+					}
+					
+					if ($visible_elements['organization']) {
+						$output .= '<div class="organization">' . $c->getOrganization() . '</div>';
+					}
+					
+					if ($visible_elements['address']) {
+						$output .= '<div class="address">' . $c->getAddress() . '</div>';
+					}
+					
+					if ($visible_elements['email']) {
+						$output .= '<div class="email"><a href="mailto:' . $c->getEmail() . '">' . $c->getEmail() . '</a></div>';
+					}
+					
+					if ($visible_elements['phone']) {
+						$output .= '<div class="phone"><a href="tel:' . $c->getPhone() . '">' . $c->getPhone() . '</a></div>';
+					}
+					
 					$output .= '</div>';
 					$output .= '</div>';	
 				}
@@ -107,6 +135,18 @@ class ListOfCpContacts extends BlockBase {
 				'#options' => $contact_options,
 				'#default_value' => $contact_group
 		);
+		
+		$visible_elements = '';
+		if (isset($config['cp_contact_visible_elements'])) {
+			$visible_elements = $config['cp_contact_visible_elements'];
+		}
+		
+		$form['cp_contact_visible_elements'] = array (
+				'#type' => 'checkboxes',
+				'#title' => $this->t('Select elements to be visible'),
+				'#options' => $this->default_visible_elements,
+				'#default_value' => $visible_elements
+		);
 	
 		return $form;
 	}
@@ -117,6 +157,7 @@ class ListOfCpContacts extends BlockBase {
 	 */
 	public function blockSubmit($form, FormStateInterface $form_state) {
 		$this->setConfigurationValue('cp_contact_contact_group', $form_state->getValue('cp_contact_contact_group'));
+		$this->setConfigurationValue('cp_contact_visible_elements', $form_state->getValue('cp_contact_visible_elements'));
 	}
 	
 	function _get_groups() {

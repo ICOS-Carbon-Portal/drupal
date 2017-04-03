@@ -38,10 +38,13 @@ function placeMinSize() {
 
 function fixElementsMaxHeight() {
 	var max = 0;
+	var margin = 40;
+	
+	if (jQuery('.contact > div').hasClass('data_to_right')) { margin = 0; }
 	
 	jQuery('.contact').each(function(i, e) { 
 		if (jQuery(e).outerHeight() > max) {
-			max = jQuery(e).outerHeight();
+			max = jQuery(e).outerHeight() + margin;
 		};
 	});
 	
