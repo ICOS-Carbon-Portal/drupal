@@ -41,8 +41,8 @@
 }(jQuery));
 
 jQuery('.tease_event .picture img').each(function() {
-	if (jQuery(this).height() > 300) {
-		jQuery(this).height(300); 
+	if (jQuery(this).height() > 150) {
+		jQuery(this).height(150); 
 	}
 });
 
