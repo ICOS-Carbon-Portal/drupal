@@ -38,19 +38,7 @@ class CPEventPage extends ControllerBase {
 	  			}
 	  			
 	  			if ($e->getToDate() != null && $e->getToDate() != '') {
-	  				
-	  				$now = time();
-	  				$user = \Drupal::currentUser();
-	  				if (strtotime($e->getToDate()) < $now) {
-	  					if ($user->hasPermission('edit any cp_event content')) {
-	  						$has_event = 1;
-	  					} else {
-	  						$has_event = 0;
-	  					}
-	  				}
-	  				
 	  				$e->setToDate(date($date_format, strtotime($e->getToDate())));
-	  			
 	  			}	  			
 	  			
 	  			$this->_formatPictureUri($e);
@@ -74,8 +62,8 @@ class CPEventPage extends ControllerBase {
 		    );
 
 	  	} else {
-		    	return array('#markup' => '');
-		    }
+		    return array('#markup' => '');
+		}
 	}
 	
 	function _formatPictureUri($event) {
