@@ -31,3 +31,19 @@
 		width: 100%;
 	}	
 }
+
+.cp_blog .text img {
+	max-width: 100px;
+}
+        
+@media all and (min-width: 500px) {
+	.cp_blog .text img {
+		max-width: 200px;
+	}
+}
+
+@media all and (min-width: 1000px) {
+	.cp_blog .text img {
+		max-width: 400px;
+	}
+}

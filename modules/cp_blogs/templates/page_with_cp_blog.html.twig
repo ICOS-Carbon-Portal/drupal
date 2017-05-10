@@ -25,6 +25,11 @@
 			class="social_share_button social_share_linkedin" 
 			onclick="shareLinkedinBlog( {{ elements['blog'].getId() }}, '{{ elements['site_home'] }}' )">
 		</a>
+		
+		<a href="javascript:void(0)" 
+			class="social_share_button social_share_facebook" 
+			onclick="shareFacebookEvent( {{ elements['blog'].getId() }}, '{{ elements['blog'].getTitle() }}', '{{ elements['site_home'] }}' )">
+		</a>		
 	</div>
 	
 </div>

@@ -103,23 +103,31 @@
 	border-bottom: 0;
 }
 
-@media all and (min-width: 800px) {
+.full_event {
+	width: 100%;
+}
+
+.full_event .text img {
+	max-width: 100px;
+}
+        
+@media all and (min-width: 500px) {
 	.full_event {
-		width: 60%;
+		width: 80%;
 	}
 	
 	.full_event .text img {
-		max-width: 400px;
+		max-width: 200px;
 	}
 }
 
-@media all and (max-width: 799px) {
+@media all and (min-width: 1000px) {
 	.full_event {
-		width: 100%;
+		width: 60%;
 	}
 		
 	.full_event .text img {
-		max-width: 200px;
+		max-width: 400px;
 	}
 }
 

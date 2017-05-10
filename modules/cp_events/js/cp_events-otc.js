@@ -46,6 +46,24 @@ jQuery('.tease_event .picture img').each(function() {
 	}
 });
 
+jQuery('.full_event .text img').each(function() {
+	if (jQuery(this).has('data-caption') && jQuery(this).attr('data-caption')) {
+		var w = jQuery(this).width();
+		if (w > 400) { w = 400; }
+		jQuery(this).wrap('<div class="picture" style="float:right; padding:0;"></div>');
+		jQuery(this).parent().append('<p style="text-align:center; padding-left:2rem;">' + jQuery(this).attr('data-caption') + '</p>');
+		jQuery(this).width(w);
+		jQuery(this).parent().width(w + 20);
+	}
+});
+
+jQuery(window).resize(function () {
+	jQuery('.full_event .text .picture').each(function() {
+		var w = jQuery(this).children('img').width();
+		jQuery(this).width(w + 20);
+	});
+});
+
 function setCorrectHeight() {
 	jQuery('.full_event .text img').each( function() {	
 		jQuery(this).parent().css({'min-height': jQuery(this).height()});
@@ -66,9 +84,14 @@ function setArchivedSameLine() {
 }
 
 function fixEventsPicture() {
-	if (jQuery('#cp_events_page .latest_news .picture').length 
-			&& jQuery('#cp_events_page .latest_news .picture').width() > 500) {
-		jQuery('#cp_events_page .latest_news .picture').width(500);
+	if (jQuery('#cp_events_page .latest_news .picture').length) {
+		if (jQuery('#cp_events_page .latest_news .picture').height() > 400) {
+			jQuery('#cp_events_page .latest_news .picture').height(400);
+			jQuery('#cp_events_page .latest_news .picture').width('auto');
+		
+		} else if(jQuery('#cp_events_page .latest_news .picture').width() > 500) {
+			jQuery('#cp_events_page .latest_news .picture').width(500);
+		}
 	}	
 }
 
