@@ -9,21 +9,10 @@ body {
 
 /** Header **/
 #header { 
-	background-size: cover;
-	background-image: url(../images/ac_header_small.png);
-		
-}
-
-@media all and (min-width: 513px) {
-	#header {
-		background-image: url(../images/ac_header_medium.png);
-	}
-}
-
-@media all and (min-width: 1025px) {
-	#header {
-		background-image: url(../images/ac_header.png);
-	}
+	background-color: #fff;
+	background-image: url(../images/ac_header.png);
+	background-position: right;
+	background-repeat: no-repeat;	
 }
 
 #header {
