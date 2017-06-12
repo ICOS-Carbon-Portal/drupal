@@ -64,8 +64,7 @@ class ListOfNodes {
 			$this->breadcrumbs[] = '';
 		}
 		
-		return implode($this->breadcrumbs);
-		
+		return implode($this->breadcrumbs);	
 	}
 	
 	function getMenu() {
@@ -88,50 +87,49 @@ class ListOfNodes {
 		$this->menu[] = '</ul>';
 		
 		return implode('', $this->menu);
-		
 	}
 	
 	function _build_menu($node, &$output, $nodes) {
 		$url = '/';
-		
+	
 		if (strpos($node->getPath(), 'http') === 0) {
 			$url = '';
 		}
-		
+	
 		if ($node->getHasChildren() == '1') {
-			
+	
 			$nodetype = 'is_topnode';
 			$title = $node->getTitle();
 			if ($node->getDepth() > '1') {
 				$nodetype = 'has_subnodes';
-				$title .= '<img src="/themes/cp_theme_d8/images/arrow-down.svg">'; 
 			}
-			
-			$this->menu[] = '<li class="' . $nodetype . '"><a href="'. $url . $node->getPath() .'">'. $title . '</a>';
+	
+			$sublinks = '<img class="sublinks" src="/themes/cp_theme_d8/images/menu_arrow_down_w.png" />';
+	
+			$this->menu[] = '<li class="' . $nodetype . '"><div class="link"><a href="'. $url . $node->getPath() .'">'. $title . '</a>' . $sublinks . '</div>';
 			$this->menu[] = '<ul>';
-			
+	
 			$sub_nodes = array();
 			foreach ($nodes as $sub_node) {
 				if ($node->getId() == $sub_node->getParent()) {
 					$sub_nodes[] = $sub_node;
 				}
 			}
-			
+	
 			if (count($sub_nodes) > 1) { usort($sub_nodes, array('ListOfNodes','_compare')); }
-			
+	
 			foreach ($sub_nodes as $sub_node) {
 				$this->_build_menu($sub_node, $output, $nodes);
 			}
-			
+	
 			$this->menu[] = '</ul>';
 			$this->menu[] = '</li>';
-			
-		} 
-		
-		else {
-			$this->menu[] = '<li><a href="'. $url . $node->getPath() .'">'. $node->getTitle() .'</a></li>';
+	
 		}
-		
+	
+		else {
+			$this->menu[] = '<li><div class="link"><a href="'. $url . $node->getPath() .'">'. $node->getTitle() .'</a></div></li>';
+		}
 	}
 	
 	static function _compare($a, $b) {
@@ -145,8 +143,7 @@ class ListOfNodes {
 			return 0;
 		}
 		
-		return $a->getWeight() > $b->getWeight() ? 1 : -1;
-		
+		return $a->getWeight() > $b->getWeight() ? 1 : -1;	
 	}
 	
 	function _prepare_nodes() {
@@ -174,8 +171,7 @@ class ListOfNodes {
 			$nodes[$node->getId()] = $node;
 		}
 		
-		return $nodes;
-		
+		return $nodes;	
 	}
 		
 	function _collect_nodes() {
@@ -187,6 +183,7 @@ class ListOfNodes {
 			from {menu_tree} mt
 			where mt.menu_name = :menu_name
 			and id <> \'standard.front_page\'
+			and enabled = 1
 			',
 		
 			array(':menu_name' => 'main')
@@ -206,8 +203,7 @@ class ListOfNodes {
 			}
 		}
 
-		return $list;	
-		
+		return $list;		
 	}
 	
 	function _add_attributes($node) {
@@ -229,7 +225,6 @@ class ListOfNodes {
 			}
 		}
 
-		return $node;
-		
+		return $node;	
 	}
 }
