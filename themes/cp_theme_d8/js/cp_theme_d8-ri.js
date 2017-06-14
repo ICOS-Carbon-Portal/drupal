@@ -195,6 +195,7 @@ function fixHome() {
     jQuery('#block-stationmap > .content').css({'border-left':'20px solid #f6f6f2', 'border-right':'20px solid #f6f6f2'});
     jQuery('#block-stationmap .to_bigger_map').css({'background-color':'#f6f6f2'});
     jQuery('#block-stationmap .content .text-formatted').css({'height':0});
+    jQuery('#block-stationmap #map').css({'height':480});
 }
 
 function fixHomeMax() {
