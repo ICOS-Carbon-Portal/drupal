@@ -4,8 +4,8 @@
     attach: function(context, settings) {
     	
 	    checkCpUserConsent();   
-	    handleIngressAndTitle(); 
-	    fixHome();
+	    //handleIngressAndTitle(); 
+	    //fixHome();
 	    
     	$(function() {
     		
@@ -14,10 +14,10 @@
     		}
     		
     		if ($(window).width() > 1260) {
-    			fixHomeMax();
+    			//fixHomeMax();
     			
     		} else {
-    			fixHomeMin();
+    			//fixHomeMin();
     		}
     		
     		$(window).resize(function () {
@@ -26,10 +26,10 @@
         		}
     			
     			if ($(window).width() > 1260) {
-        			fixHomeMax();
+        			//fixHomeMax();
         			
         		} else {
-        			fixHomeMin();
+        			//fixHomeMin();
         		}
     			
     		});

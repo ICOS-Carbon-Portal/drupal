@@ -554,3 +554,145 @@ a.social_share_button:hover {
 	background-repeat: no-repeat;
 	width: 48px;
 }
+
+/** Home page **/
+.page-title {
+	padding: 0 0 1rem 0px;
+	border-bottom: 0.1rem dashed #c7c8ca;
+}
+
+.field--name-field-cp-page-ingress .field__label {
+	display: none;
+}
+
+.field--name-field-cp-page-ingress .field__item {
+	padding: 0 0 3rem 0; 
+	font-size: 1.4rem; 
+	font-weight: bold; 
+	text-transform: uppercase; 
+	text-align: center;
+}
+
+#block-tweets {
+	background-color: #f6f6f2;
+	width: 480px;
+	height: 440px;
+}
+
+#block-tweets .content { 
+	height: 440px;
+	overflow-y: scroll;
+}
+  
+#block-viewteasedcpblog { 
+	background-color: #f6f6f2;
+	height: 440px;
+	border-left: 20px solid #f6f6f2;
+	border-right: 20px solid #f6f6f2;
+}
+  
+#block-viewteasedcpblog .teaser { 
+	width: 100%; 
+}
+  
+#block-viewteasedcpblog .content h2 { 
+	padding-top: 20px;
+}  
+	
+#block-stationmap { 
+	border-top: 5px solid #f6f6f2;
+	background-color: #f6f6f2;
+}
+  
+#block-stationmap h2 { 
+	margin-left: 2rem;
+}
+  
+#block-stationmap > .content {
+	border-left: 20px solid #f6f6f2;  
+	border-right: 20px solid #f6f6f2; 
+}
+  
+#block-stationmap .to_bigger_map { 
+	background-color: #f6f6f2; 
+}
+  
+#block-stationmap .content .text-formatted { 
+	height: 0;
+}
+  
+#block-stationmap #map { 
+	height: 480px;
+} 
+ 
+@media all and (max-width: 1259px) {
+	#content {
+		min-height: 2300px;
+	}   
+
+	#block-listofteasedcpnews {
+		height: auto;
+	}
+	   
+	#block-listofteasedcpevents {
+		height: auto;
+	}   
+
+	#block-tweets {
+		position: relative;
+		top: 0;
+	}   
+
+	#block-viewteasedcpblog {
+		position: relative;
+		bottom: 0;
+		left: 0;
+	}
+	   
+	#block-viewteasedcpblog {
+		width: 480px;
+	}   
+
+	#block-stationmap {
+		position: relative;
+		bottom: -20px; 
+		width: 480px;
+		height: 440px;
+	}  
+}
+
+@media all and (min-width: 1260px) {
+	#content {
+		min-height: auto;
+	}
+	
+	#block-listofteasedcpnews {
+		height: 780px;
+	}
+
+	#block-listofteasedcpevents {
+		height: 1045px;
+	}
+	
+	#block-tweets {
+		position: relative;
+		top: 5px;
+	}
+	
+	#block-viewteasedcpblog {
+		position: relative; 
+		bottom: 455px;
+		left: 500px;
+	}
+
+	#block-viewteasedcpblog {
+		width: 444px;
+	}
+	
+	#block-stationmap {
+		position: relative;
+		bottom: 415px; 
+		width: 940px;
+		height: 565px;
+	} 
+}

@@ -1,5 +1,5 @@
 .tease_event {
-	padding-bottom: 2em;
+	padding-bottom: 1em;
 }
 
 .tease_event .from_date,
@@ -15,8 +15,8 @@
 
 .tease_event .title a {
 	color: #0a96f0;
-	font-size: 2rem;
-	line-height: 2rem;
+	font-size: 1.7rem;
+	line-height: 1.7rem;
 	text-decoration: none;
 	border-bottom: 0;
 }
