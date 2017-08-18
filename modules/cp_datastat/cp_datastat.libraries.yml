@@ -1,0 +1,34 @@
+style:
+  css:
+    theme:
+      css/cp_datastat.css: {}
+      css/bootstrap-sortable.css: {}
+      
+script_contributers:     
+  js:
+    js/cp_datastat_contributors.js: {}
+    js/bootstrap-sortable.js: {}
+    js/moment.min.js: {}
+    
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    
+script_downloads:     
+  js:
+    js/cp_datastat_downloads.js: {}
+    js/bootstrap-sortable.js: {}
+    js/moment.min.js: {}
+    
+  dependencies:
+    - core/jquery
+    - core/jquery.once    
+
+script_size:     
+  js:
+    js/cp_datastat_size.js: {}
+    js/d3.3.5.17.min.js: {}
+        
+  dependencies:
+    - core/jquery
+    - core/jquery.once                     

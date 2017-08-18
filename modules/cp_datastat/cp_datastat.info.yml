@@ -1,0 +1,6 @@
+name: CP Data Statistics
+description: Carbon Portal Data Statistics.
+package: CP
+
+type: module
+core: 8.x

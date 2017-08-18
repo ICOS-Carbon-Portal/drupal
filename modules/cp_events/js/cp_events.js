@@ -2,39 +2,38 @@
   'use strict';
   Drupal.behaviors.cp_events = {
     attach: function(context, settings) {
-      
-    	fixEventsPicture();
-    	
-    	setCorrectHeight();
-    	
-    	$(window).resize(function () {
-    		setCorrectHeight();
-    	});
-    	
-    	if ($(window).width() > 1100) {
-    		fixEventsPageMax();
-    		
-		} else {
-			fixEventsPageMin();
-			
-		}
-    	
-    	$(window).resize(function () {
-			if ($(window).width() > 1100) {
-				fixEventsPageMax();
-    		} else {
-    			fixEventsPageMin();
-    		}
-		});
-    	
-    	
-    	$('.event_body_handler').click(function() {
-    		loadEventBody($(this).attr('id'));
-    	});
-    		
+          		
     }
   };
 }(jQuery));
+
+fixEventsPicture();
+
+setCorrectHeight();
+
+jQuery(window).resize(function () {
+	setCorrectHeight();
+});
+
+if (jQuery(window).width() > 1100) {
+	fixEventsPageMax();
+	
+} else {
+	fixEventsPageMin();
+	
+}
+
+jQuery(window).resize(function () {
+	if (jQuery(window).width() > 1100) {
+		fixEventsPageMax();
+	} else {
+		fixEventsPageMin();
+	}
+});
+
+jQuery('.event_body_handler').click(function() {
+	loadEventBody(jQuery(this).attr('id'));
+});
 
 jQuery('.tease_event .picture img').each(function() {
 	if (jQuery(this).height() > 150) {

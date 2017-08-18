@@ -3,8 +3,6 @@
  Drupal.behaviors.cp_statistics = {
   attach: function(context, settings) {
 	  $(context).find('#cp_statistics_view').once('load').each(function () {
-		  console.log(settings.year);
-		  console.log(settings.month);
 		  load_cp_statistics_data(settings.year, settings.month)
 	  }); 
   }

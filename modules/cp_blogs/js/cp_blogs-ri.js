@@ -2,16 +2,12 @@
   'use strict';
   Drupal.behaviors.cp_blogs = {
     attach: function(context, settings) {
-      
-    	setMinHeight();
-    	
-        $(window).resize(function () {
-        	setMinHeight();
-        });
                 
     }
   };
 }(jQuery));
+
+setMinHeight();
 
 jQuery('.cp_blog .text img').each(function() {
 	if (jQuery(this).has('data-caption') && jQuery(this).attr('data-caption')) {
@@ -25,6 +21,8 @@ jQuery('.cp_blog .text img').each(function() {
 });
 
 jQuery(window).resize(function () {
+	setMinHeight();
+	
 	jQuery('.cp_blog .text .picture').each(function() {
 		var w = jQuery(this).children('img').width();
 		jQuery(this).width(w + 20);

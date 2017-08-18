@@ -3,30 +3,30 @@
   Drupal.behaviors.cp_contacts = {
     attach: function(context, settings) {
       
-    	if ($(window).width() > 1199) {
-			placeMaxSize();
-			fixElementsMaxHeight()
-			
-		} else {
-			placeMinSize();
-			fixElementsMinHeight();
-		}
-    	
-    	
-    	$(window).resize(function () {
-        	if ($(window).width() > 1199) {
-    			placeMaxSize();
-    			fixElementsMaxHeight()
-    			
-    		} else {
-    			placeMinSize();
-    			fixElementsMinHeight();
-    		}
-    	});	
     }
   };
 }(jQuery));
 
+if (jQuery(window).width() > 1199) {
+	placeMaxSize();
+	fixElementsMaxHeight()
+	
+} else {
+	placeMinSize();
+	fixElementsMinHeight();
+}
+
+
+jQuery(window).resize(function () {
+	if (jQuery(window).width() > 1199) {
+		placeMaxSize();
+		fixElementsMaxHeight()
+		
+	} else {
+		placeMinSize();
+		fixElementsMinHeight();
+	}
+});	
 
 function placeMaxSize() {
 	jQuery('#cp_contacts .contact').css({'float': 'left', 'width': '33.3333%'});

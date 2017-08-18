@@ -2,27 +2,12 @@
   'use strict';
   Drupal.behaviors.cp_theme_d8 = {
     attach: function(context, settings) {
-    	
 	    checkCpUserConsent();
-	    
-	    makeToplinksUnclickable();
-        
-    	$(function() {
-    		
-    		if ($(window).width() < 800) {
-    					
-    		}
-    		
-    		$(window).resize(function () {
-    			if ($(window).width() < 800) {
-        			
-        		}
-    		});
-    		
-    	});
     }
   };
 }(jQuery));
+
+makeToplinksUnclickable();
 
 /**
  * Menu handler  
