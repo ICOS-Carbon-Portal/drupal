@@ -2,10 +2,13 @@
   'use strict';
   Drupal.behaviors.cp_theme_d8 = {
     attach: function(context, settings) {
-    	checkCpUserConsent();
+    	
     }
   };
 }(jQuery));
+
+checkedCpUserConsent = false;
+checkCpUserConsent();
 
 fixHome();
 
@@ -151,9 +154,6 @@ function checkCpUserConsent() {
     checkedCpUserConsent = true;
 }
 
-checkedCpUserConsent = false;
-
-
 /** 
 * Home page
 * Tweets on home page.
@@ -174,8 +174,10 @@ function fixHomeMax() {
 	
 	var tweetOff = jQuery('#block-tweets').offset();
 	var movieOff = jQuery('#block-cpmovie').offset();
-	if (tweetOff.top > movieOff.top) {
-		jQuery('.main-content #block-tweets').css({'bottom':tweetOff.top - movieOff.top});
+	if (tweetOff && movieOff) {
+		if (tweetOff.top > movieOff.top) {
+			jQuery('.main-content #block-tweets').css({'bottom':tweetOff.top - movieOff.top});
+		}
 	}
 }
 
@@ -186,8 +188,10 @@ function fixHomeMin() {
 	
 	var tweetOff = jQuery('#block-tweets').offset();
 	var movieOff = jQuery('#block-cpmovie').offset();
-	if (tweetOff.top == movieOff.top) {
-		jQuery('.main-content #block-tweets').css({'bottom':0});
+	if (tweetOff && movieOff) {
+		if (tweetOff.top == movieOff.top) {
+			jQuery('.main-content #block-tweets').css({'bottom':0});
+		}
 	}
 }
 

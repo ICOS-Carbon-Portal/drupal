@@ -2,42 +2,13 @@
   'use strict';
   Drupal.behaviors.cp_theme_d8 = {
     attach: function(context, settings) {
-    	
-	    checkCpUserConsent();   
-	    //handleIngressAndTitle(); 
-	    //fixHome();
 	    
-    	$(function() {
-    		
-    		if ($(window).width() < 800) {
-    					
-    		}
-    		
-    		if ($(window).width() > 1260) {
-    			//fixHomeMax();
-    			
-    		} else {
-    			//fixHomeMin();
-    		}
-    		
-    		$(window).resize(function () {
-    			if ($(window).width() < 800) {
-        					
-        		}
-    			
-    			if ($(window).width() > 1260) {
-        			//fixHomeMax();
-        			
-        		} else {
-        			//fixHomeMin();
-        		}
-    			
-    		});
-    		
-    	});
     }
   };
 }(jQuery));
+
+checkedCpUserConsent = false;
+checkCpUserConsent();
 
 /**
  * Menu handler  
@@ -164,8 +135,6 @@ function checkCpUserConsent() {
     }
     checkedCpUserConsent = true;
 }
-
-checkedCpUserConsent = false;
 
 /**
  * This method assume the field cp_page_ingress:  

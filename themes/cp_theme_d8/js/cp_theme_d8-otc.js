@@ -2,10 +2,13 @@
   'use strict';
   Drupal.behaviors.cp_theme_d8 = {
     attach: function(context, settings) {
-	    checkCpUserConsent();
+	    
     }
   };
 }(jQuery));
+
+checkedCpUserConsent = false;
+checkCpUserConsent();
 
 makeToplinksUnclickable();
 
@@ -134,8 +137,6 @@ function checkCpUserConsent() {
     }
     checkedCpUserConsent = true;
 }
-
-checkedCpUserConsent = false;
 
 function makeToplinksUnclickable() {	
 	jQuery('#cp_theme_d8_menu_breadcrumbs').hide();
