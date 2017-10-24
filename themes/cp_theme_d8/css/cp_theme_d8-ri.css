@@ -391,6 +391,7 @@ h1.page-title {
 /** Body content **/
 .cp_body_content {
 	display: inline-block;
+	max-width: 100%;
 }
 
 .cp_body_content .col_1 {
