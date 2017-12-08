@@ -3,4 +3,4 @@ files/
 modules/contrib/
 docker/.env
 docker/docker-compose.yml
-.libraries.yml
+*.libraries.yml
