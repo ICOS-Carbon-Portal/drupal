@@ -1,3 +1,5 @@
 db/
 files/
 modules/contrib/
+docker/.env
+docker/docker-compose.yml
