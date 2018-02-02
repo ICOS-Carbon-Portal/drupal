@@ -3,15 +3,15 @@ body {
 	background-color: #414042 !important;
 	font-size: 0.9rem;
 	line-height: 1.35rem;
-	color: #414042;	
-	font-family: "Open Sans",sans-serif !important;	
+	color: #414042;
+	font-family: "Open Sans",sans-serif !important;
 }
 
 /** Header **/
-#header { 
+#header {
 	background-size: cover;
 	background-image: url(../images/icos-cp_header_small.gif);
-		
+
 }
 
 @media all and (min-width: 513px) {
@@ -272,7 +272,7 @@ body {
 }
 
 .site-footer__top .region,
-.region-footer-first, 
+.region-footer-first,
 .region-footer-first,
 .region-footer-first {
 	width: 33%;
@@ -360,7 +360,7 @@ body {
 	border-width: 0.7rem;
 	right: 100%;
 	top: 50%;
-	margin-top: -0.5rem;	
+	margin-top: -0.5rem;
 }
 
 /** Page **/
@@ -380,13 +380,14 @@ h1.page-title {
 /** Body content **/
 .cp_body_content {
 	display: inline-block;
+	max-width: 100%;
 }
 
 .cp_body_content .col_1 {
 	display: block;
 	width: 100%;
 }
-	
+
 @media all and (max-width: 1289px) {
 	.cp_body_content .col_2_1,
 	.cp_body_content .col_2_2,
@@ -395,7 +396,7 @@ h1.page-title {
 	.cp_body_content .col_3_3 {
 		display: block;
 	}
-	
+
 	.cp_body_content .col_2_1 .inner,
 	.cp_body_content .col_2_2 .inner,
 	.cp_body_content .col_3_1 .inner,
@@ -403,40 +404,40 @@ h1.page-title {
 	.cp_body_content .col_3_3 .inner {
 		width: 100%;
 	}
-	
+
 	.divider {
 		margin-top: 0;
 		margin-bottom: 0;
 		border: 0;
 		border-top: 0;
-	}	
+	}
 }
 
 @media all and (min-width: 1290px) {
 	.cp_body_content .col_2_1 {
-		width: 800px; 
+		width: 800px;
 		float: left;
 	}
-	
-	.cp_body_content .col_2_2, 
+
+	.cp_body_content .col_2_2,
 	.cp_body_content .col_3_1,
 	.cp_body_content .col_3_2,
 	.cp_body_content .col_3_3 {
-		width: 400px; 
+		width: 400px;
 		float: left;
 	}
-	
+
 	.cp_body_content .col_2_1 .inner,
 	.cp_body_content .col_3_1 .inner,
 	.cp_body_content .col_3_2 .inner,
 	.cp_body_content .col_3_3 .inner {
 		width: 90%;
 	}
-	
+
 	.cp_body_content .col_2_2 .inner {
 		margin-left: 10%;
 	}
-	
+
 	.divider {
 		margin-top: 20px;
 		margin-bottom: 20px;
@@ -457,7 +458,7 @@ h1.page-title {
 	padding: 1rem 0 1rem 0;
 }
 
-.cp_body_content .link_box { 
+.cp_body_content .link_box {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -488,7 +489,7 @@ h1.page-title {
 	content: " ";
 }
 
-.cp_body_content .button_box { 
+.cp_body_content .button_box {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -505,7 +506,7 @@ h1.page-title {
     text-transform: uppercase;
     background-color: #bd7931;
     background-clip: padding-box;
-    color: #fff;   
+    color: #fff;
 }
 
 .social_share_button {
