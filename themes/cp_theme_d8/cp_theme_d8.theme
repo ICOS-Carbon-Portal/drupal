@@ -1,16 +1,28 @@
 <?php
 
-function cp_theme_d8_preprocess_page(&$variables, $hook) {
-	
-	include ('Menu/ListOfNodes.php');
-	$nodes = new ListOfNodes();
-	
-	$variables['cp_theme_d8_menu_elements'] = $nodes->getMenu();
-	
-	$variables['cp_theme_d8_menu_breadcrumbs'] = $nodes->getBreadcrumbs(\Drupal::request()->getRequestUri());
-	 
+function cp_theme_d8_form_system_theme_settings_alter(&$form, &$form_state) {
+
+  $form['cp_theme_d8_settings'] = array(
+    '#type'         => 'details',
+    '#title'        => t('Menu'),
+    '#open' => TRUE,
+  );
+
+	$form['cp_theme_d8_settings']['hover_menu'] = array(
+    '#type'          => 'checkbox',
+    '#title'         => t('Use the hover menu'),
+    '#default_value' => theme_get_setting('hover_menu'),
+  );
+
 }
 
+function cp_theme_d8_preprocess_page(&$variables, $hook) {
+  
+	include ('Menu/ListOfNodes.php');
+	$nodes = new ListOfNodes(theme_get_setting('hover_menu'));
 
+	$variables['cp_theme_d8_menu_elements'] = $nodes->getMenu();
 
+	$variables['cp_theme_d8_menu_breadcrumbs'] = $nodes->getBreadcrumbs(\Drupal::request()->getRequestUri());
 
+}
