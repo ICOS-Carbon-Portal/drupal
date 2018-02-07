@@ -9,9 +9,8 @@ base theme: bartik
 screenshot: CP_Theme_D8.svg
 
 libraries:
-  - cp_theme_d8/global-css
-  - cp_theme_d8/global-js
-  
+  - cp_theme_d8/global
+
 regions:
   header: Header
   highlighted: Highlighted
