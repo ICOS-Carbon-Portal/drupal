@@ -15,6 +15,9 @@ regions:
   header: Header
   highlighted: Highlighted
   content: Content
+  content_left: 'Content left'
+  content_right: 'Content right'
+  content_bottom: 'Content bottom'
   sidebar_second: 'Sidebar second'
   featured_bottom_first: 'Featured bottom first'
   featured_bottom_second: 'Featured bottom second'

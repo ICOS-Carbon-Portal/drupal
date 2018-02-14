@@ -40,14 +40,14 @@
 	border-bottom: 0px;
 }
 
-.cp_file .description { 
+.cp_file .description {
 	padding-top: 2px;
 }
 
 
 /** movie **/
 .cp_movie, .cp_movie video {
-	width: 450px;
+	max-width: 100%;
 }
 
 
@@ -55,21 +55,21 @@
 #cp_pictures_carousel { }
 
 #cp_pictures_carousel .carousel-control {
-  position: relative !important; 
-  background-image: none !important; 
+  position: relative !important;
+  background-image: none !important;
   font-size: xx-large !important;
 }
 
-#cp_pictures_carousel .glyphicon-chevron-left { 
-  top: 0% !important; 
+#cp_pictures_carousel .glyphicon-chevron-left {
+  top: 0% !important;
 }
 
-#cp_pictures_carousel .glyphicon-chevron-right { 
-  top: 0% !important; 
+#cp_pictures_carousel .glyphicon-chevron-right {
+  top: 0% !important;
 }
 
-#cp_pictures_carousel .carousel-indicators li { 
-  display: none !important; 
+#cp_pictures_carousel .carousel-indicators li {
+  display: none !important;
 }
 
 #cp_pictures_carousel .carousel-control {

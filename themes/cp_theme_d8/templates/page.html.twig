@@ -8,13 +8,13 @@
         </div>
       </div>
     </header>
-    
+
     <!--cp_menu-->
 	<div id="cp_theme_d8_menu">
 		{{ cp_theme_d8_menu_elements|raw }}
 	</div>
 	<!--cp_menu-->
-	
+
     {% if page.highlighted %}
       <div class="highlighted">
         <aside class="layout-container section clearfix" role="complementary">
@@ -22,21 +22,43 @@
         </aside>
       </div>
     {% endif %}
-    
+
     <div id="main-wrapper" class="layout-main-wrapper layout-container clearfix">
       <div id="main" class="layout-main clearfix">
       	<div id="cp_theme_d8_menu_breadcrumbs">
         	{{ cp_theme_d8_menu_breadcrumbs|raw }}
         </div>
-        
-        
+
         <main id="content" class="column main-content" role="main">
           <section class="section">
             <a id="main-content" tabindex="-1"></a>
             {{ page.content }}
+
+            {% if page.content_left or page.content_right %}
+            <div class="row">
+              {% if page.content_left %}
+              <div class="col-md-6">
+              {{ page.content_left }}
+              </div>
+              {% endif %}
+              {% if page.content_right %}
+              <div class="col-md-6">
+              {{ page.content_right }}
+              </div>
+              {% endif %}
+            </div>
+            {% endif %}
+
+            {% if page.content_bottom %}
+              <div class="col-md-6">
+                {{ page.content_right }}
+                </div>
+              </div>
+            {% endif %}
+            
           </section>
         </main>
-        
+
         {% if page.sidebar_second %}
           <div id="sidebar-second" class="column sidebar">
             <aside class="section" role="complementary">
@@ -46,7 +68,7 @@
         {% endif %}
       </div>
     </div>
-    
+
     {% if page.featured_bottom_first or page.featured_bottom_second or page.featured_bottom_third %}
       <div class="featured-bottom">
         <aside class="layout-container clearfix" role="complementary">
@@ -56,7 +78,7 @@
         </aside>
       </div>
     {% endif %}
-    
+
     <footer class="site-footer">
       <div class="layout-container">
         {% if page.footer_first or page.footer_second or page.footer_third %}
