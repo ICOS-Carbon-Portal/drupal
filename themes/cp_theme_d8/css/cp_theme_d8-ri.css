@@ -365,33 +365,20 @@ a.social_share_button:hover {
 	text-align: center;
 }
 
-#block-tweets {
-	background-color: #f6f6f2;
-	width: 480px;
-	height: 440px;
+.cp_embed_twitter {
+	max-height: 337px;
+	overflow-y: auto;
 }
 
-#block-tweets .content {
-	height: 440px;
-	overflow-y: scroll;
-}
-
+#block-tweets,
 #block-viewteasedcpblog {
 	background-color: #f6f6f2;
-	height: 440px;
-	border-left: 20px solid #f6f6f2;
-	border-right: 20px solid #f6f6f2;
-}
-
-#block-viewteasedcpblog .teaser {
-	width: 100%;
-}
-
-#block-viewteasedcpblog .content h2 {
-	padding-top: 20px;
+	margin-top: 10px;
+	padding: 10px 20px 20px;
 }
 
 #block-stationmap {
+	margin-top: 30px;
 	border-top: 5px solid #f6f6f2;
 	background-color: #f6f6f2;
 }
@@ -413,14 +400,16 @@ a.social_share_button:hover {
 	height: 0;
 }
 
+#block-stationmap {
+	height: 565px;
+	overflow: hidden;
+}
+
 #block-stationmap #map {
 	height: 480px;
 }
 
 @media all and (max-width: 1259px) {
-	.path-frontpage #content {
-		min-height: 2300px;
-	}
 
 	#block-listofteasedcpnews {
 		height: auto;
@@ -428,63 +417,5 @@ a.social_share_button:hover {
 
 	#block-listofteasedcpevents {
 		height: auto;
-	}
-
-	#block-tweets {
-		position: relative;
-		top: 0;
-	}
-
-	#block-viewteasedcpblog {
-		position: relative;
-		bottom: 0;
-		left: 0;
-	}
-
-	#block-viewteasedcpblog {
-		width: 480px;
-	}
-
-	#block-stationmap {
-		position: relative;
-		bottom: -20px;
-		width: 480px;
-		height: 440px;
-	}
-}
-
-@media all and (min-width: 1260px) {
-	#content {
-		min-height: auto;
-	}
-
-	#block-listofteasedcpnews {
-		height: 780px;
-	}
-
-	#block-listofteasedcpevents {
-		height: 1045px;
-	}
-
-	#block-tweets {
-		position: relative;
-		top: 5px;
-	}
-
-	#block-viewteasedcpblog {
-		position: relative;
-		bottom: 455px;
-		left: 500px;
-	}
-
-	#block-viewteasedcpblog {
-		width: 444px;
-	}
-
-	#block-stationmap {
-		position: relative;
-		bottom: 415px;
-		width: 940px;
-		height: 565px;
 	}
 }
