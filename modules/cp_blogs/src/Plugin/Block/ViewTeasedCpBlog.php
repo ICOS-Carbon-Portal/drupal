@@ -50,7 +50,9 @@ class ViewTeasedCpBlog extends BlockBase {
 		$date_format = 'Y-m-d';
 		$settings = \Drupal::service('config.factory')->getEditable('cp_blogs.settings');
 		if ($settings->get('settings.date_format') == 'day-month-year') { $date_format = 'd-m-Y'; }
-		
+
+		$output = '';
+
 		foreach ($list as $blog) {
 
 			if ($blog->getCategory() == $blog_category) {
