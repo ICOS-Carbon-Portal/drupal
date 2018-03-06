@@ -56,6 +56,7 @@ class ListOfTeasedCpEventsAsNews extends BlockBase {
 			if ($co < $counter && $e->getNews() != 0 && $e->getHistorical() == 0) {
 
 				$output .= '<div class="tease_event">';
+				$output .= '<div class="title"><a href="/event/'.$e->getId().'">' . $e->getTitle() . '</a></div>';
 
 				$date = '';
 				if ($e->getFromDate() != null && $e->getFromDate() != '') {
@@ -66,8 +67,6 @@ class ListOfTeasedCpEventsAsNews extends BlockBase {
 				}
 
 				$output .= '<div class="from_date">' . date($date_format, strtotime($date)) . '</div>';
-
-				$output .= '<div class="title"><a href="/event/'.$e->getId().'">' . $e->getTitle() . '</a></div>';
 
 				if ($e->getPictureUri() != null && $e->getPictureUri() != '') {
 					$picture_url = $url . str_replace('public://', '', $e->getPictureUri());
