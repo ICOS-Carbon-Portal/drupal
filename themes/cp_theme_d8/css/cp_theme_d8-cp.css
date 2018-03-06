@@ -342,3 +342,12 @@ a.social_share_button:hover {
 	max-height: 460px;
 	overflow-y: auto;
 }
+
+.button,
+.button:hover,
+.button:active,
+.button:focus {
+	background: #f06424;
+	color: #fff;
+	border: 0;
+}
