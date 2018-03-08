@@ -68,17 +68,6 @@ class ListOfTeasedCpEventsAsNews extends BlockBase {
 
 				$output .= '<div class="from_date">' . date($date_format, strtotime($date)) . '</div>';
 
-				if ($e->getPictureUri() != null && $e->getPictureUri() != '') {
-					$picture_url = $url . str_replace('public://', '', $e->getPictureUri());
-
-					$picture_title = '';
-					if ($e->getPictureTitle() != null && $e->getPictureTitle() != '') { $picture_title = $e->getPictureTitle(); }
-
-					$output .= '<div class="picture">';
-					$output .= '<img src="' . $picture_url . '" alt="' . $picture_title . '" title="' . $picture_title . '" />';
-					$output .= '</div>';
-				}
-
 				$body = strip_tags($e->getBody());
 
 				if (strlen($body) > 100 ) {
