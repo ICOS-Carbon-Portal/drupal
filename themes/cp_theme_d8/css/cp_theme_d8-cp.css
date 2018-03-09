@@ -7,6 +7,13 @@ body {
 	font-family: "Open Sans",sans-serif !important;
 }
 
+body a,
+body a:active,
+body a:hover,
+body a:focus {
+	color: #f06424;
+}
+
 /** Header **/
 #header {
 	background-size: cover;
@@ -85,7 +92,7 @@ body {
 
 .site-footer .content a,
 .site-footer .content a.is-active {
-	color: #0A96F0;
+	color: #f06424;
 	text-decoration: none;
 	border: 0;
 }
@@ -131,7 +138,7 @@ body {
 .region-footer-first a.footer-link:hover,
 .region-footer-second a.footer-link:hover,
 .region-footer-third a.footer-link:hover {
-	color: #0A96F0;
+	color: #f06424;
 }
 
 .region-footer-second a.footer-link::after,
