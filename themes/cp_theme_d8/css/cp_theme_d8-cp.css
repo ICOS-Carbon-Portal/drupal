@@ -17,20 +17,8 @@ body a:focus {
 /** Header **/
 #header {
 	background-size: cover;
-	background-image: url(../images/icos-cp_header_small.gif);
-
-}
-
-@media all and (min-width: 513px) {
-	#header {
-		background-image: url(../images/icos-cp_header_medium.gif);
-	}
-}
-
-@media all and (min-width: 1025px) {
-	#header {
-		background-image: url(../images/icos-cp_header.gif);
-	}
+	background-image: url(https://www.animationsource.org/sites_content/lion_king/img_screenshot/218442.jpg);
+	background-position: 0 67%;
 }
 
 #header {
