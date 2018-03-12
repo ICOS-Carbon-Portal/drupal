@@ -2,12 +2,12 @@ style:
   css:
     theme:
       css/cp_email.css: {}
-      
-script:     
+
+script:
   js:
     js/cp_email.js: {}
     https://www.google.com/recaptcha/api.js: { type: external }
-    
+
   dependencies:
     - core/jquery
-    - core/jquery.once              
+    - core/jquery.once

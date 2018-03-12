@@ -2,33 +2,34 @@ style:
   css:
     theme:
       css/cp_datastat.css: {}
-      css/bootstrap-sortable.css: {}
-      
-script_contributers:     
+      //static.icos-cp.eu/constant/bootstrap-sortable/2.0.0/bootstrap-sortable.css: { type: external }
+
+script_contributers:
   js:
     js/cp_datastat_contributors.js: {}
-    js/bootstrap-sortable.js: {}
-    js/moment.min.js: {}
-    
+    //static.icos-cp.eu/constant/bootstrap-sortable/2.0.0/bootstrap-sortable.js: { type: external }
+    //static.icos-cp.eu/constant/moment/2.3.1/moment.min.js: { type: external, minified: true }
+
   dependencies:
     - core/jquery
     - core/jquery.once
-    
-script_downloads:     
+
+script_downloads:
   js:
     js/cp_datastat_downloads.js: {}
-    js/bootstrap-sortable.js: {}
-    js/moment.min.js: {}
-    
+    //static.icos-cp.eu/constant/bootstrap-sortable/2.0.0/bootstrap-sortable.js: { type: external }
+    //static.icos-cp.eu/constant/moment/2.3.1/moment.min.js: { type: external, minified: true }
+
+
   dependencies:
     - core/jquery
-    - core/jquery.once    
+    - core/jquery.once
 
-script_size:     
+script_size:
   js:
     js/cp_datastat_size.js: {}
-    js/d3.3.5.17.min.js: {}
-        
+    //static.icos-cp.eu/constant/d3/3.5.17/d3.min.js: { type: external, minified: true }
+
   dependencies:
     - core/jquery
-    - core/jquery.once                     
+    - core/jquery.once

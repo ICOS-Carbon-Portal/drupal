@@ -2,11 +2,11 @@ style:
   css:
     theme:
       css/cp_contacts.css: {}
-      
-script:     
+
+script:
   js:
     js/cp_contacts.js: {}
-    
+
   dependencies:
     - core/jquery
-    - core/jquery.once    
+    - core/jquery.once
