@@ -1,10 +1,7 @@
 /** Body **/
 body {
-	background-color: #414042 !important;
-	font-size: 0.9rem;
-	line-height: 1.35rem;
 	color: #414042;
-	font-family: "Open Sans",sans-serif !important;
+	font-family: "Open Sans", sans-serif;
 }
 
 body a,
@@ -343,11 +340,32 @@ a.social_share_button:hover {
 	overflow-y: auto;
 }
 
-.button,
-.button:hover,
-.button:active,
-.button:focus {
+.btn-orange {
 	background: #f06424;
 	color: #fff;
 	border: 0;
+}
+
+.btn-orange:hover,
+.btn-orange:focus {
+	background: #D65A20;
+	color: #fff;
+}
+
+.btn-orange:active {
+	background: #BD4F1C;
+	color: #fff;
+}
+
+.btn-outline {
+	background: transparent;
+	color: #f06424;
+	border-color: #f06424;
+}
+
+.btn-outline:hover,
+.btn-outline:active,
+.btn-outline:focus {
+	background: #f06424;
+	color: #fff;
 }
