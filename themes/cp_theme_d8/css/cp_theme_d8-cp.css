@@ -18,9 +18,8 @@ body a:focus {
 
 /** Header **/
 #header {
-	background-size: cover;
-	background-image: url(https://www.animationsource.org/sites_content/lion_king/img_screenshot/218442.jpg);
-	background-position: 0 67%;
+	background-image: url(https://static.icos-cp.eu/images/bright-squares.png);
+	background-color: #f06424;
 }
 
 #header {
