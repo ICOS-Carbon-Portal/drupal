@@ -102,6 +102,12 @@
   #cp_theme_d8_menu .is_topnode .open_menu {
     display: none;
   }
+
+  #cp_theme_d8_menu .account {
+    float: right;
+    display: none;
+    cursor: pointer;
+  }
 }
 
 @media all and (max-width: 799px) {
