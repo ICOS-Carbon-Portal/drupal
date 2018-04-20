@@ -1,8 +1,10 @@
-db/
-files/
-modules/contrib/
-docker/
-modules/*
+/db/
+/files/
+/modules/contrib/
+/docker/
+/modules/*
+/config/
+
 !modules/cp_blogs/
 !modules/cp_cmis/
 !modules/cp_contacts/
@@ -14,4 +16,7 @@ modules/*
 !modules/cp_files/
 !modules/cp_statistics/
 !modules/ns_stationdata/
+
 *.libraries.yml
+
+cmis_repository_wrapper.php
