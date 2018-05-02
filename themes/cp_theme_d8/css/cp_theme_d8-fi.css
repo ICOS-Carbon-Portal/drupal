@@ -3,15 +3,15 @@ body {
 	background-color: #414042 !important;
 	font-size: 0.9rem;
 	line-height: 1.35rem;
-	color: #414042;	
-	font-family: "Open Sans",sans-serif !important;	
+	color: #414042;
+	font-family: "Open Sans",sans-serif !important;
 }
 
 /** Header **/
-#header { 
+#header {
 	background-size: cover;
 	background-image: url(../images/icos-no_header_small.png);
-		
+
 }
 
 @media all and (min-width: 513px) {
@@ -63,7 +63,7 @@ body {
 }
 
 .site-footer__top .region,
-.region-footer-first, 
+.region-footer-first,
 .region-footer-first,
 .region-footer-first {
 	width: 33%;
@@ -93,21 +93,6 @@ body {
 .site-footer .block {
 	border: 0;
 	padding: 0;
-}
-
-.region-footer-second a.footer-button {
-	background-color: #0A96F0;
-	font-size: 1.4rem;
-	color: #FFF;
-	text-decoration: none;
-	text-transform: uppercase;
-	display: inline-block;
-	border: medium none;
-	cursor: pointer;
-	padding: 1.6rem 6rem;
-	margin: 1rem 1rem 1rem 0px;
-	border-radius: 0.2rem;
-	background-clip: padding-box;
 }
 
 .region-footer-first a.footer-link {
@@ -151,7 +136,7 @@ body {
 	border-width: 0.7rem;
 	right: 100%;
 	top: 50%;
-	margin-top: -0.5rem;	
+	margin-top: -0.5rem;
 }
 
 /** Page **/
@@ -204,5 +189,3 @@ a.social_share_button:hover {
 	background-repeat: no-repeat;
 	width: 48px;
 }
-
-

@@ -139,7 +139,7 @@
 }
 
 .archive_event .post {
-	background-color: #bd7931;
+	background-color: #e6e7e8;
 }
 
 .archive_event .post1 {
@@ -147,11 +147,11 @@
 }
 
 .archive_event .panel-heading {
-	background-color: #bd7931 !important;
+	background-color: #e6e7e8 !important;
 }
 
 .archive_event a .panel-title {
-	color: #fff;
+	color: #414042;
 	font-weight: bold;
 	text-decoration: none;
 	border-bottom: 0;
@@ -295,8 +295,8 @@
 
 .event_button:hover,
 .event_selected {
-	background-color: #bd7931;
-	color: #fff;
+	background-color: #e6e7e8;
+	color: #414042;
 }
 
 .event_active {
@@ -304,12 +304,12 @@
   height: 0;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
-  border-left: 10px solid #bd7931;
+  border-left: 10px solid #e6e7e8;
   margin-left: -4px;
 }
 
 .event_body_button {
-	background-color: #bd7931;
+	background-color: #e6e7e8;
 	font-size: 1.4rem;
 	color: #FFF;
 	text-decoration: none;
@@ -331,14 +331,14 @@
 }
 
 .events_all_news .panel-heading {
-	background-color: #bd7931 !important;
+	background-color: #e6e7e8 !important;
 }
 
 .events_all_news .panel-heading a,
 .events_all_news .panel-heading a:link,
 .events_all_news .panel-heading a:focus,
 .events_all_news .panel-heading a:active {
-	color: #fff;
+	color: #414042;
 	text-decoration: none;
 	border: 0;
 	outline: 0;
