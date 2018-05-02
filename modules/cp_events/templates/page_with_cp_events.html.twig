@@ -33,9 +33,11 @@
 				</div>
 			{% endfor %}
 
+			{% if elements['cp_events_more_news_url'] %}
 			<div class="more-news">
-				<a href="/news">More news &rarr;</a>
+				<a href="{{ elements['cp_events_more_news_url'] }}">More news &rarr;</a>
 			</div>
+			{% endif %}
 
 		</div>
 
