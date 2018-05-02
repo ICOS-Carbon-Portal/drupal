@@ -2,74 +2,78 @@
 <div id="cp_events_page">
 
 	<div class="news_section">
-	
+
 		<div class="latest_news">
-		
+
 			<h3 class="heading">Latest news</h3>
-			
+
 			<span class="date">
 				{{ elements['news']['list'][0].getFromDate() }}
 			</span>
-			
+
 			<a href="/event/{{ elements['news']['list'][0].getid() }}">
 				<h3 class="title">{{ elements['news']['list'][0].getTitle() }}</h3>
 			</a>
-			
+
 			{% if elements['news']['list'][0].getPictureUri() %}
 				<img class="picture" src="{{ elements['news']['list'][0].getPictureUri() }}" />
 			{% endif %}
-			
+
 		</div>
-		
-		
+
+
 		<div class="news_list">
-		
+
 			<h3 class="heading">News</h3>
-			
+
 			{% for news in elements['news']['list'] | slice(0, elements['news']['count']) %}
 				<div class="item">
 					<span class="date">{{ news.getFromDate() }}</span>
 					<a href="/event/{{ news.getid() }}"><p class="title">{{ news.getTitle() }}</p></a>
-				</div>			
-			{% endfor %} 	
-			
+				</div>
+			{% endfor %}
+
+			<div class="more-news">
+				<a href="/news">More news &rarr;</a>
+			</div>
+
 		</div>
-		
+
 	</div>
-	
-	
+
+
 	<h3 class="heading">Latest events</h3>
-	
+
 	<div class="events_section">
-		
+
 		<div class="events_list">
-			
+
 			<div class="items">
-			
+
 				{% for event in elements['events']['list'] %}
 					<div id="event_{{ event.getId() }}" class="item">
-						<a href="javascript:void(0)" id="{{ event.getId() }}" 
-						
+						<a href="javascript:void(0)" id="{{ event.getId() }}"
+
 							{% if loop.first %}
 								class="event_body_handler event_button event_selected"
 							{% else %}
-								class="event_body_handler event_button"	
+								class="event_body_handler event_button"
 							{% endif %}
 							>
-							
-							<p class="title">{{ event.getTitle() }}</p>	
-					
-							<span class="date">			
+
+							<p class="title">{{ event.getTitle() }}</p>
+
+							<span class="date">
 								{{ event.getFromDate() }}
-							
+
 								{% if event.getToDate() %}
-									to {{ event.getToDate() }}	
+									to {{ event.getToDate() }}
 								{% endif %}
 							</span>
-							
+
 						</a>
-						
-						<div class="event_active" 
+
+						<div class="event_active"
 							{% if loop.first %}
 								style="display: inline-block"
 							{% else %}
@@ -77,24 +81,24 @@
 							{% endif %}
 						>
 						</div>
-						
+
 						<div class="text" style="display: none">{{ event.getBody() }}</div>
-						
+
 						<div class="link_uri" style="display: none">{{ event.getLinkUri() }}</div>
 						<div class="link_title" style="display: none">{{ event.getLinkTitle() }}</div>
-					</div>		
-					
+					</div>
+
 				{% endfor %}
-				
+
 			</div>
-				
+
 		</div>
-		
+
 		<div id="event_container">
-		
+
 			<div class="event_body">
-			
-				<div class="edit_this" 
+
+				<div class="edit_this"
 					{% if not user.hasPermission('edit any cp_event content') %}
 						style="display:none"
 					{% endif %}>
@@ -102,54 +106,54 @@
 						Edit this
 					</a>
 				</div>
-			
-			
+
+
 				<h3 class="title">{{ elements['events']['list'][0].getTitle() }}</h3>
-				
+
 				<div class="site_home" style="display: none">{{ elements['site_home'] }}</div>
-				
-				<p class="date">			
+
+				<p class="date">
 					{{ elements['events']['list'][0].getFromDate() }}
-				
+
 					{% if elements['events']['list'][0].getToDate() %}
-						to {{ elements['events']['list'][0].getToDate() }}	
+						to {{ elements['events']['list'][0].getToDate() }}
 					{% endif %}
-					
+
 				</p>
-				
+
 				<div class="text">
 					{{ elements['events']['list'][0].getBody() | raw }}
 				</div>
-				
+
 				<div class="link">
 					{% if elements['events']['list'][0].getLinkUri() %}
 						<a href="{{ elements['events']['list'][0].getLinkUri() }}" class="event_body_button">
 							{{ elements['events']['list'][0].getLinkTitle() }}
-						</a>	
+						</a>
 					{% endif %}
 				</div>
-				
+
 			<div class="share">
-				<a href="javascript:void(0)" 
-					class="social_share_button social_share_twitter" 
+				<a href="javascript:void(0)"
+					class="social_share_button social_share_twitter"
 					onclick="shareTwitterEvent( {{ elements['events']['list'][0].getId() }}, '{{ elements['events']['list'][0].getTitle() }}', '{{ elements['site_home'] }}' )">
 				</a>
-				
-				<a href="javascript:void(0)" 
-					class="social_share_button social_share_linkedin" 
+
+				<a href="javascript:void(0)"
+					class="social_share_button social_share_linkedin"
 					onclick="shareLinkedinEvent( {{ elements['events']['list'][0].getId() }}, '{{ elements['site_home'] }}' )">
 				</a>
-				
-				<a href="javascript:void(0)" 
-					class="social_share_button social_share_facebook" 
+
+				<a href="javascript:void(0)"
+					class="social_share_button social_share_facebook"
 					onclick="shareFacebookEvent( {{ elements['events']['list'][0].getId() }}, '{{ elements['events']['list'][0].getTitle() }}', '{{ elements['site_home'] }}' )">
 				</a>
 			</div>
-			
-			</div>	
-				
+
+			</div>
+
 		</div>
-		
+
 	</div>
 
 </div>

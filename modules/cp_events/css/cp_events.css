@@ -258,6 +258,10 @@
 	font-size: 100%;
 }
 
+#cp_events_page .more-news {
+	margin: 2rem 0;
+}
+
 @media all and (min-width: 1100px) {
 	#cp_events_page .events_section {
 		/* border: 0.1rem solid #c7c8ca; */
