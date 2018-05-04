@@ -102,6 +102,7 @@ class ListOfNodes {
 
 			$nodetype = 'is_topnode';
 			$title = $node->getTitle();
+
 			if ($node->getDepth() > '1') {
 				$nodetype = 'has_subnodes';
 				if ($this->isHover) {
@@ -110,11 +111,11 @@ class ListOfNodes {
 			}
 
 			if ($this->isHover) {
-				$this->menu[] = '<li class="' . $nodetype . '"><a href="'. $url . $node->getPath() .'">'. $title . '</a>';
+				$expandIcon = $nodetype == 'is_topnode' ? '<img src="/themes/cp_theme_d8/images/arrow-up-down.svg" class="open_menu" title="Open/Close" />' : '';
+				$this->menu[] = '<li class="' . $nodetype . '">' . $expandIcon . '<a href="'. $url . $node->getPath() .'">'. $title . '</a>';
 			} else {
-				$sublinks = '<img class="sublinks" src="/themes/cp_theme_d8/images/menu_arrow_down_w.png" />';
-
-				$this->menu[] = '<li class="' . $nodetype . '"><div class="link"><a href="'. $url . $node->getPath() .'">'. $title . '</a>' . $sublinks . '</div>';
+				$expandIcon = '<img class="sublinks" src="/themes/cp_theme_d8/images/menu_arrow_down_w.png" />';
+				$this->menu[] = '<li class="' . $nodetype . '"><div class="link"><a href="'. $url . $node->getPath() .'">'. $title . '</a>' . $expandIcon . '</div>';
 			}
 
 			$this->menu[] = '<ul>';
