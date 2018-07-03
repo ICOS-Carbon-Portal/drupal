@@ -57,7 +57,7 @@ class CPEmailFeedbackForm extends FormBase {
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $sender = $form_state->getValue('sender');
-    $message = $form_state->getValue('message');
+    $message = $form_state->getValue('message') . "\n\n---\nSent by $sender";
 
     $settings = \Drupal::service('config.factory')->getEditable('cp_email.settings');
     $receiver = $settings->get('settings.feedback_receiver');
@@ -74,13 +74,13 @@ class CPEmailFeedbackForm extends FormBase {
       $email['subject'] = $subject;
       $email['body'] = $message;
 
-      $sent = 'Your feedback has been sent, thank you.';
-
       $language = \Drupal::languageManager()->getCurrentLanguage();
-      $message = \Drupal::service('plugin.manager.mail')->mail('cp_email', '', $receiver, $language, $email);
+      $message = \Drupal::service('plugin.manager.mail')->mail('cp_email', '', $receiver, $language, $email, $sender);
 
       if ($message['result']) {
         drupal_set_message('Your feedback has been sent, thank you.');
+      } else {
+        \Drupal::logger('cp_email')->error(print_r($message, true));
       }
     }
   }

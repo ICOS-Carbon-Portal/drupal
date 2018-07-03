@@ -81,13 +81,15 @@ class CPEmailForm extends FormBase {
 				$email['from_name'] = $sender;
 				$email['from_mail'] = $sender;
 				$email['subject'] = $form_state->getValue('cp_email_subject');
-				$email['body'] = $form_state->getValue('cp_email_message');
+				$email['body'] = $form_state->getValue('cp_email_message') . "\n\n---\nSent by $sender";
 
         $language = \Drupal::languageManager()->getCurrentLanguage();
-        $message = \Drupal::service('plugin.manager.mail')->mail('cp_email', '', $receiver, $language, $email);
+        $message = \Drupal::service('plugin.manager.mail')->mail('cp_email', '', $receiver, $language, $email, $sender);
 
 				if ($message['result']) {
 					drupal_set_message($form_state->getValue('cp_email_complete_message'));
+				} else {
+					\Drupal::logger('cp_email')->error(print_r($message, true));
         }
 			}
 
