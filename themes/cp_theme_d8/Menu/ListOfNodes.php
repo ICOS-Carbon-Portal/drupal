@@ -8,10 +8,12 @@ class ListOfNodes {
 	private $menu = array();
 	private $breadcrumbs = array();
 	private $isHover;
+	private $displayLogin;
 
-	function __construct($isHover) {
+	function __construct($isHover, $displayLogin) {
 		$this->nodes = $this->_prepare_nodes();
 		$this->isHover = $isHover;
+		$this->displayLogin = $displayLogin;
 	}
 
 	function getBreadcrumbs($active_path) {
@@ -84,6 +86,21 @@ class ListOfNodes {
 
 		foreach ($top_nodes as $node) {
 			$this->menu[] = $this->_build_menu($node, $output, $this->nodes);
+		}
+
+		if ($this->displayLogin) {
+			$this->menu[] = '
+				<li id="accountLnk" class="account">
+					<a><span class="glyphicon glyphicon-user"></span> My Carbon Portal Account</a>
+				</li>
+				<li id="logOutLnk" class="account">
+					<a><span class="glyphicon glyphicon-log-out"></span> Log out</a>
+
+				</li>
+				<li id="logInLnk" class="account">
+					<a><span class="glyphicon glyphicon-log-in"></span> Log in</a>
+				</li>
+			';
 		}
 
 		$this->menu[] = '</ul>';
