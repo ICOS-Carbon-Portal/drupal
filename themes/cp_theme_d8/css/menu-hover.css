@@ -11,6 +11,10 @@
   list-style-type: none;
 }
 
+#cp_theme_d8_menu .account {
+  display: none;
+}
+
 @media all and (min-width: 800px) {
   #cp_theme_d8_menu ul {
     padding: 0em 0em 0em 0em;
@@ -105,7 +109,6 @@
 
   #cp_theme_d8_menu .account {
     float: right;
-    display: none;
     cursor: pointer;
   }
 }
