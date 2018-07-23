@@ -28,7 +28,10 @@ function cp_theme_d8_preprocess_page(&$variables, $hook) {
 
 	include ('Menu/ListOfNodes.php');
 	$nodes = new ListOfNodes($isHover);
+}
 
-	$variables['cp_theme_d8_menu_elements'] = $nodes->getMenu();
+function cp_theme_d8_preprocess_menu__main(&$variables) {
+  $isHover = theme_get_setting('hover_menu');
 
+  $variables['is_hover'] = $isHover;
 }
