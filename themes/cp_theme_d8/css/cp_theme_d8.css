@@ -143,13 +143,13 @@ h1.page-title {
 }
 
 /** User Consent Cookie **/
-#cpuserconsent { padding-top: 1rem; margin: 0 0 2rem 4rem; color: #003e80; font-size: 1.5rem; }
+#cpuserconsent { margin: 1rem 0.5rem; color: #003e80; font-size: 1.5rem; text-align: center; }
 
 #cpuserconsent .info { display: inline; padding-right: 2rem; }
 
 #cpuserconsent .agree { display: inline; }
 
-#cpuserconsent .agree input[type="checkbox"] { margin-left: 2rem; vertical-align: sub; width: 2rem; height: 2rem; transform: scale(1.5); -webkit-transform: scale(1.5); cursor: pointer; }
+#cpuserconsent .agree input[type="checkbox"] { margin-left: 2rem; vertical-align: sub; cursor: pointer; }
 
 /** Body content **/
 .cp_body_content {
