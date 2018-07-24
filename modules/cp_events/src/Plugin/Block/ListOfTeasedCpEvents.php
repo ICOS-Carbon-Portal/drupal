@@ -67,17 +67,16 @@ class ListOfTeasedCpEvents extends BlockBase {
 
 				$to_date = '';
 				if ($e->getToDate() != null && $e->getToDate() != '') {
-					$to_date = ' -- ' . date($date_format, strtotime($e->getToDate()));
+					$to_date = ' to ' . date($date_format, strtotime($e->getToDate()));
 
 				}
 
 				if (strtotime($from_date) > $old_date) {
 
 					$output .= '<div class="tease_event">';
+					$output .= '<div class="title"><a href="/event/'.$e->getId().'">' . $e->getTitle() . '</a></div>';
 
 					$output .= '<div class="from_date">' . date($date_format, strtotime($from_date)) . $to_date . '</div>';
-
-					$output .= '<div class="title"><a href="/event/'.$e->getId().'">' . $e->getTitle() . '</a></div>';
 
 					if ($e->getPictureUri() != null && $e->getPictureUri() != '') {
 						$picture_url = $url . str_replace('public://', '', $e->getPictureUri());
@@ -85,9 +84,7 @@ class ListOfTeasedCpEvents extends BlockBase {
 						$picture_title = '';
 						if ($e->getPictureTitle() != null && $e->getPictureTitle() != '') { $picture_title = $e->getPictureTitle(); }
 
-						$output .= '<div class="picture">';
-						$output .= '<img src="' . $picture_url . '" alt="' . $picture_title . '" title="' . $picture_title . '" />';
-						$output .= '</div>';
+						$output .= '<img class="picture" src="' . $picture_url . '" alt="' . $picture_title . '" title="' . $picture_title . '" />';
 					}
 
 					$body = $e->getBody();

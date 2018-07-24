@@ -74,9 +74,7 @@ class ListOfTeasedCpEventsAsNews extends BlockBase {
 					$picture_title = '';
 					if ($e->getPictureTitle() != null && $e->getPictureTitle() != '') { $picture_title = $e->getPictureTitle(); }
 
-					$output .= '<div class="picture">';
-					$output .= '<img src="' . $picture_url . '" alt="' . $picture_title . '" title="' . $picture_title . '" />';
-					$output .= '</div>';
+					$output .= '<img class="picture" src="' . $picture_url . '" alt="' . $picture_title . '" title="' . $picture_title . '" />';
 				}
 
 				$body = strip_tags($e->getBody());
