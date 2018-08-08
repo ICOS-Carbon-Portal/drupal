@@ -1,64 +1,42 @@
-.cp_contacts { }
-
-@media all and (max-width: 1289px) {
-	.cp_contacts .contact {
-		float: none;
-		width: 100%;	
-	}
+.cp_contacts {
+	display: flex;
+	flex-wrap: wrap;
 }
 
-@media all and (min-width: 1290px) {
-	.cp_contacts .contact {
-		float: left;
-		width: 33%;	
-	}
-}	
-
-.cp_contacts .data { }
+.cp_contacts .contact {
+	width: 400px;
+	margin-bottom: 4vh;
+	display: flex;
+	max-width: 100%;
+}
 
 .cp_contacts .data_to_right {
-	position: relative;
-	bottom: 95px;
-	left: 120px;
+	max-width: 80%;
 }
 
 .cp_contacts .picture {
-	width: 100px;	
+	width: 20%;
+	margin: 0 1em 1em 0;
+	min-width: 20%;
 }
-	
+
 .cp_contacts .name,
 .cp_contacts .title,
 .cp_contacts .organization,
 .cp_contacts .address,
 .cp_contacts .email,
-.cp_contacts .phone  {
-	padding-bottom: 1rem;
+.cp_contacts .phone {
+	font-size: small;
+	padding-bottom: 0.2em;
 }
 
 .cp_contacts .name {
 	font-size: 1.8rem;
-	line-height: 1.7rem;	
-}
-
-.cp_contacts .title,
-.cp_contacts .organization {
-	text-transform: none;
-}
-
-.cp_contacts .title {
-	font-size: 85%;
-}
-
-.cp_contacts .organization {
-	font-size: 80%;
-}
-
-.cp_contacts .title,
-.cp_contacts .organization {
-	width: 70%;
+	line-height: 1.7rem;
+	padding-bottom: 0.5em;
 }
 
 .cp_contacts .email a,
 .cp_contacts .phone a {
-	border-bottom: 0px;
+	border-bottom: 0;
 }
