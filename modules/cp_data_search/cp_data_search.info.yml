@@ -1,0 +1,10 @@
+name: Data Search
+description: Initial portal search
+package: CP
+
+type: module
+core: 8.x
+
+libraries:
+  - cp_data_search/style
+  - cp_data_search/script

@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function cp_data_search_theme($existing, $type, $theme, $path) {
+  $variables = array(
+    'data_search_block' => array(
+      'template' => 'data_search_block',
+    ),
+  );
+  return $variables;
+}

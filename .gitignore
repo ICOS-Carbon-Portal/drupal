@@ -13,5 +13,7 @@ modules/*
 !modules/cp_external_auth/
 !modules/cp_files/
 !modules/cp_statistics/
+!modules/cp_data_search/
 !modules/ns_stationdata/
 *.libraries.yml
+!cp_data_search.libraries.yml
