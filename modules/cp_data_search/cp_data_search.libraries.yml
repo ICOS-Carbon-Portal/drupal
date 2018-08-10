@@ -1,0 +1,14 @@
+style:
+  css:
+    theme:
+      https://use.fontawesome.com/releases/v5.0.9/css/solid.css: { type: external }
+      https://use.fontawesome.com/releases/v5.0.9/css/fontawesome.css: { type: external }
+      css/cp_data_search.css: {}
+
+script:
+  js:
+    js/cp_data_search.js: {}
+
+  dependencies:
+    - core/jquery
+    - core/jquery.once

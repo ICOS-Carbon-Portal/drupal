@@ -1,16 +1,5 @@
 /** Menu **/
 
-#cp_theme_d8_menu {
-  background-color: #414042;
-}
-
-#cp_theme_d8_menu li {
-  list-style: none;
-  list-style: none;
-  list-style-image: none;
-  list-style-type: none;
-}
-
 #cp_theme_d8_menu a:link,
 #cp_theme_d8_menu a:hover,
 #cp_theme_d8_menu a:active,
@@ -32,35 +21,18 @@
   padding: 0.5rem 1rem 0 1rem;
 }
 
+#cp_theme_d8_menu li.open ul {
+  display: block;
+}
+
+#cp_theme_d8_menu li.open ul ul {
+  display: none;
+}
+
 @media all and (min-width: 800px) {
-  #cp_theme_d8_menu ul {
-    padding: 0em 0em 0em 0em;
-    margin: 0;
-    list-style: none;
-    list-style-image: none;
-    list-style-type: none;
-    margin: 0em auto 0em auto;
-    max-width: 1290px;
-  }
-
-  #cp_theme_d8_menu ul li {
-    display: block;
-    position: relative;
-    float: left;
-    background: #414042;
-  }
-
-  #cp_theme_d8_menu li ul {
-    display: none;
-  }
 
   #cp_theme_d8_menu .link {
     padding: 0.6em;
-  }
-
-  #cp_theme_d8_menu ul li a {
-    white-space: nowrap;
-    color: #fff;
   }
 
   #cp_theme_d8_menu ul li .sublinks {
@@ -75,135 +47,8 @@
     color: #fff;
   }
 
-  #cp_theme_d8_menu li:hover .link {
-    /**background: #414042;**/
-  }
-
-  #cp_theme_d8_menu li:hover .link:hover,
-  #cp_theme_d8_menu li:hover li .link:hover {
-    /**background: #666468;**/
-  }
-
   #cp_theme_d8_menu li li,
   #cp_theme_d8_menu li:hover li {
     float: none;
-    min-width: 280px;
   }
-
-  .cp_theme_d8_menu li ul li {
-    border-top: 0;
-  }
-
-  #cp_theme_d8_menu ul ul ul {
-    left: 100%;
-    top: 0;
-  }
-
-  #cp_theme_d8_menu ul:before,
-  #cp_theme_d8_menu ul:after {
-    content: " ";
-    display: table;
-  }
-
-  #cp_theme_d8_menu ul:after {
-    clear: both;
-  }
-}
-
-@media all and (max-width: 799px) {
-  #cp_theme_d8_menu ul {
-    padding: 0;
-    margin: 0;
-  }
-
-  #cp_theme_d8_menu ul li {
-    display: block;
-    background: #414042;
-  }
-
-  #cp_theme_d8_menu li ul {
-    display: none;
-    margin-left: 1em;
-  }
-
-  #cp_theme_d8_menu .link {
-    padding: 0.6em;
-  }
-
-  #cp_theme_d8_menu ul li a {
-    display: inline;
-    padding: 1em;
-    text-decoration: none;
-    white-space: nowrap;
-    color: #ffffff;
-  }
-
-  #cp_theme_d8_menu ul li .sublinks {
-    color: #fff;
-    cursor: pointer;
-    font-weight: bold;
-    float: none;
-  }
-
-  #cp_theme_d8_menu ul li a:hover,
-  #cp_theme_d8_menu li:hover li a:hover {
-    color: #fff;
-  }
-
-  #cp_theme_d8_menu li:hover .link {
-    /**background: #414042;**/
-  }
-
-  #cp_theme_d8_menu li:hover .link:hover,
-  #cp_theme_d8_menu li:hover li .link:hover {
-    /**background: #666468;**/
-  }
-
-  #cp_theme_d8_menu li li,
-  #cp_theme_d8_menu li:hover li {
-    float: none;
-    min-width: 280px;
-  }
-
-  .cp_theme_d8_menu li ul li {
-    border-top: 0;
-  }
-
-  #cp_theme_d8_menu ul ul ul {
-    left: 0%;
-    top: 0;
-  }
-
-  #cp_theme_d8_menu ul:before,
-  #cp_theme_d8_menu ul:after {
-    content: " ";
-    display: none;
-  }
-
-  #cp_theme_d8_menu ul:after {
-    clear: both;
-  }
-}
-
-#cp_theme_d8_menu_breadcrumbs {
-  background-color: #ffffff;
-}
-
-#cp_theme_d8_menu_breadcrumbs li {
-  list-style: none;
-  list-style-image: none;
-  list-style-type: none;
-  display: inline;
-}
-
-#cp_theme_d8_menu_breadcrumbs a {
-  text-decoration: none;
-  padding: 0.4em 0.4em 0.4em 0em;
-  border: 0;
-  color: #414042;
-}
-
-#cp_theme_d8_menu_breadcrumbs span {
-  padding: 0em 0.4em 0em 0em;
-  color: #414042;
 }

@@ -1,0 +1,71 @@
+.dataSearchForm {
+	border: 1px solid #eee;
+	border-radius: 5px;
+	background-color: #fafafa;
+	margin: 2em auto;
+	padding: 2em;
+}
+
+.search-field-row {
+	display: flex;
+	flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+	margin: 1em auto;
+}
+
+.box {
+	margin: 0 2rem;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.box:hover {
+	border-color: #f06424;
+}
+
+.box-content {
+	width: 100px;
+	height: 100px;
+	background: #fefefe;
+	border: 1px #eee solid;
+	border-radius: 5px;
+	text-decoration: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: #333;
+	font-size: 0.8em;
+	cursor: pointer;
+	font-weight: normal;
+}
+
+.box-label {
+	margin-top: 10px;
+}
+
+input[type="radio"]{
+  display: none;
+}
+
+.box-input:checked + .box-content {
+	border: 2px solid #f06424;
+}
+
+.theme-icon {
+	height: 33px;
+}
+
+.advanced-search {
+	text-align: center;
+	margin: 2em 0;
+}
+
+.btn-find-data {
+	width: 240px;
+	max-width: 100%;
+	margin: 0 auto;
+}
