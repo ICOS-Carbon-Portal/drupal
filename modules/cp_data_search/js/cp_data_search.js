@@ -1,30 +1,35 @@
 (function($, Drupal) {
-  Drupal.behaviors.dataSearchBehavior = {
-    attach: function(context, settings) {
-      $('.box-content', context).once('dataSearchBehavior').each(function() {
+	Drupal.behaviors.dataSearchBehavior = {
+		attach: function(context, settings) {
+			$('.type .box-content', context).once('dataSearchBehavior').each(function() {
 				$(this).click(function() {
-					$(this).siblings('input').click();
+					$('.type input').not($(this).siblings('input')).prop('checked', false);
+				});
+			});
 
-					if ($('input[name=type]:checked').val() == '2') {
+			$('.type .box-input', context).once('dataSearchBehavior').each(function() {
+				$(this).change(function() {
+					if ($('.type input:checked').val() == '2') {
 						$('.themes').show();
 					} else {
 						$('.themes').hide();
+						$('.theme input').prop('checked', false);
 					}
 				});
-      });
+			});
 
-      $('#js-data-search-form', context).once('dataSearchBehavior').each(function() {
-        $('.box-input').prop('checked', false);
-        $(this).submit(function() {
-          const level = $('input[name=type]:checked').val();
-          const levelQuery = typeof level !== 'undefined' ? `?level=%5B${$('input[name=type]:checked').val()}%5D` : '';
-          const theme = $('input[name=theme]:checked').val();
-          const themeQuery = level == '2' && typeof theme !== 'undefined' ? `&theme=%5B%22${$('input[name=theme]:checked').val()}%22%5D` : '';
+			$('#js-data-search-form', context).once('dataSearchBehavior').each(function() {
+				$('.box-input').prop('checked', false);
+				$(this).submit(function() {
+					const level = $('input[name=type]:checked').val();
+					const levelQuery = typeof level !== 'undefined' ? `?level=["${$('input[name=type]:checked').val()}"]` : '';
+					const themes = $('input[name=theme]:checked').map(function(){return this.value}).get().join('","');
+					const themeQuery = level == '2' && themes.length ? `&theme=["${themes}"]` : '';
 
-          $(location).attr('href', `https://data.icos-cp.eu/portal/#search${levelQuery}${themeQuery}`);
-          return false;
-        });
-      });
-    }
-  };
+					$(location).attr('href', `https://data.icos-cp.eu/portal/#search${levelQuery}${themeQuery}`);
+					return false;
+				});
+			});
+		}
+	};
 })(jQuery, Drupal);
