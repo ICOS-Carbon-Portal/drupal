@@ -38,18 +38,19 @@ body {
 	padding: 0px;
 }
 
-#header .region-header img {
-	padding-left: 115px;
-	padding-top: 17px;
-	padding-bottom: 17px;
-}
-
 #header .site-branding__logo {
 	margin-bottom: 0px;
 }
 
 #header .site-branding__logo img {
-	height: 100px;
+	margin: 17px 0;
+	max-height: 66px;
+}
+
+@media all and (min-width: 800px) {
+	#header .site-branding__logo img {
+		margin-left: 115px;
+	}
 }
 
 #header .site-branding__text {
