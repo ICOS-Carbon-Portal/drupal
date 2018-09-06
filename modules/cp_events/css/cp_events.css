@@ -314,6 +314,7 @@
 .events_all_news .panel {
 	border-left: 0;
 	border-right: 0;
+	padding: 0;
 }
 
 .events_all_news .panel-heading {
