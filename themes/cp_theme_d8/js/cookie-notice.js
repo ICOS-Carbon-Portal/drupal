@@ -28,11 +28,11 @@ function checkCpUserConsent() {
   if (hasConsent === "") {
     var info = document.createElement("p");
     info.className = "info";
-    var infot = document.createTextNode("We use cookies to give you a better experience on our website. If you continue on our site you agree that we store cookies in your web browser.");
+    var infot = document.createTextNode("We use cookies to analyze site use. See our privacy policy for more information.");
     info.appendChild(infot);
     var agree = document.createElement("p");
     agree.className = "agree";
-    var agreet = document.createTextNode("I understand!");
+    var agreet = document.createTextNode("Okay!");
     var check = document.createElement("input");
     check.type = "checkbox";
     check.name = "iagree";
