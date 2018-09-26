@@ -1,0 +1,5 @@
+.tease_event .title a,
+.full_event .title,
+.full_event .title a {
+	color: #F06322;
+}

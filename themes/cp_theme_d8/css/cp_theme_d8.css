@@ -143,13 +143,8 @@ body {
 	margin-top: -0.5rem;
 }
 
-/** Page **/
-h1.page-title {
-	color: #003e80;
-}
-
 /** User Consent Cookie **/
-#cpuserconsent { padding: 1rem 0.5rem; color: #003e80; font-size: 1.5rem; text-align: center; }
+#cpuserconsent { padding: 1rem 0.5rem; font-size: 1.5rem; text-align: center; }
 
 #cpuserconsent .info { display: inline; padding-right: 2rem; }
 
