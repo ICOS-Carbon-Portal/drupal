@@ -45,6 +45,7 @@
 
 .box-label {
 	margin-top: 10px;
+	text-align: center;
 }
 
 input[type="checkbox"]{

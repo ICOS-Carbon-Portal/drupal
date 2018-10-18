@@ -22,11 +22,11 @@
 				$('.box-input').prop('checked', false);
 				$(this).submit(function() {
 					const level = $('input[name=type]:checked').val();
-					const levelQuery = typeof level !== 'undefined' ? `?level=[${$('input[name=type]:checked').val()}]` : '';
+					const levelQuery = typeof level !== 'undefined' ? `"level":[${$('input[name=type]:checked').val()}]` : '';
 					const themes = $('input[name=theme]:checked').map(function(){return this.value}).get().join('","');
-					const themeQuery = level == '2' && themes.length ? `&theme=["${themes}"]` : '';
+					const themeQuery = level == '2' && themes.length ? `,"theme":["${themes}"]` : '';
 
-					$(location).attr('href', `https://data.icos-cp.eu/portal/#search${levelQuery}${themeQuery}`);
+					$(location).attr('href', `https://data.icos-cp.eu/portal/#{"filterCategories":{${levelQuery}${themeQuery}}}`);
 					return false;
 				});
 			});
