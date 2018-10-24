@@ -5,6 +5,7 @@
 /modules/*
 /config/
 
+!modules/custom/
 !modules/cp_blogs/
 !modules/cp_cmis/
 !modules/cp_contacts/
