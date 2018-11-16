@@ -299,3 +299,28 @@ a.social_share_button:hover {
 	background-repeat: no-repeat;
 	width: 48px;
 }
+
+.block-news {
+	margin-bottom: 1em;
+}
+
+.block-news-title {
+	padding-bottom: 0.3em;
+}
+
+.block-news-title a {
+	font-size: 2rem;
+	line-height: 2rem;
+	text-decoration: none;
+	border-bottom: 0;
+}
+
+.block-news-image {
+	max-height: 150px;
+	margin-bottom: 10px;
+}
+
+.block-news-date {
+	padding-bottom: 1em;
+	color: #817F83;
+}
