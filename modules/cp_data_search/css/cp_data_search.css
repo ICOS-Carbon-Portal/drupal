@@ -22,10 +22,6 @@
 	user-select: none;
 }
 
-.box:hover {
-	border-color: #f06424;
-}
-
 .box-content {
 	width: 100px;
 	height: 100px;
@@ -48,12 +44,12 @@
 	text-align: center;
 }
 
-input[type="checkbox"]{
+.box-input {
   display: none;
 }
 
 .box-input:checked + .box-content {
-	border: 2px solid #f06424;
+	border: 2px solid #0a96f0;
 }
 
 .theme-icon {

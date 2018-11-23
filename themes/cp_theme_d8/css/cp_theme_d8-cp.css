@@ -1,47 +1,20 @@
-body a,
-body a:active,
-body a:hover,
-body a:focus {
-	color: #f06424;
+a {
+	color: #0a96f0;
 }
 
-body a:hover,
-body a:focus {
+a:hover,
+a:focus,
+a:active {
+	color: #0769A8;
 	text-decoration: none;
 }
 
 #header {
-	background-size: auto;
-	background-image: url(https://static.icos-cp.eu/images/bright-squares.png);
-	background-color: #f06424;
+	background-image: url(https://static.icos-cp.eu/images/cp-header-background.jpg);
 }
 
 #header .tint {
-  background-color: rgba(240, 99, 34, 0.3);
-}
-
-.site-footer .content a,
-.site-footer .content a.is-active {
-	color: #f06424;
-}
-
-.region-footer-second a.footer-link,
-.region-footer-third a.footer-link {
-	color: #ffffff;
-}
-
-.region-footer-first a.footer-link:hover,
-.region-footer-second a.footer-link:hover,
-.region-footer-third a.footer-link:hover {
-	color: #f06424;
-}
-
-h1.page-title {
-	color: #F06322;
-}
-
-#cpuserconsent {
-	color: #F06322;
+  background-color: rgba(10, 150, 240, 0.5);
 }
 
 .cp_embed_twitter {
@@ -49,32 +22,34 @@ h1.page-title {
 	overflow-y: auto;
 }
 
-.btn-orange {
-	background: #f06424;
+.btn-primary {
+	background: #0a96f0;
 	color: #fff;
 	border: 0;
 }
 
-.btn-orange:hover,
-.btn-orange:focus {
-	background: #D65A20;
+.btn-primary:hover,
+.btn-primary:focus {
+	background: #0a96f0;
+	background: rgba(10, 150, 240, 0.85);
 	color: #fff;
 }
 
-.btn-orange:active {
-	background: #BD4F1C;
+.btn-primary:active {
+	background: #0a96f0;
+	filter: brightness(85%);
 	color: #fff;
 }
 
 .btn-outline {
 	background: transparent;
-	color: #f06424;
-	border-color: #f06424;
+	color: #0a96f0;
+	border-color: #0a96f0;
 }
 
 .btn-outline:hover,
 .btn-outline:active,
 .btn-outline:focus {
-	background: #f06424;
+	background: #0a96f0;
 	color: #fff;
 }
