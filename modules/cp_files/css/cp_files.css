@@ -6,7 +6,7 @@
 }
 
 .cp_files .panel-heading {
-	background-color: #bd7931 !important;
+	background-color: #e6e7e8;
 }
 
 .cp_files .panel-heading img { width: 70px; }
@@ -15,7 +15,7 @@
 	display: inline;
 	float: right;
 	font-size: 26px;
-	color: #fff;
+	color: #414042;
 }
 
 .cp_files .panel a:link,

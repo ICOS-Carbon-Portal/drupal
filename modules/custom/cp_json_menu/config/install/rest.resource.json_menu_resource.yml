@@ -1,0 +1,11 @@
+status: true
+id: json_menu_resource
+plugin_id: json_menu_resource
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json
+  authentication:
+    - cookie

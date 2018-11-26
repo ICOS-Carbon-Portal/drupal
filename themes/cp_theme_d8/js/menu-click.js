@@ -2,7 +2,7 @@
  * Menu handler
  */
 if (testIfOldIE()) {
-	jQuery('#cp_theme_d8_menu .sublinks').css({'float':'none'});
+	jQuery('#cp_theme_d8_menu .open_menu').css({'float':'none'});
 }
 
 jQuery(window).resize(function () {
@@ -19,7 +19,17 @@ jQuery(document).click(function(e) {
 	}
 });
 
-jQuery('#cp_theme_d8_menu .sublinks').click(function() {
+
+jQuery('#cp_theme_d8_menu .is_topnode .open_menu').once('cp_theme_d8').click(
+	function(event) {
+		jQuery(this).parent().parent().toggleClass('open');
+	}
+);
+
+
+jQuery('#cp_theme_d8_menu .open_menu').click(function(event) {
+	event.preventDefault();
+
 	var cont = jQuery(this).parent().parent();
 	var submenu = jQuery(cont).children('ul');
 
@@ -31,7 +41,7 @@ jQuery('#cp_theme_d8_menu .sublinks').click(function() {
 				jQuery(this).css({'display':'none'});
 			});
 
-			jQuery(cont).parent().find('.sublinks').each(function() {
+			jQuery(cont).parent().find('.open_menu').each(function() {
 				jQuery(this).attr('src', '/themes/cp_theme_d8/images/menu_arrow_down_w.png');
 			});
 		}
@@ -60,7 +70,7 @@ function closeCPMenuItems() {
 		jQuery(this).css({'display':'none'});
 	});
 
-	jQuery('#cp_theme_d8_menu .is_topnode').parent().find('.sublinks').each(function() {
+	jQuery('#cp_theme_d8_menu .is_topnode').parent().find('.open_menu').each(function() {
 		jQuery(this).attr('src', '/themes/cp_theme_d8/images/menu_arrow_down_w.png');
 	});
 }
