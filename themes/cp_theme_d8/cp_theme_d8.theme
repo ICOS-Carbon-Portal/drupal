@@ -51,6 +51,13 @@ function cp_theme_d8_preprocess_page(&$variables, $hook) {
     $variables['cp_theme_d8_menu_breadcrumbs'] = $nodes->getBreadcrumbs(\Drupal::request()->getRequestUri());
   }
 
+  $current_path = \Drupal::service('path.current')->getPath();
+  $alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+
+  if ($alias === "/stations") {
+    $variables['#attached']['library'][] = 'cp_theme_d8/station-map';
+  }
+
 }
 
 function cp_theme_d8_preprocess_menu__main(&$variables) {
