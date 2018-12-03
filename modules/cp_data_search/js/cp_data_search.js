@@ -9,7 +9,7 @@
 
 			$('.type .box-input', context).once('dataSearchBehavior').each(function() {
 				$(this).change(function() {
-					if ($('.type input:checked').val() == '2') {
+					if ($('.type input:checked').val() == '1,2') {
 						$('.themes').show();
 					} else {
 						$('.themes').hide();
@@ -24,9 +24,10 @@
 					const level = $('input[name=type]:checked').val();
 					const levelQuery = typeof level !== 'undefined' ? `"level":[${$('input[name=type]:checked').val()}]` : '';
 					const themes = $('input[name=theme]:checked').map(function(){return this.value}).get().join('","');
-					const themeQuery = level == '2' && themes.length ? `,"theme":["${themes}"]` : '';
+					const themeQuery = level == '1,2' && themes.length ? `,"theme":["${themes}"]` : '';
+					const query = typeof level !== 'undefined' ? `#{"filterCategories":{${levelQuery}${themeQuery}}}` : '';
 
-					$(location).attr('href', `https://data.icos-cp.eu/portal/#{"filterCategories":{${levelQuery}${themeQuery}}}`);
+					$(location).attr('href', `https://data.icos-cp.eu/portal/${query}`);
 					return false;
 				});
 			});
