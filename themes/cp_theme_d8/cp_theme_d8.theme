@@ -19,7 +19,7 @@ function cp_theme_d8_form_system_theme_settings_alter(&$form, &$form_state) {
     '#title'         => t('Display login'),
     '#default_value' => theme_get_setting('login_menu'),
   );
-  
+
   $form['cp_theme_d8_settings']['display_breadcrumbs'] = array(
     '#type'          => 'checkbox',
     '#title'         => t('Display breadcrumbs'),
@@ -62,6 +62,8 @@ function cp_theme_d8_preprocess_page(&$variables, $hook) {
 
 function cp_theme_d8_preprocess_menu__main(&$variables) {
   $isHover = theme_get_setting('hover_menu');
+  $displayLogin = theme_get_setting('login_menu');
 
   $variables['is_hover'] = $isHover;
+  $variables['display_login'] = $displayLogin;
 }
