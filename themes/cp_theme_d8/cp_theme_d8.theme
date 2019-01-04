@@ -58,6 +58,9 @@ function cp_theme_d8_preprocess_page(&$variables, $hook) {
     $variables['#attached']['library'][] = 'cp_theme_d8/station-map';
   }
 
+  if ($alias === "/ATM_NRT_CO2_CH4") {
+    $variables['#attached']['library'][] = 'cp_theme_d8/product-page';
+  }
 }
 
 function cp_theme_d8_preprocess_menu__main(&$variables) {
