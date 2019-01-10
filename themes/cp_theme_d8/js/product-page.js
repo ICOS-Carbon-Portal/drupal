@@ -36,12 +36,10 @@
 		co2: {
 			spec: '<http://meta.icos-cp.eu/resources/cpmeta/atcCo2NrtGrowingDataObject>',
 			param: 'co2',
-			numberOfCellsPerRow: 6
 		},
 		ch4: {
 			spec: '<http://meta.icos-cp.eu/resources/cpmeta/atcCh4NrtGrowingDataObject>',
 			param: 'ch4',
-			numberOfCellsPerRow: 6
 		}
 	};
 
@@ -52,7 +50,10 @@
 		where {
 			VALUES ?spec { ${spec} }
 			?dobj cpmeta:hasObjectSpec ?spec .
-			FILTER NOT EXISTS {[] cpmeta:isNextVersionOf ?dobj}
+			FILTER NOT EXISTS {
+				?next cpmeta:isNextVersionOf ?dobj .
+				?next cpmeta:wasSubmittedBy/prov:endedAtTime []
+			}
 			FILTER EXISTS {?dobj cpmeta:wasSubmittedBy/prov:endedAtTime []}
 			?dobj cpmeta:wasAcquiredBy [
 				prov:wasAssociatedWith/cpmeta:hasName ?station ;
@@ -66,7 +67,7 @@
 	const displayPreviewTable = (config) => {
 		$.ajax({
 			method: 'post',
-			url: 'https://meta.icos-cp.eu/sparql/',
+			url: 'https://meta.icos-cp.eu/sparql',
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'text/plain',
@@ -86,10 +87,10 @@
 				}
 				let objId = binding.dobj.value.split('/').pop();
 				let previewUrl = `https://data.icos-cp.eu/dygraph-light/?objId=${objId}&x=TIMESTAMP&type=line&linking=overlap&y=${config.param}`;
-				row += `<td data-id="${objId}"><a href="${previewUrl}" target="_blank">${binding.samplingHeight.value}</a></td>`;
+				row += `<td data-id="${objId}"><a href="${previewUrl}">${binding.samplingHeight.value}</a></td>`;
 				return row;
 			}).join()).map(function() {
-				while (this.children.length <= config.numberOfCellsPerRow) {
+				while (this.children.length <= $(`#${config.param}-table thead th`).length - 1) {
 					let td = document.createElement('td');
 					$(this).append(td);
 				}
