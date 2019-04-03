@@ -37,6 +37,10 @@
 }
 
 @media all and (min-width: 800px) {
+  #menu-button {
+    display: none;
+  }
+
   #cp_theme_d8_menu ul {
     padding: 0em 0em 0em 0em;
     margin: 0;
@@ -99,6 +103,27 @@
 }
 
 @media all and (max-width: 799px) {
+  .header-section {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .header-section .region-header {
+    margin-right: auto;
+  }
+
+  #menu-button {
+    margin: auto 20px;
+  }
+
+  #cp_theme_d8_menu {
+    display: none;
+  }
+
+  #cp_theme_d8_menu.open {
+    display: block;
+  }
+
   #cp_theme_d8_menu ul {
     padding: 0;
     margin: 0;
