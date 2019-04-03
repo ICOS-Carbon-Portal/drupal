@@ -37,6 +37,7 @@
 	font-size: 0.8em;
 	cursor: pointer;
 	font-weight: normal;
+	padding: 5%;
 }
 
 .box-label {
@@ -54,10 +55,6 @@
 
 .theme-icon {
 	height: 33px;
-}
-
-.advanced-search {
-	text-align: center;
 }
 
 .btn-find-data {

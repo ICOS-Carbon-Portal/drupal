@@ -25,7 +25,7 @@
 					const levelQuery = typeof level !== 'undefined' ? `"level":[${$('input[name=type]:checked').val()}]` : '';
 					const themes = $('input[name=theme]:checked').map(function(){return this.value}).get().join('","');
 					const themeQuery = level == '1,2' && themes.length ? `,"theme":["${themes}"]` : '';
-					const query = typeof level !== 'undefined' ? `#{"filterCategories":{${levelQuery}${themeQuery}}}` : '';
+					const query = typeof level !== 'undefined' ? `#{"filterCategories":{${levelQuery}${themeQuery}}}` : `#{"filterCategories":{"project":["icos"]}}`;
 
 					$(location).attr('href', `https://data.icos-cp.eu/portal/${query}`);
 					return false;
