@@ -12,13 +12,11 @@
 
 #cp_theme_d8_menu .account {
   display: none;
-  float: right;
   cursor: pointer;
 }
 
 #cp_theme_d8_menu .account a {
   display: block;
-  border: none;
 }
 
 #cp_theme_d8_menu .is_topnode .menu-icon {
@@ -100,6 +98,14 @@
     top: 0.6em;
   }
 
+  #cp_theme_d8_menu .account {
+    float: right;
+  }
+
+  #cp_theme_d8_menu a {
+    border: 0;
+  }
+
 }
 
 @media all and (max-width: 799px) {
@@ -114,6 +120,12 @@
 
   #menu-button {
     margin: auto 20px;
+    font-weight: bold;
+    color: white;
+    background: rgba(255, 255, 255, 0.3);
+    font-size: 24px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    line-height: 24px;
   }
 
   #cp_theme_d8_menu {
