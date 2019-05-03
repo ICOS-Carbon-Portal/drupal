@@ -47,11 +47,11 @@ function cp_theme_d8_preprocess_page(&$variables, $hook) {
 	include ('Menu/ListOfNodes.php');
 	$nodes = new ListOfNodes($isHover, $displayLogin);
 
+  $current_path = \Drupal::service('path.current')->getPath();
   if ($displayBreadcrumbs) {
-    $variables['cp_theme_d8_menu_breadcrumbs'] = $nodes->getBreadcrumbs(\Drupal::request()->getRequestUri());
+    $variables['cp_theme_d8_menu_breadcrumbs'] = $nodes->getBreadcrumbs($current_path);
   }
 
-  $current_path = \Drupal::service('path.current')->getPath();
   $alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
 
   if ($alias === "/stations") {

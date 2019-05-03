@@ -53,13 +53,14 @@ class ListOfNodes {
 						$delimiter = '<span>&raquo;</span>';
 					//}
 
-					$this->breadcrumbs[] = '<li><a href="/' . $node->getPath().'">' . $node->getTitle() . '</a>' . $delimiter . '</li>';
+					$url = \Drupal::service('path.alias_manager')->getAliasByPath("/" . $node->getPath());
+					$this->breadcrumbs[] = '<li><a href="' . $url .'">' . $node->getTitle() . '</a>' . $delimiter . '</li>';
 
 					$in --;
 				}
 			}
 
-			$this->breadcrumbs[] = '<li><a href="/' . $active_node->getPath().'">' . $active_node->getTitle() . '</a></li>';
+			$this->breadcrumbs[] = '<li>' . $active_node->getTitle() . '</li>';
 			$this->breadcrumbs[] = '</ul>';
 
 		}
