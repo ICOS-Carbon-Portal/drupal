@@ -198,10 +198,6 @@
 	border-top: 0 !important;
 }
 
-#cp_events_page {
-
-}
-
 #cp_events_page .title {
 	margin: 0 0 1em 0;
 	font-size: 1.5em;
@@ -309,8 +305,6 @@
 	background-clip: padding-box;
 }
 
-#cp_events_all_news { }
-
 .events_all_news .panel {
 	border-left: 0;
 	border-right: 0;
@@ -343,5 +337,3 @@
 	float: left;
 	margin-right: 50px;
 }
-
-.events_all_news .title {}

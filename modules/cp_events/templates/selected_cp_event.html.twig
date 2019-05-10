@@ -12,12 +12,14 @@
 
 		<div class="title">{{ elements['event'].getTitle() }}</div>
 
-		<div class="from_date">{{ elements['event'].getFromDate() }}</div>
+		<div class="event-date">
+			<div class="from_date">{{ elements['event'].getFromDate() }}</div>
 
-		{% if elements['event'].getToDate() %}
-			<span class="date_separator">to</span>
-			<div class="to_date">{{ elements['event'].getToDate() }}</div>
-		{% endif %}
+			{% if elements['event'].getToDate() %}
+				<span class="date_separator">to</span>
+				<div class="to_date">{{ elements['event'].getToDate() }}</div>
+			{% endif %}
+		</div>
 
 		{% if elements['event'].getPictureUri() %}
 			<div class="text"><img src="{{ elements['event'].getPictureUri() }}" alt="{{ elements['event'].getPictureTitle() }}" title="{{ elements['event'].getPictureTitle() }}" />{{ elements['event'].getBody() | raw  }}</div>

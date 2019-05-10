@@ -1,3 +1,15 @@
+a {
+	color: #0a96f0;
+}
+
+a:hover,
+a:focus,
+a:active {
+	color: #0769A8;
+	text-decoration: none;
+}
+
+
 #header {
 	background-image: url(../images/icos-ri_header_small.jpg);
 }
@@ -16,13 +28,6 @@
 
 #header .tint {
   background-color: rgba(10,150,240, 0.5);
-}
-
-#header .region-header img {
-	height: 100px;
-	padding-left: 135px;
-	padding-top: 20px;
-	padding-bottom: 20px;
 }
 
 h1.page-title {
@@ -45,11 +50,7 @@ h1.page-title {
 	border-bottom: 0.1rem dashed #c7c8ca;
 }
 
-.field--name-field-cp-page-ingress .field__label {
-	display: none;
-}
-
-.field--name-field-cp-page-ingress .field__item {
+.field--name-field-cp-page-ingress {
 	padding: 0 0 3rem 0;
 	font-size: 1.4rem;
 	font-weight: bold;

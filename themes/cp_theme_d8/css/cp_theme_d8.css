@@ -45,7 +45,7 @@ body {
 
 #header .site-branding__logo img {
 	margin: 17px 0;
-	max-height: 66px;
+	height: 66px;
 }
 
 @media all and (min-width: 800px) {
@@ -266,8 +266,9 @@ body {
 
 .social_share_button {
 	display: inline-block;
-	height: 48px;
-	background-color: transparent;
+	width: 24px;
+	height: 24px;
+	background-size: contain;
 	margin: 4rem 1rem 0 0;
 }
 
@@ -284,20 +285,14 @@ a.social_share_button:hover {
 
 .social_share_twitter {
 	background-image: url(../images/twitter_button.png);
-	background-repeat: no-repeat;
-	width: 48px;
 }
 
 .social_share_linkedin {
 	background-image: url(../images/linkedin_button.png);
-	background-repeat: no-repeat;
-	width: 48px;
 }
 
 .social_share_facebook {
 	background-image: url(../images/facebook_button.png);
-	background-repeat: no-repeat;
-	width: 48px;
 }
 
 .block-news {

@@ -23,13 +23,3 @@ function cp_events_theme() {
 
 	return $theme;
 }
-
-function cp_events_preprocess_block__listofteasedcpnews(&$variables) {
-	$variables['title_prefix']['#markup'] = "<a href='/events'>";
-	$variables['title_suffix']['#markup'] = "</a>";
-}
-
-function cp_events_preprocess_block__listofteasedcpevents(&$variables) {
-	$variables['title_prefix']['#markup'] = "<a href='/events'>";
-	$variables['title_suffix']['#markup'] = "</a>";
-}
