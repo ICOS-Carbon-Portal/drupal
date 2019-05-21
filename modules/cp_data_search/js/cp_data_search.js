@@ -23,9 +23,10 @@
 				$(this).submit(function() {
 					const level = $('input[name=type]:checked').val();
 					const levelQuery = typeof level !== 'undefined' ? `"level":[${$('input[name=type]:checked').val()}]` : '';
-					const themes = $('input[name=theme]:checked').map(function(){return this.value}).get().join('","');
-					const themeQuery = level == '1,2' && themes.length ? `,"theme":["${themes}"]` : '';
-					const query = typeof level !== 'undefined' ? `#{"filterCategories":{${levelQuery}${themeQuery}}}` : `#{"filterCategories":{"project":["icos"]}}`;
+					const themes = $('input[name=theme]:checked').map(function(){return this.value}).get();
+					const themeQuery = level == '1,2' && themes.length ? `,"theme":["${themes.join('","')}"]` : '';
+					const project = level == '1,2' && !themes.includes('ocean') ? `,"project":["icos"]` : '';
+					const query = typeof level !== 'undefined' ? `#{"filterCategories":{${levelQuery}${themeQuery}${project}}}` : `#{"filterCategories":{"project":["icos"]}}`;
 
 					$(location).attr('href', `https://data.icos-cp.eu/portal/${query}`);
 					return false;
