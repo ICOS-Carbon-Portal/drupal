@@ -1,12 +1,3 @@
-(function ($) {
-  'use strict';
-  Drupal.behaviors.cp_theme_d8 = {
-    attach: function(context, settings) {
-
-    }
-  };
-}(jQuery));
-
 makeToplinksUnclickable();
 
 function makeToplinksUnclickable() {

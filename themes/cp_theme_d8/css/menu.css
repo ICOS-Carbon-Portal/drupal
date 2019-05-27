@@ -10,6 +10,10 @@
   list-style-type: none;
 }
 
+#cp_theme_d8_menu a {
+  border-bottom: 1px solid #525053;
+}
+
 #cp_theme_d8_menu .account {
   display: none;
   cursor: pointer;

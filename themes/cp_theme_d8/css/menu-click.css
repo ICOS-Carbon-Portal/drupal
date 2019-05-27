@@ -1,18 +1,5 @@
 /** Menu **/
 
-#cp_theme_d8_menu a:link,
-#cp_theme_d8_menu a:hover,
-#cp_theme_d8_menu a:active,
-#cp_theme_d8_menu a:focus,
-#cp_theme_d8_menu .link:hover,
-#cp_theme_d8_menu .link:active,
-#cp_theme_d8_menu .link:focus {
-  text-decoration: none;
-  border: 0;
-  border-bottom-style: none;
-  outline: 0;
-}
-
 #cp_theme_d8_menu .link a {
   padding-right: 4px;
 }
