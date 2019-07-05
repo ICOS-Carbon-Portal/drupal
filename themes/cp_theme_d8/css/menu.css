@@ -174,27 +174,3 @@
     margin-bottom: 0.2em;
   }
 }
-
-/* breadcrumbs */
-
-#cp_theme_d8_menu_breadcrumbs {
-  background-color: #ffffff;
-}
-
-#cp_theme_d8_menu_breadcrumbs li {
-  list-style: none;
-  list-style-image: none;
-  list-style-type: none;
-  display: inline;
-}
-
-#cp_theme_d8_menu_breadcrumbs a {
-  text-decoration: none;
-  padding: 0.4em 0.4em 0.4em 0em;
-  border: 0;
-}
-
-#cp_theme_d8_menu_breadcrumbs span {
-  padding: 0em 0.4em 0em 0em;
-  color: #414042;
-}

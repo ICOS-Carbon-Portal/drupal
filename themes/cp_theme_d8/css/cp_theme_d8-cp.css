@@ -1,5 +1,6 @@
 a {
 	color: #0a96f0;
+	border: none;
 }
 
 a:hover,
@@ -7,6 +8,10 @@ a:focus,
 a:active {
 	color: #0769A8;
 	text-decoration: none;
+}
+
+#main a:not(.btn):hover {
+	border-bottom: 2px dotted;
 }
 
 #header {

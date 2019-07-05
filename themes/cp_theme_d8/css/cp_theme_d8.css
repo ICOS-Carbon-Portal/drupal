@@ -47,6 +47,10 @@ body {
 	margin-bottom: 0px;
 }
 
+#header .site-branding__logo:hover {
+	border-bottom: none;
+}
+
 #header .site-branding__logo img {
 	margin: 17px 0;
 	height: 66px;
@@ -146,13 +150,13 @@ body {
 }
 
 /** User Consent Cookie **/
-#cpuserconsent { padding: 1rem 0.5rem; font-size: 1.5rem; text-align: center; }
+#cpuserconsent { padding: 1rem 0.5rem; text-align: center; }
 
 #cpuserconsent .info { display: inline; padding-right: 2rem; }
 
 #cpuserconsent .agree { display: inline; }
 
-#cpuserconsent .agree input[type="checkbox"] { margin-left: 2rem; vertical-align: sub; cursor: pointer; }
+#cpuserconsent .agree input[type="checkbox"] { margin-left: 1rem; vertical-align: middle; cursor: pointer; }
 
 /** Body content **/
 .cp_body_content {

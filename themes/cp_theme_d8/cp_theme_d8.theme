@@ -20,19 +20,12 @@ function cp_theme_d8_form_system_theme_settings_alter(&$form, &$form_state) {
     '#default_value' => theme_get_setting('login_menu'),
   );
 
-  $form['cp_theme_d8_settings']['display_breadcrumbs'] = array(
-    '#type'          => 'checkbox',
-    '#title'         => t('Display breadcrumbs'),
-    '#default_value' => theme_get_setting('display_breadcrumbs'),
-  );
-
 }
 
 function cp_theme_d8_preprocess_page(&$variables, $hook) {
 
   $isHover = theme_get_setting('hover_menu');
   $displayLogin = theme_get_setting('login_menu');
-  $displayBreadcrumbs = theme_get_setting('display_breadcrumbs');
 
   if ($isHover) {
     $variables['#attached']['library'][] = 'cp_theme_d8/menu-hover';
@@ -44,14 +37,7 @@ function cp_theme_d8_preprocess_page(&$variables, $hook) {
     $variables['#attached']['library'][] = 'cp_theme_d8/menu-login';
   }
 
-	include ('Menu/ListOfNodes.php');
-	$nodes = new ListOfNodes($isHover, $displayLogin);
-
   $current_path = \Drupal::service('path.current')->getPath();
-  if ($displayBreadcrumbs) {
-    $variables['cp_theme_d8_menu_breadcrumbs'] = $nodes->getBreadcrumbs($current_path);
-  }
-
   $alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
 
   if ($alias === "/stations") {
