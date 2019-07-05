@@ -58,7 +58,6 @@
     position: relative;
     float: left;
     background: #414042;
-    z-index: 1001;
   }
 
   #cp_theme_d8_menu ul li a {
@@ -76,6 +75,7 @@
 
   #cp_theme_d8_menu li:hover li {
     float: none;
+    z-index: 1001;
   }
 
   .cp_theme_d8_menu li ul li {
