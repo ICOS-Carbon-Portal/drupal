@@ -1,3 +1,7 @@
+html {
+	font-size: 14px;
+}
+
 /** Body **/
 body {
 	color: #414042;
@@ -76,14 +80,13 @@ body {
 .region-footer-first h3,
 .region-footer-second h3,
 .region-footer-third h3 {
-	font-size: 2.2rem;
+	font-size: 1.5rem;
 	color: #f2f2f2;
 }
 
 .region-footer-first p,
 .region-footer-second p,
 .region-footer-third p {
-	font-size: 1.5rem;
 	color: #f2f2f2;
 }
 
@@ -97,18 +100,17 @@ body {
 .site-footer .block {
 	border: 0;
 	padding: 0;
+	margin: 2rem 0;
 }
 
 .region-footer-first a.footer-link {
 	color: #ffffff;
-	font-size: 1.5rem;
 	cursor: pointer;
 }
 
 .region-footer-second a.footer-link,
 .region-footer-third a.footer-link {
 	color: #ffffff;
-	font-size: 1.4rem;
 	display: block;
 	cursor: pointer;
 	padding: 0.5rem 0px;
@@ -137,7 +139,7 @@ body {
 	width: 0px;
 	position: absolute;
 	pointer-events: none;
-	border-width: 0.7rem;
+	border-width: 0.4rem;
 	right: 100%;
 	top: 50%;
 	margin-top: -0.5rem;

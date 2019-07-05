@@ -46,13 +46,13 @@
 			{% endif %}
 				{% if menu_level == 0 and item.below %}
 					<div class="menu-item-text">
-						<span class="open_menu menu-icon"><span class="glyphicon glyphicon-menu-down"></span></span>
+						<span class="open_menu menu-icon"><i class="fas fa-chevron-down"></i></span>
 				{% endif %}
 				{# link(item.title, item.url) #}
 				<a href="{{ item.url }}">
 					{{ item.title }}
 					{% if menu_level > 0 and item.below %}
-					<span class="open_menu submenu-icon"><span class="glyphicon glyphicon-menu-right"></span></span>
+					<span class="open_menu submenu-icon"><i class="fas fa-chevron-right"></i></span>
 					{% endif %}
 				</a>
 				{% if menu_level == 0 and item.below %}
@@ -65,13 +65,13 @@
 		{% endfor %}
 		{% if variables.display_login and menu_level == 0 %}
 			<li id="accountLnk" class="account">
-				<a><span class="glyphicon glyphicon-user"></span> My Carbon Portal Account</a>
+				<a><i class="fas fa-user"></i> My Carbon Portal Account</a>
 			</li>
 			<li id="logOutLnk" class="account">
-				<a><span class="glyphicon glyphicon-log-out"></span> Log out</a>
+				<a><i class="fas fa-sign-out-alt"></i> Log out</a>
 			</li>
 			<li id="logInLnk" class="account">
-				<a><span class="glyphicon glyphicon-log-in"></span> Log in</a>
+				<a><i class="fas fa-sign-in-alt"></i> Log in</a>
 			</li>
 		{% endif %}
 		</ul>
