@@ -2,6 +2,8 @@
 	--icos-cyan: #00abc9;
 	--icos-cyan-50: #80d5e4;
 	--icos-cyan-dark: #0092b3;
+	--icos-cyan-grey: #e6ebeb;
+	--icos-cyan-transparent: rgba(0, 171, 201, 0.85);
 }
 
 a {
@@ -16,7 +18,7 @@ a:active {
 	text-decoration: none;
 }
 
-#main a:not(.btn):hover {
+p a:not(.btn):hover {
 	border-bottom: 2px dotted;
 }
 
@@ -76,4 +78,56 @@ a:active {
 .region-footer-second a.footer-link,
 .region-footer-third a.footer-link {
 	color: white;
+}
+
+#block-shortcuts .nav-pills .nav-link {
+	color: #414042;
+	border-radius: 0;
+	border-bottom: 5px solid white;
+	padding: 1.5rem 1rem;
+	background-color: var(--icos-cyan-grey);
+}
+
+#block-shortcuts .nav-pills .nav-link:hover {
+	color: #414042;
+	border-bottom: 5px solid white;
+}
+
+#block-shortcuts .nav-pills .nav-link.active {
+	background-color: var(--icos-cyan);
+	color: white;
+}
+
+#block-shortcuts .tab-content,
+#block-shortcuts .tab-pane,
+#block-shortcuts .tab-text {
+	height: 100%;
+}
+
+#block-shortcuts .tab-pane {
+	background-size: cover;
+	background-position: center right;
+	background-repeat: no-repeat;
+}
+
+#block-shortcuts .tab-content {
+	border-bottom: 5px solid white;
+}
+
+#block-shortcuts .tab-text {
+	background-color: var(--icos-cyan-transparent);
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+#block-shortcuts .tab-title {
+	color: white;
+}
+
+#block-shortcuts .tab-links a {
+	display: block;
+	color: white;
+	border: none;
 }
