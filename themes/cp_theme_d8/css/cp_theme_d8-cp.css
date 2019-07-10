@@ -4,6 +4,7 @@
 	--icos-cyan-dark: #0092b3;
 	--icos-cyan-grey: #e6ebeb;
 	--icos-cyan-transparent: rgba(0, 171, 201, 0.85);
+	--icos-magenta: #e41c63;
 }
 
 a {
@@ -137,4 +138,45 @@ p a:not(.btn):hover {
 	display: block;
 	color: white;
 	border: none;
+}
+
+.view-spotlight {
+	position: relative;
+}
+
+.view-spotlight .views-field-title {
+	position: absolute;
+	bottom: 0;
+	color: white;
+	font-size: 1.5rem;
+	margin: 1rem;
+	font-weight: bold;
+}
+
+.view-spotlight img {
+	width: 100%;
+	height: 230px;
+	object-fit: cover;
+	border-bottom: 5px solid var(--icos-magenta);
+}
+
+.view-spotlight .views-field-field-link a {
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	position: absolute;
+	font-size: 0;
+}
+
+.view-spotlight .views-field-field-link a:hover {
+	border-bottom: none !important;
+}
+
+.view-spotlight .views-field-title::before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f105";
+  font-weight: 900;
+  margin: 0 0.3rem;
+  color: white;
 }
