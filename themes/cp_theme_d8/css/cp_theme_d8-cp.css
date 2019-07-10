@@ -4,7 +4,17 @@
 	--icos-cyan-dark: #0092b3;
 	--icos-cyan-grey: #e6ebeb;
 	--icos-cyan-transparent: rgba(0, 171, 201, 0.85);
+	--icos-grey-75: #636466;
 	--icos-magenta: #e41c63;
+}
+
+html {
+	font-size: 14px;
+}
+
+body {
+	color: #414042;
+	font-family: "Open Sans", sans-serif;
 }
 
 a {
@@ -19,8 +29,23 @@ a:active {
 	text-decoration: none;
 }
 
-p a:not(.btn):hover {
+p a:not(.btn):hover,
+h3 a:hover {
 	border-bottom: 2px dotted;
+}
+
+.external-link::after {
+	font-family: "Font Awesome 5 Free";
+  content: "\f35d";
+  font-weight: 900;
+  margin: 0 0.3rem;
+  color: white;
+}
+
+h3 {
+	font-size: 1.4285rem;
+	font-weight: bold;
+	margin-top: 2.143rem;
 }
 
 #header {
@@ -75,17 +100,49 @@ p a:not(.btn):hover {
 	color: #fff;
 }
 
-.site-footer .content a,
-.site-footer .content a.is-active,
-.region-footer-first a.footer-link:hover,
-.region-footer-second a.footer-link:hover,
-.region-footer-third a.footer-link:hover {
-	color: var(--icos-cyan);
+body,
+.site-footer {
+	background: var(--icos-grey-75);
 }
 
-.region-footer-second a.footer-link,
-.region-footer-third a.footer-link {
+.site-footer h3 {
 	color: white;
+}
+
+.site-footer .content a,
+.site-footer .content a.is-active,
+.site-footer a:hover {
+	color: white;
+}
+
+.site-footer .region {
+	width: 33%;
+}
+
+.site-footer .block {
+	border: 0;
+	padding: 0;
+	margin: 2rem 0;
+}
+
+.site-footer p {
+	font-size: 1.071rem;
+	margin: 0 0 0.5rem;
+}
+
+.site-footer .social-media-icon {
+	font-size: 2rem;
+	margin: 1rem 0.2rem;
+}
+
+.site-footer .social-media-icon:hover,
+.site-footer .social-media-icon:active,
+.site-footer .social-media-icon:focus {
+	border: none;
+}
+
+.site-footer .social-media-icon:focus {
+	outline: 1px dotted white;
 }
 
 #block-shortcuts .nav-pills .nav-link {
@@ -173,7 +230,9 @@ p a:not(.btn):hover {
 	border-bottom: none !important;
 }
 
-.view-spotlight .views-field-title::before {
+.view-spotlight .views-field-title::before,
+.marked-link::before,
+.marked-link::before {
   font-family: "Font Awesome 5 Free";
   content: "\f105";
   font-weight: 900;
