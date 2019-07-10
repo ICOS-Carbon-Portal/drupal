@@ -30,6 +30,13 @@ p a:not(.btn):hover {
   background-color: rgba(10, 150, 240, 0.5);
 }
 
+.tagline {
+	font-family: 'Open Sans Light';
+	font-size: 1.5rem;
+	text-transform: uppercase;
+	text-align: center;
+}
+
 .cp_embed_twitter {
 	max-height: 460px;
 	overflow-y: auto;
