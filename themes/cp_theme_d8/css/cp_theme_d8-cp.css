@@ -49,11 +49,18 @@ h3 {
 }
 
 #header {
-	background-image: url(https://static.icos-cp.eu/images/cp-header-background.jpg);
+	height: 150px;
+	background-image: url(../images/icos-header.jpg);
+	background-size: cover;
 }
 
-#header .tint {
-  background-color: rgba(10, 150, 240, 0.5);
+#header .site-branding__logo img {
+	height: 70px;
+	margin: 32px 0;
+}
+
+#header .site-branding__text {
+	display: none;
 }
 
 .tagline {
