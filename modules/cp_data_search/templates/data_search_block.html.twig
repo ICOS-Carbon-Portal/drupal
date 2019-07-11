@@ -7,57 +7,59 @@
  */
 #}
 
-<form name="dataSearchForm" class="dataSearchForm" id="js-data-search-form">
+<div class="data-search-form-container">
+	<form name="dataSearchForm" class="data-search-form col-7" id="js-data-search-form">
 
-	<fieldset class="types">
-		<legend class="legend">Select data type</legend>
-		<div class="search-field-row">
-			<label class="box type" data-type="observational">
-				<input class="box-input" type="checkbox" name="type" value="1,2">
-				<div class="box-content">
-					<i class="fas fa-3x fa-binoculars"></i>
-					<div class="box-label">Observational data</div>
-				</div>
-			</label>
-			<label class="box type" data-type="produced">
-				<input class="box-input" type="checkbox" name="type" value="3">
-				<div class="box-content">
-					<i class="fas fa-3x fa-cogs"></i>
-					<div class="box-label">Elaborated products</div>
-				</div>
-			</label>
+		<fieldset class="data-search-form-fieldset types">
+			<legend class="legend">Select data type</legend>
+			<div class="search-field-row">
+				<label class="box type col-6" data-type="observational">
+					<input class="box-input" type="checkbox" name="type" value="1,2">
+					<div class="box-content">
+						<i class="fas fa-3x fa-binoculars"></i>
+						<div class="box-label">Observational data</div>
+					</div>
+				</label>
+				<label class="box type col-6" data-type="produced">
+					<input class="box-input" type="checkbox" name="type" value="3">
+					<div class="box-content">
+						<i class="fas fa-3x fa-cogs"></i>
+						<div class="box-label">Elaborated products</div>
+					</div>
+				</label>
+			</div>
+		</fieldset>
+
+		<fieldset class="data-search-form-fieldset themes" style="display: none;">
+			<legend class="legend">Select data theme(s)</legend>
+			<div class="search-field-row">
+				<label class="box theme col-4">
+					<input class="box-input" type="checkbox" name="theme" value="ecosystem">
+					<div class="box-content">
+						<img class="theme-icon" src="https://static.icos-cp.eu/images/themes/eco.svg" title="Ecosystem data">
+						<div class="box-label">Ecosystem</div>
+					</div>
+				</label>
+				<label class="box theme col-4">
+					<input class="box-input" type="checkbox" name="theme" value="atmosphere">
+					<div class="box-content">
+						<img class="theme-icon" src="https://static.icos-cp.eu/images/themes/atm.svg" title="Atmospheric data">
+						<div class="box-label">Atmosphere</div>
+					</div>
+				</label>
+				<label class="box theme col-4">
+					<input class="box-input" type="checkbox" name="theme" value="ocean">
+					<div class="box-content">
+						<img class="theme-icon" src="https://static.icos-cp.eu/images/themes/oce.svg" title="Ocean data">
+						<div class="box-label">Ocean</div>
+					</div>
+				</label>
+			</div>
+		</fieldset>
+
+		<div class="btn-find-data">
+			<input type="submit" class="btn btn-lg btn-block btn-primary" value="Find data">
 		</div>
-	</fieldset>
 
-	<fieldset class="themes" style="display: none;">
-		<legend class="legend">Select data theme(s)</legend>
-		<div class="search-field-row">
-			<label class="box theme">
-				<input class="box-input" type="checkbox" name="theme" value="ecosystem">
-				<div class="box-content">
-					<img class="theme-icon" src="https://static.icos-cp.eu/images/themes/eco.svg" title="Ecosystem data">
-					<div class="box-label">Ecosystem</div>
-				</div>
-			</label>
-			<label class="box theme">
-				<input class="box-input" type="checkbox" name="theme" value="atmosphere">
-				<div class="box-content">
-					<img class="theme-icon" src="https://static.icos-cp.eu/images/themes/atm.svg" title="Atmospheric data">
-					<div class="box-label">Atmosphere</div>
-				</div>
-			</label>
-			<label class="box theme">
-				<input class="box-input" type="checkbox" name="theme" value="ocean">
-				<div class="box-content">
-					<img class="theme-icon" src="https://static.icos-cp.eu/images/themes/oce.svg" title="Ocean data">
-					<div class="box-label">Ocean</div>
-				</div>
-			</label>
-		</div>
-	</fieldset>
-
-	<div class="btn-find-data">
-		<input type="submit" class="btn btn-lg btn-block btn-primary" value="Find data">
-	</div>
-
-</form>
+	</form>
+</div>

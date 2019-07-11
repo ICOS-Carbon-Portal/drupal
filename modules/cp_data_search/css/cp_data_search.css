@@ -1,9 +1,26 @@
-.dataSearchForm {
-	border: 1px solid #eee;
-	border-radius: 5px;
+.data-search-form-container {
 	background-color: #fafafa;
-	margin: 2em auto;
+	border-bottom: 5px solid var(--icos-magenta);
+	margin-bottom: 3rem;
+}
+
+.data-search-form {
+	border-radius: 5px;
+	margin: 0 auto;
 	padding: 2em;
+}
+
+.data-search-form-fieldset {
+	border: 1px solid #eee;
+	margin: 1em 0;
+	padding: 1rem;
+	background-color: white;
+}
+
+.data-search-form-fieldset .legend {
+	font-size: 1rem;
+	font-weight: bold;
+	width: auto;
 }
 
 .search-field-row {
@@ -11,11 +28,10 @@
 	flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-	margin: 1em auto;
+	margin: 1rem;
 }
 
 .box {
-	margin: 0 2rem;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
@@ -23,9 +39,7 @@
 }
 
 .box-content {
-	width: 100px;
-	height: 100px;
-	background: #fefefe;
+	height: 120px;
 	border: 1px #eee solid;
 	border-radius: 5px;
 	text-decoration: none;
@@ -34,7 +48,6 @@
 	justify-content: center;
 	align-items: center;
 	color: #333;
-	font-size: 0.8em;
 	cursor: pointer;
 	font-weight: normal;
 	padding: 5%;
@@ -50,7 +63,7 @@
 }
 
 .box-input:checked + .box-content {
-	border: 2px solid #0a96f0;
+	border: 2px solid var(--icos-cyan);
 }
 
 .theme-icon {
@@ -58,7 +71,7 @@
 }
 
 .btn-find-data {
-	width: 240px;
+	width: 180px;
 	max-width: 100%;
 	margin: 2em auto 1em;
 }
