@@ -68,6 +68,40 @@ h3 {
 	display: none;
 }
 
+#block-headerlinks,
+.block-search {
+	display: none;
+}
+
+@media all and (min-width: 800px) {
+	#block-headerlinks,
+	.block-search {
+		display: block;
+	}
+}
+
+.header-links {
+	margin: 2rem 0 -1rem;
+}
+
+.header-link a {
+	cursor: pointer;
+}
+
+.header-link:hover {
+	color: white;
+}
+
+.header .account {
+  display: none;
+}
+
+.header-link + .header-link::before {
+  content: "|";
+  margin: 0 1rem;
+  color: white;
+}
+
 .tagline {
 	font-family: 'Open Sans Light';
 	font-size: 1.5rem;
