@@ -1,26 +1,29 @@
+// This library is included for /data-products/xxx pages by the theme config
+// A config object needs be included in the page content
+
 (function($, Drupal) {
 	Drupal.behaviors.productPageBehavior = {
 		attach: function(context, settings) {
 			$('body', context).once('productPageBehavior').each(function() {
-				displayAbstract();
-				displayCitation();
+				displayAbstract(config.abstractURL);
+				displayCitation(config.citationURL);
 				displayPreviewTable(config.co2);
 				displayPreviewTable(config.ch4);
 			});
 		}
 	}
 
-	function displayCitation() {
+	function displayCitation(url) {
 		$.ajax({
-			url: 'https://data.datacite.org/text/x-bibliography;style=copernicus-publications/10.18160/ATM_NRT_CO2_CH4',
+			url: url,
 		}).done(function(citation) {
 			$('#js-citation').html(`<strong>Citation:</strong> ${citation}`);
 		});
 	}
 
-	function displayAbstract() {
+	function displayAbstract(url) {
 		$.ajax({
-			url: 'https://api.datacite.org/works/10.18160/ATM_NRT_CO2_CH4'
+			url: url
 		}).done(function(result) {
 			let $xml = $($.parseXML(new TextDecoder().decode(u_atob(result.data.attributes.xml))));
 			let description = $xml.find('description').text();
@@ -31,17 +34,6 @@
 	function u_atob(ascii) {
 		return Uint8Array.from(atob(ascii), c => c.charCodeAt(0));
 	}
-
-	const config = {
-		co2: {
-			spec: '<http://meta.icos-cp.eu/resources/cpmeta/atcCo2NrtGrowingDataObject>',
-			param: 'co2',
-		},
-		ch4: {
-			spec: '<http://meta.icos-cp.eu/resources/cpmeta/atcCh4NrtGrowingDataObject>',
-			param: 'ch4',
-		}
-	};
 
 	const query = (spec) => {
 		return `prefix cpmeta: <http://meta.icos-cp.eu/ontologies/cpmeta/>
