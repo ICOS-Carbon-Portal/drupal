@@ -7,8 +7,9 @@
 			$('body', context).once('productPageBehavior').each(function() {
 				displayAbstract(config.abstractURL);
 				displayCitation(config.citationURL);
-				displayPreviewTable(config.co2);
-				displayPreviewTable(config.ch4);
+				$.each(config.tables, function(index, value) {
+					displayPreviewTable(value);
+				});
 			});
 		}
 	}
@@ -56,7 +57,7 @@
 		order by ?station ?instrument ?samplingHeight`;
 	}
 
-	const displayPreviewTable = (config) => {
+	const displayPreviewTable = (tableConfig) => {
 		$.ajax({
 			method: 'post',
 			url: 'https://meta.icos-cp.eu/sparql',
@@ -65,7 +66,7 @@
 				'Content-Type': 'text/plain',
 				'Cache-Control': 'max-age=1000000'
 			},
-			data: query(config.spec)
+			data: query(tableConfig.spec)
 		}).done(function(result) {
 			let station = '';
 			let instrument = '';
@@ -78,11 +79,11 @@
 					row += `<tr><th scope="row">${station} (${instrument.split('/').pop()})</th>`;
 				}
 				let objId = binding.dobj.value.split('/').pop();
-				let previewUrl = `https://data.icos-cp.eu/dygraph-light/?objId=${objId}&x=TIMESTAMP&type=line&linking=overlap&y=${config.param}`;
+				let previewUrl = `https://data.icos-cp.eu/dygraph-light/?objId=${objId}&x=TIMESTAMP&type=line&linking=overlap&y=${tableConfig.param}`;
 				row += `<td data-id="${objId}"><a href="${previewUrl}">${binding.samplingHeight.value}</a></td>`;
 				return row;
 			}).join()).map(function() {
-				while (this.children.length <= $(`#${config.param}-table thead th`).length - 1) {
+				while (this.children.length <= $(`#${tableConfig.param}-table thead th`).length - 1) {
 					let td = document.createElement('td');
 					$(this).append(td);
 				}
@@ -90,11 +91,11 @@
 					let id = $(cur).data('id');
 					return id ? acc.concat(id) : acc;
 				}, []);
-				$(this).append(`<td><a href="https://data.icos-cp.eu/dygraph-light/?objId=${ids}&x=TIMESTAMP&type=line&linking=overlap&y=${config.param}">All</a></td>`);
+				$(this).append(`<td><a href="https://data.icos-cp.eu/dygraph-light/?objId=${ids}&x=TIMESTAMP&type=line&linking=overlap&y=${tableConfig.param}">All</a></td>`);
 				return this;
 			});
-			$(`#${config.param}-table tbody`).html(rows);
-			$(`#${config.param}-table`).show();
+			$(`#${tableConfig.param}-table tbody`).html(rows);
+			$(`#${tableConfig.param}-table`).show();
 		})
 	}
 })(jQuery, Drupal);
