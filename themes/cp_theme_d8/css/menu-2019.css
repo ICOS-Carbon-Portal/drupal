@@ -1,0 +1,88 @@
+.region-primary-menu {
+  border-bottom: 1px solid #eee;
+}
+
+#cp_theme_d8_menu {
+  font-weight: bold;
+}
+
+#cp_theme_d8_menu a:hover {
+  color: var(--icos-cyan);
+}
+
+#cp_theme_d8_menu ul {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+#cp_theme_d8_menu li {
+  list-style: none;
+  padding: 0 1rem;
+  cursor: pointer;
+  transition: background-color 0.1s ease-out;
+}
+
+#cp_theme_d8_menu li a {
+  display: block;
+  border: solid transparent;
+  border-width: 3px 0;
+  padding: 0.65rem 0;
+}
+
+#cp_theme_d8_menu li:hover {
+  background-color: var(--icos-grey-90);
+}
+
+#cp_theme_d8_menu .active-trail {
+  border-bottom-color: var(--icos-magenta);
+}
+
+#cp_theme_d8_menu .is_topnode > ul {
+  visibility: hidden;
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background-color: var(--icos-grey-90);
+  z-index: 1;
+  transition: visibility 0.1s ease-out;
+}
+
+#cp_theme_d8_menu .is_topnode:hover > ul {
+  visibility: visible;
+}
+
+#cp_theme_d8_menu li li a {
+  color: white;
+}
+
+#cp_theme_d8_menu ul ul ul {
+  display: block;
+}
+
+#cp_theme_d8_menu li li li {
+  font-weight: normal;
+}
+
+#cp_theme_d8_menu li li li a {
+  padding: 0;
+}
+
+#menu-button {
+  margin: auto 20px;
+  font-weight: bold;
+  color: white;
+  background: rgba(255, 255, 255, 0.3);
+  font-size: 24px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  line-height: 24px;
+}
+
+@media all and (min-width: 800px) {
+  #menu-button {
+    display: none;
+  }
+}

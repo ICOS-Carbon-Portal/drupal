@@ -20,16 +20,27 @@ function cp_theme_d8_form_system_theme_settings_alter(&$form, &$form_state) {
     '#default_value' => theme_get_setting('login_menu'),
   );
 
+  $form['cp_theme_d8_settings']['new_menu'] = array(
+    '#type'          => 'checkbox',
+    '#title'         => t('New menu'),
+    '#default_value' => theme_get_setting('new_menu'),
+  );
+
 }
 
 function cp_theme_d8_preprocess_page(&$variables, $hook) {
 
   $isHover = theme_get_setting('hover_menu');
   $displayLogin = theme_get_setting('login_menu');
+  $newMenu = theme_get_setting('new_menu');
 
-  if ($isHover) {
+  if ($newMenu) {
+    $variables['#attached']['library'][] = 'cp_theme_d8/menu-2019';
+  } else if ($isHover) {
+    $variables['#attached']['library'][] = 'cp_theme_d8/menu-classic';
     $variables['#attached']['library'][] = 'cp_theme_d8/menu-hover';
   } else {
+    $variables['#attached']['library'][] = 'cp_theme_d8/menu-classic';
     $variables['#attached']['library'][] = 'cp_theme_d8/menu-click';
   }
 
