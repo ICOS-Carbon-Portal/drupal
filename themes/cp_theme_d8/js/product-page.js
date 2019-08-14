@@ -39,7 +39,7 @@
 	const query = (spec) => {
 		return `prefix cpmeta: <http://meta.icos-cp.eu/ontologies/cpmeta/>
 		prefix prov: <http://www.w3.org/ns/prov#>
-		select ?dobj ?station ?instrument ?samplingHeight
+		select ?dobj ?station ?samplingHeight
 		where {
 			VALUES ?spec { ${spec} }
 			?dobj cpmeta:hasObjectSpec ?spec .
@@ -50,11 +50,11 @@
 			FILTER EXISTS {?dobj cpmeta:wasSubmittedBy/prov:endedAtTime []}
 			?dobj cpmeta:wasAcquiredBy [
 				prov:wasAssociatedWith/cpmeta:hasName ?station ;
-				cpmeta:wasPerformedWith ?instrument ;
 				cpmeta:hasSamplingHeight ?samplingHeight
 			] .
+			FILTER(?station != "Karlsruhe")
 		}
-		order by ?station ?instrument ?samplingHeight`;
+		order by ?station ?samplingHeight`;
 	}
 
 	const displayPreviewTable = (tableConfig) => {
@@ -69,14 +69,12 @@
 			data: query(tableConfig.spec)
 		}).done(function(result) {
 			let station = '';
-			let instrument = '';
 			const rows = $(result.results.bindings.map((binding, index) => {
 				let row = '';
-				if (binding.station.value !== station || binding.instrument.value != instrument) {
+				if (binding.station.value !== station) {
 					row += index == 0 ? '' : '</tr>';
 					station = binding.station.value;
-					instrument = binding.instrument.value;
-					row += `<tr><th scope="row">${station} (${instrument.split('/').pop()})</th>`;
+					row += `<tr><th scope="row">${station}</th>`;
 				}
 				let objId = binding.dobj.value.split('/').pop();
 				let previewUrl = `https://data.icos-cp.eu/dygraph-light/?objId=${objId}&x=TIMESTAMP&type=line&linking=overlap&y=${tableConfig.param}`;
