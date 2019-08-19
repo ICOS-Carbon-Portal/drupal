@@ -35,6 +35,16 @@ h3 a:hover {
 	border-bottom: 2px dotted;
 }
 
+.page-title {
+	font-weight: bold;
+	font-size: 2.285rem;
+	margin-bottom: 3rem;
+}
+
+.path-node .field--name-body {
+	max-width: 80ch;
+}
+
 .external-link::after {
 	font-family: "Font Awesome 5 Free";
   content: "\f35d";
@@ -46,6 +56,10 @@ h3 a:hover {
 .path-frontpage h2 {
 	margin: 2rem 0 1rem;
 	font-weight: bold;
+}
+
+.main-content h2 {
+  margin: 1.5rem 0 0.5rem;
 }
 
 h3 {
