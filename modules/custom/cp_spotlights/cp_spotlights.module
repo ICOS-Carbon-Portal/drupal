@@ -1,0 +1,11 @@
+<?php
+
+/**
+ * Implements hook_preprocess_views_view().
+ */
+
+function cp_spotlights_preprocess_views_view(&$vars) {
+  if ($vars['view_array']['#name'] == 'spotlight') {
+    $vars['#attached']['library'][] = 'cp_spotlights/style';
+  }
+}

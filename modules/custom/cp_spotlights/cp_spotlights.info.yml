@@ -1,0 +1,7 @@
+name: Spotlights
+description: Spotlights are image blocks that link to another page
+package: CP
+type: module
+core: 8.x
+libraries:
+  - cp_spotlights/style
