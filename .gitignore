@@ -23,3 +23,19 @@
 !cp_data_search.libraries.yml
 
 cmis_repository_wrapper.php
+
+.csslintrc
+.editorconfig
+.eslintignore
+.gitattributes
+.ht.router.php
+.htaccess
+autoload.php
+core/
+index.php
+profiles/
+robots.txt
+sites/
+themes/.gitkeep
+update.php
+web.config

@@ -131,11 +131,16 @@
     padding: 0;
   }
 
-  #cp_theme_d8_menu li {
+  #cp_theme_d8_menu li,
+  #cp_theme_d8_menu li li li li {
     list-style: none;
     padding: 0 1.5rem;
     cursor: pointer;
     transition: background-color 0.1s ease-out;
+  }
+
+  #cp_theme_d8_menu li li li {
+    padding: 0;
   }
 
   #cp_theme_d8_menu li a {

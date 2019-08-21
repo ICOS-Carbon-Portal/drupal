@@ -93,6 +93,10 @@ h3 {
 	.block-search {
 		display: block;
 	}
+
+	.site-footer .region {
+		width: 33%;
+	}
 }
 
 .header-links {
@@ -174,10 +178,6 @@ body,
 .site-footer .content a.is-active,
 .site-footer a:hover {
 	color: white;
-}
-
-.site-footer .region {
-	width: 33%;
 }
 
 .site-footer .block {
@@ -282,14 +282,16 @@ body,
 
 .view-spotlight .views-field-field-link a {
 	top: 0;
-	left: 0;
+	left: 15px;
 	bottom: 0;
-	right: 0;
+	right: 15px;
 	position: absolute;
 	font-size: 0;
 }
 
-.view-spotlight .views-field-field-link a:hover {
+.view-spotlight .views-field-field-link a:hover,
+.view-spotlight .views-field-field-link a:active,
+.view-spotlight .views-field-field-link a:focus {
 	border-bottom: none !important;
 }
 
@@ -301,4 +303,24 @@ body,
   font-weight: 900;
   margin: 0 0.3rem;
   color: white;
+}
+
+.eu-cookie-notice {
+  padding: 1rem 0.5rem;
+  text-align: center;
+}
+
+.eu-cookie-notice .info {
+  display: inline;
+  padding-right: 2rem;
+}
+
+.eu-cookie-notice .agree {
+  display: inline;
+}
+
+.eu-cookie-notice .agree input[type="checkbox"] {
+  margin-left: 1rem;
+  vertical-align: middle;
+  cursor: pointer;
 }

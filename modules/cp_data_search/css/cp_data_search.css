@@ -1,77 +1,82 @@
 .data-search-form-container {
-	background-color: #fafafa;
-	border-bottom: 5px solid var(--icos-magenta);
-	margin-bottom: 3rem;
+  background-color: #fafafa;
+  border-bottom: 5px solid var(--icos-magenta);
+  margin-bottom: 3rem;
 }
 
 .data-search-form {
-	border-radius: 5px;
-	margin: 0 auto;
-	padding: 2em;
+  border-radius: 5px;
+  margin: 0 auto;
+  padding: 2em;
 }
 
 .data-search-form-fieldset {
-	border: 1px solid #eee;
-	margin: 1em 0;
-	padding: 1rem;
-	background-color: white;
+  border: 1px solid #eee;
+  margin: 1em 0;
+  padding: 1rem;
+  background-color: white;
 }
 
 .data-search-form-fieldset .legend {
-	font-size: 1rem;
-	font-weight: bold;
-	width: auto;
+  font-size: 1rem;
+  font-weight: bold;
+  width: auto;
 }
 
 .search-field-row {
-	display: flex;
-	flex-flow: row wrap;
+  display: flex;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
-	margin: 1rem;
 }
 
 .box {
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .box-content {
-	height: 120px;
-	border: 1px #eee solid;
-	border-radius: 5px;
-	text-decoration: none;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	color: #333;
-	cursor: pointer;
-	font-weight: normal;
-	padding: 5%;
+  height: 120px;
+  border: 1px #eee solid;
+  border-radius: 5px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  cursor: pointer;
+  font-weight: normal;
+  padding: 5%;
 }
 
 .box-label {
-	margin-top: 10px;
-	text-align: center;
+  margin-top: 10px;
+  text-align: center;
 }
 
 .box-input {
   display: none;
 }
 
-.box-input:checked + .box-content {
-	border: 2px solid var(--icos-cyan);
+.box-input:checked+.box-content {
+  border: 2px solid var(--icos-cyan);
 }
 
 .theme-icon {
-	height: 33px;
+  height: 33px;
 }
 
 .btn-find-data {
-	width: 180px;
-	max-width: 100%;
-	margin: 2em auto 1em;
+  width: 180px;
+  max-width: 100%;
+  margin: 2em auto 1em;
+}
+
+@media all and (min-width: 800px) {
+	.search-field-row {
+	  margin: 1rem;
+	}
 }
