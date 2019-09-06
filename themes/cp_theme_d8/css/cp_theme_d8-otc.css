@@ -1,15 +1,3 @@
 #header {
-	background-image: url(../images/icos-otc_header_small.jpeg);
-}
-
-@media all and (min-width: 513px) {
-	#header {
-		background-image: url(../images/icos-otc_header_medium.jpeg);
-	}
-}
-
-@media all and (min-width: 1025px) {
-	#header {
-		background-image: url(../images/icos-otc_header.jpeg);
-	}
+	background-image: url(../images/icos-otc_header.jpg);
 }
