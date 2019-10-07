@@ -4,6 +4,7 @@
 /docker/
 /modules/*
 /config/
+/libraries/
 
 !modules/custom/
 !modules/cp_blogs/

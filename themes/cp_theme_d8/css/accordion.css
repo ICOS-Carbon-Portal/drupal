@@ -1,0 +1,50 @@
+.accordion .card {
+	border: 0;
+	margin-bottom: 1.25rem;
+	border-radius: 0;
+}
+
+.accordion .card-header {
+	padding: 0;
+	background: none;
+	margin-bottom: 1.25rem;
+	border: 0;
+}
+
+.accordion .card-body {
+	border-bottom: 5px solid var(--icos-cyan);
+}
+
+.accordion .btn {
+	display: block;
+	padding: 1em;
+	width: 100%;
+	text-align: left;
+	background: var(--icos-cyan);
+	color: white;
+	border-radius: 0;
+}
+
+.accordion .btn.collapsed {
+	background: rgba(0, 0, 0, 0.03);
+	color: var(--icos-cyan);
+}
+
+.accordion .btn::after {
+	position: absolute;
+	background: white;
+	right: 1em;
+	border-radius: 100%;
+	width: 32px;
+	line-height: 32px;
+	font-family: "Font Awesome 5 Free";
+	content: "\f068";
+	font-weight: 900;
+	color: var(--icos-cyan);
+	top: 8px;
+	text-align: center;
+}
+
+.accordion .btn.collapsed::after {
+	content: "\f067";
+}

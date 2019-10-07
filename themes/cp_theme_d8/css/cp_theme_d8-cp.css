@@ -18,14 +18,16 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
-a {
+a,
+.btn-link {
   color: var(--icos-cyan);
   border: none;
 }
 
 a:hover,
 a:focus,
-a:active {
+a:active,
+.btn-link:hover {
   color: var(--icos-cyan-dark);
   text-decoration: none;
 }
