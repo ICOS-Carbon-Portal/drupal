@@ -43,11 +43,8 @@
 		where {
 			VALUES ?spec { ${spec} }
 			?dobj cpmeta:hasObjectSpec ?spec .
-			FILTER NOT EXISTS {
-				?next cpmeta:isNextVersionOf ?dobj .
-				?next cpmeta:wasSubmittedBy/prov:endedAtTime []
-			}
-			FILTER EXISTS {?dobj cpmeta:wasSubmittedBy/prov:endedAtTime []}
+			FILTER NOT EXISTS {[] cpmeta:isNextVersionOf ?dobj}
+			?dobj cpmeta:wasSubmittedBy/prov:endedAtTime ?submEnd .
 			?dobj cpmeta:wasAcquiredBy [
 				prov:wasAssociatedWith/cpmeta:hasName ?station ;
 				cpmeta:hasSamplingHeight ?samplingHeight
