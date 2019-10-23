@@ -62,6 +62,10 @@ function cp_theme_d8_preprocess_page(&$variables, $hook) {
   if ($alias === "/ATM_NRT_CO2_CH4" || substr($alias, 0, strlen($startsWith)) === $startsWith) {
     $variables['#attached']['library'][] = 'cp_theme_d8/product-page';
   }
+
+  if ($alias === "/data") {
+    $variables['#attached']['library'][] = 'cp_theme_d8/dashboard';
+  }
 }
 
 function cp_theme_d8_preprocess_menu__main(&$variables) {
