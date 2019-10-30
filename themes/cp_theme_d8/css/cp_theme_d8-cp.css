@@ -43,8 +43,10 @@ h3 a:hover {
   margin-bottom: 3rem;
 }
 
+.field--name-field-introduction,
+.toc-js,
 .path-node .field--name-body {
-  max-width: 80ch;
+  max-width: 90ch;
 }
 
 .external-link::after {
@@ -210,11 +212,14 @@ body,
   outline: 1px dotted white;
 }
 
-#block-shortcuts .nav-pills .nav-link {
+#block-shortcuts .nav-pills .nav-link,
+.field--name-field-side-links,
+.field--name-field-bottom-left-links,
+.field--name-field-bottom-right-links {
   color: #414042;
   border-radius: 0;
   border-bottom: 5px solid white;
-  padding: 1.5rem 1rem;
+  padding: 1.5rem 8%;
   background-color: var(--icos-cyan-grey);
 }
 
@@ -270,12 +275,21 @@ body,
 
 .view-spotlight .views-field-title::before,
 .marked-link::before,
-.marked-link::before {
+.marked-link::before,
+.field--name-field-side-links .field__item:before,
+.field--name-field-bottom-left-links .field__item:before,
+.field--name-field-bottom-right-links .field__item:before {
   font-family: "Font Awesome 5 Free";
   content: "\f105";
   font-weight: 900;
   margin: 0 0.3rem;
   color: white;
+}
+
+.field--name-field-side-links .field__item:before,
+.field--name-field-bottom-left-links .field__item:before,
+.field--name-field-bottom-right-links .field__item:before {
+  color: var(--icos-cyan);
 }
 
 .eu-cookie-notice {
@@ -326,4 +340,27 @@ body,
 	font-weight: 900;
   color: var(--icos-cyan);
   padding-right: 0.5rem;
+}
+
+.field--name-field-header-image {
+  margin: 0;
+}
+
+.field--name-field-side-links-title,
+.field--name-field-bottom-left-links-title,
+.field--name-field-bottom-right-links-title {
+  font-size: 1.4285rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.field--name-field-side-links,
+.field--name-field-bottom-left-links,
+.field--name-field-bottom-right-links {
+  border-bottom-color: var(--icos-cyan);
+}
+
+.field--name-field-bottom-left-links,
+.field--name-field-bottom-right-links {
+  margin-right: 2rem;
 }
