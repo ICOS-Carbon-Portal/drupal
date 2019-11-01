@@ -1,7 +1,21 @@
+.block-inline-blocklink-box {
+	margin: 1rem;
+}
+
+.layout__region--first .block-inline-blocklink-box {
+	margin-left: 0;
+}
+
+.layout__region--third .block-inline-blocklink-box {
+	margin-right: 0;
+}
+
+.block-inline-blocklink-box .link-box-image,
 .view-spotlight {
 	position: relative;
 }
 
+.block-inline-blocklink-box .link-box-image h2,
 .view-spotlight .views-field-title {
 	position: absolute;
 	bottom: 0;
@@ -9,8 +23,10 @@
 	font-size: 1.5rem;
 	margin: 1rem;
 	font-weight: bold;
+	text-shadow: 0 0 1px #555;
 }
 
+.block-inline-blocklink-box img,
 .view-spotlight img {
 	width: 100%;
 	height: 230px;
@@ -27,8 +43,15 @@
 	font-size: 0;
 }
 
+.block-inline-blocklink-box a:hover,
+.block-inline-blocklink-box a:active,
+.block-inline-blocklink-box a:focus,
 .view-spotlight .views-field-field-link a:hover,
 .view-spotlight .views-field-field-link a:active,
 .view-spotlight .views-field-field-link a:focus {
 	border-bottom: none !important;
+}
+
+.block-inline-blocklink-box .field--name-body {
+	margin-top: 1rem;
 }
