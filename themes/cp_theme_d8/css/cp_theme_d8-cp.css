@@ -346,8 +346,9 @@ body,
   padding-right: 0.5rem;
 }
 
-.field--name-field-header-image {
-  margin: 0;
+.content .field--name-field-header-image {
+  float: none;
+  margin: -1em 0 0;
 }
 
 .field--name-field-side-links-title,
