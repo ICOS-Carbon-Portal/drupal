@@ -15,7 +15,7 @@
 	position: relative;
 }
 
-.block-inline-blocklink-box .link-box-image h2,
+.block-inline-blocklink-box .link-box-title,
 .view-spotlight .views-field-title {
 	position: absolute;
 	bottom: 0;
