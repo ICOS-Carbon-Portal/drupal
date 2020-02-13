@@ -139,8 +139,13 @@
     transition: background-color 0.1s ease-out;
   }
 
+  #cp_theme_d8_menu li li {
+    min-width: 268px;
+  }
+
   #cp_theme_d8_menu li li li {
     padding: 0;
+    min-width: auto;
   }
 
   #cp_theme_d8_menu li a {
@@ -163,13 +168,14 @@
     position: absolute;
     left: 0;
     right: 0;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     padding: 1rem 1rem 1.5rem;
     background-color: var(--icos-grey-90);
     z-index: 1;
     transition: visibility 0.1s ease-out;
     margin: 0 50px;
     box-shadow: 0px 1px 1px #333;
+    flex-wrap: wrap;
   }
 
   #cp_theme_d8_menu .is_topnode:hover > ul {
