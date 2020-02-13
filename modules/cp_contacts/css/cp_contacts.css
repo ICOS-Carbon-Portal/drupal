@@ -4,10 +4,11 @@
 }
 
 .cp_contacts .contact {
-	width: 400px;
+	width: 360px;
 	margin-bottom: 4vh;
 	display: flex;
 	max-width: 100%;
+	margin-right: 30px;
 }
 
 .cp_contacts .data_to_right {
@@ -31,8 +32,7 @@
 }
 
 .cp_contacts .name {
-	font-size: 1.8rem;
-	line-height: 1.7rem;
+	font-size: 1.5rem;
 	padding-bottom: 0.5em;
 }
 
