@@ -5,8 +5,8 @@
 	Drupal.behaviors.productPageBehavior = {
 		attach: function(context, settings) {
 			$('body', context).once('productPageBehavior').each(function() {
-				displayAbstract(config.abstractURL);
-				displayCitation(config.citationURL);
+				config.abstractURL ? displayAbstract(config.abstractURL) : '';
+				config.citationURL ? displayCitation(config.citationURL) : '';
 				$.each(config.tables, function(index, value) {
 					displayPreviewTable(value);
 				});
