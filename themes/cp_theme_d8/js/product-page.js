@@ -45,10 +45,8 @@
 			?dobj cpmeta:hasObjectSpec ?spec .
 			FILTER NOT EXISTS {[] cpmeta:isNextVersionOf ?dobj}
 			?dobj cpmeta:wasSubmittedBy/prov:endedAtTime ?submEnd .
-			?dobj cpmeta:wasAcquiredBy [
-				prov:wasAssociatedWith/cpmeta:hasName ?station ;
-				cpmeta:hasSamplingHeight ?samplingHeight
-			] .
+			?dobj cpmeta:wasAcquiredBy/prov:wasAssociatedWith/cpmeta:hasName ?station .
+			OPTIONAL{?dobj cpmeta:wasAcquiredBy/cpmeta:hasSamplingHeight ?samplingHeight} .
 			FILTER(?station != "Karlsruhe")
 		}
 		order by ?station ?samplingHeight`;
@@ -75,7 +73,8 @@
 				}
 				let objId = binding.dobj.value.split('/').pop();
 				let previewUrl = `https://data.icos-cp.eu/dygraph-light/?objId=${objId}&x=TIMESTAMP&type=line&linking=overlap&y=${tableConfig.param}`;
-				row += `<td data-id="${objId}"><a href="${previewUrl}">${binding.samplingHeight.value}</a></td>`;
+				let label = binding.samplingHeight ? binding.samplingHeight.value : 'Preview';
+				row += `<td data-id="${objId}"><a href="${previewUrl}">${label}</a></td>`;
 				return row;
 			}).join()).map(function() {
 				while (this.children.length <= $(`#${tableConfig.param}-table thead th`).length - 1) {
