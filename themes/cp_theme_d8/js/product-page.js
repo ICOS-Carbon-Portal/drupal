@@ -85,7 +85,9 @@
 					let id = $(cur).data('id');
 					return id ? acc.concat(id) : acc;
 				}, []);
-				$(this).append(`<td><a href="https://data.icos-cp.eu/dygraph-light/?objId=${ids}&x=TIMESTAMP&type=line&linking=overlap&y=${tableConfig.param}">All</a></td>`);
+				if (ids.length > 1) {
+					$(this).append(`<td><a href="https://data.icos-cp.eu/dygraph-light/?objId=${ids}&x=TIMESTAMP&type=line&linking=overlap&y=${tableConfig.param}">All</a></td>`);
+				}
 				return this;
 			});
 			$(`#${tableConfig.param}-table tbody`).html(rows);
