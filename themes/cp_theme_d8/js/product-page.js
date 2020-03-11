@@ -89,9 +89,10 @@
 					let id = $(cur).data('id');
 					return id ? acc.concat(id) : acc;
 				}, []);
-				if (ids.length > 1) {
-					$(this).append(`<td><a href="https://data.icos-cp.eu/dygraph-light/?objId=${ids}&x=TIMESTAMP&type=line&linking=overlap&y=${tableConfig.param}">All</a></td>`);
-				}
+				const allPreviews = (ids.length > 1)
+					? `<a href="https://data.icos-cp.eu/dygraph-light/?objId=${ids}&x=TIMESTAMP&type=line&linking=overlap&y=${tableConfig.param}">All</a>`
+					: '';
+				this.children.length > 2 ? $(this).append(`<td>${allPreviews}</td>`) : '';
 				return this;
 			});
 			$(`#${tableConfig.param}-table tbody`).html(rows);
