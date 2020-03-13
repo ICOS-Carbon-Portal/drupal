@@ -140,12 +140,12 @@
   }
 
   #cp_theme_d8_menu li li {
-    min-width: 268px;
+    width: 268px;
   }
 
   #cp_theme_d8_menu li li li {
     padding: 0;
-    min-width: auto;
+    width: auto;
   }
 
   #cp_theme_d8_menu li a {

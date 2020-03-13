@@ -5,6 +5,9 @@ dependencies:
     - file
     - image
     - node
+  enforced:
+    module:
+      - cp_blogs
 id: node.field_cp_blog_picture
 field_name: field_cp_blog_picture
 entity_type: node

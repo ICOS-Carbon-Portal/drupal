@@ -3,6 +3,9 @@ status: true
 dependencies:
   module:
     - menu_ui
+  enforced:
+    module:
+      - cp_blogs
 third_party_settings:
   menu_ui:
     available_menus:
@@ -14,4 +17,4 @@ description: 'Carbon Portal blog.'
 help: ''
 new_revision: false
 preview_mode: 1
-display_submitted: true
+display_submitted: false

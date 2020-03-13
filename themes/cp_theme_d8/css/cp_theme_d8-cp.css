@@ -322,6 +322,10 @@ body,
   margin-right: 1ch;
 }
 
+.layout--twocol-section--67-33 .layout__region.layout__region--second {
+  padding-left: 1rem;
+}
+
 .toc-js {
   margin-bottom: 2rem;
 }
@@ -369,4 +373,9 @@ body,
 .field--name-field-bottom-left-links,
 .field--name-field-bottom-right-links {
   margin-right: 2rem;
+}
+
+.views-field-created,
+.field--name-created {
+  color: var(--icos-grey-75);
 }

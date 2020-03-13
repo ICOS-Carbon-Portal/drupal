@@ -3,13 +3,15 @@ status: true
 dependencies:
   config:
     - field.field.node.cp_blog.field_cp_blog_picture
-    - field.field.node.cp_blog.field_cp_blog_category
     - field.field.node.cp_blog.body
     - node.type.cp_blog
   module:
     - image
     - path
     - text
+  enforced:
+    module:
+      - cp_blogs
 id: node.cp_blog.default
 targetEntityType: node
 bundle: cp_blog
@@ -22,13 +24,6 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
-  field_cp_blog_category:
-    weight: 42
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
   body:
     type: text_textarea_with_summary
     weight: 0
