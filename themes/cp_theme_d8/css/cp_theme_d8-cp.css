@@ -33,7 +33,8 @@ a:active,
 }
 
 p a:not(.btn):hover,
-h3 a:hover {
+h3 a:hover,
+#block-shortcuts .tab-links a:hover {
   border-bottom: 2px dotted;
 }
 
@@ -236,6 +237,7 @@ body,
 #block-shortcuts .nav-pills .nav-link.active {
   background-color: var(--icos-cyan);
   color: white;
+  font-weight: bold;
 }
 
 #block-shortcuts .tab-content,
@@ -265,11 +267,10 @@ body,
 #block-shortcuts .tab-title {
   margin: 0;
   color: white;
-  font-weight: normal;
+  font-size: 1.5rem;
 }
 
 #block-shortcuts .tab-links a {
-  display: block;
   color: white;
   border: none;
 }
