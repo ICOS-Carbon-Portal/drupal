@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - cp_data_products
+id: data_product_preview
+label: 'Data product preview'
+revision: 0
+description: ''
+

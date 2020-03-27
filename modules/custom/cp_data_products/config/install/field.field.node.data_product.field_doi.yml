@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_doi
+    - node.type.data_product
+  module:
+    - link
+  enforced:
+    module:
+      - cp_data_products
+id: node.data_product.field_doi
+field_name: field_doi
+entity_type: node
+bundle: data_product
+label: DOI
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 16
+  title: 0
+field_type: link
+

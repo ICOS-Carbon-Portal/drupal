@@ -1,0 +1,83 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.data_product_preview
+    - field.field.node.data_product.field_citation
+    - field.field.node.data_product.field_description
+    - field.field.node.data_product.field_disclaimer
+    - field.field.node.data_product.field_doi
+    - field.field.node.data_product.field_link_to_portal_search
+    - field.field.node.data_product.field_map_url
+    - node.type.data_product
+  module:
+    - link
+    - text
+    - user
+  enforced:
+    module:
+      - cp_data_products
+id: node.data_product.default
+targetEntityType: node
+bundle: data_product
+mode: default
+content:
+  field_citation:
+    weight: 3
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_description:
+    weight: 4
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_disclaimer:
+    weight: 2
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_doi:
+    weight: 1
+    label: inline
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_link_to_portal_search:
+    weight: 0
+    label: inline
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_map_url:
+    weight: 5
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+hidden:
+  links: true

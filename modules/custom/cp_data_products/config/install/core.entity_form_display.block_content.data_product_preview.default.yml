@@ -1,0 +1,51 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.data_product_preview
+    - field.field.block_content.data_product_preview.field_data_type
+    - field.field.block_content.data_product_preview.field_number_of_columns
+    - field.field.block_content.data_product_preview.field_parameter
+  module:
+    - link
+  enforced:
+    module:
+      - cp_data_products
+id: block_content.data_product_preview.default
+targetEntityType: block_content
+bundle: data_product_preview
+mode: default
+content:
+  field_data_type:
+    weight: 27
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_number_of_columns:
+    weight: 29
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_parameter:
+    weight: 28
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  info:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }
+

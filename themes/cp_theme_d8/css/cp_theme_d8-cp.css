@@ -46,11 +46,13 @@ h3 a:hover,
   font-weight: bold;
   font-size: 2.285rem;
   margin-bottom: 3rem;
+  line-height: 3rem;
 }
 
 .field--name-field-introduction,
 .toc-js,
-.path-node .field--name-body {
+.path-node .field--name-body,
+.view-data-products {
   max-width: 90ch;
 }
 

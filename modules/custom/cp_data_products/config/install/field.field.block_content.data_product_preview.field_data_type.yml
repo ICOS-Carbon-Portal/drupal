@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.data_product_preview
+    - field.storage.block_content.field_data_type
+  module:
+    - link
+  enforced:
+    module:
+      - cp_data_products
+id: block_content.data_product_preview.field_data_type
+field_name: field_data_type
+entity_type: block_content
+bundle: data_product_preview
+label: 'Data type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 16
+  title: 0
+field_type: link
+

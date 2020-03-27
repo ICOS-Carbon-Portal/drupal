@@ -55,11 +55,6 @@ function cp_theme_d8_preprocess_page(&$variables, $hook) {
     $variables['#attached']['library'][] = 'cp_theme_d8/station-map';
   }
 
-  $startsWith = "/data-products";
-  if ($alias === "/ATM_NRT_CO2_CH4" || substr($alias, 0, strlen($startsWith)) === $startsWith) {
-    $variables['#attached']['library'][] = 'cp_theme_d8/product-page';
-  }
-
   if ($alias === "/data") {
     $variables['#attached']['library'][] = 'cp_theme_d8/dashboard';
   }

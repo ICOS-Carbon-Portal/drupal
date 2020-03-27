@@ -1,0 +1,7 @@
+name: Data products
+description: Define a custom content type to create data products
+package: CP
+type: module
+core: 8.x
+libraries:
+  - cp_data_products/script

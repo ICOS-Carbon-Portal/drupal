@@ -1,13 +1,12 @@
 // This library is included for /data-products/xxx pages by the theme config
 // A config object needs be included in the page content
 
-(function($, Drupal) {
+(function ($, Drupal, drupalSettings) {
 	Drupal.behaviors.productPageBehavior = {
 		attach: function(context, settings) {
 			$('body', context).once('productPageBehavior').each(function() {
-				displayAbstract(config.abstractURL);
-				displayCitation(config.citationURL);
-				$.each(config.tables, function(index, value) {
+				const tables = settings.data_product_preview;
+				$.each(tables, function(index, value) {
 					displayPreviewTable(value);
 				});
 			});
@@ -41,7 +40,7 @@
 		prefix prov: <http://www.w3.org/ns/prov#>
 		select ?dobj ?station ?samplingHeight
 		where {
-			VALUES ?spec { ${spec} }
+			VALUES ?spec { <${spec}> }
 			?dobj cpmeta:hasObjectSpec ?spec .
 			FILTER NOT EXISTS {[] cpmeta:isNextVersionOf ?dobj}
 			?dobj cpmeta:wasSubmittedBy/prov:endedAtTime ?submEnd .
@@ -93,4 +92,4 @@
 			$(`#${tableConfig.param}-table`).show();
 		})
 	}
-})(jQuery, Drupal);
+})(jQuery, Drupal, drupalSettings);

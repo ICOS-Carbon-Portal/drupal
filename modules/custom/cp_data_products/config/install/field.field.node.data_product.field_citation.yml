@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_citation
+    - node.type.data_product
+  enforced:
+    module:
+      - cp_data_products
+id: node.data_product.field_citation
+field_name: field_citation
+entity_type: node
+bundle: data_product
+label: Citation
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
+
