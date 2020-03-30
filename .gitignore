@@ -23,6 +23,7 @@
 *.libraries.yml
 !cp_data_search.libraries.yml
 !cp_spotlights.libraries.yml
+!cp_data_products.libraries.yml
 
 cmis_repository_wrapper.php
 
