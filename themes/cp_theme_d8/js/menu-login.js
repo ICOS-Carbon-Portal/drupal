@@ -7,18 +7,11 @@
 			error: showLoginLink
 		})
 			.done(function() {
-				$(".logOutLnk").on('click', function() {
-					$.ajax({
-						url: 'https://cpauth.icos-cp.eu/logout',
-						xhrFields: { withCredentials: true }
-					}).done(function(){
-						window.location.reload();
-					});
-				});
 				$(".accountLnk").on('click', function() {
 					window.location = 'https://cpauth.icos-cp.eu/';
 				});
-				$(".logOutLnk, .accountLnk").show();
+				$(".accountLnk").show();
+				$(".logInLnk").hide();
 			})
 			.fail(function(jqXHR) {
 				if (jqXHR.status == 401) {
