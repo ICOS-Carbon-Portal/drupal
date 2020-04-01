@@ -382,3 +382,7 @@ body,
 .field--name-created {
   color: var(--icos-grey-75);
 }
+
+.data-product-preview-table {
+  width: auto;
+}

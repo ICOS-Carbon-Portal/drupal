@@ -35,7 +35,10 @@
 		return Uint8Array.from(atob(ascii), c => c.charCodeAt(0));
 	}
 
-	const query = (spec) => {
+	const query = (spec, shouldGetHeight) => {
+		const samplingHeight = shouldGetHeight
+			? 'OPTIONAL{?dobj cpmeta:wasAcquiredBy/cpmeta:hasSamplingHeight ?samplingHeight} .'
+			: ''
 		return `prefix cpmeta: <http://meta.icos-cp.eu/ontologies/cpmeta/>
 		prefix prov: <http://www.w3.org/ns/prov#>
 		select ?dobj ?station ?samplingHeight
@@ -44,16 +47,15 @@
 			?dobj cpmeta:hasObjectSpec ?spec .
 			FILTER NOT EXISTS {[] cpmeta:isNextVersionOf ?dobj}
 			?dobj cpmeta:wasSubmittedBy/prov:endedAtTime ?submEnd .
-			?dobj cpmeta:wasAcquiredBy [
-				prov:wasAssociatedWith/cpmeta:hasName ?station ;
-				cpmeta:hasSamplingHeight ?samplingHeight
-			] .
+			?dobj cpmeta:wasAcquiredBy/prov:wasAssociatedWith/cpmeta:hasName ?station .
+			${samplingHeight}
 			FILTER(?station != "Karlsruhe")
 		}
 		order by ?station ?samplingHeight`;
 	}
 
 	const displayPreviewTable = (tableConfig) => {
+		const shouldGetHeight = tableConfig.noHeight ? false : true;
 		$.ajax({
 			method: 'post',
 			url: 'https://meta.icos-cp.eu/sparql',
@@ -62,7 +64,7 @@
 				'Content-Type': 'text/plain',
 				'Cache-Control': 'max-age=1000000'
 			},
-			data: query(tableConfig.spec)
+			data: query(tableConfig.spec, shouldGetHeight)
 		}).done(function(result) {
 			let station = '';
 			const rows = $(result.results.bindings.map((binding, index) => {
@@ -74,7 +76,8 @@
 				}
 				let objId = binding.dobj.value.split('/').pop();
 				let previewUrl = `https://data.icos-cp.eu/dygraph-light/?objId=${objId}&x=TIMESTAMP&type=line&linking=overlap&y=${tableConfig.param}`;
-				row += `<td data-id="${objId}"><a href="${previewUrl}">${binding.samplingHeight.value}</a></td>`;
+				let label = binding.samplingHeight ? binding.samplingHeight.value : 'Preview';
+				row += `<td data-id="${objId}"><a href="${previewUrl}">${label}</a></td>`;
 				return row;
 			}).join()).map(function() {
 				while (this.children.length <= $(`#${tableConfig.param}-table thead th`).length - 1) {
@@ -85,7 +88,10 @@
 					let id = $(cur).data('id');
 					return id ? acc.concat(id) : acc;
 				}, []);
-				$(this).append(`<td><a href="https://data.icos-cp.eu/dygraph-light/?objId=${ids}&x=TIMESTAMP&type=line&linking=overlap&y=${tableConfig.param}">All</a></td>`);
+				const allPreviews = (ids.length > 1)
+					? `<a href="https://data.icos-cp.eu/dygraph-light/?objId=${ids}&x=TIMESTAMP&type=line&linking=overlap&y=${tableConfig.param}">All</a>`
+					: '';
+				this.children.length > 2 ? $(this).append(`<td>${allPreviews}</td>`) : '';
 				return this;
 			});
 			$(`#${tableConfig.param}-table tbody`).html(rows);
