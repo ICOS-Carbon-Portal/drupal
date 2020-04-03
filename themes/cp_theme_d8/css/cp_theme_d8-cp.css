@@ -281,9 +281,14 @@ body,
   border-bottom: 5px solid var(--icos-magenta);
 }
 
+.read-more {
+  text-align: right;
+  text-transform: uppercase;
+}
+
 .view-spotlight .views-field-title::before,
 .marked-link::before,
-.marked-link::before,
+.read-more::before,
 .field--name-field-side-links .field__item:before,
 .field--name-field-bottom-left-links .field__item:before,
 .field--name-field-bottom-right-links .field__item:before {
@@ -294,6 +299,7 @@ body,
   color: white;
 }
 
+.read-more::before,
 .field--name-field-side-links .field__item:before,
 .field--name-field-bottom-left-links .field__item:before,
 .field--name-field-bottom-right-links .field__item:before {
