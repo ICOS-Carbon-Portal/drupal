@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.data_product_preview
+    - field.storage.block_content.field_display_height
+id: block_content.data_product_preview.field_display_height
+field_name: field_display_height
+entity_type: block_content
+bundle: data_product_preview
+label: 'Display height'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

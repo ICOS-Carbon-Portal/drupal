@@ -1,10 +1,10 @@
-uuid: 71c86fe2-4fec-48c2-b1cd-b868042c46bb
 langcode: en
 status: true
 dependencies:
   config:
     - block_content.type.data_product_preview
     - field.field.block_content.data_product_preview.field_data_type
+    - field.field.block_content.data_product_preview.field_display_height
     - field.field.block_content.data_product_preview.field_number_of_columns
     - field.field.block_content.data_product_preview.field_parameter
   module:
@@ -28,6 +28,16 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
+    region: content
+  field_display_height:
+    weight: 4
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
     region: content
   field_number_of_columns:
     weight: 3

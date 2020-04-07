@@ -4,6 +4,7 @@ dependencies:
   config:
     - block_content.type.data_product_preview
     - field.field.block_content.data_product_preview.field_data_type
+    - field.field.block_content.data_product_preview.field_display_height
     - field.field.block_content.data_product_preview.field_number_of_columns
     - field.field.block_content.data_product_preview.field_parameter
   module:
@@ -23,6 +24,13 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
+  field_display_height:
+    weight: 30
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
     region: content
   field_number_of_columns:
     weight: 29
