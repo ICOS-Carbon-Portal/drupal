@@ -1,0 +1,7 @@
+name: Flexextract forecasts
+description: Create a page that displays a map and videos of the forecasts
+package: CP
+type: module
+core: 8.x
+libraries:
+  - cp_forecast/script

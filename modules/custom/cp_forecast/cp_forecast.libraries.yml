@@ -1,0 +1,8 @@
+script:
+  js:
+    js/forecast.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery
+    - core/jquery.once
