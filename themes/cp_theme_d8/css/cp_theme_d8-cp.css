@@ -52,7 +52,10 @@ h3 a:hover,
 .field--name-field-introduction,
 .toc-js,
 .path-node .field--name-body,
-.view-data-products {
+.view-data-products .view-header,
+.view-data-products h2,
+.view-data-products .views-field-title,
+.view-data-products .views-field-field-description {
   max-width: 90ch;
 }
 
