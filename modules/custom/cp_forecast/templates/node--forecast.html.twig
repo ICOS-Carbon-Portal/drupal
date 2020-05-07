@@ -85,12 +85,14 @@
 	{% endif %}
 	{{ title_suffix }}
 
-	<div>
+	<div id="alert-placeholder"></div>
+
+	<div class="forecast-controls">
 		<label for="forecast-select">Station</label>
 		<select id="forecast-select" class="form-element"></select>
 	</div>
 
-	<div class="mb-5">
+	<div class="forecast-controls mb-5">
 		<a id="video-download-button" class="btn btn-primary" download>Download video</a>
 		<a id="data-download-button" class="btn btn-primary" download>Download data</a>
 	</div>
