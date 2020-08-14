@@ -72,6 +72,14 @@ h3 a:hover,
   font-weight: bold;
 }
 
+.path-frontpage .sidebar .block {
+  border: none;
+  border-bottom: 5px solid var(--icos-cyan);
+  background: none;
+  padding: 0;
+  margin: 0 0 60px;
+}
+
 .main-content h2 {
   margin: 4rem 0 0.5rem;
   font-size: 2rem;
