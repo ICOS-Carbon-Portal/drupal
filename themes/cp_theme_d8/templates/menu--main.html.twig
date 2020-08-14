@@ -39,18 +39,26 @@
 			<ul>
 		{% endif %}
 		{% for item in items %}
-			{% if menu_level == 0 and item.below %}
-			<li{{ item.attributes }} class="is_topnode">
-			{% else %}
-			<li{{ item.attributes }}>
-			{% endif %}
+			{% set item_classes = [
+					menu_level == 0 and item.below ? 'is_topnode',
+				]
+			%}
+			<li{{ item.attributes.addClass(item_classes) }}>
 				{% if menu_level == 0 and item.below %}
 					<div class="menu-item-text">
 						<span class="open_menu menu-icon"><i class="fas fa-chevron-down"></i></span>
 				{% endif %}
 				{# link(item.title, item.url) #}
-				<a href="{{ item.url }}">
-					{{ item.title }}
+				{% set link_classes = [
+						menu_level == 0 and item.in_active_trail ? 'active-trail',
+					]
+				%}
+				<a href="{{ item.url }}" class={{ link_classes|join(" ") }}>
+					{% if item.title == "Home" %}
+						<i class="fas fa-home"></i>
+					{% else %}
+						{{ item.title }}
+					{% endif %}
 					{% if menu_level > 0 and item.below %}
 					<span class="open_menu submenu-icon"><i class="fas fa-chevron-right"></i></span>
 					{% endif %}
