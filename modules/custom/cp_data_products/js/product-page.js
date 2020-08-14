@@ -9,6 +9,9 @@
 				$.each(tables, function(index, value) {
 					displayPreviewTable(value);
 				});
+				$(document).on('change', '.map-graph-select', function() {
+					window.open($("option:selected", this).data('url'));
+				})
 			});
 		}
 	}
@@ -35,13 +38,17 @@
 		return Uint8Array.from(atob(ascii), c => c.charCodeAt(0));
 	}
 
-	const query = (spec, shouldGetHeight) => {
+	const query = (spec, shouldGetHeight, previewType) => {
 		const samplingHeight = shouldGetHeight
 			? 'OPTIONAL{?dobj cpmeta:wasAcquiredBy/cpmeta:hasSamplingHeight ?samplingHeight} .'
 			: ''
+		const dates = previewType == "map-graph"
+			? `?dobj cpmeta:wasAcquiredBy/prov:startedAtTime ?start .
+				 ?dobj cpmeta:wasAcquiredBy/prov:endedAtTime ?end .`
+			: ''
 		return `prefix cpmeta: <http://meta.icos-cp.eu/ontologies/cpmeta/>
 		prefix prov: <http://www.w3.org/ns/prov#>
-		select ?dobj ?station ?samplingHeight
+		select ?dobj ?station ?samplingHeight ?start ?end
 		where {
 			VALUES ?spec { <${spec}> }
 			?dobj cpmeta:hasObjectSpec ?spec .
@@ -49,12 +56,18 @@
 			?dobj cpmeta:wasSubmittedBy/prov:endedAtTime ?submEnd .
 			?dobj cpmeta:wasAcquiredBy/prov:wasAssociatedWith/cpmeta:hasName ?station .
 			${samplingHeight}
+			${dates}
 			FILTER(?station != "Karlsruhe")
 		}
-		order by ?station ?samplingHeight`;
+		order by ?station ?samplingHeight ?start`;
+	}
+
+	function timestampToDate(timestamp) {
+		return timestamp.substring(0, timestamp.indexOf('T'));
 	}
 
 	const displayPreviewTable = (tableConfig) => {
+
 		const shouldGetHeight = tableConfig.noHeight ? false : true;
 		$.ajax({
 			method: 'post',
@@ -64,20 +77,47 @@
 				'Content-Type': 'text/plain',
 				'Cache-Control': 'max-age=1000000'
 			},
-			data: query(tableConfig.spec, shouldGetHeight)
+			data: query(tableConfig.spec, shouldGetHeight, tableConfig.previewType)
 		}).done(function(result) {
 			let station = '';
+			let rowNumber = 1;
+			let tableLength = $(`#${tableConfig.param}-table thead th`).length - 1;
 			const rows = $(result.results.bindings.map((binding, index) => {
 				let row = '';
-				if (binding.station.value !== station) {
-					row += index == 0 ? '' : '</tr>';
-					station = binding.station.value;
-					row += `<tr><th scope="row">${station}</th>`;
+				if (tableConfig.previewType == "map-graph") {
+					if (binding.station.value !== station) {
+						row += index == 0 ? '' : '</select></td></tr>';
+						station = binding.station.value;
+						row += `<tr><th scope="row">${station}</th><td><select class="map-graph-select"><option selected disabled>Select dates</option>`;
+						rowNumber = 1;
+					}
+					let objId = binding.dobj.value.split('/').pop();
+					let previewUrl = `https://data.icos-cp.eu/map-graph/${objId}`
+					let label = `${timestampToDate(binding.start.value)} \u2013 ${timestampToDate(binding.end.value)}`
+					row += `<option data-url="${previewUrl}">${label}</option>`
+					rowNumber++;
+
+				} else {
+					if (binding.station.value !== station) {
+						row += index == 0 ? '' : '</tr>';
+						station = binding.station.value;
+						row += `<tr><th scope="row">${station}</th>`;
+						rowNumber = 1;
+					} else if (rowNumber % tableLength == 1) {
+						row += `</tr><th scope="row"></th>`;
+					}
+					let objId = binding.dobj.value.split('/').pop();
+					let previewUrl = tableConfig.previewType == "map-graph" ?
+						`https://data.icos-cp.eu/map-graph/${objId}` :
+						`https://data.icos-cp.eu/dygraph-light/?objId=${objId}&x=TIMESTAMP&type=scatter&linking=overlap&y=${tableConfig.param}`;
+					let label = tableConfig.previewType == "map-graph" ?
+						`${timestampToDate(binding.start.value)} \u2013 ${timestampToDate(binding.end.value)}` :
+						binding.samplingHeight ? binding.samplingHeight.value : 'Preview';
+					row += tableConfig.previewType == "map-graph"
+						? `<option>${label}</option>`
+						: `<td data-id="${objId}"><a href="${previewUrl}">${label}</a></td>`;
+					rowNumber++;
 				}
-				let objId = binding.dobj.value.split('/').pop();
-				let previewUrl = `https://data.icos-cp.eu/dygraph-light/?objId=${objId}&x=TIMESTAMP&type=line&linking=overlap&y=${tableConfig.param}`;
-				let label = binding.samplingHeight ? binding.samplingHeight.value : 'Preview';
-				row += `<td data-id="${objId}"><a href="${previewUrl}">${label}</a></td>`;
 				return row;
 			}).join()).map(function() {
 				while (this.children.length <= $(`#${tableConfig.param}-table thead th`).length - 1) {
@@ -91,7 +131,7 @@
 				const allPreviews = (ids.length > 1)
 					? `<a href="https://data.icos-cp.eu/dygraph-light/?objId=${ids}&x=TIMESTAMP&type=line&linking=overlap&y=${tableConfig.param}">All</a>`
 					: '';
-				this.children.length > 2 ? $(this).append(`<td>${allPreviews}</td>`) : '';
+				this.children.length > 2 && tableConfig.previewType != "map-graph" ? $(this).append(`<td>${allPreviews}</td>`) : '';
 				return this;
 			});
 			$(`#${tableConfig.param}-table tbody`).html(rows);

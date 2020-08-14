@@ -46,9 +46,15 @@
 		<thead>
 			<tr>
 				<th scope="row">Station</th>
-				{% for row in 1..content['field_number_of_columns'].0['#markup'] %}
-					<th scope="col">height {{ loop.index }}</th>
-				{% endfor %}
+				{% if content['field_preview_type'].0['#markup'] == "map-graph" %}
+					{% for row in 1..content['field_number_of_columns'].0['#markup'] %}
+						<th scope="col"></th>
+					{% endfor %}
+				{% else %}
+					{% for row in 1..content['field_number_of_columns'].0['#markup'] %}
+						<th scope="col">height {{ loop.index }}</th>
+					{% endfor %}
+				{% endif %}
 			</tr>
 		</thead>
 		<tbody></tbody>
