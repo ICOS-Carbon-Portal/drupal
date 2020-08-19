@@ -1,0 +1,24 @@
+<?php
+
+function cp_forecast_theme_suggestions_node(array $variables) {
+  $suggestions = [];
+
+  $current_path = \Drupal::service('path.current')->getPath();
+  $alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+  if ($alias === "/forecast") {
+    $suggestions[] = 'node__forecast';
+  }
+
+  return $suggestions;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function cp_forecast_theme() {
+  return [
+    'node__forecast' => [
+      'base hook' => 'node'
+    ]
+  ];
+}

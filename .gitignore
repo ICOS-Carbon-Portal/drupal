@@ -4,6 +4,7 @@
 /docker/
 /modules/*
 /config/
+/libraries/
 
 !modules/custom/
 !modules/cp_blogs/
@@ -21,5 +22,24 @@
 
 *.libraries.yml
 !cp_data_search.libraries.yml
+!cp_spotlights.libraries.yml
+!cp_data_products.libraries.yml
+!cp_forecast.libraries.yml
 
 cmis_repository_wrapper.php
+
+.csslintrc
+.editorconfig
+.eslintignore
+.gitattributes
+.ht.router.php
+.htaccess
+autoload.php
+core/
+index.php
+profiles/
+robots.txt
+sites/
+themes/.gitkeep
+update.php
+web.config

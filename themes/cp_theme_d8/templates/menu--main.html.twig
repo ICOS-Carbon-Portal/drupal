@@ -33,26 +33,34 @@
 	{% import _self as menus %}
 	{% if items %}
 		{% if menu_level == 0 %}
-			<div id="cp_theme_d8_menu">
+			<div id="cp_theme_d8_menu" class="layout-container">
 			<ul{{ attributes }}>
 		{% else %}
 			<ul>
 		{% endif %}
 		{% for item in items %}
-			{% if menu_level == 0 and item.below %}
-			<li{{ item.attributes }} class="is_topnode">
-			{% else %}
-			<li{{ item.attributes }}>
-			{% endif %}
+			{% set item_classes = [
+					menu_level == 0 and item.below ? 'is_topnode',
+				]
+			%}
+			<li{{ item.attributes.addClass(item_classes) }}>
 				{% if menu_level == 0 and item.below %}
 					<div class="menu-item-text">
-						<span class="open_menu menu-icon"><span class="glyphicon glyphicon-menu-down"></span></span>
+						<span class="open_menu menu-icon"><i class="fas fa-chevron-down"></i></span>
 				{% endif %}
 				{# link(item.title, item.url) #}
-				<a href="{{ item.url }}">
-					{{ item.title }}
+				{% set link_classes = [
+						menu_level == 0 and item.in_active_trail ? 'active-trail',
+					]
+				%}
+				<a href="{{ item.url }}" class={{ link_classes|join(" ") }}>
+					{% if item.title == "Home" %}
+						<i class="fas fa-home"></i>
+					{% else %}
+						{{ item.title }}
+					{% endif %}
 					{% if menu_level > 0 and item.below %}
-					<span class="open_menu submenu-icon"><span class="glyphicon glyphicon-menu-right"></span></span>
+					<span class="open_menu submenu-icon"><i class="fas fa-chevron-right"></i></span>
 					{% endif %}
 				</a>
 				{% if menu_level == 0 and item.below %}
@@ -64,14 +72,14 @@
 			</li>
 		{% endfor %}
 		{% if variables.display_login and menu_level == 0 %}
-			<li id="accountLnk" class="account">
-				<a><span class="glyphicon glyphicon-user"></span> My Carbon Portal Account</a>
+			<li class="account accountLnk">
+				<a><i class="fas fa-user"></i> My Carbon Portal Account</a>
 			</li>
-			<li id="logOutLnk" class="account">
-				<a><span class="glyphicon glyphicon-log-out"></span> Log out</a>
+			<li class="account logOutLnk">
+				<a><i class="fas fa-sign-out-alt"></i> Log out</a>
 			</li>
-			<li id="logInLnk" class="account">
-				<a><span class="glyphicon glyphicon-log-in"></span> Log in</a>
+			<li class="account logInLnk">
+				<a><i class="fas fa-sign-in-alt"></i> Log in</a>
 			</li>
 		{% endif %}
 		</ul>

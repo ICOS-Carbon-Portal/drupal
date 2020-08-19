@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.data_product_preview
+    - field.storage.block_content.field_number_of_columns
+  enforced:
+    module:
+      - cp_data_products
+id: block_content.data_product_preview.field_number_of_columns
+field_name: field_number_of_columns
+entity_type: block_content
+bundle: data_product_preview
+label: 'Number of columns'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: 8
+  prefix: ''
+  suffix: ''
+field_type: integer
+

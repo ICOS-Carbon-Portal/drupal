@@ -1,0 +1,19 @@
+.breadcrumb {
+  margin: 4rem 0 0;
+  padding: 0;
+  background: none;
+  font-size: 1.071rem;
+}
+
+.breadcrumb li::before {
+  content: none;
+}
+
+.breadcrumb li::after {
+  font-family: "Font Awesome 5 Free";
+  content: "\f105";
+  font-weight: 900;
+  margin: 0 0.3rem;
+  font-size: 0.8rem;
+  color: #828282;
+}

@@ -1,31 +1,16 @@
 <div id="cp_events_all_news">
-	
+
 	{% for year, element in elements['year'] %}
 		<div class="events_all_news">
-			<div class="panel-group" id="accordion_{{ year }}" role="tablist" aria-multiselectable="true">
-				<div class="panel panel-default">
-					<div class="panel-heading" role="tab" id="heading_{{ year }}">
-						<a role="button" data-toggle="collapse" data-parent="#accordion_{{ year }}" href="#collapse_{{ year }}" aria-expanded="true" aria-controls="collapse_{{ year }}">
-							<h4 class="panel-title">
-								{{ year }}
-							</h4>
-						</a>
-					</div>
-					<div id="collapse_{{ year }}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading_{{ year }}">
-						<div class="panel-body">
-			      
-							{% for event in element %}
-								<div class="element">
-									<div class="date"> {{ event.getFromDate() }} </div>
-									<div class="title"><a href="/event/{{ event.getId() }}"> {{ event.getTitle() }} </a></div>
-								</div>
-							{% endfor %}      
-			      
-						</div>
-					</div>
-				</div>
+			<h3>{{ year }}</h3>
+
+			{% for event in element %}
+			<div class="element">
+				<div class="date"> {{ event.getFromDate() }} </div>
+				<div class="title"><a href="/event/{{ event.getId() }}"> {{ event.getTitle() }} </a></div>
 			</div>
-		</div>		
-	{% endfor %} 	
+			{% endfor %}
+		</div>
+	{% endfor %}
 
 </div>

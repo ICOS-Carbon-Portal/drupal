@@ -6,6 +6,7 @@
 function cp_data_search_theme($existing, $type, $theme, $path) {
   $variables = array(
     'data_search_block' => array(
+      'variables' => [],
       'template' => 'data_search_block',
     ),
   );

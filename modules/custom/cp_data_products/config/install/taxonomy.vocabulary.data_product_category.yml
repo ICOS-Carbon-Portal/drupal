@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Data product categories'
+vid: data_product_category
+description: ''
+weight: 0
+

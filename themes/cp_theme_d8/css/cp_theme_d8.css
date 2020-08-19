@@ -1,3 +1,7 @@
+html {
+	font-size: 14px;
+}
+
 /** Body **/
 body {
 	color: #414042;
@@ -43,6 +47,10 @@ body {
 	margin-bottom: 0px;
 }
 
+#header .site-branding__logo:hover {
+	border-bottom: none;
+}
+
 #header .site-branding__logo img {
 	margin: 17px 0;
 	height: 66px;
@@ -76,14 +84,13 @@ body {
 .region-footer-first h3,
 .region-footer-second h3,
 .region-footer-third h3 {
-	font-size: 2.2rem;
+	font-size: 1.5rem;
 	color: #f2f2f2;
 }
 
 .region-footer-first p,
 .region-footer-second p,
 .region-footer-third p {
-	font-size: 1.5rem;
 	color: #f2f2f2;
 }
 
@@ -97,18 +104,17 @@ body {
 .site-footer .block {
 	border: 0;
 	padding: 0;
+	margin: 2rem 0;
 }
 
 .region-footer-first a.footer-link {
 	color: #ffffff;
-	font-size: 1.5rem;
 	cursor: pointer;
 }
 
 .region-footer-second a.footer-link,
 .region-footer-third a.footer-link {
 	color: #ffffff;
-	font-size: 1.4rem;
 	display: block;
 	cursor: pointer;
 	padding: 0.5rem 0px;
@@ -137,20 +143,20 @@ body {
 	width: 0px;
 	position: absolute;
 	pointer-events: none;
-	border-width: 0.7rem;
+	border-width: 0.4rem;
 	right: 100%;
 	top: 50%;
 	margin-top: -0.5rem;
 }
 
 /** User Consent Cookie **/
-#cpuserconsent { padding: 1rem 0.5rem; font-size: 1.5rem; text-align: center; }
+#cpuserconsent { padding: 1rem 0.5rem; text-align: center; }
 
 #cpuserconsent .info { display: inline; padding-right: 2rem; }
 
 #cpuserconsent .agree { display: inline; }
 
-#cpuserconsent .agree input[type="checkbox"] { margin-left: 2rem; vertical-align: sub; cursor: pointer; }
+#cpuserconsent .agree input[type="checkbox"] { margin-left: 1rem; vertical-align: middle; cursor: pointer; }
 
 /** Body content **/
 .cp_body_content {

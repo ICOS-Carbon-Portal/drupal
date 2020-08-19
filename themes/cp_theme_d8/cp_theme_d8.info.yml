@@ -14,6 +14,7 @@ regions:
   header: Header
   primary_menu: 'Primary menu'
   highlighted: Highlighted
+  breadcrumb: Breadcrumb
   content: Content
   content_left: 'Content left'
   content_right: 'Content right'

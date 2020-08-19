@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+  enforced:
+    module:
+      - cp_data_products
+id: data_product
+label: 'Data product'
+type: 'canonical_entities:node'
+pattern: '/data-products/[node:title]'
+selection_criteria:
+  9a5a089a-acd4-44fc-a68e-9572b8fa4daf:
+    id: node_type
+    bundles:
+      data_product: data_product
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 9a5a089a-acd4-44fc-a68e-9572b8fa4daf
+selection_logic: and
+weight: -5
+relationships: {  }
+
