@@ -140,10 +140,8 @@
     padding: 0;
   }
 
-  #cp_theme_d8_menu li,
-  #cp_theme_d8_menu li li li li {
+  #cp_theme_d8_menu li {
     list-style: none;
-    padding: 0 1.5rem;
     cursor: pointer;
     transition: background-color 0.1s ease-out;
   }
@@ -157,11 +155,15 @@
     width: auto;
   }
 
+  #cp_theme_d8_menu li li li li {
+    padding: 0 1.5rem;
+  }
+
   #cp_theme_d8_menu li a {
     display: block;
     border: solid transparent;
     border-width: 5px 0;
-    padding: 0.65rem 0;
+    padding: 0.65rem 1.5rem;
     transition: border 0.1s ease-out;
   }
 
@@ -216,7 +218,8 @@
   }
 
   #cp_theme_d8_menu li li li a {
-    padding: 0;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   #cp_theme_d8_menu .account {

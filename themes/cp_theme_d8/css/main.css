@@ -4,6 +4,7 @@
   --icos-cyan-dark: #0092b3;
   --icos-cyan-grey: #e6ebeb;
   --icos-cyan-transparent: rgba(0, 171, 201, 0.85);
+  --icos-grey-50: #939598;
   --icos-grey-75: #636466;
   --icos-grey-90: #414042;
   --icos-magenta: #e41c63;
@@ -21,7 +22,7 @@ body {
 a,
 .btn-link {
   color: var(--icos-cyan);
-  border: none;
+  border-bottom-style: none;
 }
 
 a:hover,
@@ -33,13 +34,35 @@ a:active,
 }
 
 p a:not(.btn):hover,
+h2 a:hover,
 h3 a:hover,
-#block-shortcuts .tab-links a:hover {
+#block-shortcuts .tab-links a:hover,
+.more-link a:hover,
+.field--name-body a:hover {
   border-bottom: 2px dotted;
 }
 
 .layout-container {
 	max-width: 1200px;
+}
+
+.layout-sidebar-second .main-content {
+  width: 66%;
+  margin-right: 33%;
+}
+
+.layout-sidebar-second #sidebar-second {
+  width: 33%;
+  margin-left: -33%;
+  padding-left: 1rem;
+}
+
+.block-views .view-news .views-field.views-field-field-image img {
+  float: right;
+  width: 9vw;
+  height: 9vw;
+  object-fit: cover;
+  margin-left: 2rem;
 }
 
 .page-title {
@@ -52,6 +75,7 @@ h3 a:hover,
 .field--name-field-introduction,
 .toc-js,
 .path-node .field--name-body,
+.main-content .views-field-body,
 .view-data-products .view-header,
 .view-data-products h2,
 .view-data-products .views-field-title,
@@ -78,6 +102,19 @@ h3 a:hover,
   background: none;
   padding: 0;
   margin: 0 0 60px;
+}
+
+.path-frontpage .sidebar h2 {
+  text-transform: uppercase;
+}
+
+.path-frontpage .sidebar h3 {
+  font-size: 1.1,214285714rem;
+}
+
+.path-frontpage .sidebar .more-link {
+  text-transform: uppercase;
+  margin-bottom: 1rem;
 }
 
 .main-content h2 {
@@ -195,14 +232,19 @@ body,
   background: var(--icos-grey-75);
 }
 
-.site-footer h3 {
-  color: white;
-}
-
+.site-footer h2,
+.site-footer h3,
+.site-footer .content,
 .site-footer .content a,
 .site-footer .content a.is-active,
 .site-footer a:hover {
   color: white;
+}
+
+.site-footer h2 {
+  font-size: 1.4285rem;
+  border-bottom: none;
+  text-transform: initial;
 }
 
 .site-footer .block {
@@ -234,9 +276,11 @@ body,
 #block-shortcuts .nav-pills .nav-link,
 .field--name-field-side-links,
 .field--name-field-bottom-left-links,
-.field--name-field-bottom-right-links {
+.field--name-field-bottom-right-links,
+.sidebar .block {
   color: #414042;
   border-radius: 0;
+  border-style: none;
   border-bottom: 5px solid white;
   padding: 1.5rem 8%;
   background-color: var(--icos-cyan-grey);
@@ -300,6 +344,7 @@ body,
 .view-spotlight .views-field-title::before,
 .marked-link::before,
 .read-more::before,
+.more-link::before,
 .field--name-field-side-links .field__item:before,
 .field--name-field-bottom-left-links .field__item:before,
 .field--name-field-bottom-right-links .field__item:before {
@@ -311,6 +356,7 @@ body,
 }
 
 .read-more::before,
+.more-link::before,
 .field--name-field-side-links .field__item:before,
 .field--name-field-bottom-left-links .field__item:before,
 .field--name-field-bottom-right-links .field__item:before {
@@ -378,7 +424,8 @@ body,
 
 .field--name-field-side-links-title,
 .field--name-field-bottom-left-links-title,
-.field--name-field-bottom-right-links-title {
+.field--name-field-bottom-right-links-title,
+.sidebar .block h2 {
   font-size: 1.4285rem;
   font-weight: bold;
   text-transform: uppercase;
@@ -386,7 +433,8 @@ body,
 
 .field--name-field-side-links,
 .field--name-field-bottom-left-links,
-.field--name-field-bottom-right-links {
+.field--name-field-bottom-right-links,
+.sidebar .block {
   border-bottom-color: var(--icos-cyan);
 }
 
@@ -397,7 +445,8 @@ body,
 
 .views-field-created,
 .field--name-created {
-  color: var(--icos-grey-75);
+  color: var(--icos-grey-50);
+  margin-bottom: 0.5rem;
 }
 
 .data-product-preview-table {

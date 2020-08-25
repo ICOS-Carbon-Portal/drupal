@@ -11,9 +11,13 @@ body {
 
 /** Header **/
 #header {
-	background-size: cover;
-	background-image: url(https://static.icos-cp.eu/images/icos-national-network_header_small.png);
+	background-color: #fff;
+	background-image: url(../images/ac_header.png);
+	background-position: right;
+	background-repeat: no-repeat;
+	background-size: auto;
 }
+
 
 @media all and (min-width: 513px) {
 	#header {

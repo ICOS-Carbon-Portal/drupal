@@ -8,62 +8,18 @@ function cp_theme_d8_form_system_theme_settings_alter(&$form, &$form_state) {
     '#open' => TRUE,
   );
 
-  $form['cp_theme_d8_settings']['hover_menu'] = array(
-    '#type'          => 'checkbox',
-    '#title'         => t('Use the hover menu'),
-    '#default_value' => theme_get_setting('hover_menu'),
-  );
-
   $form['cp_theme_d8_settings']['login_menu'] = array(
     '#type'          => 'checkbox',
     '#title'         => t('Display login'),
     '#default_value' => theme_get_setting('login_menu'),
   );
 
-  $form['cp_theme_d8_settings']['new_menu'] = array(
-    '#type'          => 'checkbox',
-    '#title'         => t('New menu'),
-    '#default_value' => theme_get_setting('new_menu'),
-  );
-
 }
 
 function cp_theme_d8_preprocess_page(&$variables, $hook) {
 
-  $isHover = theme_get_setting('hover_menu');
-  $displayLogin = theme_get_setting('login_menu');
-  $newMenu = theme_get_setting('new_menu');
-
-  if ($newMenu) {
-    $variables['#attached']['library'][] = 'cp_theme_d8/menu-2019';
-  } else if ($isHover) {
-    $variables['#attached']['library'][] = 'cp_theme_d8/menu-classic';
-    $variables['#attached']['library'][] = 'cp_theme_d8/menu-hover';
-  } else {
-    $variables['#attached']['library'][] = 'cp_theme_d8/menu-classic';
-    $variables['#attached']['library'][] = 'cp_theme_d8/menu-click';
-  }
-
-  if ($displayLogin) {
+  if (theme_get_setting('login_menu')) {
     $variables['#attached']['library'][] = 'cp_theme_d8/menu-login';
   }
 
-  $current_path = \Drupal::service('path.current')->getPath();
-  $alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
-
-  if ($alias === "/stations") {
-    $variables['#attached']['library'][] = 'cp_theme_d8/station-map';
-  }
-
-  if ($alias === "/data") {
-    $variables['#attached']['library'][] = 'cp_theme_d8/dashboard';
-  }
-}
-
-function cp_theme_d8_preprocess_menu__main(&$variables) {
-  $isHover = theme_get_setting('hover_menu');
-  $displayLogin = theme_get_setting('login_menu');
-
-  $variables['is_hover'] = $isHover;
-  $variables['display_login'] = $displayLogin;
 }

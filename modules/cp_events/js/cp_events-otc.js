@@ -132,7 +132,6 @@ function loadEventBody(eventId) {
 		jQuery('#cp_events_page .events_section #event_container .event_body .date').html('');
 		jQuery('#cp_events_page .events_section #event_container .event_body .text').html('');
 		jQuery('#cp_events_page .events_section #event_container .event_body .link').html('');
-		jQuery('#cp_events_page .events_section #event_container .event_body .share').html('');
 
 		var title = jQuery('#cp_events_page #event_' + eventId + ' .title').text();
 		var date = jQuery('#cp_events_page #event_' + eventId + ' .date').text();
@@ -149,10 +148,6 @@ function loadEventBody(eventId) {
 		if (linkUri) {
 			jQuery('#cp_events_page .events_section #event_container .event_body .link').append( '<a href="' + linkUri + '" class="event_body_button">' + linkTitle + '</a>' );
 		}
-
-		jQuery('#cp_events_page .events_section #event_container .event_body .share').append(
-				'<a href="javascript:void(0)" onclick="shareTwitterEvent(' + eventId + ', \'' + title + '\', \'' + siteHome + '\')" class="event_share_button twitter" event_id="' + eventId + '" event_title="' + title + '" site_home="' + siteHome + '"></a>'
-			);
 
 		jQuery('#cp_events_page #event_' + eventId + ' a').addClass('event_selected');
 		jQuery('#cp_events_page #event_' + eventId + ' .event_active').css({'display':'inline-block'});
@@ -182,28 +177,4 @@ function fixEventsPageEventsSection() {
 		jQuery('#cp_events_page .events_section').css({'height':heightEL + whiteSpace});
 		jQuery('#cp_events_page .events_section #event_container').css({'height':heightEL + whiteSpace});
 	}
-}
-
-function shareTwitterEvent(eventId, eventTitle, siteHome) {
-	var message = encodeURIComponent(eventTitle) + '%20-%20' + siteHome +  '/event/' + eventId;
-	var url = 'https://twitter.com/intent/tweet/?text=' + message;
-
-	var windowFeatures = 'menubar=no, toolbar=no, location=no, resizable=yes, scrollbars=no, status=no, width=600, height=300';
-	window.open(url, 'share_twitter_event', windowFeatures);
-}
-
-function shareLinkedinEvent(eventId, siteHome) {
-	var message = siteHome +  '/event/' + eventId;
-	var url = 'https://www.linkedin.com/uas/connect/user-signin?session_redirect=https%3A%2F%2Fwww%2Elinkedin%2Ecom%2Fcws%2Fshare%3Furl%3D' + message;
-
-	var windowFeatures = 'menubar=no, toolbar=no, location=no, resizable=yes, scrollbars=no, status=no, width=600, height=300';
-	window.open(url, 'share_linkedin_event', windowFeatures);
-}
-
-function shareFacebookEvent(eventId, eventTitle, siteHome) {
-	var message = 'u=' + siteHome +  '/event/' + eventId + '&t=' + encodeURIComponent(eventTitle);
-	var url = 'https://www.facebook.com/sharer/sharer.php?' + message;
-
-	var windowFeatures = 'menubar=no, toolbar=no, location=no, resizable=yes, scrollbars=no, status=no, width=600, height=300';
-	window.open(url, 'share_facebook_event', windowFeatures);
 }
