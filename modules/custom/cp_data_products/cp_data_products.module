@@ -10,8 +10,8 @@ function cp_data_products_preprocess_block(&$vars) {
     $field_preview_type = $vars['elements']['content']['field_preview_type'];
     $vars['#attached']['drupalSettings']['data_product_preview'][$param] = [
       'spec' => $vars['elements']['content']['field_data_type'][0]['#title'],
-      'previewType' => $field_preview_type.length ? $vars['elements']['content']['field_preview_type'][0]['#markup'] : '',
-      'param' => $param,
+      'previewType' => isset($field_preview_type) && !empty($field_preview_type[0]) ? $field_preview_type[0]['#markup'] : '',
+      'param' => explode(',', $param),
       'noHeight' => $vars['elements']['content']['field_display_height'][0]['#markup'] == "On" ? false : true
     ];
   }
