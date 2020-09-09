@@ -29,9 +29,10 @@
 
 .tease_event .picture {
 	float: right;
-	max-width: 33%;
-	max-height: 150px;
-	margin: 0 0 10px 10px;
+	width: 90px;
+	height: 90px;
+	object-fit: cover;
+	margin-left: 2rem;
 }
 
 .full_event {
