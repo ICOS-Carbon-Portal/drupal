@@ -46,15 +46,17 @@ h3 a:hover,
 	max-width: 1200px;
 }
 
-.layout-sidebar-second .main-content {
-  width: 66%;
-  margin-right: 33%;
-}
+@media all and (min-width: 851px) {
+  .layout-sidebar-second .main-content {
+    width: 66%;
+    margin-right: 33%;
+  }
 
-.layout-sidebar-second #sidebar-second {
-  width: 33%;
-  margin-left: -33%;
-  padding-left: 1rem;
+  .layout-sidebar-second #sidebar-second {
+    width: 33%;
+    margin-left: -33%;
+    padding-left: 1rem;
+  }
 }
 
 .block-views .view-news .views-field.views-field-field-image img {
