@@ -26,7 +26,7 @@ function cp_spotlights_preprocess_block(&$vars) {
 function cp_spotlights_theme() {
   return [
     'block__inline_block__link_box' => [
-      'template' => 'block--inline-block--link-box',
+      'template' => 'block--bundle--link-box',
       'base hook' => 'block'
     ],
   ];

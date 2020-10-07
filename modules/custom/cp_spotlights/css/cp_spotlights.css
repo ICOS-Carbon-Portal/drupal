@@ -1,21 +1,21 @@
-.block-inline-blocklink-box {
+.block-link-box {
 	margin: 1rem;
 }
 
-.layout__region--first .block-inline-blocklink-box {
+.layout__region--first .block-link-box {
 	margin-left: 0;
 }
 
-.layout__region--third .block-inline-blocklink-box {
+.layout__region--third .block-link-box {
 	margin-right: 0;
 }
 
-.block-inline-blocklink-box .link-box-image,
+.block-link-box .link-box-image,
 .view-spotlight {
 	position: relative;
 }
 
-.block-inline-blocklink-box .link-box-title,
+.block-link-box .link-box-title,
 .view-spotlight .views-field-title {
 	position: absolute;
 	bottom: 0;
@@ -43,15 +43,15 @@
 	font-size: 0;
 }
 
-.block-inline-blocklink-box a:hover,
-.block-inline-blocklink-box a:active,
-.block-inline-blocklink-box a:focus,
+.block-link-box a:hover,
+.block-link-box a:active,
+.block-link-box a:focus,
 .view-spotlight .views-field-field-link a:hover,
 .view-spotlight .views-field-field-link a:active,
 .view-spotlight .views-field-field-link a:focus {
 	border-bottom: none !important;
 }
 
-.block-inline-blocklink-box .field--name-body {
+.block-link-box .field--name-body {
 	margin-top: 1rem;
 }
