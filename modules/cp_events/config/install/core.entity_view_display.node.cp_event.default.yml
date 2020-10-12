@@ -2,91 +2,43 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.cp_event.field_cp_event_picture
-    - field.field.node.cp_event.field_cp_event_link
-    - field.field.node.cp_event.field_cp_event_from_date
-    - field.field.node.cp_event.field_cp_event_to_date
-    - field.field.node.cp_event.field_cp_event_news
-    - field.field.node.cp_event.field_cp_event_historical
     - field.field.node.cp_event.body
+    - field.field.node.cp_event.field_cp_event_from_date
+    - field.field.node.cp_event.field_cp_event_historical
+    - field.field.node.cp_event.field_cp_event_link
+    - field.field.node.cp_event.field_cp_event_news
+    - field.field.node.cp_event.field_cp_event_picture
+    - field.field.node.cp_event.field_cp_event_to_date
     - node.type.cp_event
   module:
     - image
-    - link
-    - datetime
     - text
     - user
 id: node.cp_event.default
 targetEntityType: node
 bundle: cp_event
 mode: default
-content:  
-  field_cp_event_text:
-    weight: 110
-    label: above
+content:
+  body:
+    type: text_default
+    weight: 1
+    label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: basic_string   
+    region: content
   field_cp_event_picture:
-    weight: 112
-    label: above
+    weight: 0
+    label: hidden
     settings:
       image_style: ''
       image_link: ''
     third_party_settings: {  }
     type: image
-  field_cp_event_link:
-    weight: 114
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    type: link
-  field_cp_event_from_date:
-    weight: 116
-    label: above
-    settings:
-      format_type: html_date
-      timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default 
-  field_cp_event_to_date:
-    weight: 118
-    label: above
-    settings:
-      format_type: html_date
-      timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
-  field_cp_event_news:
-    weight: 120
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
-  field_cp_event_historical:
-    weight: 122
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
-  body:
-    type: text_summary_or_trimmed
-    weight: 0
-    label: above
-    settings:
-      trim_length: 600
-    third_party_settings: {  }          
+    region: content
 hidden:
+  field_cp_event_from_date: true
+  field_cp_event_historical: true
+  field_cp_event_link: true
+  field_cp_event_news: true
+  field_cp_event_to_date: true
   links: true
-

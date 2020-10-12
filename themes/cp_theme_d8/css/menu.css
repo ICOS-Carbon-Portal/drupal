@@ -172,7 +172,7 @@
   }
 
   #cp_theme_d8_menu li:hover a {
-    border-bottom-color: transparent;
+    text-decoration: none;
   }
 
   #cp_theme_d8_menu .active-trail {

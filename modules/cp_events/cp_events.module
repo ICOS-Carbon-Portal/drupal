@@ -1,25 +1,13 @@
 <?php
 
+/**
+ * Implements hook_theme().
+ */
 function cp_events_theme() {
-	$theme['cp_events_archive'] = [
-			'variables' => ['elements' => null],
-			'template' => 'cp_events_archive',
-	];
-
-	$theme['page_with_cp_events'] = [
-			'variables' => ['elements' => null],
-			'template' => 'page_with_cp_events',
-	];
-
-	$theme['selected_cp_event'] = [
-			'variables' => ['elements' => null],
-			'template' => 'selected_cp_event',
-	];
-
-	$theme['cp_events_all_news'] = [
-			'variables' => ['elements' => null],
-			'template' => 'cp_events_all_news',
-	];
-
-	return $theme;
+  return [
+    'node__cp_event' => [
+      'template' => 'node--cp-event',
+      'base hook' => 'node'
+    ]
+  ];
 }
