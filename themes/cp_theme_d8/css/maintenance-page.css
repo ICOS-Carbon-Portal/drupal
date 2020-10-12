@@ -1,0 +1,40 @@
+.maintenance-page #page-wrapper {
+  width: 100%;
+  margin: 0;
+  border: none;
+}
+
+.maintenance-page #page {
+  margin: 0;
+}
+
+.maintenance-page #main-wrapper {
+  margin: 2% auto;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.maintenance-page #main {
+  margin: 0 15px;
+  width: 100%;
+}
+
+.maintenance-page #header {
+  background-image: url(../images/icos-header.jpg);
+}
+
+.maintenance-page #header div.section {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+
+#header .site-branding__logo img {
+  height: 70px;
+  margin: 40px 15px;
+}
+
+.eu-cookie-notice {
+  display: none;
+}

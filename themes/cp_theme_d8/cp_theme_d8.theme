@@ -35,3 +35,10 @@ function cp_theme_d8_theme_suggestions_block_alter(array &$suggestions, array $v
     array_splice($suggestions, 1, 0, 'block__bundle__' . $variables['elements']['content']['#block_content']->bundle());
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for maintenance-page.html.twig.
+ */
+function cp_theme_d8_preprocess_maintenance_page(&$variables) {
+  $variables['#attached']['library'][] = 'cp_theme_d8/maintenance_page';
+}
