@@ -58,7 +58,8 @@
   </a>
   {{ title_suffix }}
 
-  {{ content.body }}
+  {{ content|without('field_link','field_image') }}
+
   {% endblock %}
 
 </div>

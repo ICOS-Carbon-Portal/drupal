@@ -34,6 +34,14 @@
 	border-bottom: 5px solid var(--icos-magenta);
 }
 
+.path-frontpage .sidebar .block.block-link-box {
+  border-bottom: none;
+}
+
+.path-frontpage .sidebar .block-link-box .link-box-image {
+	border-bottom: 5px solid var(--icos-cyan);
+}
+
 .view-spotlight .views-field-field-link a {
 	top: 0;
 	left: 15px;
