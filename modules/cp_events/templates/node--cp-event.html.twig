@@ -91,7 +91,7 @@
         {% if node.field_cp_event_news.value == '1' %}
           {{ node.createdtime | date("d F Y") }}
         {% else %}
-          {{ content.field_cp_event_from_date['#items'].value | date("d F Y") }} to {{ content.field_cp_event_to_date['#items'].value | date("d F Y") }}
+          {{ node.field_cp_event_from_date[0].value | date("d F Y") }} to {{ node.field_cp_event_to_date[0].value | date("d F Y") }}
         {% endif %}
       </div>
   </header>
