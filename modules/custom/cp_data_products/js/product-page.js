@@ -57,7 +57,6 @@
 			?dobj cpmeta:wasAcquiredBy/prov:wasAssociatedWith/cpmeta:hasName ?station .
 			${samplingHeight}
 			${dates}
-			FILTER(?station != "Karlsruhe")
 		}
 		order by ?station ?samplingHeight ?start`;
 	}
