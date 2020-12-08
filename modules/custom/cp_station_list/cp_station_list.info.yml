@@ -1,0 +1,7 @@
+name: Station list
+description: Create a page that displays all ICOS stations in a table
+package: CP
+type: module
+core: 8.x
+libraries:
+  - cp_station_list/station-list

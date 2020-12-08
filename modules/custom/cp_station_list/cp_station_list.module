@@ -1,0 +1,24 @@
+<?php
+
+function cp_station_list_theme_suggestions_node(array $variables) {
+  $suggestions = [];
+
+  $current_path = \Drupal::service('path.current')->getPath();
+  $alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+  if ($alias === "/station-list") {
+    $suggestions[] = 'node__station_list';
+  }
+
+  return $suggestions;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function cp_station_list_theme() {
+  return [
+    'node__station_list' => [
+      'base hook' => 'node'
+    ]
+  ];
+}

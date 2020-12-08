@@ -25,6 +25,7 @@
 !cp_spotlights.libraries.yml
 !cp_data_products.libraries.yml
 !cp_forecast.libraries.yml
+!cp_station_list.libraries.yml
 
 cmis_repository_wrapper.php
 

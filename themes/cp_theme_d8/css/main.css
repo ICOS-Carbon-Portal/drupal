@@ -466,3 +466,16 @@ body,
 	float: right;
 	margin: 0 0 1em 1em;
 }
+
+.page-link {
+  color: var(--icos-cyan);
+}
+
+.page-link:hover {
+  color: var(--icos-cyan-dark);
+}
+
+.page-item.active .page-link {
+  background-color: var(--icos-cyan);
+  border-color: var(--icos-cyan);
+}
