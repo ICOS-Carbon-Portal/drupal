@@ -3,10 +3,10 @@
 function cp_forecast_theme_suggestions_node(array $variables) {
   $suggestions = [];
 
-  $current_path = \Drupal::service('path.current')->getPath();
-  $alias = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
-  if ($alias === "/forecast") {
-    $suggestions[] = 'node__forecast';
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    if ($node->field_template && $node->field_template->value == "forecast") {
+      $suggestions[] = 'node__forecast';
+    }
   }
 
   return $suggestions;
