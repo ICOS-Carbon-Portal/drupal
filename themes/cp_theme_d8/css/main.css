@@ -78,7 +78,8 @@ a:active,
   max-width: 90ch;
 }
 
-.external-link::after {
+.external-link::after,
+a[target=_blank]::after {
   font-family: "Font Awesome 5 Free";
   content: "\f35d";
   font-weight: 900;
