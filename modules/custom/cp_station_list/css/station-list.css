@@ -12,3 +12,30 @@
 .station-table {
   min-width: 980px;
 }
+
+.station-table .suggestInput {
+  height: auto;
+  min-width: 40px;
+}
+
+.station-table thead th {
+   white-space: nowrap;
+}
+
+.station-table thead th .input-group {
+  margin-top: 0.5em;
+}
+
+.station-coordinates {
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.modal-title {
+  text-transform: revert;
+}
+
+.modal-body {
+  height: 400px;
+  width: 100%;
+}

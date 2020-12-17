@@ -2,6 +2,7 @@ station-list:
   css:
     theme:
       //cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.css: { type: external, minified: true }
+      //static.icos-cp.eu/constant/ol/3.9.0/css/ol.css: { type: external, minified: true }
       css/station-list.css: {}
 
   js:
@@ -9,6 +10,7 @@ station-list:
     //cdn.datatables.net/1.10.22/js/jquery.dataTables.js: { type: external, minified: true }
     //cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.js: { type: external, minified: true }
     //static.icos-cp.eu/share/stations/map-table-common.js: { type: external }
+    //static.icos-cp.eu/constant/ol/3.9.0/js/ol.min.js: { type: external, minified: true }
     js/station-list.js: {}
   dependencies:
     - core/drupal
