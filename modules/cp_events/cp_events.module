@@ -8,6 +8,10 @@ function cp_events_theme() {
     'node__cp_event' => [
       'template' => 'node--cp-event',
       'base hook' => 'node'
-    ]
+    ],
+    'field__node__field_cp_event_link' => [
+      'template' => 'field--node--field-cp-event-link',
+      'base hook' => 'field'
+    ],
   ];
 }

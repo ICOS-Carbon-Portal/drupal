@@ -5,6 +5,7 @@
 /modules/*
 /config/
 /libraries/
+/themes/contrib/
 
 !modules/custom/
 !modules/cp_blogs/
@@ -44,3 +45,6 @@ sites/
 themes/.gitkeep
 update.php
 web.config
+README.txt
+INSTALL.txt
+example.gitignore
