@@ -5,35 +5,55 @@
 
 .cp_contacts .contact {
 	width: 360px;
-	margin-bottom: 4vh;
+	margin-bottom: 5rem;
 	display: flex;
 	max-width: 100%;
 	margin-right: 30px;
 }
 
-.cp_contacts .data_to_right {
-	max-width: 80%;
+.cp_contacts .picture {
+	margin: 0 1em 1em 0;
+	width: 8vw;
+	height: 8vw;
+	max-width: 100px;
+	max-height: 100px;
+	object-fit: cover;
+	border-radius: 50%;
+	min-width: 75px;
+	min-height: 75px;
 }
 
-.cp_contacts .picture {
-	width: 20%;
-	margin: 0 1em 1em 0;
-	min-width: 20%;
+.cp_contacts .tasks {
+	padding: 0 0 0 1.5em;
+}
+
+.cp_contacts .tasks:empty {
+	display: none;
+}
+
+.cp_contacts .contact-details {
+	font-size: small;
 }
 
 .cp_contacts .name,
 .cp_contacts .title,
 .cp_contacts .organization,
+.cp_contacts .task,
 .cp_contacts .address,
 .cp_contacts .email,
 .cp_contacts .phone {
-	font-size: small;
 	padding-bottom: 0.2em;
 }
 
 .cp_contacts .name {
 	font-size: 1.5rem;
 	padding-bottom: 0.5em;
+}
+
+.cp_contacts .educational-title {
+	margin: -1em 0 1em;
+	font-size: small;
+	color: gray;
 }
 
 .cp_contacts .email a,

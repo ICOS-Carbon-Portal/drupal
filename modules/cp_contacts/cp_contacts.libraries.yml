@@ -2,7 +2,3 @@ style:
   css:
     theme:
       css/cp_contacts.css: {}
-
-  dependencies:
-    - core/jquery
-    - core/jquery.once

@@ -1,101 +1,138 @@
+uuid: 5784a8db-c8ac-46d1-a404-04c54bc8e479
 langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.cp_contact.field_cp_contact_email
-    - field.field.node.cp_contact.field_cp_contact_phone
+    - field.field.node.cp_contact.body
     - field.field.node.cp_contact.field_cp_contact_address
-    - field.field.node.cp_contact.field_cp_contact_photo
-    - field.field.node.cp_contact.field_cp_contact_title
-    - field.field.node.cp_contact.field_cp_contact_organization
+    - field.field.node.cp_contact.field_cp_contact_email
     - field.field.node.cp_contact.field_cp_contact_group
     - field.field.node.cp_contact.field_cp_contact_index
+    - field.field.node.cp_contact.field_cp_contact_organization
+    - field.field.node.cp_contact.field_cp_contact_phone
+    - field.field.node.cp_contact.field_cp_contact_photo
+    - field.field.node.cp_contact.field_cp_contact_title
+    - field.field.node.cp_contact.field_educational_title
+    - field.field.node.cp_contact.field_twitter_username
+    - field.field.node.cp_contact.field_work_tasks
+    - image.style.thumbnail
     - node.type.cp_contact
   module:
     - image
-    - path
-    - text
 id: node.cp_contact.default
 targetEntityType: node
 bundle: cp_contact
 mode: default
-content:   
+content:
+  created:
+    type: datetime_timestamp
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    region: content
   field_cp_contact_email:
-    weight: 40
+    weight: 3
+    settings:
+      placeholder: ''
+      size: 60
+    third_party_settings: {  }
+    type: email_default
+    region: content
+  field_cp_contact_group:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_cp_contact_index:
+    weight: 12
     settings:
       placeholder: ''
     third_party_settings: {  }
-    type: email_default
+    type: number
+    region: content
   field_cp_contact_phone:
-    weight: 42
+    weight: 4
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-  field_cp_contact_address:
-    weight: 44
-    settings:
-      size: 100
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield    
+    region: content
   field_cp_contact_photo:
-    weight: 46
+    weight: 6
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+    region: content
   field_cp_contact_title:
-    weight: 48
+    weight: 8
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield    
-  field_cp_contact_organization:
-    weight: 50
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
-    type: options_select    
-  field_cp_contact_group:
-    weight: 52
+    type: string_textfield
+    region: content
+  field_educational_title:
+    weight: 9
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: options_select     
-  field_cp_contact_index:
-    weight: 54
+    type: string_textfield
+    region: content
+  field_twitter_username:
+    weight: 5
     settings:
+      size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: number
-  created:
-    type: datetime_timestamp
+    type: string_textfield
+    region: content
+  field_work_tasks:
     weight: 10
-    settings: {  }
-    third_party_settings: {  }    
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 13
+    third_party_settings: {  }
+    region: content
   title:
     type: string_textfield
-    weight: -5
+    weight: 0
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
   uid:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 1
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
+      match_limit: 10
+    third_party_settings: {  }
+    region: content
+  url_redirects:
+    weight: 11
+    region: content
+    settings: {  }
     third_party_settings: {  }
 hidden:
   body: true
+  field_cp_contact_address: true
+  field_cp_contact_organization: true
   path: true
   promote: true
   sticky: true
-  

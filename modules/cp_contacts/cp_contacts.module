@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function cp_contacts_theme($existing, $type, $theme, $path)
+{
+  $variables = array(
+    'contacts_block' => array(
+      'variables' => [
+        'list' => NULL,
+        'default_picture' => 'NULL',
+      ],
+    ),
+  );
+  return $variables;
+}

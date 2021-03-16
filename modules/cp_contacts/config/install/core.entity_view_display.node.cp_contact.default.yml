@@ -2,80 +2,136 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.cp_contact.field_cp_contact_email
-    - field.field.node.cp_contact.field_cp_contact_phone
+    - field.field.node.cp_contact.body
     - field.field.node.cp_contact.field_cp_contact_address
-    - field.field.node.cp_contact.field_cp_contact_photo
-    - field.field.node.cp_contact.field_cp_contact_title
-    - field.field.node.cp_contact.field_cp_contact_organization
+    - field.field.node.cp_contact.field_cp_contact_email
     - field.field.node.cp_contact.field_cp_contact_group
     - field.field.node.cp_contact.field_cp_contact_index
+    - field.field.node.cp_contact.field_cp_contact_organization
+    - field.field.node.cp_contact.field_cp_contact_phone
+    - field.field.node.cp_contact.field_cp_contact_photo
+    - field.field.node.cp_contact.field_cp_contact_title
+    - field.field.node.cp_contact.field_educational_title
+    - field.field.node.cp_contact.field_twitter_username
+    - field.field.node.cp_contact.field_work_tasks
+    - image.style.thumbnail
     - node.type.cp_contact
   module:
     - image
-    - text
-    - user
 id: node.cp_contact.default
 targetEntityType: node
 bundle: cp_contact
 mode: default
 content:
-  field_cp_contact_email:
-    weight: 110
-    label: above
+  created:
+    type: datetime_timestamp
+    weight: 2
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
-  field_cp_contact_phone:
-    weight: 112
-    label: above
+    region: content
+  field_cp_contact_email:
+    weight: 3
     settings:
-      link_to_entity: false
+      placeholder: ''
+      size: 60
     third_party_settings: {  }
-    type: string
-  field_cp_contact_address:
-    weight: 114
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string    
-  field_cp_contact_photo:
-    weight: 116
-    label: above
-    settings:
-      image_style: ''
-      image_link: ''
-    third_party_settings: {  }
-    type: image
-  field_cp_contact_title:
-    weight: 118
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string    
-  field_cp_contact_organization:
-    weight: 120
-    label: above
-    settings: { }
-    third_party_settings: {  }
-    type: list_default
+    type: email_default
+    region: content
   field_cp_contact_group:
-    weight: 122
-    label: above
-    settings: { }
+    weight: 7
+    settings: {  }
     third_party_settings: {  }
-    type: list_default      
+    type: options_select
+    region: content
   field_cp_contact_index:
-    weight: 124
-    label: above
+    weight: 12
     settings:
-      thousand_separator: ''
-      prefix_suffix: true
+      placeholder: ''
     third_party_settings: {  }
-    type: number_integer
+    type: number
+    region: content
+  field_cp_contact_phone:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_cp_contact_photo:
+    weight: 6
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  field_cp_contact_title:
+    weight: 8
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_educational_title:
+    weight: 9
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_twitter_username:
+    weight: 5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_work_tasks:
+    weight: 10
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 13
+    third_party_settings: {  }
+    region: content
+  title:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  uid:
+    type: entity_reference_autocomplete
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+      match_limit: 10
+    third_party_settings: {  }
+    region: content
+  url_redirects:
+    weight: 11
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   body: true
-  links: true
-
+  field_cp_contact_address: true
+  field_cp_contact_organization: true
+  path: true
+  promote: true
+  sticky: true
