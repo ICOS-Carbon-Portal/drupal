@@ -3,7 +3,7 @@ description: Write blog posts.
 package: CP
 
 type: module
-core: 8.x
+core_version_requirement: ^8.8 || ^9
 
 libraries:
   - cp_blogs/style

@@ -2,4 +2,4 @@ name: JSON menu
 description: Define's a custom JSON API Resource for the menu
 package: CP
 type: module
-core: 8.x
+core_version_requirement: ^8.8 || ^9

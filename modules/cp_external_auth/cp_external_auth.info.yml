@@ -3,4 +3,4 @@ description: Carbon Portal external authentication.
 package: CP
 
 type: module
-core: 8.x
+core_version_requirement: ^8.8 || ^9

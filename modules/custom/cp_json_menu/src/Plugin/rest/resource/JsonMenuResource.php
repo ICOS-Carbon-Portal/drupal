@@ -26,7 +26,6 @@ class JsonMenuResource extends ResourceBase {
    */
   public function get($menu = null) {
 
-    $response = ['message' => 'Hello, this is a rest service and parameter is: '.$menu];
     $menu_name = $menu;
     $menu_parameters = \Drupal::menuTree()->getCurrentRouteMenuTreeParameters($menu_name);
     $menu_parameters->onlyEnabledLinks();
