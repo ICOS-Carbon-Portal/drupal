@@ -1,277 +1,228 @@
 (function ($, Drupal) {
+
+	const config = {
+		sparqlUrl: "https://meta.icos-cp.eu/sparql",
+		stationVisUrl: "https://meta.icos-cp.eu/station/"
+	};
+
+	const getIconUrl = themeShort =>
+		`https://static.icos-cp.eu/share/stations/icons/${themeShort.toLowerCase()}.png`;
+
+	const Vars = {
+		lat: 'latstr',
+		lon: 'lonstr',
+		geoJson: 'geoJson',
+		prodUri: 'prodUri',
+		stationId: 'Id',
+		stationName: 'Name',
+		country: 'Country',
+		theme: 'Theme',
+		themeShort: 'themeShort',
+		pi: 'PI_names',
+		siteType: 'Site_type',
+		seaElev: 'Elevation_above_sea',
+		groundElev: 'Elevation_above_ground',
+		stationClass: 'Station_class',
+		labelingDate: 'Labeling_date',
+		coords: 'Location'
+	};
+
+	const Columns = [
+		Vars.stationId, Vars.stationName, Vars.theme, Vars.stationClass, Vars.coords, Vars.country,
+		Vars.pi, Vars.siteType, Vars.seaElev, Vars.labelingDate, Vars.lat, Vars.lon, Vars.geoJson, Vars.themeShort
+	];
+
+	function idx(varName){
+		return Columns.indexOf(varName);
+	}
+
+	const provQuery = `PREFIX cpst: <http://meta.icos-cp.eu/ontologies/stationentry/>
+SELECT *
+FROM <http://meta.icos-cp.eu/resources/stationentry/>
+WHERE {
+	{
+		select ?s (GROUP_CONCAT(?piLname; separator=";") AS ?${Vars.pi})
+		where{ ?s cpst:hasPi/cpst:hasLastName ?piLname }
+		group by ?s
+	}
+	?s a ?owlClass .
+	BIND(REPLACE(str(?owlClass),"http://meta.icos-cp.eu/ontologies/stationentry/", "") AS ?${Vars.themeShort})
+	?s cpst:hasShortName ?${Vars.stationId} .
+	?s cpst:hasLongName ?${Vars.stationName} .
+	OPTIONAL{?s cpst:hasLat ?${Vars.lat} . ?s cpst:hasLon ?${Vars.lon} }
+	OPTIONAL{?s cpst:hasSpatialReference ?${Vars.geoJson} }
+	OPTIONAL{?s cpst:hasCountry ?${Vars.country} }
+	OPTIONAL{?s cpst:hasSiteType ?${Vars.siteType} }
+	OPTIONAL{?s cpst:hasElevationAboveSea ?${Vars.seaElev} }
+	#OPTIONAL{?s cpst:hasElevationAboveGround ?${Vars.groundElev} }
+	OPTIONAL{?s cpst:hasStationClass ?${Vars.stationClass} }
+}`;
+
+const prodQuery = `prefix cpmeta: <http://meta.icos-cp.eu/ontologies/cpmeta/>
+prefix cpst: <http://meta.icos-cp.eu/ontologies/stationentry/>
+select *
+from <http://meta.icos-cp.eu/resources/icos/>
+from <http://meta.icos-cp.eu/resources/cpmeta/>
+from <http://meta.icos-cp.eu/resources/stationentry/>
+where{
+	{
+		select ?s ?ps (GROUP_CONCAT(?lname; separator=";") AS ?piNames) where {
+			?s cpst:hasProductionCounterpart ?psStr .
+			bind(iri(?psStr) as ?ps)
+			?memb cpmeta:atOrganization ?ps ; cpmeta:hasRole <http://meta.icos-cp.eu/resources/roles/PI> .
+			filter not exists {?memb cpmeta:hasEndTime []}
+			?pers cpmeta:hasMembership ?memb ; cpmeta:hasLastName ?lname .
+		}
+		group by ?s ?ps
+	}
+	?ps cpmeta:hasStationId ?${Vars.stationId} ; cpmeta:hasName ?${Vars.stationName} .
+	optional{ ?ps cpmeta:hasElevation ?${Vars.seaElev} }
+	optional{ ?ps cpmeta:hasLatitude ?${Vars.lat}}
+	optional{ ?ps cpmeta:hasLongitude ?${Vars.lon}}
+	optional{ ?ps cpmeta:hasSpatialCoverage/cpmeta:asGeoJSON ?${Vars.geoJson}}
+	optional{ ?ps cpmeta:countryCode ?${Vars.country}}
+	optional{ ?ps cpmeta:hasStationClass  ?${Vars.stationClass}}
+	optional{ ?ps cpmeta:hasLabelingDate ?${Vars.labelingDate}}
+	bind(?ps as ?${Vars.prodUri})
+}
+`;
+
+	const fetchStations = query => $.ajax({
+		type: "POST",
+		data: {query},
+		url: config.sparqlUrl,
+		dataType: "json"
+	});
+
+
+	function parseStationsJson(bindings){
+		const themeName = {"AS": "Atmosphere", "ES": "Ecosystem", "OS": "Ocean"};
+
+		const modifiers = {
+			[Vars.theme]:       (v, row) => themeName[row[Vars.themeShort].value] || "?",
+			[Vars.country]:      v => `${countries[v]} (${v})`,
+			[Vars.pi]:           v => v.split(';').sort().join("<br>"),
+			[Vars.stationClass]: v => (v == "Ass" ? "Associated" : v),
+			[Vars.siteType]:     v => v.toLowerCase(),
+			[Vars.stationId]:   (v, row) => (row[Vars.prodUri]
+				? `<a target="_blank" href="${row[Vars.prodUri].value}">${v}</a>`
+				: v
+			)
+		}
+
+		var rows = bindings.map(row =>
+			Columns.map(col => {
+				const v = (row[col] || {}).value || "";
+				const modifier = modifiers[col];
+				return modifier ? modifier(v, row) : v;
+			})
+		);
+
+		return ({
+			rows,
+			columns: Columns.map(col => ({title: col.replace(/_/g, " ")}))
+		});
+	}
+
+	function mergeProvAndProd(prov, prod){
+		const prodLookup = prod[0].results.bindings.reduce((acc, next) => {
+			acc[next.s.value] = next;
+			return acc;
+		}, {});
+		return prov[0].results.bindings.map(row => $.extend({}, row, prodLookup[row.s.value]));
+	}
+
+	function showMap(title, theme, lat, lon, geoJson) {
+		if(geoJson == null && (lat == null || lon == null)) return;
+
+		const iconQ = (lat != null && lon != null) ? ('&icon=' + getIconUrl(theme)) : '';
+		const coverageJson = geoJson || `{"coordinates":[${lon}, ${lat}],"type":"Point"}`;
+		const coverageQ = 'coverage=' + encodeURIComponent(coverageJson);
+
+		const $frame = $(`<iframe style="border:0;width:100%;height:100%" src="${config.stationVisUrl}?${coverageQ}${iconQ}"></iframe>`);
+
+		$("#stationMapModalLabel").text(title);
+		$('#stationMapModalBody').html($frame);
+		$("#station-map").modal();
+	}
+
+	function initDataTable(stations){
+		$('#stationsTable').DataTable( {
+			data: stations.rows,
+			columns: stations.columns,
+			columnDefs: [
+				{
+					//Hide some columns
+					targets: [Vars.lat, Vars.lon, Vars.geoJson, Vars.themeShort].map(idx),
+					visible: false,
+					searchable: false
+				},
+				{
+					targets: [idx(Vars.coords)],
+					fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
+
+						const [stLat, stLon, stName, stTheme, stGeojson] = [
+							Vars.lat, Vars.lon, Vars.stationName, Vars.themeShort, Vars.geoJson
+						].map(vname => oData[idx(vname)]);
+
+						if (stLat == "" || stLon == "") {
+							if (stGeojson != "") {
+								var $icon = $('<i class="fas fa-map-marked-alt"></i>');
+
+								$icon.click(() => showMap(stName, stTheme, null, null, stGeojson));
+
+								$(nTd).html($icon);
+							}
+						} else {
+							var $icon = $(`<span class="station-coordinates" data-target="#exampleModal">
+								<i class="fas fa-map-marked-alt"></i> (${stLat}, ${stLon})
+							</span>`);
+
+							$icon.click(() => showMap(stName, stTheme, parseFloat(stLat), parseFloat(stLon), null));
+
+							$(nTd).html($icon);
+						}
+					}
+				}
+			],
+			lengthMenu: [[25, 50, 100, -1], [25, 50, 100, "All"]],
+			orderCellsTop: true,
+			initComplete: function () {
+				this.api().columns().every(function (ind) {
+					var column = this;
+
+					var $headerControl = $('<div class="input-group">' +
+						'<input class="suggestInput form-control" type="search" placeholder="Search column" />' +
+						'</div>');
+					var $suggestInput = $headerControl.find("input");
+					$headerControl.appendTo($(column.header()));
+
+					$suggestInput
+						.on('click', function (event) {
+							event.stopPropagation();
+						})
+						.on('keyup', function (event) {
+							var val = $.fn.dataTable.util.escapeRegex($(this).val());
+							column.search(val ? val : '', true, false).draw();
+						})
+				});
+			}
+		});
+	}
+
 	Drupal.behaviors.stationListBehavior = {
 		attach: function (context) {
 			$('body', context).once('stationListBehavior').each(function () {
-				var config = {
-					sparqlUrl: "https://meta.icos-cp.eu/sparql",
-					hiddenCols: [0, 1, 2, 3, 4, 5],
-					latInd: 1,
-					lonInd: 2,
-					geoJson: 3,
-					posDescInd: 4,
-					themeShortInd: 5,
-					nameInd: 7,
-					themeInd: 8,
-					coordinatesInd: 9,
-					maxSegmentLengthDeg: 1
-				};
 
-				querySparql(config);
+				$.when(fetchStations(provQuery), fetchStations(prodQuery))
+					.then(mergeProvAndProd)
+					.then(parseStationsJson)
+					.done(initDataTable)
+					.fail(function(err){
+						console.log(err);
+					});
 			});
-
-			function querySparql(config){
-				var stationsPromise = fetchStations(config.sparqlUrl);
-
-				stationsPromise
-					.done(function(result){
-						init(parseStationsJson(result, config), config);
-					})
-					.fail(function(request){
-						console.log(request.responseText);
-					});
-			}
-
-			function init(stations, config){
-				$('#stationsTable').DataTable( {
-					data: stations.rows,
-					columns: stations.columns,
-					columnDefs: [
-						{
-							//Hide some columns
-							targets: config.hiddenCols,
-							visible: false,
-							searchable: false
-						},
-						{
-							targets: [config.coordinatesInd],
-							fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-								if (oData[config.latInd] == "?" || oData[config.lonInd] == "?") {
-									if (oData[config.geoJson] != "?") {
-										var $icon = $('<i class="fas fa-map-marked-alt"></i>');
-
-										$icon.click(function () {
-											showMap(this, oData[config.nameInd], oData[config.themeShortInd],
-												null, null, oData[config.geoJson], config);
-										});
-
-										$(nTd).html($icon);
-									}
-								} else {
-									var $icon = $(`<span class="station-coordinates" data-target="#exampleModal"><i class="fas fa-map-marked-alt"></i> (${oData[config.latInd]}, ${oData[config.lonInd]})</span>`);
-
-									$icon.click(function () {
-										showMap(this, oData[config.nameInd], oData[config.themeShortInd],
-											parseFloat(oData[config.latInd]), parseFloat(oData[config.lonInd]), null, config);
-									});
-
-									$(nTd).html($icon);
-								}
-							}
-						}
-					],
-					lengthMenu: [[25, 50, 100, -1], [25, 50, 100, "All"]],
-					orderCellsTop: true,
-					initComplete: function () {
-						this.api().columns().every(function (ind) {
-							var column = this;
-
-							var $headerControl = $('<div class="input-group">' +
-								'<input class="suggestInput form-control" type="search" placeholder="Search column" />' +
-								'</div>');
-							var $suggestInput = $headerControl.find("input");
-							$headerControl.appendTo($(column.header()));
-
-							$suggestInput
-								.on('click', function (event) {
-									event.stopPropagation();
-								})
-								.on('keyup', function (event) {
-									var val = $.fn.dataTable.util.escapeRegex($(this).val());
-									column.search(val ? val : '', true, false).draw();
-								})
-						});
-					}
-				});
-			}
-
-			function showMap(sender, title, theme, lat, lon, geoJson, config) {
-				$("#stationMapModalLabel").text(title);
-				
-				if ($('#stationMapModalBody').data('map')) {
-					$("#stationMapModalBody").find(".ol-viewport").hide();
-				}
-
-				$('#station-map').on('shown.bs.modal', function () {
-					if ($('#stationMapModalBody').find('canvas').length == 0) {
-						var mapQuestMap = new ol.layer.Tile({
-							tag: "topoMapESRI",
-							visible: true,
-							source: new ol.source.XYZ({
-								url: 'http://server.arcgisonline.com/arcgis/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}'
-							})
-						});
-
-						var station = getVectorLayer({
-							theme: theme,
-							data: [{
-								pos: [lon, lat],
-								geoJson: geoJson
-							}]
-						}, config);
-
-						var view = new ol.View({
-							center: ol.proj.transform([0, 0], 'EPSG:4326', 'EPSG:3857'),
-							zoom: 5
-						});
-
-						if (isNumeric(lat) && isNumeric(lon)) {
-							view = new ol.View({
-								center: ol.proj.transform([lon, lat], 'EPSG:4326', 'EPSG:3857'),
-								zoom: 5
-							});
-						}
-
-						var map = new ol.Map({
-							layers: [mapQuestMap, station],
-							target: 'stationMapModalBody',
-							view: view
-						});
-
-						if (geoJson != null) {
-							var extent = station.getSource().getExtent();
-							view.fit(extent, map.getSize(), {
-								padding: [10, 10, 10, 10]
-							});
-						}
-
-						$('#stationMapModalBody').data('map', map);
-
-					} else {
-						var map = $('#stationMapModalBody').data('map');
-
-						var stationLayer = map.getLayers().item(1);
-
-						stationLayer.getSource().clear();
-						stationLayer.getSource().addFeatures(getVectorFeatures({
-							theme: theme,
-							data: [{
-								pos: [lon, lat],
-								geoJson: geoJson
-							}]
-						}, config)
-						);
-
-						$("#stationMapModalBody").find(".ol-viewport").show();
-
-						if (geoJson == null) {
-							map.getView().setCenter(ol.proj.transform([lon, lat], 'EPSG:4326', 'EPSG:3857'));
-							map.getView().setZoom(5);
-						} else {
-							var view = map.getView();
-							var extent = stationLayer.getSource().getExtent();
-							view.fit(extent, map.getSize(), {
-								padding: [5, 5, 5, 5]
-							});
-						}
-					}
-				});
-
-				$("#station-map").modal();
-			}
-
-			function fetchStations(sparqlUrl){
-				var query = [
-					'PREFIX cpst: <http://meta.icos-cp.eu/ontologies/stationentry/>',
-					'SELECT',
-					'(str(?s) AS ?id)',
-					'(IF(bound(?lat), str(?lat), "?") AS ?latstr)',
-					'(IF(bound(?lon), str(?lon), "?") AS ?lonstr)',
-					'(IF(bound(?spatRef), str(?spatRef), "?") AS ?geoJson)',
-					'(IF(bound(?locationDesc), str(?locationDesc), "?") AS ?location)',
-					'(REPLACE(str(?class),"http://meta.icos-cp.eu/ontologies/stationentry/", "") AS ?themeShort)',
-					'(str(?sName) AS ?Id)',
-					'(str(?lName) AS ?Name)',
-					'(REPLACE(str(?class),"http://meta.icos-cp.eu/ontologies/stationentry/", "") AS ?Theme)',
-					'(IF(bound(?country), str(?country), "?") AS ?Country)',
-					'(GROUP_CONCAT(?piLname; separator=";") AS ?PI_names)',
-					'(IF(bound(?siteType), LCASE(str(?siteType)), "?") AS ?Site_type)',
-					'(IF(bound(?elevationAboveSea), str(?elevationAboveSea), "?") AS ?Elevation_above_sea)',
-					'(IF(bound(?elevationAboveGround), str(?elevationAboveGround), "?") AS ?Elevation_above_ground)',
-					'(IF(bound(?stationClass), str(?stationClass), "?") AS ?Station_class)',
-					'FROM <http://meta.icos-cp.eu/resources/stationentry/>',
-					'WHERE {',
-					'?s a ?class .',
-					'OPTIONAL{?s cpst:hasLat ?lat . ?s cpst:hasLon ?lon } .',
-					'OPTIONAL{?s cpst:hasSpatialReference ?spatRef } .',
-					'OPTIONAL{?s cpst:hasLocationDescription ?locationDesc } .',
-					'OPTIONAL{?s cpst:hasCountry ?country } .',
-					'?s cpst:hasShortName ?sName .',
-					'?s cpst:hasLongName ?lName .',
-					'?s cpst:hasPi ?pi .',
-					'OPTIONAL{?pi cpst:hasFirstName ?piFname } .',
-					'?pi cpst:hasLastName ?piLname .',
-					'OPTIONAL{?s cpst:hasSiteType ?siteType } .',
-					'OPTIONAL{?s cpst:hasElevationAboveSea ?elevationAboveSea } .',
-					'OPTIONAL{?s cpst:hasElevationAboveGround ?elevationAboveGround } .',
-					'OPTIONAL{?s cpst:hasStationClass ?stationClass } .',
-					'}',
-					'GROUP BY ?s ?lat ?lon ?spatRef ?locationDesc ?class ?country ?sName ?lName ?siteType ?elevationAboveSea',
-					' ?elevationAboveGround ?stationClass ?stationKind ?preIcosMeasurements ?operationalDateEstimate ?isOperational ?fundingForConstruction'
-				].join("\n");
-
-				return $.ajax({
-					type: "POST",
-					data: {query: query},
-					url: sparqlUrl,
-					dataType: "json"
-				});
-			}
-
-			function parseStationsJson(stationsJson, config){
-				var themeName = {"AS": "Atmosphere", "ES": "Ecosystem", "OS": "Ocean"};
-
-				var columns = stationsJson.head.vars.map(function (currVal){
-					var cols = {};
-					cols.title = currVal;
-					return cols;
-				});
-
-				columns.splice(config.coordinatesInd, 0, {title: "Coordinates"});
-
-				var rows = stationsJson.results.bindings.map(function (currObj){
-					var row = [];
-
-					columns.forEach(function(colObj){
-						if (colObj.title == "Theme"){
-							row.push(themeName[currObj[colObj.title].value]);
-						} else if (colObj.title == "Country"){
-							row.push(countries[currObj[colObj.title].value] + " (" + currObj[colObj.title].value + ")");
-						} else if (colObj.title == "PI_names" || colObj.title == "PI_mails"){
-							row.push(currObj[colObj.title].value.replace(";", "<br>"));
-						} else if (colObj.title == "Coordinates") {
-							row.push(`${currObj["latstr"].value}, ${currObj["lonstr"].value}`);
-						} else if (colObj.title == "Station_class") {
-							row.push(currObj[colObj.title].value.replace("Ass", "Associated"));
-						} else {
-							row.push(currObj[colObj.title].value);
-						}
-					});
-
-					return row;
-				});
-
-				columns.forEach(function(colObj){
-					colObj.title = colObj.title.replace(/_/g, " ");
-				});
-
-				var stations = {};
-				stations.rows = rows;
-				stations.columns = columns;
-
-				return stations;
-			}
 		}
-	}
+	};
+
 })(jQuery, Drupal);
-
-
