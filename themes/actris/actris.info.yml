@@ -1,0 +1,11 @@
+name: Actris theme
+description: 'The Actris theme.'
+package: CP
+
+type: theme
+core_version_requirement: ^8.8 || ^9
+
+base theme: icos_classic
+
+libraries:
+  - actris/global

@@ -3,12 +3,12 @@ description: 'The original ICOS theme.'
 package: CP
 
 type: theme
-core: 8.x
+core_version_requirement: ^8.8 || ^9
 
 base theme: bartik
 
 libraries:
-  - cp_theme_d8/global
+  - icos_classic/global
 
 regions:
   header: Header

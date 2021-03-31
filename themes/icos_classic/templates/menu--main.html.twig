@@ -1,0 +1,82 @@
+{#
+/**
+ * @file
+ * Theme override to display the main menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *   - is_expanded: TRUE if the link has visible children within the current
+ *     menu tree.
+ *   - is_collapsed: TRUE if the link has children within the current menu tree
+ *     that are not currently visible.
+ *   - in_active_trail: TRUE if the link is in the active trail.
+ *
+ * @ingroup themeable
+ */
+#}
+{% import _self as menus %}
+
+{#
+	We call a macro which calls itself to render the full tree.
+	@see http://twig.sensiolabs.org/doc/tags/macro.html
+#}
+
+{{ menus.menu_links(items, attributes, 0, _context) }}
+
+{% macro menu_links(items, attributes, menu_level, variables) %}
+	{% import _self as menus %}
+	{% if items %}
+		{% if menu_level == 0 %}
+			<div id="cp_theme_d8_menu">
+			<ul{{ attributes }}>
+		{% else %}
+			<ul>
+		{% endif %}
+		{% for item in items %}
+			{% if menu_level == 0 and item.below %}
+			<li{{ item.attributes }} class="is_topnode">
+			{% else %}
+			<li{{ item.attributes }}>
+			{% endif %}
+				{% if menu_level == 0 and item.below %}
+					<div class="menu-item-text">
+						<span class="open_menu menu-icon"><span class="glyphicon glyphicon-menu-down"></span></span>
+				{% endif %}
+				{# link(item.title, item.url) #}
+				<a href="{{ item.url }}">
+					{{ item.title }}
+					{% if menu_level > 0 and item.below %}
+					<span class="open_menu submenu-icon"><span class="glyphicon glyphicon-menu-right"></span></span>
+					{% endif %}
+				</a>
+				{% if menu_level == 0 and item.below %}
+					</div>
+				{% endif %}
+				{% if item.below %}
+					{{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+				{% endif %}
+			</li>
+		{% endfor %}
+		{% if variables.display_login and menu_level == 0 %}
+			<li id="accountLnk" class="account">
+				<a><span class="glyphicon glyphicon-user"></span> My Carbon Portal Account</a>
+			</li>
+			<li id="logOutLnk" class="account">
+				<a><span class="glyphicon glyphicon-log-out"></span> Log out</a>
+			</li>
+			<li id="logInLnk" class="account">
+				<a><span class="glyphicon glyphicon-log-in"></span> Log in</a>
+			</li>
+		{% endif %}
+		</ul>
+		{% if menu_level == 0 %}
+		</div>
+		{% endif %}
+	{% endif %}
+{% endmacro %}

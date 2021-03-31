@@ -4,7 +4,3 @@ package: CP
 
 type: module
 core_version_requirement: ^8.8 || ^9
-
-libraries:
-  - cp_blogs/style
-  - cp_blogs/script

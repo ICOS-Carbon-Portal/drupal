@@ -1,0 +1,40 @@
+<?php
+
+function icos_classic_form_system_theme_settings_alter(&$form, &$form_state)
+{
+
+  $form['icos_classic_settings'] = array(
+    '#type'         => 'details',
+    '#title'        => t('Menu'),
+    '#open' => TRUE,
+  );
+
+  $form['icos_classic_settings']['hover_menu'] = array(
+    '#type'          => 'checkbox',
+    '#title'         => t('Use the hover menu'),
+    '#default_value' => theme_get_setting('hover_menu'),
+  );
+
+}
+
+function icos_classic_preprocess_page(&$variables, $hook)
+{
+
+  $isHover = theme_get_setting('hover_menu');
+
+  if ($isHover) {
+    $variables['#attached']['library'][] = 'icos_classic/menu-hover';
+  } else {
+    $variables['#attached']['library'][] = 'icos_classic/menu-click';
+  }
+}
+
+
+function icos_classic_preprocess_menu__main(&$variables)
+{
+  $isHover = theme_get_setting('hover_menu');
+  $displayLogin = theme_get_setting('login_menu');
+
+  $variables['is_hover'] = $isHover;
+  $variables['display_login'] = $displayLogin;
+}
