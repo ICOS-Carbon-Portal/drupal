@@ -1,22 +1,9 @@
 .node__content .field--name-field-ns-country,
-.node__content .field--name-field-ns-latitude,
-.node__content .field--name-field-ns-longitude,
-.node__content .field--name-field-ns-measurement-height,
-.node__content .field--name-field-ns-vegetation-type,
-.node__content .field--name-field-ns-variables,
-.node__content .field--name-field-ns-sensors,
-.node__content .field--name-field-ns-co2-measurements,
-.node__content .field--name-field-ns-station-pi,
-.node__content .field--name-field-ns-years {
-		
-}
-
-.node__content .field--name-field-ns-country,
 .node__content .field--name-field-ns-longitude,
 .node__content .field--name-field-ns-vegetation-type,
 .node__content .field--name-field-ns-sensors,
 .node__content .field--name-field-ns-station-pi {
-	background-color: #eaf2d3;	
+	background-color: #eaf2d3;
 }
 
 .node__content .field--name-field-ns-country .field__label,
@@ -53,13 +40,13 @@
 .node__content .field--name-field-ns-station-pi .field__item,
 .node__content .field--name-field-ns-years .field__item {
 	position: absolute;
-	left: 210px;	
+	left: 210px;
 }
 
 .node__content .field--name-field-ns-country {
 	margin-top: 1rem;
 }
 
-.node__meta { 
-	display: none; 
+.node__meta {
+	display: none;
 }
