@@ -1,0 +1,12 @@
+icoscapes:
+  css:
+    theme:
+      css/icoscapes.css: {}
+
+  js:
+    js/icoscapes.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery
+    - core/jquery.once

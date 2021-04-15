@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function icoscapes_theme() {
+  return [
+    'icoscapes_block' => [
+      'variables' => [
+        'header_image' => NULL,
+        'map_background' => NULL
+      ]
+    ]
+  ];
+}

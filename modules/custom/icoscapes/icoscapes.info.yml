@@ -1,0 +1,7 @@
+name: ICOScapes map
+description: Create a page that displays a map of the ICOScapes campaign
+package: CP
+type: module
+core_version_requirement: ^8.8 || ^9
+libraries:
+  - icoscapes/icoscapes

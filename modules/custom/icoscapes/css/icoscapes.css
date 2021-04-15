@@ -1,0 +1,81 @@
+/* .path-node .field--name-body {
+  max-width: none;
+} */
+
+#map {
+  margin-bottom: 2em;
+}
+
+#map .map_title img {
+  max-width: 100%;
+  height: auto;
+}
+
+#map .map img {
+  width: 1260px;
+  max-width: 100%;
+  height: auto;
+}
+
+.map {
+  position: relative;
+}
+
+.icoscapes-infobox {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  background-color: #f5f5f6;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.icoscapes-infobox-close::after {
+  font-family: "Font Awesome 5 Free";
+  content: "\f00d";
+  float: right;
+  padding: 5px 20px;
+  color: white;
+  font-weight: 900;
+  font-size: 28px;
+}
+
+.icoscapes-infobox-close {
+  height: 50px;
+  background: #414042;
+  cursor: pointer;
+}
+
+.icoscapes-infobox-image {
+  background-size: cover;
+  background-position: center;
+  height: 40%;
+}
+
+.icoscapes-infobox-text {
+  padding: 2vw 10%;
+  bottom: 0;
+  background-color: #f5f5f6;
+}
+
+@media (max-width: 975px) {
+  body.no-scroll {
+    overflow: hidden;
+  }
+}
+
+@media (min-width: 975px) {
+  .icoscapes-infobox {
+    position: absolute;
+    left: auto;
+    width: 40%;
+    z-index: auto;
+  }
+
+  .icoscapes-infobox-text {
+    position: absolute;
+  }
+}
