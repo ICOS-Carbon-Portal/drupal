@@ -2,6 +2,11 @@
 	margin: 1rem;
 }
 
+.region-content-left .block-link-box,
+.region-content-right .block-link-box {
+	margin: 0;
+}
+
 .layout__region--first .block-link-box {
 	margin-left: 0;
 }
@@ -26,7 +31,7 @@
 	text-shadow: 0 0 1px #555;
 }
 
-.block-inline-blocklink-box img,
+.block-link-box img,
 .view-spotlight img {
 	width: 100%;
 	height: 230px;

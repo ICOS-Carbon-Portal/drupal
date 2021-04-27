@@ -15,8 +15,10 @@ function cp_spotlights_preprocess_views_view(&$vars) {
  */
 
 function cp_spotlights_preprocess_block(&$vars) {
-  if ($vars['derivative_plugin_id'] == 'link_box') {
-    $vars['#attached']['library'][] = 'cp_spotlights/style';
+
+  if(isset($vars['elements']['content']['#block_content'])
+    && $vars['elements']['content']['#block_content']->bundle() == 'link_box') {
+      $vars['#attached']['library'][] = 'cp_spotlights/style';
   }
 }
 
