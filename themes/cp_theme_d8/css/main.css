@@ -457,10 +457,12 @@ body,
 }
 
 .page-node-type-cp-event .block-page-title-block,
+.node--type-article,
 .node--type-cp-event {
 	max-width: 90ch;
 }
 
+.node--type-article .field--type-image,
 .node--type-cp-event .field--type-image {
 	max-width: 30ch;
 	float: right;
