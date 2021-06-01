@@ -9,6 +9,7 @@ station-list:
     //static.icos-cp.eu/constant/misc/countries.js: { type: external, minified: true }
     //cdn.datatables.net/1.10.22/js/jquery.dataTables.js: { type: external, minified: true }
     //cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.js: { type: external, minified: true }
+    https://static.icos-cp.eu/share/stationscommon/stations.js: { type: external, minified: true }
     js/station-list.js: {}
   dependencies:
     - core/drupal
