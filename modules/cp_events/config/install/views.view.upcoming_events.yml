@@ -9,7 +9,6 @@ dependencies:
     - node.type.cp_event
   module:
     - datetime
-    - html_title
     - image
     - node
     - text
