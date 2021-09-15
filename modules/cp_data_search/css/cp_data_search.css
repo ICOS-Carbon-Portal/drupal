@@ -13,7 +13,7 @@
 .data-search-form-fieldset {
   border: 1px solid #eee;
   margin: 1em 0;
-  padding: 1rem;
+  padding: 1rem 2rem;
   background-color: white;
 }
 
@@ -21,13 +21,6 @@
   font-size: 1rem;
   font-weight: bold;
   width: auto;
-}
-
-.search-field-row {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
 }
 
 .box {
@@ -73,10 +66,4 @@
   width: 180px;
   max-width: 100%;
   margin: 2em auto 1em;
-}
-
-@media all and (min-width: 800px) {
-	.search-field-row {
-	  margin: 1rem;
-	}
 }

@@ -20,6 +20,7 @@
 
 .station-table thead th {
    white-space: nowrap;
+   color: inherit;
 }
 
 .station-table thead th .input-group {

@@ -23,6 +23,7 @@ a,
 .btn-link {
   color: var(--icos-cyan);
   border-bottom-style: none;
+  text-decoration: none;
 }
 
 a:hover,

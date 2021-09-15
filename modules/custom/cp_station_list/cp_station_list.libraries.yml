@@ -1,15 +1,15 @@
 station-list:
   css:
     theme:
-      //cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.css: { type: external, minified: true }
+      //cdn.datatables.net/1.11.2/css/dataTables.bootstrap5.min.css: { type: external, minified: true }
       //static.icos-cp.eu/constant/ol/3.9.0/css/ol.css: { type: external, minified: true }
       css/station-list.css: {}
 
   js:
     //static.icos-cp.eu/constant/misc/countries.js: { type: external, minified: true }
-    //cdn.datatables.net/1.10.22/js/jquery.dataTables.js: { type: external, minified: true }
-    //cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.js: { type: external, minified: true }
-    https://static.icos-cp.eu/share/stationscommon/stations.js: { type: external, minified: true }
+    //cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js: { type: external, minified: true }
+    //cdn.datatables.net/1.11.2/js/dataTables.bootstrap5.min.js: { type: external, minified: true }
+    //static.icos-cp.eu/share/stationscommon/stations.js: { type: external, minified: true }
     js/station-list.js: {}
   dependencies:
     - core/drupal
