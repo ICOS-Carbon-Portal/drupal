@@ -11,7 +11,8 @@
 
 		$("#stationMapModalLabel").text(title);
 		$('#stationMapModalBody').html($frame);
-		$("#station-map").modal();
+
+		new bootstrap.Modal($("#station-map")).show()
 	}
 
 	function initDataTable(stations) {
