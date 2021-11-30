@@ -1,4 +1,13 @@
 (function ($, Drupal) {
+	const stationList = {
+		nameIdx: varNameIdx(Vars.stationName),
+		descIdx: varNameIdx(Vars.theme),
+		latIdx: varNameIdx(Vars.lat),
+		lonIdx: varNameIdx(Vars.lon),
+		geoJsonIdx: varNameIdx(Vars.geoJson),
+		propertyCols: ['stationId', 'stationName', 'country', 'Position', 'pi', 'siteType', 'seaElev', 'stationClass', 'labelingDate'],
+		rows: undefined
+	};
 
 	function showMap(title, theme, lat, lon, geoJson) {
 		if(geoJson == null && (lat == null || lon == null)) return;
@@ -13,6 +22,142 @@
 		$('#stationMapModalBody').html($frame);
 
 		new bootstrap.Modal($("#station-map")).show()
+	}
+
+	function stationsToKML(){
+		const geoJson = getGeoJson();
+
+		const kmlOptions = {
+            documentName: 'ICOS Station Network',
+            documentDescription: 'The ICOS network operates in three distinct domains: Atmosphere, Ecosystem and Ocean. The stations in the 13 member countries are run and funded by national institutes, universities and funding agencies. Most of the ICOS stations are fixed stations like (tall) towers or buoys, whereas the Ocean domain has also the Ships of Opportunity and Research Vessels roaming the seas.',
+            name: 'name',
+            description: 'description',
+            simplestyle: true
+        };
+
+		returnToBrowser("stations.kml", tokml(geoJson, kmlOptions), 'data:application/vnd.google-earth.kml+xml;charset=utf-8,');
+	}
+
+	function stationsToCSV(){
+		const geoJson = getGeoJson();
+		const header = stationList.propertyCols.map(key =>
+			Vars.hasOwnProperty(key) ? Vars[key].replace(/_/g, " ") : key
+		).join(",") + "\n";
+		const csvRows = geoJson.features.map(feature =>
+			stationList.propertyCols.map(key => extractProp(feature.properties, key).replace(/,/g, " ")).join(",")
+		).join("\n");
+		const csv = header + csvRows;
+
+		returnToBrowser("stations.csv", csv, 'data:text/csv;charset=utf-8,');
+	}
+
+	function extractProp(properties, key){
+		switch(key){
+			case "stationId":
+				const matches = properties[key].match(/<a.*>(.*?)<\/a>/);
+				return matches ? matches[1] : properties[key];
+			
+			case "pi":
+				return properties[key].replace(/<br>/g, " ");
+			
+			default:
+				return properties[key];
+		}
+	}
+
+	function getGeoJson(){
+		const geoJson = {
+			type: "FeatureCollection",
+			features: []
+		};
+		const dynamicPropIdxs = stationList.propertyCols.map(key => 
+			Vars.hasOwnProperty(key) ? varNameIdx(Vars[key]) : undefined
+		);
+
+		if (Object.keys(stationList).some(key => key === undefined))
+			return geoJson;
+
+		return stationList.rows.reduce((acc, row) => {
+			const props = {
+				name: row[stationList.nameIdx],
+				description: row[stationList.descIdx]
+			};
+			const dynamicProps = stationList.propertyCols.reduce((acc, key, idx) => {
+				const rowIdx = dynamicPropIdxs[idx];
+				
+				if (rowIdx === undefined)
+					acc[key] = "";
+				
+				else
+					acc[key] = row[rowIdx];
+				
+				return acc;
+			}, {});
+			Object.assign(props, dynamicProps);
+
+			if (row[stationList.lonIdx] !== "" && row[stationList.latIdx] !== "") {
+				const lon = parseFloat(row[stationList.lonIdx]);
+				const lat = parseFloat(row[stationList.latIdx]);
+				if (props.hasOwnProperty('Position'))
+					props.Position = `${lon} ${lat}`;
+				acc.features.push(getFeature("Point", [lon, lat], props));
+			
+			} else if (row[stationList.geoJsonIdx]){
+				const geoJsonFeature = JSON.parse(row[stationList.geoJsonIdx]);
+
+				if (geoJsonFeature.features)
+					geoJsonFeature.features.forEach(f => {
+						
+						const {type, coordinates} = f.geometry;
+						acc.features.push(getFeature(type, coordinates, props));
+					});
+
+				else if(geoJsonFeature.geometries)
+					geoJsonFeature.geometries.forEach(g => acc.features.push(getFeature(g.type, g.coordinates, props)));
+				
+				else
+					acc.features.push(getFeature(geoJsonFeature.type, geoJsonFeature.coordinates, props));
+			}
+			
+			return acc;
+		}, geoJson);
+	}
+
+	function getFeature(type, coords, props = {}){
+		return {
+			type: "Feature",
+			geometry: {
+			  type: type,
+			  coordinates: coords
+			},
+			properties: getColorProps(type, props)
+		};
+	}
+
+	function getColorProps(type, props){
+		switch(type){
+			case "LineString":
+				return Object.assign({}, props, {stroke: '#ffce3b'});
+
+			case "Polygon":
+				return Object.assign({}, props, {fill: '#a1c389', "stroke-width": 1, stroke: '#c0d5b2'});
+
+			default:
+				return props;
+		}
+	}
+
+	function returnToBrowser(filename, text, mime){
+		const element = document.createElement('a');
+		element.setAttribute('href', mime + encodeURIComponent(text));
+		element.setAttribute('download', filename);
+		  
+		element.style.display = 'none';
+		document.body.appendChild(element);
+		  
+		element.click();
+		  
+		document.body.removeChild(element);
 	}
 
 	function initDataTable(stations) {
@@ -86,10 +231,16 @@
 			$('body', context).once('stationListBehavior').each(function () {
 
 				$.when(fetchMergeParseStations(new StationParser(countries)))
-					.then(initDataTable)
+					.then(stations => {
+						stationList.rows = stations.rows;
+						initDataTable(stations);
+					})
 					.fail(function (err) {
 						console.log(err);
 					});
+				
+				$("#kmlExportBtn").click(stationsToKML);
+				$("#csvExportBtn").click(stationsToCSV);
 			});
 		}
 	};

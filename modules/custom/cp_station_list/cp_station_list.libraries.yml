@@ -11,6 +11,7 @@ station-list:
     //cdn.datatables.net/1.11.2/js/dataTables.bootstrap5.min.js: { type: external, minified: true }
     //static.icos-cp.eu/share/stationscommon/stations.js: { type: external, minified: true }
     js/station-list.js: {}
+    js/tokml.js: {}
   dependencies:
     - core/drupal
     - core/drupalSettings
