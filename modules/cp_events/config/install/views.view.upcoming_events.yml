@@ -188,7 +188,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '{{ field_cp_event_from_date }} to {{ field_cp_event_to_date }}'
+            text: '{% if field_cp_event_from_date == field_cp_event_to_date %}\r\n{{ field_cp_event_to_date }}\r\n{% else %}\r\n{{ field_cp_event_from_date }} to {{ field_cp_event_to_date }}\r\n{% endif %}'
             make_link: false
             path: ''
             absolute: false
@@ -666,7 +666,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '{{ field_cp_event_from_date }} to {{ field_cp_event_to_date }}'
+            text: '{% if field_cp_event_from_date == field_cp_event_to_date %}\r\n{{ field_cp_event_to_date }}\r\n{% else %}\r\n{{ field_cp_event_from_date }} to {{ field_cp_event_to_date }}\r\n{% endif %}'
             make_link: false
             path: ''
             absolute: false

@@ -90,6 +90,8 @@
       <div class="field--name-created">
         {% if node.field_cp_event_news.value == '1' %}
           {{ node.createdtime | date("d F Y") }}
+        {% elseif node.field_cp_event_from_date[0].value == node.field_cp_event_to_date[0].value %}
+          {{ node.field_cp_event_to_date[0].value | date("d F Y") }}
         {% else %}
           {{ node.field_cp_event_from_date[0].value | date("d F Y") }} to {{ node.field_cp_event_to_date[0].value | date("d F Y") }}
         {% endif %}
