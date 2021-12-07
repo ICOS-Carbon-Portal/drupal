@@ -54,7 +54,7 @@
 	function extractProp(properties, key){
 		switch(key){
 			case "stationId":
-				const matches = properties[key].match(/<a.*>(.*?)<\/a>/);
+				const matches = properties[key].match(/<a.* href="(.*?)">.*?<\/a>/);
 				return matches ? matches[1] : properties[key];
 			
 			case "pi":
