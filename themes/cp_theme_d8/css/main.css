@@ -482,3 +482,16 @@ body,
   background-color: var(--icos-cyan);
   border-color: var(--icos-cyan);
 }
+
+.webform-submission-form {
+  max-width: 90ch;
+}
+
+.webform-submission-form label:not(.option) {
+  display: block;
+  margin-bottom: .3rem;
+}
+
+.webform-submission-form input:not(.form-checkbox, .form-radio, .button, .form-file) {
+  width: 100%;
+}
