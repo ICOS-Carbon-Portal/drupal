@@ -21,8 +21,6 @@
 !modules/cp_data_search/
 !modules/ns_stationdata/
 
-cp_theme_d8.libraries.yml
-
 .csslintrc
 .editorconfig
 .eslintignore
