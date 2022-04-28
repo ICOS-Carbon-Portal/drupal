@@ -1,0 +1,11 @@
+Push drupal to master
+Pull infrastructure
+
+Stand in infrastructure/devops folder. The file 'drupal.yml' should be in this directory.
+
+Run this:
+ansible-playbook -i production.inventory -t drupal -e "website=cp" drupal.yml
+
+Log in at https://www.icos-cp.eu/user and go to Configuration > Performance. Click 'Clear all caches'
+
+Done

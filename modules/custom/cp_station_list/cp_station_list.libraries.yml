@@ -9,7 +9,7 @@ station-list:
     //static.icos-cp.eu/constant/misc/countries.js: { type: external, minified: true }
     //cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js: { type: external, minified: true }
     //cdn.datatables.net/1.11.2/js/dataTables.bootstrap5.min.js: { type: external, minified: true }
-    //static.icos-cp.eu/share/stationscommon/stations.js: { type: external, minified: true }
+    js/icos-cp-backend.js: { minified: true }
     js/station-list.js: {}
     //static.icos-cp.eu/js/mapboxToKML.js: { type: external, minified: false }
   dependencies:
