@@ -14,9 +14,11 @@ html {
   font-size: 14px;
 }
 
-body {
+body,
+#header,
+.site-footer {
   color: #414042;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", system-ui, -apple-system, sans-serif;
 }
 
 a,
@@ -157,9 +159,10 @@ h3 {
 
 .header-links {
   margin: 2rem 0 -1rem;
+  font-size: 1rem;
 }
 
-.header-link a {
+.header-link {
   cursor: pointer;
 }
 
@@ -167,11 +170,11 @@ h3 {
   color: white;
 }
 
-.header .account {
+.header .header-link {
   display: none;
 }
 
-.header-link + .header-link::before {
+.header-link-separator::before {
   content: "|";
   margin: 0 1rem;
   color: white;

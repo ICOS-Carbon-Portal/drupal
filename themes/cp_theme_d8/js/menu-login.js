@@ -7,11 +7,7 @@
 			error: showLoginLink
 		})
 			.done(function() {
-				$(".accountLnk").on('click', function() {
-					window.location = 'https://cpauth.icos-cp.eu/';
-				});
-				$(".accountLnk").show();
-				$(".logInLnk").hide();
+				$(".account-link, .cart-link").show();
 			})
 			.fail(function(jqXHR) {
 				if (jqXHR.status == 401) {
@@ -21,9 +17,9 @@
 	});
 
 	function showLoginLink() {
-		$(".logInLnk").on('click', function() {
+		$(".login-link").on('click', function() {
 			window.location = 'https://cpauth.icos-cp.eu/login/?targetUrl=' + encodeURIComponent(window.location.href);
 		});
-		$(".logInLnk").show();
+		$(".login-link").show();
 	}
 }(jQuery));

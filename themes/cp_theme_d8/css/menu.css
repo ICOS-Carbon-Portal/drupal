@@ -52,8 +52,7 @@
 }
 
 #cp_theme_d8_menu .fas.fa-home {
-  display: block;
-  line-height: 1.2;
+  display: inline-block;
 }
 
 @media all and (max-width: 799px) {
@@ -149,11 +148,14 @@
 
   #cp_theme_d8_menu li li {
     width: 268px;
+    line-height: 1.2;
   }
 
   #cp_theme_d8_menu li li li {
     padding: 0;
     width: auto;
+    font-weight: normal;
+    line-height: 1;
   }
 
   #cp_theme_d8_menu li li li li {
@@ -213,15 +215,17 @@
 
   #cp_theme_d8_menu ul ul ul {
     display: block;
+    margin-bottom: 1rem;
   }
 
-  #cp_theme_d8_menu li li li {
-    font-weight: normal;
+  #cp_theme_d8_menu-menu ul ul ul ul {
+    margin-bottom: 0;
   }
 
   #cp_theme_d8_menu li li li a {
     padding-top: 0;
     padding-bottom: 0;
+    color: #eee;
   }
 
   #cp_theme_d8_menu .account {
