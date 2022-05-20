@@ -32,7 +32,7 @@ core/
 index.php
 profiles/
 robots.txt
-sites/
+/sites/
 themes/.gitkeep
 update.php
 web.config

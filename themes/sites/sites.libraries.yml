@@ -1,0 +1,27 @@
+global:
+  css:
+    theme:
+      //static.icos-cp.eu/css/bootstrap/5.1.0/sites-bootstrap.css: { type: external, minified: true }
+      //use.fontawesome.com/releases/v5.15.1/css/all.css: { type: external, minified: true }
+      //static.icos-cp.eu/css/fonts/source-sans-pro.css: { type: external, minified: true }
+      css/main.css: {}
+      css/breadcrumb.css: {}
+      css/print.css: { media: print }
+
+  js:
+    //cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js: { type: external, minified: true }
+    js/main.js: {}
+    js/menu.js: {}
+
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery
+    - core/jquery.once
+
+maintenance_page:
+  css:
+    theme:
+      css/maintenance-page.css: {}
+  dependencies:
+    - system/maintenance

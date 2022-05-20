@@ -1,0 +1,8 @@
+.maintenance-page #main-wrapper {
+  margin: 2% auto;
+  max-width: 1200px;
+}
+
+.maintenance-page #main {
+  margin: 0 15px;
+}
