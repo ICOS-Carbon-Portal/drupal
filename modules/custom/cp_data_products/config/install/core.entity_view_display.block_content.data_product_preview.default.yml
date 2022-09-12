@@ -7,6 +7,8 @@ dependencies:
     - field.field.block_content.data_product_preview.field_display_height
     - field.field.block_content.data_product_preview.field_number_of_columns
     - field.field.block_content.data_product_preview.field_parameter
+    - field.field.block_content.data_product_preview.field_keyword
+    - field.field.block_content.data_product_preview.field_show_deprecated
   module:
     - link
   enforced:
@@ -50,6 +52,22 @@ content:
     region: content
   field_parameter:
     weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_keyword:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_show_deprecated:
+    weight: 0
     label: above
     settings:
       link_to_entity: false

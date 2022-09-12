@@ -38,27 +38,25 @@
 		return Uint8Array.from(atob(ascii), c => c.charCodeAt(0));
 	}
 
-	const query = (spec, shouldGetHeight, previewType) => {
-		const samplingHeight = shouldGetHeight
-			? 'OPTIONAL{?dobj cpmeta:wasAcquiredBy/cpmeta:hasSamplingHeight ?samplingHeight} .'
-			: ''
-		const dates = previewType == "map-graph"
-			? `?dobj cpmeta:wasAcquiredBy/prov:startedAtTime ?start .
-				 ?dobj cpmeta:wasAcquiredBy/prov:endedAtTime ?end .`
-			: ''
-		return `prefix cpmeta: <http://meta.icos-cp.eu/ontologies/cpmeta/>
+	const query = (spec, shouldGetHeight, keyword, showDeprecated) => {
+		const samplingHeight = shouldGetHeight ? 'OPTIONAL{?dobj cpmeta:wasAcquiredBy/cpmeta:hasSamplingHeight ?samplingHeight} .' : '';
+		const filterNextVersion = showDeprecated ? '' : 'FILTER NOT EXISTS {[] cpmeta:isNextVersionOf ?dobj}';
+		const hasKeyword = keyword ? '?dobj cpmeta:hasKeyword "Drought 2018"^^xsd:string' : '';
+
+		return `prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+		prefix cpmeta: <http://meta.icos-cp.eu/ontologies/cpmeta/>
 		prefix prov: <http://www.w3.org/ns/prov#>
 		select ?dobj ?station ?samplingHeight ?start ?end
 		where {
-			VALUES ?spec { <${spec}> }
-			?dobj cpmeta:hasObjectSpec ?spec .
-			FILTER NOT EXISTS {[] cpmeta:isNextVersionOf ?dobj}
-			?dobj cpmeta:wasSubmittedBy/prov:endedAtTime ?submEnd .
+			?dobj cpmeta:hasObjectSpec <${spec}> .
+			${filterNextVersion}
+			filter exists {?dobj cpmeta:wasSubmittedBy/prov:endedAtTime []}
+			?dobj cpmeta:wasAcquiredBy [prov:startedAtTime ?start ; prov:endedAtTime ?end] .
 			?dobj cpmeta:wasAcquiredBy/prov:wasAssociatedWith/cpmeta:hasName ?station .
 			${samplingHeight}
-			${dates}
+			${hasKeyword}
 		}
-		order by ?station ?samplingHeight ?start`;
+		order by ?station ${shouldGetHeight ? '?samplingHeight' : ''} ?start`;
 	}
 
 	function timestampToDate(timestamp) {
@@ -66,8 +64,6 @@
 	}
 
 	const displayPreviewTable = (tableConfig) => {
-
-		const shouldGetHeight = tableConfig.noHeight ? false : true;
 		$.ajax({
 			method: 'post',
 			url: 'https://meta.icos-cp.eu/sparql',
@@ -76,7 +72,7 @@
 				'Content-Type': 'text/plain',
 				'Cache-Control': 'max-age=1000000'
 			},
-			data: query(tableConfig.spec, shouldGetHeight, tableConfig.previewType)
+			data: query(tableConfig.spec, tableConfig.shouldGetHeight, tableConfig.keyword, tableConfig.showDeprecated)
 		}).done(function(result) {
 			let station = '';
 			let rowNumber = 1;

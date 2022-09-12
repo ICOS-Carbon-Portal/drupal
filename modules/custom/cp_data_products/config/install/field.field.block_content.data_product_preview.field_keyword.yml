@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.data_product_preview
+    - field.storage.block_content.field_keyword
+  enforced:
+    module:
+      - cp_data_products
+id: block_content.data_product_preview.field_keyword
+field_name: field_keyword
+entity_type: block_content
+bundle: data_product_preview
+label: Keyword
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
+

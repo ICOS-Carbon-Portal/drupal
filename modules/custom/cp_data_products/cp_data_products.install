@@ -1,0 +1,36 @@
+<?php
+
+use Drupal\Component\Serialization\Yaml;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Data Products module.
+ */
+
+/**
+ * Add keyword and show_deprecated to config
+ *
+ */
+function cp_data_products_update_8001() {
+
+	$module_path = \Drupal::service('extension.list.module')->getPath('cp_data_products');
+
+	$yml = Yaml::decode(file_get_contents($module_path . '/config/install/field.storage.block_content.field_keyword.yml'));
+	if (!FieldStorageConfig::loadByName($yml['entity_type'], $yml['field_name'])) {
+		FieldStorageConfig::create($yml)->save();
+	}
+	$yml = Yaml::decode(file_get_contents($module_path . '/config/install/field.storage.block_content.field_show_deprecated.yml'));
+	if (!FieldStorageConfig::loadByName($yml['entity_type'], $yml['field_name'])) {
+		FieldStorageConfig::create($yml)->save();
+	}
+	$yml = Yaml::decode(file_get_contents($module_path . '/config/install/field.field.block_content.data_product_preview.field_keyword.yml'));
+	if (!FieldConfig::loadByName($yml['entity_type'], $yml['bundle'], $yml['field_name'])) {
+		FieldConfig::create($yml)->save();
+	}
+	$yml = Yaml::decode(file_get_contents($module_path . '/config/install/field.field.block_content.data_product_preview.field_show_deprecated.yml'));
+	if (!FieldConfig::loadByName($yml['entity_type'], $yml['bundle'], $yml['field_name'])) {
+		FieldConfig::create($yml)->save();
+	}
+}

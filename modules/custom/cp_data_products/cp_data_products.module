@@ -8,11 +8,15 @@ function cp_data_products_preprocess_block(&$vars) {
     $vars['#attached']['library'][] = 'cp_data_products/script';
     $param = $vars['elements']['content']['field_parameter'][0]['#context']['value'];
     $field_preview_type = $vars['elements']['content']['field_preview_type'];
+    $field_keyword = $vars['elements']['content']['field_keyword'];
+    $field_show_deprecated = $vars['elements']['content']['field_show_deprecated'];
     $vars['#attached']['drupalSettings']['data_product_preview'][$param] = [
       'spec' => $vars['elements']['content']['field_data_type'][0]['#title'],
       'previewType' => isset($field_preview_type) && !empty($field_preview_type[0]) ? $field_preview_type[0]['#markup'] : '',
       'param' => explode(',', $param),
-      'noHeight' => $vars['elements']['content']['field_display_height'][0]['#markup'] == "On" ? false : true
+      'shouldGetHeight' => $vars['elements']['content']['field_display_height'][0]['#markup'] == "On" ? true : false,
+      'keyword' => !empty($field_keyword[0]) ? $field_keyword[0]['#context']['value'] : '',
+      'showDeprecated' => !empty($field_show_deprecated[0]) && $field_show_deprecated[0]['#markup'] == "On" ? true : false
     ];
   }
 }
