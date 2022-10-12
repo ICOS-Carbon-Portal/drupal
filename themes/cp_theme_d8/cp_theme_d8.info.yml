@@ -11,6 +11,7 @@ libraries:
   - cp_theme_d8/global
 
 regions:
+  above_header: 'Above the header'
   header: Header
   primary_menu: 'Primary menu'
   highlighted: Highlighted

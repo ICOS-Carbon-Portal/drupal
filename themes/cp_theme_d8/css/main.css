@@ -21,6 +21,24 @@ body,
   font-family: "Open Sans", system-ui, -apple-system, sans-serif;
 }
 
+.above-the-header {
+  background: var(--icos-magenta);
+  overflow: hidden;
+  text-align: center;
+  color: white;
+}
+
+.above-the-header a,
+.above-the-header a:hover,
+.above-the-header a:focus {
+  color: white;
+  text-decoration: none;
+}
+
+.above-the-header .content {
+  padding: 0.2rem 1rem 0;
+}
+
 a,
 .btn-link {
   color: var(--icos-cyan);
