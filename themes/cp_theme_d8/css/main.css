@@ -364,7 +364,8 @@ body,
 .more-link::before,
 .field--name-field-side-links .field__item:before,
 .field--name-field-bottom-left-links .field__item:before,
-.field--name-field-bottom-right-links .field__item:before {
+.field--name-field-bottom-right-links .field__item:before,
+.link-box-title:before {
   font-family: "Font Awesome 5 Free";
   content: "\f105";
   font-weight: 900;
@@ -515,4 +516,18 @@ body,
 
 .webform-submission-form input:not(.form-checkbox, .form-radio, .button, .form-file) {
   width: 100%;
+}
+
+.block-wide:not(.layout-builder-block) {
+  max-width: none;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.block-wide:not(.layout-builder-block) .layout-container {
+  padding: 0 15px;
 }
