@@ -31,3 +31,4 @@ regions:
 stylesheets-remove:
   - '@bartik/css/components/primary-menu.css'
   - '@bartik/css/maintenance-page.css'
+  - '@bartik/css/base/elements.css'

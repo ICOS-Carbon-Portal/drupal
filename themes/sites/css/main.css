@@ -3,38 +3,13 @@ body {
   font-size: 16px;
 }
 
-a,
-.btn-link {
-  color: #3C8CA5;
-}
-
-a:hover,
-a:focus,
-a:active {
-  color: #2F7F98;
+.page-node-type-cp-event .block-page-title-block,
+.node--type-article {
+  max-width: 90ch;
 }
 
 h2:not(:first-child) {
   margin-top: 2rem;
-}
-
-.btn-primary,
-.btn-primary.disabled,
-.btn-primary:disabled {
-  background-color: #55A5BE;
-  border-color: #3C8CA5;
-}
-
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary.focus,
-.btn-primary:active {
-  background: #3C8CA5;
-  border-color: #2F7F98;
-}
-
-.btn-primary .badge {
-  color: #55A5BE;
 }
 
 .maintenance-page #header,
