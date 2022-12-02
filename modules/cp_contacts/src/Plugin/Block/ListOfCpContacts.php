@@ -17,7 +17,8 @@ class ListOfCpContacts extends BlockBase {
 
 		$config = $this->getConfiguration();
 		$contact_group = $config['cp_contact_contact_group'];
-		$default_picture = file_create_url(drupal_get_path('module', 'cp_contacts') . '/images/person_male.jpg');
+		$contact_module_path = \Drupal::service('extension.list.module')->getPath('cp_contacts');
+		$default_picture = \Drupal::service('file_url_generator')->generateAbsoluteString($contact_module_path . '/images/person_male.jpg');
 
 		$node_view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
 		$nids = \Drupal::entityTypeManager()
@@ -30,6 +31,7 @@ class ListOfCpContacts extends BlockBase {
 			->execute();
 		$nodes = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($nids);
 
+		$list = [];
 		foreach ($nodes as $node) {
 			$list[] = $node_view_builder->view($node, 'default')['#node'];
 		}

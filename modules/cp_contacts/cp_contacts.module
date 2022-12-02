@@ -12,6 +12,9 @@ function cp_contacts_theme($existing, $type, $theme, $path)
         'default_picture' => 'NULL',
       ],
     ),
+    'node__cp_contact' => [
+      'base hook' => 'node',
+    ]
   );
   return $variables;
 }

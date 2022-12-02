@@ -30,83 +30,79 @@ content:
     third_party_settings: {  }
     region: content
   field_cp_contact_email:
+    label: hidden
     weight: 3
     settings:
       placeholder: ''
       size: 60
     third_party_settings: {  }
-    type: email_default
-    region: content
-  field_cp_contact_group:
-    weight: 7
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
-  field_cp_contact_index:
-    weight: 12
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
-    type: number
+    type: basic_string
     region: content
   field_cp_contact_phone:
+    label: hidden
     weight: 4
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: string
     region: content
   field_cp_contact_photo:
+    label: hidden
     weight: 6
     settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
+      image_loading:
+        attribute: lazy
+      image_style: ''
+      image_link: ''
     third_party_settings: {  }
-    type: image_image
+    type: image
     region: content
   field_cp_contact_title:
+    label: hidden
     weight: 8
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: string
     region: content
   field_educational_title:
+    label: hidden
     weight: 9
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: string
     region: content
   field_twitter_username:
+    label: hidden
     weight: 5
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: string
     region: content
   field_work_tasks:
+    label: hidden
     weight: 10
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: string
     region: content
   status:
     type: boolean_checkbox
-    settings:
-      display_label: true
+    label: hidden
     weight: 13
     third_party_settings: {  }
     region: content
   title:
-    type: string_textfield
+    type: string
+    label: hidden
     weight: 0
     settings:
       size: 60
@@ -131,6 +127,8 @@ content:
 hidden:
   body: true
   field_cp_contact_address: true
+  field_cp_contact_group: true
+  field_cp_contact_index: true
   field_cp_contact_organization: true
   path: true
   promote: true
