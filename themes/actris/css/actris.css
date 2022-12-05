@@ -1,7 +1,29 @@
+:root {
+  --actris-blue: #0071b3;
+}
+
 #header {
   background-color: #fff;
   background-image: url(../images/ac_header.png);
   background-position: right;
   background-repeat: no-repeat;
   background-size: auto;
+  border-bottom: 1px solid #eee;
+  height: 105px;
+}
+
+#header .site-branding__logo img {
+  margin: 0;
+}
+
+#cp_theme_d8_menu {
+  background: #f0f7fb;
+}
+
+#cp_theme_d8_menu li:hover a:hover {
+  color: var(--actris-blue);
+}
+
+#cp_theme_d8_menu .active-trail {
+  border-bottom-color: var(--actris-blue);
 }

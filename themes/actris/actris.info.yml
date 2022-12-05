@@ -5,7 +5,7 @@ package: CP
 type: theme
 core_version_requirement: ^8.8 || ^9
 
-base theme: icos_classic
+base theme: cp_theme_d8
 
 libraries:
   - actris/global
