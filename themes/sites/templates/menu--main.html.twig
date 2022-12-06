@@ -35,24 +35,17 @@
 		<ul class="navbar-nav">
 		{% for item in items %}
 			{% set item_classes = [
-					menu_level == 0 and item.below ? 'is_topnode',
+					menu_level == 0 and item.below ? 'primary-nav-menu-item-has-children',
 					'nav-item'
 				]
 			%}
 			<li{{ item.attributes.addClass(item_classes) }}>
-				{% if menu_level == 0 and item.below %}
-					<div class="menu-item-text">
-						<span class="open_menu menu-icon"><i class="fas fa-chevron-down"></i></span>
-				{% endif %}
 				{% set link_classes = [
 						menu_level == 0 and item.in_active_trail ? 'active-trail',
 						'nav-link'
 					]
 				%}
 				{{ link(item.title, item.url, {'class': link_classes}) }}
-				{% if menu_level == 0 and item.below %}
-					</div>
-				{% endif %}
 				{% if item.below %}
 					{{ menus.menu_links(item.below, attributes, menu_level + 1) }}
 				{% endif %}

@@ -1,6 +1,8 @@
 
-jQuery('#block-sites-main-menu .is_topnode .open_menu').once('sites').click(
-	function(event) {
-		jQuery(this).parent().parent().toggleClass('open');
+jQuery('#block-sites-main-menu .primary-nav-menu-item-has-children').once('sites').click(
+	function() {
+		if (window.innerWidth < 576) {
+			jQuery(this).toggleClass('open');
+		}
 	}
 );
