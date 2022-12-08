@@ -17,7 +17,8 @@
 	});
 
 	function showLoginLink() {
-		$(".login-link").on('click', function() {
+		$(".login-link").on('click', function(event) {
+			event.preventDefault();
 			window.location = 'https://cpauth.icos-cp.eu/login/?targetUrl=' + encodeURIComponent(window.location.href);
 		});
 		$(".login-link").show();
