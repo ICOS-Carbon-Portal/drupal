@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.wide
+    - field.field.block_content.wide.body
+    - field.field.block_content.wide.field_background_color
+  module:
+    - color_field
+    - text
+id: block_content.wide.default
+targetEntityType: block_content
+bundle: wide
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_background_color:
+    type: color_field_formatter_text
+    label: above
+    settings:
+      format: hex
+      opacity: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }
