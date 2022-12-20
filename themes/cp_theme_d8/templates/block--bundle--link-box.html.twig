@@ -39,7 +39,8 @@
 %}
 
 {% set image = {
-  '#theme':      'image',
+  '#theme':      'image_style',
+  '#style_name': 'link_box',
   '#uri':        content['#block_content'].field_image.entity.uri.value,
   '#alt':        content['#block_content'].field_image.alt,
 } %}
