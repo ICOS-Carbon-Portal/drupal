@@ -479,7 +479,7 @@ body,
   margin-right: 1em;
 }
 
-.page-node-type-cp-event .block-page-title-block,
+.block-page-title-block,
 .node--type-article,
 .node--type-cp-event {
 	max-width: 90ch;
