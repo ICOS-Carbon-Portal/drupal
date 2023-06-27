@@ -9,7 +9,7 @@ dependencies:
     - node
     - user
 id: fluxes_volumes
-label: 'Fluxes volumes'
+label: 'FLUXES volumes'
 module: views
 description: ''
 tag: ''

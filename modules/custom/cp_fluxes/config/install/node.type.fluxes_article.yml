@@ -1,6 +1,6 @@
 langcode: en
 status: true
-name: 'Fluxes article'
+name: 'FLUXES article'
 type: fluxes_article
 description: 'Use <em>FLUXES articles</em> for content published in the FLUXES bulletin.'
 help: ''

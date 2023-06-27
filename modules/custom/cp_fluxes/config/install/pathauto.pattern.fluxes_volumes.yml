@@ -4,7 +4,7 @@ dependencies:
   module:
     - node
 id: fluxes_volumes
-label: 'Fluxes volumes'
+label: 'FLUXES volumes'
 type: 'canonical_entities:node'
 pattern: '/fluxes/[node:field_issue_number]'
 selection_criteria:

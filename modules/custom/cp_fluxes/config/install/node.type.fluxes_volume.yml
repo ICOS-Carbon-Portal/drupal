@@ -1,6 +1,6 @@
 langcode: en
 status: true
-name: 'Fluxes volume'
+name: 'FLUXES volume'
 type: fluxes_volume
 description: 'Use <em>FLUXES volumes</em> for grouping FLUXES articles.'
 help: ''
