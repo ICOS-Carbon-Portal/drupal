@@ -1,0 +1,12 @@
+name: FLUXES
+description: Define a custom content type to create FLUXES volumes and articles
+package: CP
+type: module
+core_version_requirement: ^9 || ^10
+dependencies:
+  - drupal:layout_builder
+  - drupal:layout_discovery
+  - drupal:views
+  - pathauto:pathauto
+libraries:
+  - cp_fluxes/style

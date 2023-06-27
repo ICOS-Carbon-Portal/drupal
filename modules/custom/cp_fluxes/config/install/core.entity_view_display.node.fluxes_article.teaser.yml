@@ -1,0 +1,151 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.fluxes_article.body
+    - field.field.node.fluxes_article.field_author
+    - field.field.node.fluxes_article.field_key_messages
+    - field.field.node.fluxes_article.field_topics
+    - field.field.node.fluxes_article.field_volume_reference
+    - field.field.node.fluxes_article.layout_builder__layout
+    - node.type.fluxes_article
+  module:
+    - layout_builder
+    - layout_discovery
+    - text
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: layout_twocol_section
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+          column_widths: 50-50
+        components:
+          21bb4f9e-4a31-487f-acb9-542cc29e2cca:
+            uuid: 21bb4f9e-4a31-487f-acb9-542cc29e2cca
+            region: first
+            configuration:
+              id: 'field_block:node:fluxes_article:field_author'
+              label: Author
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: string
+                label: hidden
+                settings:
+                  link_to_entity: false
+                third_party_settings:
+                  linked_field:
+                    linked: 0
+                    type: field
+                    destination:
+                      field: ''
+                      custom: ''
+                    advanced:
+                      title: ''
+                      target: ''
+                      class: ''
+                      rel: ''
+                      text: ''
+                    token: ''
+            weight: 1
+            additional: {  }
+          e6f71b36-c610-4b77-8f2e-49af8185d974:
+            uuid: e6f71b36-c610-4b77-8f2e-49af8185d974
+            region: first
+            configuration:
+              id: 'field_block:node:fluxes_article:field_topics'
+              label: Topics
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: string
+                label: above
+                settings:
+                  link_to_entity: false
+                third_party_settings:
+                  linked_field:
+                    linked: 0
+                    type: field
+                    destination:
+                      field: ''
+                      custom: ''
+                    advanced:
+                      title: ''
+                      target: ''
+                      class: ''
+                      rel: ''
+                      text: ''
+                    token: ''
+            weight: 2
+            additional: {  }
+          1f0c1daa-1789-44b2-814f-a9278ca1ecfc:
+            uuid: 1f0c1daa-1789-44b2-814f-a9278ca1ecfc
+            region: first
+            configuration:
+              id: 'field_block:node:fluxes_article:field_key_messages'
+              label: 'Key messages'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: basic_string
+                label: above
+                settings: {  }
+                third_party_settings:
+                  linked_field:
+                    linked: 0
+                    type: field
+                    destination:
+                      field: ''
+                      custom: ''
+                    advanced:
+                      title: ''
+                      target: ''
+                      class: ''
+                      rel: ''
+                      text: ''
+                    token: ''
+            weight: 3
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components: {  }
+        third_party_settings: {  }
+id: node.fluxes_article.teaser
+targetEntityType: node
+bundle: fluxes_article
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_author: true
+  field_key_messages: true
+  field_topics: true
+  field_volume_reference: true
+  layout_builder__layout: true
+  links: true

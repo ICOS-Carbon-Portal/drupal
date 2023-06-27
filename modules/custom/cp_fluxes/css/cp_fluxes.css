@@ -1,0 +1,13 @@
+.node--type-fluxes-volume .field--name-field-image {
+	margin: 0
+}
+
+@media all and (min-width: 620px) {
+	.node--type-fluxes-volume .layout__region--first {
+		padding-right: 10px;
+	}
+
+	.node--type-fluxes-volume .layout__region--second {
+		padding-left: 10px;
+	}
+}

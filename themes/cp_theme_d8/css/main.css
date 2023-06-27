@@ -529,5 +529,9 @@ body,
 }
 
 .block-wide:not(.layout-builder-block) .layout-container {
-  padding: 0 15px;
+  padding: 15px;
+}
+
+.block-wide:not(.layout-builder-block) h2 {
+  margin-top: 2rem;
 }

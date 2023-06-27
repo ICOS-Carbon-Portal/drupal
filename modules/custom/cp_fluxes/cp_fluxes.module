@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * Implements hook_preprocess().
+ */
+function cp_fluxes_preprocess_field(&$variables) {
+	$variables['pdf_download_icon_path'] = '/' . \Drupal::service('extension.list.module')->getPath('cp_fluxes') . '/images/pdf-download.svg';
+}
+
+function cp_fluxes_preprocess_node__fluxes_volume(&$variables) {
+	$variables['#attached']['library'][] = 'cp_fluxes/style';
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+function cp_fluxes_theme() {
+	return [
+		'field__node__field_issue_number__fluxes_volume__default' => [
+			'template' => 'field--node--field-issue-number--fluxes-volume--default',
+			'base hook' => 'field'
+		],
+		'field__node__field_link__fluxes_volume__default' => [
+			'template' => 'field--node--field-link--fluxes-volume--default',
+			'base hook' => 'field'
+		],
+		'field__node__field_volume_reference__fluxes_article' => [
+			'template' => 'field--node--field-volume-reference--fluxes-article',
+			'base hook' => 'field'
+		],
+		'field__node__title__fluxes_volume' => [
+			'template' => 'field--node--title--fluxes-volume',
+			'base hook' => 'field'
+		],
+		'fluxes_header' => [
+			'variables' => ['header_image' => NULL],
+			'template' => 'fluxes-header'
+		]
+	];
+}

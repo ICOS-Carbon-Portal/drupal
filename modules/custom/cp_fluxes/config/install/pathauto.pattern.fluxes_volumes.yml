@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: fluxes_volumes
+label: 'Fluxes volumes'
+type: 'canonical_entities:node'
+pattern: '/fluxes/[node:field_issue_number]'
+selection_criteria:
+  b1f91156-9649-47e4-9df0-60752e40c9f5:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: b1f91156-9649-47e4-9df0-60752e40c9f5
+    context_mapping:
+      node: node
+    bundles:
+      fluxes_volume: fluxes_volume
+selection_logic: and
+weight: -6
+relationships: {  }

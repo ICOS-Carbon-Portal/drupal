@@ -1,0 +1,267 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.fluxes_volume.body
+    - field.field.node.fluxes_volume.field_image
+    - field.field.node.fluxes_volume.field_issue_number
+    - field.field.node.fluxes_volume.field_link
+    - field.field.node.fluxes_volume.field_portrait_cover
+    - node.type.fluxes_volume
+    - views.view.fluxes_articles
+  module:
+    - layout_builder
+    - layout_discovery
+    - link
+    - text
+    - user
+    - views
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: false
+    sections:
+      -
+        layout_id: layout_twocol_section
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+          column_widths: 50-50
+        components:
+          19d38a0e-a234-487f-b619-602a3e6d6bae:
+            uuid: 19d38a0e-a234-487f-b619-602a3e6d6bae
+            region: first
+            configuration:
+              id: 'field_block:node:fluxes_volume:body'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 3
+            additional: {  }
+          1558f496-51f0-4848-b935-0a89c5a88391:
+            uuid: 1558f496-51f0-4848-b935-0a89c5a88391
+            region: first
+            configuration:
+              id: 'field_block:node:fluxes_volume:title'
+              label: Title
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: html_title
+                label: hidden
+                settings:
+                  link_to_entity: false
+                third_party_settings:
+                  linked_field:
+                    linked: 0
+                    type: custom
+                    destination:
+                      field:
+                        field: ''
+                        custom:
+                          custom: Array
+                      custom: Array
+                    advanced:
+                      title: ''
+                      target: ''
+                      class: ''
+                      rel: ''
+                      text: ''
+                    token: ''
+            weight: 1
+            additional: {  }
+          1db7d782-3e1c-4160-88eb-227fde1f368a:
+            uuid: 1db7d782-3e1c-4160-88eb-227fde1f368a
+            region: second
+            configuration:
+              id: 'field_block:node:fluxes_volume:field_image'
+              label: 'Landscape cover'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: image
+                label: hidden
+                settings:
+                  image_link: ''
+                  image_style: ''
+                  image_loading:
+                    attribute: lazy
+                  svg_attributes:
+                    width: null
+                    height: null
+                  svg_render_as_image: true
+                third_party_settings:
+                  linked_field:
+                    linked: 0
+                    type: custom
+                    destination:
+                      field:
+                        field: ''
+                        custom:
+                          custom: ''
+                      custom: ''
+                    advanced:
+                      title: ''
+                      target: ''
+                      class: ''
+                      rel: ''
+                      text: ''
+                    token: ''
+            weight: 0
+            additional: {  }
+          b26c7a1a-1947-4449-837f-6a2e25c15cf0:
+            uuid: b26c7a1a-1947-4449-837f-6a2e25c15cf0
+            region: first
+            configuration:
+              id: 'field_block:node:fluxes_volume:field_issue_number'
+              label: 'Issue number'
+              label_display: '0'
+              provider: layout_builder
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+              formatter:
+                type: number_integer
+                label: hidden
+                settings:
+                  thousand_separator: ''
+                  prefix_suffix: true
+                third_party_settings:
+                  linked_field:
+                    linked: 0
+                    type: custom
+                    destination:
+                      field:
+                        field: ''
+                        custom:
+                          custom: ''
+                      custom: ''
+                    advanced:
+                      title: ''
+                      target: ''
+                      class: ''
+                      rel: ''
+                      text: ''
+                    token: ''
+            weight: 2
+            additional: {  }
+          233e41f4-b5b3-41d8-8e7a-d3a8a2a8fff9:
+            uuid: 233e41f4-b5b3-41d8-8e7a-d3a8a2a8fff9
+            region: second
+            configuration:
+              id: 'field_block:node:fluxes_volume:field_link'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: link
+                label: above
+                settings:
+                  trim_length: 80
+                  url_only: false
+                  url_plain: false
+                  rel: ''
+                  target: ''
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          b0aa5ffd-1bff-4e09-993b-c437e4f869f3:
+            uuid: b0aa5ffd-1bff-4e09-993b-c437e4f869f3
+            region: content
+            configuration:
+              id: 'views_block:fluxes_articles-block_1'
+              label: ''
+              label_display: '0'
+              provider: views
+              context_mapping: {  }
+              views_label: ''
+              items_per_page: none
+            weight: 0
+            additional: {  }
+        third_party_settings: {  }
+id: node.fluxes_volume.default
+targetEntityType: node
+bundle: fluxes_volume
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_image:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+    third_party_settings: {  }
+    weight: 104
+    region: first
+  field_issue_number:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_link:
+    type: link
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 106
+    region: first
+  field_portrait_cover:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+    third_party_settings: {  }
+    weight: 105
+    region: first
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

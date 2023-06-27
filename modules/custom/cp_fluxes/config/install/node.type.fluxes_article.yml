@@ -1,0 +1,9 @@
+langcode: en
+status: true
+name: 'Fluxes article'
+type: fluxes_article
+description: 'Use <em>FLUXES articles</em> for content published in the FLUXES bulletin.'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false
