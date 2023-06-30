@@ -33,6 +33,10 @@ function cp_fluxes_theme() {
 			'template' => 'field--node--title--fluxes-volume',
 			'base hook' => 'field'
 		],
+		'node__fluxes_volume__teaser' => [
+			'template' => 'node--fluxes-volume--teaser',
+			'base hook' => 'node'
+		],
 		'fluxes_header' => [
 			'variables' => ['header_image' => NULL],
 			'template' => 'fluxes-header'

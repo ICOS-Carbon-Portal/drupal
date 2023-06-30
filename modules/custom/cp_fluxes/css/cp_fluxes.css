@@ -2,6 +2,14 @@
 	margin: 0
 }
 
+.view-fluxes-volumes .field-link::before {
+	font-family: "Font Awesome 5 Free";
+	content: "\f105";
+	color: var(--icos-cyan);
+	font-weight: 900;
+	margin: 0 0.3rem;
+}
+
 @media all and (min-width: 620px) {
 	.node--type-fluxes-volume .layout__region--first {
 		padding-right: 10px;
