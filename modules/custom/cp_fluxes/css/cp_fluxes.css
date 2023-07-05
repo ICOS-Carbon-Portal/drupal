@@ -10,6 +10,11 @@
 	margin: 0 0.3rem;
 }
 
+.field--name-field-topics .field__label,
+.field--name-field-key-messages .field__label {
+	padding: 0.5em 0;
+}
+
 @media all and (min-width: 620px) {
 	.node--type-fluxes-volume .layout__region--first {
 		padding-right: 10px;
