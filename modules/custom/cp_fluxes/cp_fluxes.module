@@ -48,6 +48,10 @@ function cp_fluxes_theme() {
 		'fluxes_full_issue_link' => [
 			'variables' => ['icon' => NULL],
 			'template' => 'fluxes-full-issue-link'
+		],
+		'fluxes_past_issues' => [
+			'variables' => ['icon' => NULL],
+			'template' => 'fluxes-past-issues'
 		]
 	];
 }
