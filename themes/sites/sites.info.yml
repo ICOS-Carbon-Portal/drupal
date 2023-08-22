@@ -1,14 +1,18 @@
 name: SITES
 description: 'The SITES theme.'
-logo: 'sites-logo.jpg'
+logo: 'SITES-logo.svg'
 package: SITES
 
 type: theme
 core_version_requirement: ^9
+generator: 'starterkit_theme:9.5.9'
 
-base theme: bartik
+base theme: stable9
 
 libraries:
+  - sites/base
+  - sites/messages
+  - core/normalize
   - sites/global
 
 regions:
@@ -27,8 +31,3 @@ regions:
   footer_first: 'Footer first'
   footer_second: 'Footer second'
   footer_third: 'Footer third'
-
-stylesheets-remove:
-  - '@bartik/css/components/primary-menu.css'
-  - '@bartik/css/maintenance-page.css'
-  - '@bartik/css/base/elements.css'

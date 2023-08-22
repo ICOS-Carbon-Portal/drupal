@@ -5,6 +5,11 @@
   font-size: 1.071rem;
 }
 
+.breadcrumb ol {
+  list-style: none;
+  padding: 0;
+}
+
 .breadcrumb li::before {
   content: none;
 }
