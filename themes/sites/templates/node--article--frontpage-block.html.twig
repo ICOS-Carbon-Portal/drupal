@@ -82,9 +82,11 @@
 <article{{ attributes.addClass(classes) }}>
 
   {% if content.field_image.0 %}
-    <a href="{{ url }}">
-      <img src="{{ content.field_image.0['#markup'] }}" class="img-fluid rounded-4 mb-3">
-    </a>
+    <div class="field field--name-field-image field--type-image">
+      <a href="{{ url }}">
+        <img src="{{ content.field_image.0['#markup'] }}" class="img-fluid rounded-4 mb-3">
+      </a>
+    </div>
   {% endif %}
 
   {{ title_prefix }}
