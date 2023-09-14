@@ -524,8 +524,7 @@ body,
   position: relative;
   left: 50%;
   right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  margin: 1rem -50vw;
 }
 
 .block-wide:not(.layout-builder-block) .layout-container {
