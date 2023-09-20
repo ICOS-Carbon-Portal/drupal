@@ -4,4 +4,5 @@ package: CP
 type: module
 core_version_requirement: ^8.8 || ^9
 libraries:
-  - cp_station_list/station-list
+  - cp_station_list/datatables-page
+  - cp_station_list/station-list-block

@@ -1,4 +1,4 @@
-station-list:
+datatables-page:
   css:
     theme:
       //cdn.datatables.net/1.11.2/css/dataTables.bootstrap5.min.css: { type: external, minified: true }
@@ -17,3 +17,9 @@ station-list:
     - core/drupalSettings
     - core/jquery
     - core/jquery.once
+
+station-list-block:
+  js:
+    //static.icos-cp.eu/constant/misc/countries.js: { type: external, minified: true }
+    //static.icos-cp.eu/share/stationscommon/stations.js: { type: external, minified: true }
+    js/block.js: {}

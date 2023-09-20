@@ -56,10 +56,10 @@
 			case "stationId":
 				const matches = properties[key].match(/<a.* href="(.*?)">.*?<\/a>/);
 				return matches ? matches[1] : properties[key];
-			
+
 			case "pi":
 				return properties[key].replace(/<br>/g, " ");
-			
+
 			default:
 				return properties[key];
 		}
@@ -70,7 +70,7 @@
 			type: "FeatureCollection",
 			features: []
 		};
-		const dynamicPropIdxs = stationList.propertyCols.map(key => 
+		const dynamicPropIdxs = stationList.propertyCols.map(key =>
 			Vars.hasOwnProperty(key) ? varNameIdx(Vars[key]) : undefined
 		);
 
@@ -84,13 +84,13 @@
 			};
 			const dynamicProps = stationList.propertyCols.reduce((acc, key, idx) => {
 				const rowIdx = dynamicPropIdxs[idx];
-				
+
 				if (rowIdx === undefined)
 					acc[key] = "";
-				
+
 				else
 					acc[key] = row[rowIdx];
-				
+
 				return acc;
 			}, {});
 			Object.assign(props, dynamicProps);
@@ -101,24 +101,24 @@
 				if (props.hasOwnProperty('Position'))
 					props.Position = `${lon} ${lat}`;
 				acc.features.push(getFeature("Point", [lon, lat], props));
-			
+
 			} else if (row[stationList.geoJsonIdx]){
 				const geoJsonFeature = JSON.parse(row[stationList.geoJsonIdx]);
 
 				if (geoJsonFeature.features)
 					geoJsonFeature.features.forEach(f => {
-						
+
 						const {type, coordinates} = f.geometry;
 						acc.features.push(getFeature(type, coordinates, props));
 					});
 
 				else if(geoJsonFeature.geometries)
 					geoJsonFeature.geometries.forEach(g => acc.features.push(getFeature(g.type, g.coordinates, props)));
-				
+
 				else
 					acc.features.push(getFeature(geoJsonFeature.type, geoJsonFeature.coordinates, props));
 			}
-			
+
 			return acc;
 		}, geoJson);
 	}
@@ -151,12 +151,12 @@
 		const element = document.createElement('a');
 		element.setAttribute('href', mime + encodeURIComponent(text));
 		element.setAttribute('download', filename);
-		  
+
 		element.style.display = 'none';
 		document.body.appendChild(element);
-		  
+
 		element.click();
-		  
+
 		document.body.removeChild(element);
 	}
 
@@ -238,7 +238,7 @@
 					.fail(function (err) {
 						console.log(err);
 					});
-				
+
 				$("#kmlExportBtn").click(stationsToKML);
 				$("#csvExportBtn").click(stationsToCSV);
 			});
