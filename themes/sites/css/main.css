@@ -55,6 +55,7 @@ h2 {
 .block-language {
   position: absolute;
   right: 1rem;
+  margin-top: 0.5rem;
 }
 
 .block-language .links {
@@ -184,12 +185,12 @@ body:not(:target) .region-primary-menu .menu-item {
 }
 
 .block-link-box {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
-@media all and (min-width: 560px) {
+@media all and (min-width: 980px) {
   .block-link-box {
-    margin: 1rem;
+    margin: 1rem 1rem 2rem;
   }
 
   .region-content-left .block-link-box,
@@ -251,7 +252,12 @@ body:not(:target) .region-primary-menu .menu-item {
   object-fit: none;
 }
 
-@media all and (max-width: 576px) {
+.node__meta {
+  color: var(--bs-secondary);
+  padding-bottom: 0.5rem;
+}
+
+@media all and (max-width: 980px) {
   .primary-nav-menu-item-has-children > .nav-link::after {
     float: right;
   }
@@ -260,7 +266,7 @@ body:not(:target) .region-primary-menu .menu-item {
   }
 }
 
-@media all and (min-width: 576px) {
+@media all and (min-width: 980px) {
   #menu-button {
     display: none;
   }
