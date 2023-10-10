@@ -59,6 +59,10 @@ a:active,
 	max-width: 1200px;
 }
 
+iframe {
+  max-width: 100%;
+}
+
 @media all and (min-width: 851px) {
   .layout-sidebar-second .main-content {
     width: 66%;
