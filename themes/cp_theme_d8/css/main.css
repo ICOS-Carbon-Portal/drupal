@@ -79,9 +79,6 @@ iframe {
 .block-views .view-news .views-field.views-field-field-image img,
 .views-field-field-cp-event-picture img {
   float: right;
-  width: 6vw;
-  height: 6vw;
-  object-fit: cover;
   margin-left: 2rem;
 }
 
@@ -134,7 +131,7 @@ a[target=_blank]::after {
 
 .path-frontpage .sidebar .more-link {
   text-transform: uppercase;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
 }
 
 .main-content h2 {
@@ -251,6 +248,10 @@ h3 {
 body,
 .site-footer {
   background: var(--icos-grey-75);
+}
+
+.site-footer {
+  padding: 4rem 1rem;
 }
 
 .site-footer h2,

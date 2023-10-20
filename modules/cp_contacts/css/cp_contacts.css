@@ -13,9 +13,6 @@
 
 .cp_contacts .picture {
 	margin: 0 1em 1em 0;
-	min-width: 100px;
-	height: 100px;
-	object-fit: cover;
 	border-radius: 50%;
 }
 
