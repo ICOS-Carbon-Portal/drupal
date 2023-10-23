@@ -39,10 +39,11 @@
 %}
 
 {% set image = {
-  '#theme':      'image_style',
-  '#style_name': 'link_box',
-  '#uri':        content['#block_content'].field_image.entity.uri.value,
-  '#alt':        content['#block_content'].field_image.alt,
+  '#theme': 'responsive_image',
+  '#responsive_image_style_id': 'link_box',
+  '#uri': content['#block_content'].field_image.entity.uri.value,
+  '#alt': content['#block_content'].field_image.alt,
+  '#attributes': { width: '372', height: '230' },
 } %}
 
 <div{{ attributes.addClass(classes) }}>
