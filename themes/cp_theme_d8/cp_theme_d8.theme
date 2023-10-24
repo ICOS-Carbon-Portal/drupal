@@ -51,3 +51,19 @@ function cp_theme_d8_theme_suggestions_block_alter(array &$suggestions, array $v
 function cp_theme_d8_preprocess_maintenance_page(&$variables) {
   $variables['#attached']['library'][] = 'cp_theme_d8/maintenance_page';
 }
+
+/**
+ * Implements hook_preprocess_responsive_image()
+ *
+ * {@inheritDoc}
+ */
+function cp_theme_d8_preprocess_responsive_image(&$variables)
+{
+  $style_id = $variables['responsive_image_style_id'];
+  if ($style_id === 'square_100') {
+    // Set the height + width to the aspect ratio for all images.
+    // Use the largest possible height + width that may be displayed.
+    $variables['img_element']['#attributes']['height'] = 100;
+    $variables['img_element']['#attributes']['width'] = 100;
+  }
+}

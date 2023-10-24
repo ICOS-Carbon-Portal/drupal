@@ -179,6 +179,7 @@ h3 {
 .header-links {
   margin: 2rem 0 -1rem;
   font-size: 1rem;
+  height: 21px;
 }
 
 .header-link {
