@@ -148,6 +148,7 @@ h3 {
 #header {
   height: 150px;
   background-image: url(../images/icos-header.jpg);
+  background-image: image-set("../images/icos-header-medium.webp" 1x, "../images/icos-header-large.webp" 2x);
   background-size: cover;
 }
 
