@@ -78,7 +78,7 @@
   ]
 %}
 
-{{ attach_library('classy/node') }}
+{{ attach_library('sites/node') }}
 <article{{ attributes.addClass(classes) }}>
 
   {% if content.field_image.0 %}
@@ -89,6 +89,10 @@
     </div>
   {% endif %}
 
+  <div class="node__meta text-muted">
+    {{ node.createdtime | date("d F Y") }}
+  </div>
+
   {{ title_prefix }}
   {% if label and not page %}
     <h3{{ title_attributes.addClass('fs-4') }}>
@@ -96,9 +100,5 @@
     </h3>
   {% endif %}
   {{ title_suffix }}
-
-  <div class="node__meta text-muted">
-    {{ node.createdtime | date("d F Y") }}
-  </div>
 
 </article>
