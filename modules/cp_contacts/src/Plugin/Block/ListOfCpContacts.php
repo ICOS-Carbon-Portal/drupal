@@ -21,9 +21,8 @@ class ListOfCpContacts extends BlockBase {
 		$default_picture = \Drupal::service('file_url_generator')->generateAbsoluteString($contact_module_path . '/images/person_male.jpg');
 
 		$node_view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
-		$nids = \Drupal::entityTypeManager()
-			->getStorage('node')
-			->getQuery()
+		$nids = \Drupal::entityQuery('node')
+			->accessCheck(TRUE)
 			->condition('type', 'cp_contact')
 			->condition('status', 1)
 			->condition('field_cp_contact_group', $contact_group)
