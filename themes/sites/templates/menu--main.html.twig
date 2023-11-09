@@ -32,16 +32,23 @@
 {% macro menu_links(items, attributes, menu_level, variables) %}
 	{% import _self as menus %}
 	{% if items %}
-		<ul class="navbar-nav">
+		{% set list_classes = [
+				menu_level == 1 ? 'dropdown-menu',
+				'navbar-nav',
+				'me-auto'
+			]
+		%}
+		<ul {{ attributes.addClass(list_classes) }}">
 		{% for item in items %}
 			{% set item_classes = [
-					menu_level == 0 and item.below ? 'primary-nav-menu-item-has-children',
+					menu_level == 0 and item.below ? 'primary-nav-menu-item-has-children dropdown',
 					'nav-item'
 				]
 			%}
 			<li{{ item.attributes.addClass(item_classes) }}>
 				{% set link_classes = [
 						menu_level == 0 and item.in_active_trail ? 'active-trail',
+						menu_level > 0 ? 'dropdown-item',
 						'nav-link'
 					]
 				%}

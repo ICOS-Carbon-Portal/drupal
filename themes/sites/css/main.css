@@ -50,12 +50,6 @@ img {
   font-weight: bold;
 }
 
-.region-header {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem 0;
-}
-
 .region-header .site-branding {
   float: none;
   margin-top: 0;
@@ -118,20 +112,8 @@ img {
   position: relative;
 }
 
-.primary-nav-menu-item-has-children .navbar-nav {
-  display: none;
-}
-
 .primary-nav-menu-item-has-children.open .navbar-nav {
   display: block;
-}
-
-.primary-nav-menu-item-has-children > .nav-link::after {
-  font-family: "Font Awesome 5 Free";
-  content: "\f078";
-  font-size: 0.7rem;
-  font-weight: 900;
-  margin: 0 0.3rem;
 }
 
 .nav-link,
@@ -286,6 +268,10 @@ blockquote {
   .primary-nav-menu-item-has-children .navbar-nav {
     padding-left: 2rem;
   }
+  .dropdown-item:hover,
+  .dropdown-item:focus {
+    background-color: transparent;
+  }
 }
 
 @media all and (min-width: 980px) {
@@ -305,14 +291,18 @@ blockquote {
     box-shadow: 0 1px 36px rgba(0, 0, 0, 0.08);
     z-index: 1;
     min-width: 150px;
-    background: #fff;
   }
-  .primary-nav-menu-item-has-children .navbar-nav .nav-link,
-  .primary-nav-menu-item-has-children .navbar-nav .nav-link:hover {
-    color: var(--bs-body-color);
+
+  .primary-nav-menu-item-has-children>.nav-link::after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f078";
+    font-size: 0.7rem;
+    font-weight: 900;
+    margin: 0 0.3rem;
   }
-  .primary-nav-menu-item-has-children .navbar-nav .nav-link:hover {
-    background-color: var(--bs-gray-100);
+
+  .primary-nav-menu-item-has-children .navbar-nav {
+    display: none;
   }
 }
 

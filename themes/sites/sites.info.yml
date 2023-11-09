@@ -4,7 +4,7 @@ logo: 'SITES-logo.svg'
 package: SITES
 
 type: theme
-core_version_requirement: ^9
+core_version_requirement: ^9 || ^10
 generator: 'starterkit_theme:9.5.9'
 
 base theme: stable9
