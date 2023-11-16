@@ -12,14 +12,12 @@ global:
   js:
     //cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js: { type: external, minified: true }
     js/main.js: {}
-    js/menu.js: {}
     js/cookie-notice.js: {}
 
   dependencies:
     - core/drupal
     - core/drupalSettings
-    - core/jquery
-    - core/jquery.once
+    - core/once
 
 menu-login:
   js:
@@ -29,7 +27,7 @@ menu-login:
     - core/drupal
     - core/drupalSettings
     - core/jquery
-    - core/jquery.once
+    - core/once
 
 freshdesk:
   js:

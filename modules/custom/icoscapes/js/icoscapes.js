@@ -197,7 +197,7 @@
 
   Drupal.behaviors.icoscapesBehavior = {
     attach: function (context) {
-      $('body', context).once('icoscapesBehavior').each(function () {
+      once('icoscapesBehavior', 'body', context).forEach(function () {
         loadMap();
       });
     }

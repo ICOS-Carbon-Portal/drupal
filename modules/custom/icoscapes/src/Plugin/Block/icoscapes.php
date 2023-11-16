@@ -13,8 +13,9 @@ use Drupal\Core\Block\BlockBase;
 class Icoscapes extends BlockBase {
 
   function build() {
-    $header_image = file_create_url(drupal_get_path('module', 'icoscapes') . '/images/ICOScapes_header.png');
-    $map_background = file_create_url(drupal_get_path('module', 'icoscapes') . '/images/ICOScapes_Photo_Campaign_map.png');
+    $icoscapes_module_path = \Drupal::service('extension.list.module')->getPath('icoscapes');
+    $header_image = \Drupal::service('file_url_generator')->generateAbsoluteString($icoscapes_module_path . '/images/ICOScapes_header.png');
+    $map_background = \Drupal::service('file_url_generator')->generateAbsoluteString($icoscapes_module_path . '/images/ICOScapes_Photo_Campaign_map.png');
 
     return array(
       '#theme' => 'icoscapes_block',

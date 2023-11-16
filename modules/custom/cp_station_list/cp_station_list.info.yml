@@ -2,7 +2,7 @@ name: Station list
 description: Create a page that displays all ICOS stations in a table
 package: CP
 type: module
-core_version_requirement: ^8.8 || ^9
+core_version_requirement: ^9 || ^10
 libraries:
   - cp_station_list/datatables-page
   - cp_station_list/station-list-block

@@ -228,7 +228,7 @@
 
 	Drupal.behaviors.stationListBehavior = {
 		attach: function (context) {
-			$('body', context).once('stationListBehavior').each(function () {
+			once('stationListBehavior', 'body', context).forEach(function () {
 
 				$.when(fetchMergeParseStations(new StationParser(countries)))
 					.then(stations => {

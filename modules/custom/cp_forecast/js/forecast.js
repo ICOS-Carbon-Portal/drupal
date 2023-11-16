@@ -1,7 +1,7 @@
 (function ($, Drupal) {
   Drupal.behaviors.forecastBehavior = {
     attach: function (context) {
-      $('body', context).once('forecastBehavior').each(function () {
+      once('forecastBehavior', 'body', context).forEach(function () {
         getStations();
       });
     }

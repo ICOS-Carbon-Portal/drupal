@@ -1,10 +1,10 @@
 // This library is included for /data-products/xxx pages by the theme config
 // A config object needs be included in the page content
 
-(function ($, Drupal, drupalSettings) {
+(function ($, Drupal) {
 	Drupal.behaviors.productPageBehavior = {
 		attach: function(context, settings) {
-			$('body', context).once('productPageBehavior').each(function() {
+			once('productPageBehavior', 'body', context).forEach(function() {
 				const tables = settings.data_product_preview;
 				$.each(tables, function(index, value) {
 					displayPreviewTable(value);
@@ -133,4 +133,4 @@
 			$(`#${tableConfig.param[0]}-table`).show();
 		})
 	}
-})(jQuery, Drupal, drupalSettings);
+})(jQuery, Drupal);
