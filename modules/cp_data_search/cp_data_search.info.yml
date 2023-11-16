@@ -3,7 +3,7 @@ description: Initial portal search
 package: CP
 
 type: module
-core_version_requirement: ^8.8 || ^9
+core_version_requirement: ^9 || ^10
 
 libraries:
   - cp_data_search/style

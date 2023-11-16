@@ -10,5 +10,4 @@ script:
     js/cp_data_search.js: {}
 
   dependencies:
-    - core/jquery
-    - core/jquery.once
+    - core/once
