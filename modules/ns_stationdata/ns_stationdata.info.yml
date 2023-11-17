@@ -3,7 +3,7 @@ description: NordSpec Station Data fields and list.
 package: NS
 
 type: module
-core_version_requirement: ^8.8 || ^9
+core_version_requirement: ^9 || ^10
 
 libraries:
   - ns_stationdata/style
