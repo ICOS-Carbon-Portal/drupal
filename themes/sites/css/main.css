@@ -248,6 +248,18 @@ blockquote {
   }
 }
 
+.mailchimp-signup-subscribe-form {
+  background: url(../images/newsletter_texture.3c173f76ba3ff.svg) no-repeat center top/cover #61AB43;
+  text-align: center;
+  color: white;
+  border-radius: 25px;
+  padding: 0.5rem 0 1rem 0;
+}
+
+.mailchimp-signup-subscribe-form h2 {
+  font-weight: bold;
+}
+
 @media all and (max-width: 980px) {
   .primary-nav-menu-item-has-children > .nav-link::after {
     float: right;
