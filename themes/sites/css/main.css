@@ -1,6 +1,12 @@
+:root {
+  --sites-green: #61AB43;
+}
+
 body {
   font-family: "SourceSansPro", sans-serif;
   font-size: 16px;
+  background-color: var(--sites-green);
+  background: rgba(20, 25, 31, 0.80);
 }
 
 .page-node-type-cp-event .block-page-title-block,
@@ -20,6 +26,21 @@ h2 {
   padding: 1rem 0 0.5rem;
 }
 
+.path-frontpage .badge:hover {
+  --bs-bg-opacity: 0.35;
+}
+
+.path-frontpage .badge:hover i {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  transition-duration: .15s;
+  transform: scale(1.2);
+}
+
+.path-frontpage .badge .blurred {
+  filter: blur(6px);
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -36,7 +57,7 @@ img {
   min-height: 126px;
   margin: 0 auto;
   background: url(../images/header.webp) no-repeat center top/cover;
-  border-top: 8px solid #61AB43;
+  border-top: 8px solid var(--sites-green);
 }
 
 .path-frontpage .header {
@@ -66,10 +87,6 @@ img {
 
 .language-link.is-active {
   display: none;
-}
-
-.region-breadcrumb {
-  padding: 0 1rem 0.25em;
 }
 
 .main-content .section {
@@ -147,7 +164,7 @@ body:not(:target) .region-primary-menu .menu-item {
 }
 
 .banner {
-  background: #61AB43;
+  background: var(--sites-green);
 }
 
 .page {
@@ -165,22 +182,11 @@ body:not(:target) .region-primary-menu .menu-item {
   margin-bottom: 2rem;
 }
 
-@media all and (min-width: 980px) {
-  .block-link-box {
-    margin: 1rem 1rem 2rem;
-  }
-
-  .region-content-left .block-link-box,
-  .region-content-right .block-link-box {
-    margin: 0;
-  }
-
-  .layout__region--first .block-link-box {
-    margin-left: 0;
-  }
-
-  .layout__region--third .block-link-box {
-    margin-right: 0;
+@media all and (min-width: 560px) {
+  .layout--threecol-section,
+  .layout--fourcol-section {
+    flex-wrap: nowrap;
+    gap: 1.5rem;
   }
 }
 
@@ -249,7 +255,7 @@ blockquote {
 }
 
 .mailchimp-signup-subscribe-form {
-  background: url(../images/newsletter_texture.3c173f76ba3ff.svg) no-repeat center top/cover #61AB43;
+  background: url(../images/newsletter_texture.3c173f76ba3ff.svg) no-repeat center top/cover var(--sites-green);
   text-align: center;
   color: white;
   border-radius: 25px;

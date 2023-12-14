@@ -122,6 +122,9 @@ global:
 front:
   js:
     js/badge-count.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
 maintenance_page:
   css:
     theme:

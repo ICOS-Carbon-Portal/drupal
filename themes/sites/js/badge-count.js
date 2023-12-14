@@ -27,7 +27,7 @@ Drupal.behaviors.sites = {
 			}).then(response => response.json())
 				.then(json => {
 					badge.textContent = json.results.bindings[0].count.value;
-					badge.classList.remove('opacity-0');
+					badge.classList.remove('blurred');
 				});
 		});
 	}
