@@ -184,14 +184,16 @@ body:not(:target) .region-primary-menu .menu-item {
 
 @media all and (min-width: 640px) {
   .layout .layout__region .block-link-box {
-    margin: 1rem 1rem 2rem;
+    margin: 1rem 1.5rem 2rem;
   }
 
-  .layout .layout__region:first-child .block-link-box {
+  .layout .layout__region .block-link-box {
     margin-left: 0;
   }
 
-  .layout .layout__region:last-child .block-link-box {
+  .layout--twocol-section .layout__region--second .block-link-box,
+  .layout--threecol-section .layout__region--third .block-link-box,
+  .layout--fourcol-section .layout__region--fourth .block-link-box {
     margin-right: 0;
   }
 }
