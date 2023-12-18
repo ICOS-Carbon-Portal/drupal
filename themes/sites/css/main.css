@@ -9,10 +9,10 @@ body {
   background: rgba(20, 25, 31, 0.80);
 }
 
-.page-node-type-cp-event .block-page-title-block,
+/* .page-node-type-cp-event .block-page-title-block,
 .node--type-article {
   max-width: 90ch;
-}
+} */
 
 h1 {
   padding-bottom: 1rem;
@@ -176,6 +176,15 @@ body:not(:target) .region-primary-menu .menu-item {
   background: rgba(20, 25, 31, 0.80);
   padding: 2rem 0;
   color: white;
+
+  & h2 {
+    font-size: 1.75rem;
+    margin-top: 0;
+  }
+
+  & p {
+    margin-bottom: 0.5rem;
+  }
 }
 
 .block-link-box {
@@ -262,12 +271,21 @@ blockquote {
   }
 }
 
+.marked-link:before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f105";
+  font-weight: 900;
+  margin: 0 0.3rem;
+  color: white;
+}
+
 .mailchimp-signup-subscribe-form {
   background: url(../images/newsletter_texture.3c173f76ba3ff.svg) no-repeat center top/cover var(--sites-green);
   text-align: center;
   color: white;
   border-radius: 25px;
   padding: 0.5rem 0 1rem 0;
+  margin-bottom: 3rem;
 }
 
 .mailchimp-signup-subscribe-form h2 {

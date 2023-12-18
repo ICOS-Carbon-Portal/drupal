@@ -15,6 +15,12 @@ libraries:
   - core/normalize
   - sites/global
 
+libraries-override:
+  filter/caption:
+    css:
+      theme:
+        css/filter/filter.caption.css: {}
+
 regions:
   header: Header
   primary_menu: 'Primary menu'
