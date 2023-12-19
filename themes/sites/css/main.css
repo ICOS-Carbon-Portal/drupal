@@ -66,6 +66,10 @@ img {
   font-weight: bold;
 }
 
+.path-blog .view-content {
+  max-width: 90ch;
+}
+
 .region-header .site-branding {
   float: none;
   margin-top: 0;
