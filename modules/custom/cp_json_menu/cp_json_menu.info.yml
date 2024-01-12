@@ -3,3 +3,5 @@ description: Define's a custom JSON API Resource for the menu
 package: CP
 type: module
 core_version_requirement: ^9 || ^10
+dependencies:
+  - 'drupal:rest'
