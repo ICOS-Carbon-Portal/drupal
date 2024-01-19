@@ -184,6 +184,10 @@ body:not(:target) .region-primary-menu .menu-item {
   & p {
     margin-bottom: 0.5rem;
   }
+
+  & .region-footer-first {
+    flex-grow: 1;
+  }
 }
 
 .block-link-box {

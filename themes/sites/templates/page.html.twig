@@ -83,13 +83,5 @@
 
 </div>{# /.layout-container #}
 
-{% if page.footer_first or page.footer_second or page.footer_third %}
-  <footer class="site-footer" role="contentinfo">
-    <div class="layout-container p-3 d-flex justify-content-between">
-      {{ page.footer_first }}
-      {{ page.footer_second }}
-      {{ page.footer_third }}
-    </div>
-  </footer>
-{% endif %}
+{% include '@sites/templates/footer.html.twig' %}
 

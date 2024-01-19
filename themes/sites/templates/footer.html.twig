@@ -1,0 +1,9 @@
+{% if page.footer_first or page.footer_second or page.footer_third %}
+  <footer class="site-footer" role="contentinfo">
+    <div class="layout-container p-3 d-flex justify-content-between gap-5">
+      {{ page.footer_first }}
+      {{ page.footer_second }}
+      {{ page.footer_third }}
+    </div>
+  </footer>
+{% endif %}
