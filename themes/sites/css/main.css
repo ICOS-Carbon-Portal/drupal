@@ -36,6 +36,16 @@ h2 {
   filter: blur(6px);
 }
 
+.path-frontpage .more-link {
+  position: absolute;
+  top: -2.6rem;
+  right: 0;
+}
+
+.path-frontpage .more-link:before {
+  color: rgba(var(--bs-link-color-rgb));
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -274,7 +284,8 @@ blockquote {
   }
 }
 
-.marked-link:before {
+.marked-link:before,
+.more-link:before {
   font-family: "Font Awesome 5 Free";
   content: "\f105";
   font-weight: 900;
