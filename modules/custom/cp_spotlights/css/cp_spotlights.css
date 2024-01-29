@@ -7,6 +7,11 @@
 		margin: 1rem;
 	}
 
+	.layout__region--second .block-link-box {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
 	.region-content-left .block-link-box,
 	.region-content-right .block-link-box {
 		margin: 0;
