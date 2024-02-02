@@ -165,6 +165,10 @@ h3 {
   display: none;
 }
 
+.align-right {
+  margin-left: 1.5rem;
+}
+
 @media all and (min-width: 800px) {
   #header {
     background-image: image-set("/themes/cp_theme_d8/images/icos-header-medium.webp" 1x, "/themes/cp_theme_d8/images/icos-header-large.webp" 2x);
