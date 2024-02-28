@@ -189,10 +189,15 @@ body:not(:target) .region-primary-menu .menu-item {
   & h2 {
     font-size: 1.75rem;
     margin-top: 0;
+    padding: 1rem 0 0.5rem;
   }
 
   & p {
     margin-bottom: 0.5rem;
+  }
+
+  & .region {
+    padding: 0 0 1rem;
   }
 
   & .region-footer-first {
