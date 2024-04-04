@@ -5,6 +5,7 @@ dependencies:
     - field.field.node.fluxes_volume.body
     - field.field.node.fluxes_volume.field_image
     - field.field.node.fluxes_volume.field_issue_number
+    - field.field.node.fluxes_volume.field_issue_year
     - field.field.node.fluxes_volume.field_link
     - field.field.node.fluxes_volume.field_portrait_cover
     - image.style.thumbnail
@@ -45,6 +46,13 @@ content:
   field_issue_number:
     type: number
     weight: 122
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_issue_year:
+    type: number
+    weight: 127
     region: content
     settings:
       placeholder: ''

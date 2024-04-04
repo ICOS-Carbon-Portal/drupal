@@ -1,0 +1,28 @@
+<?php
+
+use Drupal\Component\Serialization\Yaml;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
+
+/**
+ * @file
+ * Install, update and uninstall functions for the FLUXES module.
+ */
+
+/**
+ * Add issue year to config
+ *
+ */
+function cp_fluxes_update_8001() {
+
+	$module_path = \Drupal::service('extension.list.module')->getPath('cp_fluxes');
+
+	$yml = Yaml::decode(file_get_contents($module_path . '/config/install/field.storage.node.field_issue_year.yml'));
+	if (!FieldStorageConfig::loadByName($yml['entity_type'], $yml['field_name'])) {
+		FieldStorageConfig::create($yml)->save();
+	}
+	$yml = Yaml::decode(file_get_contents($module_path . '/config/install/field.field.node.fluxes_volume.field_issue_year.yml'));
+	if (!FieldConfig::loadByName($yml['entity_type'], $yml['bundle'], $yml['field_name'])) {
+		FieldConfig::create($yml)->save();
+	}
+}

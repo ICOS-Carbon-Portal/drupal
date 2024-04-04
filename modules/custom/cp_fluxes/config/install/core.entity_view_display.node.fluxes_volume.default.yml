@@ -5,11 +5,13 @@ dependencies:
     - field.field.node.fluxes_volume.body
     - field.field.node.fluxes_volume.field_image
     - field.field.node.fluxes_volume.field_issue_number
+    - field.field.node.fluxes_volume.field_issue_year
     - field.field.node.fluxes_volume.field_link
     - field.field.node.fluxes_volume.field_portrait_cover
     - node.type.fluxes_volume
     - views.view.fluxes_articles
   module:
+    - image
     - layout_builder
     - layout_discovery
     - link
@@ -42,41 +44,6 @@ third_party_settings:
                 settings: {  }
                 third_party_settings: {  }
             weight: 3
-            additional: {  }
-          1558f496-51f0-4848-b935-0a89c5a88391:
-            uuid: 1558f496-51f0-4848-b935-0a89c5a88391
-            region: first
-            configuration:
-              id: 'field_block:node:fluxes_volume:title'
-              label: Title
-              label_display: '0'
-              provider: layout_builder
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-              formatter:
-                type: html_title
-                label: hidden
-                settings:
-                  link_to_entity: false
-                third_party_settings:
-                  linked_field:
-                    linked: 0
-                    type: custom
-                    destination:
-                      field:
-                        field: ''
-                        custom:
-                          custom: Array
-                      custom: Array
-                    advanced:
-                      title: ''
-                      target: ''
-                      class: ''
-                      rel: ''
-                      text: ''
-                    token: ''
-            weight: 1
             additional: {  }
           1db7d782-3e1c-4160-88eb-227fde1f368a:
             uuid: 1db7d782-3e1c-4160-88eb-227fde1f368a
@@ -156,6 +123,14 @@ third_party_settings:
                     token: ''
             weight: 2
             additional: {  }
+        third_party_settings: {  }
+      -
+        layout_id: layout_twocol_section
+        layout_settings:
+          label: ''
+          context_mapping: {  }
+          column_widths: 50-50
+        components:
           233e41f4-b5b3-41d8-8e7a-d3a8a2a8fff9:
             uuid: 233e41f4-b5b3-41d8-8e7a-d3a8a2a8fff9
             region: second
@@ -174,7 +149,29 @@ third_party_settings:
                   rel: ''
                   target: ''
                 third_party_settings: {  }
+            weight: 0
+            additional: {  }
+          07ae1228-4d7d-42e8-9153-ae5aed3c185b:
+            uuid: 07ae1228-4d7d-42e8-9153-ae5aed3c185b
+            region: second
+            configuration:
+              id: fluxes_past_issues
+              label: 'FLUXES past issues'
+              label_display: '0'
+              provider: cp_fluxes
+              context_mapping: {  }
             weight: 1
+            additional: {  }
+          5fbfe474-d144-4785-b536-0a1102531c13:
+            uuid: 5fbfe474-d144-4785-b536-0a1102531c13
+            region: first
+            configuration:
+              id: fluxes_full_issue_link
+              label: 'FLUXES full issue link'
+              label_display: '0'
+              provider: cp_fluxes
+              context_mapping: {  }
+            weight: 0
             additional: {  }
         third_party_settings: {  }
       -
@@ -232,6 +229,15 @@ content:
     third_party_settings: {  }
     weight: 102
     region: content
+  field_issue_year:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 107
+    region: first
   field_link:
     type: link
     label: above

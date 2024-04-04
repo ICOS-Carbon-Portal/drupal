@@ -90,7 +90,7 @@
       </h2>
     {% endif %}
     {{ title_suffix }}
-    <h3 style="font-size: 1.092em;">Volume {{ content.field_issue_number.0 }}, {{ node.getCreatedTime | date('Y') }}</h3>
+    <h3 style="font-size: 1.092em;">Volume {{ content.field_issue_number.0 }}, {{ content.field_issue_year.0 }}</h3>
   </header>
   <div{{ content_attributes.addClass('node__content', 'clearfix') }}>
     {{ content.body }}
