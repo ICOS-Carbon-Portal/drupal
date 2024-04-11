@@ -41,6 +41,10 @@ function cp_fluxes_theme() {
 			'template' => 'block--extra-field-block--node--fluxes-article--links',
 			'base hook' => 'block'
 		],
+		'node__fluxes_volume__full' => [
+			'template' => 'node--fluxes-volume--full',
+			'base hook' => 'node'
+		],
 		'node__fluxes_volume__teaser' => [
 			'template' => 'node--fluxes-volume--teaser',
 			'base hook' => 'node'
