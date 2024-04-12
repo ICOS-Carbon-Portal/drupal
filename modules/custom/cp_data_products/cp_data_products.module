@@ -38,6 +38,22 @@ function cp_data_products_theme() {
       'template' => 'field--node--field-map-url',
       'base hook' => 'field'
     ],
+    'field__node__field_disclaimer' => [
+      'template' => 'field--node--field-disclaimer',
+      'base hook' => 'field'
+    ],
+    'field__node__field_citation' => [
+      'template' => 'field--node--field-citation',
+      'base hook' => 'field'
+    ],
+    'field__node__field_cc_licence' => [
+      'template' => 'field--node--field-cc-licence',
+      'base hook' => 'field'
+    ],
+    'field__node__field_doi' => [
+      'template' => 'field--node--field-doi',
+      'base hook' => 'field'
+    ],
     'views_view_unformatted__data_products__page_1' => [
       'template' => 'views-view-unformatted--data-products--page-1',
       'base hook' => 'view'

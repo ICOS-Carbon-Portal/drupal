@@ -33,35 +33,15 @@
  * - field_type: The type of the field.
  * - label_display: The display settings for the label.
  *
- *
  * @see template_preprocess_field()
  */
 #}
-{%
-  set classes = [
-    'field',
-    'field--name-' ~ field_name|clean_class,
-    'field--type-' ~ field_type|clean_class,
-    'field--label-' ~ label_display,
-  ]
-%}
-{%
-  set title_classes = [
-    'field__label',
-    label_display == 'visually_hidden' ? 'visually-hidden',
-  ]
-%}
 
-{% for item in items %}
-  <figure>
-    <div class="mt-5 mb-2" style="min-width:280px; max-width: 425px; height:512px;">
-      <iframe
-        scrolling="no"
-        src="{{ item.content['#url'] }}"
-        style="width:100%; height:100%; border:1px solid darkgray">
-      </iframe>
-    </div>
-    <figcaption{{title_attributes.addClass(title_classes)}}>{{ item.content['#title'] }}</figcaption>
-  </figure>
-{% endfor %}
-
+<div class="alert alert-warning p-4 pb-2 mb-5">
+	<p class="alert-heading">
+		<i class="fas fa-exclamation-triangle me-2"></i><strong>Disclaimer</strong>
+	</p>
+	{% for item in items %}
+		<div{{ attributes }}>{{ item.content }}</div>
+	{% endfor %}
+</div>
