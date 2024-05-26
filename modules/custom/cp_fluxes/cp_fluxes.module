@@ -5,6 +5,7 @@
  */
 function cp_fluxes_preprocess_field(&$variables) {
 	$variables['pdf_download_icon_path'] = '/' . \Drupal::service('extension.list.module')->getPath('cp_fluxes') . '/images/pdf-download.svg';
+	$variables['flipbook_icon_path'] = '/' . \Drupal::service('extension.list.module')->getPath('cp_fluxes') . '/images/flipbook.svg';
 }
 
 function cp_fluxes_preprocess_node__fluxes_volume(&$variables) {
@@ -23,6 +24,10 @@ function cp_fluxes_theme() {
 		],
 		'field__node__field_link__fluxes_volume__default' => [
 			'template' => 'field--node--field-link--fluxes-volume--default',
+			'base hook' => 'field'
+		],
+		'field__node__field_flipbook_link__fluxes_volume__default' => [
+			'template' => 'field--node--field-flipbook-link--fluxes-volume--default',
 			'base hook' => 'field'
 		],
 		'field__node__field_volume_reference__fluxes_article' => [
