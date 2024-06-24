@@ -250,6 +250,12 @@ body:not(:target) .region-primary-menu .menu-item {
   margin-top: 1rem;
 }
 
+.field--name-field-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
 .partners {
   display: flex;
   flex-wrap: wrap;
