@@ -150,7 +150,8 @@ img {
   color: rgba(255, 255, 255, 0.85);
 }
 
-.nav-link:hover, .nav-link:focus {
+.nav-link:hover,
+.nav-link:focus {
   border: none;
 }
 
@@ -285,8 +286,22 @@ body:not(:target) .region-primary-menu .menu-item {
   padding-left: 1rem;
 }
 
+.align-left {
+  float: none;
+  /* Override core's align.module.css. */
+  max-width: 100%;
+  margin-block: 1.5rem;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+}
+
 .align-right {
-  margin-left: 1.5rem;
+  float: none;
+  /* Override core's align.module.css. */
+  max-width: 100%;
+  margin-block: 1.5rem;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
 }
 
 blockquote {
@@ -294,6 +309,7 @@ blockquote {
   background: #eee;
   padding: 1em 2em;
   border-radius: 1em;
+
   p {
     margin: 0;
   }
@@ -322,12 +338,14 @@ blockquote {
 }
 
 @media all and (max-width: 980px) {
-  .primary-nav-menu-item-has-children > .nav-link::after {
+  .primary-nav-menu-item-has-children>.nav-link::after {
     float: right;
   }
+
   .primary-nav-menu-item-has-children .navbar-nav {
     padding-left: 2rem;
   }
+
   .dropdown-item:hover,
   .dropdown-item:focus {
     background-color: transparent;
@@ -338,12 +356,15 @@ blockquote {
   #block-sites-main-menu {
     display: flex;
   }
+
   .primary-nav-menu-item-has-children:hover .navbar-nav {
     display: block;
   }
+
   .primary-nav-menu-item-has-children .navbar-nav {
     position: absolute;
   }
+
   .primary-nav-menu-item-has-children .navbar-nav {
     box-shadow: 0 1px 36px rgba(0, 0, 0, 0.08);
     z-index: 2;
@@ -361,5 +382,23 @@ blockquote {
   .primary-nav-menu-item-has-children .navbar-nav {
     display: none;
   }
-}
 
+  .align-left {
+    float: left;
+    max-width: 50%;
+    margin-block-start: 1rem;
+    margin-block-end: 1rem;
+    margin-inline-start: 0;
+    margin-inline-end: 2rem;
+    /* Extra right margins in case of aligning next to lists. */
+  }
+
+  .align-right {
+    float: right;
+    max-width: 50%;
+    margin-block-start: 1rem;
+    margin-block-end: 1rem;
+    margin-inline-start: 2rem;
+    margin-inline-end: 0;
+  }
+}
