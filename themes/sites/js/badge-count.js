@@ -4,10 +4,18 @@ let datasetCountQuery = `
 prefix cpmeta: <http://meta.icos-cp.eu/ontologies/cpmeta/>
 prefix prov: <http://www.w3.org/ns/prov#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-select (count(?dobj) as ?count) where{
-	?dobj cpmeta:hasObjectSpec ?spec .
-	?dobj cpmeta:hasSizeInBytes ?size .
-	FILTER NOT EXISTS {[] cpmeta:isNextVersionOf ?dobj}
+select (sum(?specCount) as ?count) where{
+	{
+		select ?station ?site ?submitter ?spec (count(?dobj) as ?specCount) where{
+			?dobj cpmeta:wasSubmittedBy/prov:wasAssociatedWith ?submitter .
+			?dobj cpmeta:hasObjectSpec ?spec .
+			OPTIONAL {?dobj cpmeta:wasAcquiredBy/prov:wasAssociatedWith ?station }
+			OPTIONAL {?dobj cpmeta:wasAcquiredBy/cpmeta:wasPerformedAt ?site }
+			?dobj cpmeta:hasSizeInBytes ?size .
+			FILTER NOT EXISTS {[] cpmeta:isNextVersionOf ?dobj}
+		}
+		group by ?spec ?submitter ?station ?site
+	}
 	FILTER(STRSTARTS(str(?spec), "https://meta.fieldsites.se/"))
 	FILTER NOT EXISTS {?spec cpmeta:hasAssociatedProject/cpmeta:hasHideFromSearchPolicy "true"^^xsd:boolean}
 }
