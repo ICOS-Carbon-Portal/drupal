@@ -38,10 +38,6 @@ freshdesk:
       attributes: {async: true, defer: true}
     }
 
-clarity:
-  js:
-    js/clarity.js: {}
-
 maintenance_page:
   css:
     theme:
