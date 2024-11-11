@@ -93,6 +93,7 @@ iframe {
 .toc-js,
 .path-node .field--name-body,
 .main-content .views-field-body,
+.node--type-article .field--name-field-link,
 .view-data-products .view-header,
 .view-data-products h2,
 .view-data-products .views-field-title,
@@ -424,6 +425,10 @@ body,
   margin-right: 1ch;
 }
 
+.layout--twocol-section--67-33 .layout__region.layout__region--first {
+  padding-right: 2rem;
+}
+
 .layout--twocol-section--67-33 .layout__region.layout__region--second {
   padding-left: 1rem;
 }
@@ -497,17 +502,21 @@ body,
   margin-right: 1em;
 }
 
-.block-page-title-block,
-.node--type-article,
-.node--type-cp-event {
-	max-width: 90ch;
+.node--type-cp-event .field--name-body img {
+  margin-bottom: 1rem;
 }
 
-.node--type-article .field--type-image,
-.node--type-cp-event .field--type-image {
-	max-width: 30ch;
-	float: right;
-	margin: 0 0 1em 1em;
+.node--type-article .field--type-image {
+  float: none;
+}
+
+.node--type-article .field--type-image img {
+  margin-bottom: 3rem;
+}
+
+.node__meta {
+  margin: -2rem 0 3rem;
+  font-size: 1rem;
 }
 
 .page-link {
