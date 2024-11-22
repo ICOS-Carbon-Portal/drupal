@@ -19,6 +19,12 @@ function cp_theme_d8_form_system_theme_settings_alter(&$form, &$form_state) {
     '#title'         => t('Enable Freshdesk'),
     '#default_value' => theme_get_setting('freshdesk'),
   );
+
+  $form['cp_theme_d8_settings']['cookie-consent'] = array(
+    '#type'          => 'checkbox',
+    '#title'         => t('Enable cookie consent'),
+    '#default_value' => theme_get_setting('cookie-consent'),
+  );
 }
 
 function cp_theme_d8_preprocess_page(&$variables, $hook) {
@@ -29,6 +35,10 @@ function cp_theme_d8_preprocess_page(&$variables, $hook) {
 
   if (theme_get_setting('freshdesk')) {
     $variables['#attached']['library'][] = 'cp_theme_d8/freshdesk';
+  }
+
+  if (theme_get_setting('cookie-consent')) {
+    $variables['#attached']['library'][] = 'cp_theme_d8/cookie-consent';
   }
 
 }

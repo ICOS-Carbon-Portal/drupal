@@ -400,26 +400,6 @@ body,
   color: var(--icos-cyan);
 }
 
-.eu-cookie-notice {
-  padding: 1rem 0.5rem;
-  text-align: center;
-}
-
-.eu-cookie-notice .info {
-  display: inline;
-  padding-right: 2rem;
-}
-
-.eu-cookie-notice .agree {
-  display: inline;
-}
-
-.eu-cookie-notice .agree input[type="checkbox"] {
-  margin-left: 1rem;
-  vertical-align: middle;
-  cursor: pointer;
-}
-
 .node--type-event .layout--threecol-section > .layout__region {
   flex: 0;
   margin-right: 1ch;

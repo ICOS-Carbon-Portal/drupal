@@ -12,7 +12,6 @@ global:
   js:
     //cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js: { type: external, minified: true }
     js/main.js: {}
-    js/cookie-notice.js: {}
 
   dependencies:
     - core/drupal
@@ -37,6 +36,13 @@ freshdesk:
       minified: true,
       attributes: {async: true, defer: true}
     }
+
+cookie-consent:
+  css:
+    theme:
+      //cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css: {}
+  js:
+    //static.icos-cp.eu/share/cookie-consent/cookieconsent-config.js: { type: external, attributes: {type: module}}
 
 maintenance_page:
   css:
