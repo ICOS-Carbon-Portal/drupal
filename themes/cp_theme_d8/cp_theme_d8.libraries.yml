@@ -31,11 +31,6 @@ menu-login:
 freshdesk:
   js:
     js/freshdesk.js: {}
-    https://euc-widget.freshworks.com/widgets/101000001800.js: {
-      type: external,
-      minified: true,
-      attributes: {async: true, defer: true}
-    }
 
 cookie-consent:
   css:
