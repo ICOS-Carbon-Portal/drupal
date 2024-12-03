@@ -9,11 +9,13 @@
   background-repeat: no-repeat;
   background-size: auto;
   border-bottom: 1px solid #eee;
-  height: 105px;
+  height: 120px;
 }
 
 #header .site-branding__logo img {
   margin: 0;
+  height: 100px;
+  width: auto;
 }
 
 #cp_theme_d8_menu {
