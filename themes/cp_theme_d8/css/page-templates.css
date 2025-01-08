@@ -1,3 +1,10 @@
+/* Only applies to page with the "Full Width" template field selected,
+  which must first be added to the configuration via the Admin interface. 
+  
+  Note that the Title, Header Image, and Introduction will be used to create the
+  header.
+  */
+
 #main-wrapper.template-full-width {
   max-width: 100%;
 
@@ -5,42 +12,11 @@
     margin-top: 0;
   }
 
-  div.region-breadcrumb {
+  .region-breadcrumb {
     position: relative;
     
     #block-cp-theme-d8-breadcrumbs {
       display: none;
-    }
-
-    /* Change how admin tabs are displayed */
-    #block-cp-theme-d8-local-tasks {
-      position: absolute;
-      z-index: 2;
-      top: 1em;
-
-      .tabs ul.primary {
-        background: none;
-        display: block;
-        width: 84px;
-
-        a {
-          border-radius: 6px;
-          border: solid #444 thin;
-          width: 76px;
-          background-color: rgba(0, 0, 0, 0.4);
-          color: white;
-        }
-
-        li {
-          display: block;
-          border-radius: 6px;
-          text-align: center;
-        }
-      }
-
-      div.contextual {
-        display: none;
-      }
     }
   }
 
@@ -66,7 +42,7 @@
     padding: 0;
     margin: 0;
   }
-  
+    
 
   #block-cp-theme-d8-pagetitle {
     position: absolute;
@@ -74,7 +50,7 @@
     width: 100%;
     height: 558px;
 
-    div.content {
+    .content {
       margin: 0;
       display: flex;
       align-items: center;
@@ -132,8 +108,8 @@
     }
   }
  
-
-  .layout .block-field-blocknodepagefield-introduction .content {
+   
+  .block-field-blocknodepagefield-introduction .content {
     margin: 0;
 
     .field--name-field-introduction {
