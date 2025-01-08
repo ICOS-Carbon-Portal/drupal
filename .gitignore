@@ -10,13 +10,10 @@
 
 !modules/custom/
 !modules/cp_blogs/
-!modules/cp_cmis/
 !modules/cp_contacts/
 !modules/cp_data_search/
-!modules/cp_documents/
 !modules/cp_events/
 !modules/cp_external_auth/
-!modules/cp_files/
 !modules/ns_stationdata/
 
 .csslintrc
