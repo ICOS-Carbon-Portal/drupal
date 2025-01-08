@@ -1,3 +1,8 @@
+{% set template_class = "" %}
+{% if node.field_template.value is not iterable 
+   and current_route_name != 'layout_builder.overrides.node.view' %}
+  {% set template_class = ("template-" ~ node.field_template.value)|replace({'_': '-', ' ': '-'}) %}
+{% endif %}
 
 <div id="page-wrapper">
   <div id="page">
@@ -25,7 +30,8 @@
       </div>
     {% endif %}
 
-    <div id="main-wrapper" class="layout-main-wrapper layout-container clearfix">
+<div id="main-wrapper" class="layout-main-wrapper layout-container clearfix {{ template_class }}">
+
       <div id="main" class="layout-main clearfix">
         {{ page.breadcrumb }}
         <main id="content" class="column main-content" role="main">

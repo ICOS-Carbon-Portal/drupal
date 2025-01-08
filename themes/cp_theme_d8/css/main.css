@@ -413,7 +413,12 @@ body,
   padding-left: 1rem;
 }
 
+.block .content:has(.toc-js) {
+  margin-top: 0;
+}
+
 .toc-js {
+  margin-top: 10px;
   margin-bottom: 2rem;
 }
 
@@ -525,19 +530,18 @@ body,
   width: 100%;
 }
 
-.block-wide:not(.layout-builder-block) {
-  max-width: none;
-  width: 100vw;
+.block-wide {
+  width: max(100%, calc(98vw - 30px));
   position: relative;
   left: 50%;
   right: 50%;
-  margin: 1rem -50vw;
+  margin: 1rem -50%;
 }
 
-.block-wide:not(.layout-builder-block) .layout-container {
+.block-wide .layout-container {
   padding: 15px;
 }
 
-.block-wide:not(.layout-builder-block) h2 {
+.block-wide h2 {
   margin-top: 2rem;
 }

@@ -1,24 +1,22 @@
-/db/
-/files/
-/modules/contrib/
-/docker/
-/modules/*
+/composer/
 /config/
+/db/
+/docker/
+/files/
 /libraries/
+/modules/contrib/
+/modules/*
 /themes/contrib/
 
 !modules/custom/
 !modules/cp_blogs/
 !modules/cp_cmis/
 !modules/cp_contacts/
-!modules/cp_datastat/
+!modules/cp_data_search/
 !modules/cp_documents/
-!modules/cp_email/
 !modules/cp_events/
 !modules/cp_external_auth/
 !modules/cp_files/
-!modules/cp_statistics/
-!modules/cp_data_search/
 !modules/ns_stationdata/
 
 .csslintrc
