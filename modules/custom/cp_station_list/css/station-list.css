@@ -1,11 +1,11 @@
 .container-fluid.station-list-container {
   max-width: none;
-  width: 100vw;
+  width: calc(100vw - 20px);
   position: relative;
   left: 50%;
   right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  margin-left: calc(-50vw + 10px);
+  margin-right: calc(-50vw + 10px);
   overflow: auto;
 }
 
