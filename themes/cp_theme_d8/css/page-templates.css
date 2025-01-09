@@ -35,9 +35,16 @@
     }
   }
 
+  /* Ensure wide blocks take up 100% of width and do not cause horizontal scrolling */
+  .block-wide {
+    width: 100%;
+    position: static;
+  }
+
   .layout.layout--onecol,
   .layout .block.block-field-blocknodepagefield-introduction,
-  .layout .block.block-field-blocknodepagefield-header-image {
+  .layout .block.block-field-blocknodepagefield-header-image,
+  .block-wide {
     max-width: 100%;
     padding: 0;
     margin: 0;

@@ -531,11 +531,12 @@ body,
 }
 
 .block-wide {
-  width: max(100%, calc(100vw - 20px));
+  max-width: none;
+  width: 100vw;
   position: relative;
   left: 50%;
   right: 50%;
-  margin: 1rem min(-50%, calc(-50vw + 10px));
+  margin: 1rem -50vw;
 }
 
 .block-wide .layout-container {
