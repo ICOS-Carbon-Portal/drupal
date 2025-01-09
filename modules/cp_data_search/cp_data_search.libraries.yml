@@ -1,8 +1,7 @@
 style:
   css:
     theme:
-      https://use.fontawesome.com/releases/v5.0.9/css/solid.css: { type: external }
-      https://use.fontawesome.com/releases/v5.0.9/css/fontawesome.css: { type: external }
+      //use.fontawesome.com/releases/v6.7.2/css/all.css: { type: external, minified: true }
       css/cp_data_search.css: {}
 
 script:

@@ -34,7 +34,7 @@
 }
 
 .icoscapes-infobox-close::after {
-  font-family: "Font Awesome 5 Free";
+  font-family: "Font Awesome 6 Free";
   content: "\f00d";
   float: right;
   padding: 5px 20px;

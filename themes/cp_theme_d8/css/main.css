@@ -103,7 +103,7 @@ iframe {
 
 .external-link::after,
 a[target=_blank]::after {
-  font-family: "Font Awesome 5 Free";
+  font-family: "Font Awesome 6 Free";
   content: "\f35d";
   font-weight: 900;
   margin: 0 0.3rem;
@@ -303,6 +303,7 @@ body,
 .site-footer .social-media-icon:active,
 .site-footer .social-media-icon:focus {
   border: none;
+  text-decoration: none;
 }
 
 .site-footer .social-media-icon:focus {
@@ -385,7 +386,7 @@ body,
 .field--name-field-bottom-left-links .field__item:before,
 .field--name-field-bottom-right-links .field__item:before,
 .link-box-title:before {
-  font-family: "Font Awesome 5 Free";
+  font-family: "Font Awesome 6 Free";
   content: "\f105";
   font-weight: 900;
   margin: 0 0.3rem;
@@ -431,7 +432,7 @@ body,
 }
 
 .toc-js li::before {
-	font-family: "Font Awesome 5 Free";
+	font-family: "Font Awesome 6 Free";
 	content: "\f063";
 	font-weight: 900;
   color: var(--icos-cyan);
