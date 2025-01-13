@@ -414,7 +414,12 @@ body,
   padding-left: 1rem;
 }
 
+.block .content:has(.toc-js) {
+  margin-top: 0;
+}
+
 .toc-js {
+  margin-top: 10px;
   margin-bottom: 2rem;
 }
 
@@ -526,7 +531,7 @@ body,
   width: 100%;
 }
 
-.block-wide:not(.layout-builder-block) {
+.block-wide {
   max-width: none;
   width: 100vw;
   position: relative;
@@ -535,10 +540,10 @@ body,
   margin: 1rem -50vw;
 }
 
-.block-wide:not(.layout-builder-block) .layout-container {
+.block-wide .layout-container {
   padding: 15px;
 }
 
-.block-wide:not(.layout-builder-block) h2 {
+.block-wide h2 {
   margin-top: 2rem;
 }

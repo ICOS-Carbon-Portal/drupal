@@ -41,6 +41,8 @@ function cp_theme_d8_preprocess_page(&$variables, $hook) {
     $variables['#attached']['library'][] = 'cp_theme_d8/cookie-consent';
   }
 
+  $variables['current_route_name'] = (\Drupal::routeMatch())->getRouteName();
+
 }
 
 /**

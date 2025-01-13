@@ -23,5 +23,7 @@ Our main website is https://www.icos-cp.eu/ and its archive name will look like 
 Once extracted, go to the docker folder and run:
 
 ```
-docker-composer up -d
+docker compose up -d
 ```
+
+Once the container is running, you must run the `composer update` command inside the Drupal container. Additionally, you must run `chown -R www-data:www-data /var/www/html/sites/default/files` inside the Drupal container in order to enable file uploading.
