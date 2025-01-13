@@ -1,0 +1,9 @@
+style:
+  css:
+    theme:
+      css/cp-events.css: {}
+
+script:
+  dependencies:
+    - core/jquery
+    - core/jquery.once
