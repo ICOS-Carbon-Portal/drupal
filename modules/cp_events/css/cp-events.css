@@ -1,6 +1,6 @@
 /* Latest news block and view */
-.sidebar-second .view-news .views-field-field-image img,
-.sidebar-second .view-news .views-field-field-cp-event-picture img {
+.sidebar .view-news .views-field-field-image img,
+.sidebar .view-news .views-field-field-cp-event-picture img {
   float: right;
   margin-left: 2rem;
 }
