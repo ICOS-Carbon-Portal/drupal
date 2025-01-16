@@ -76,12 +76,6 @@ iframe {
   }
 }
 
-.block-views .view-news .views-field.views-field-field-image img,
-.views-field-field-cp-event-picture img {
-  float: right;
-  margin-left: 2rem;
-}
-
 .page-title {
   font-weight: bold;
   font-size: 2.285rem;

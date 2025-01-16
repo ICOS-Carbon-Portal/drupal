@@ -12,7 +12,7 @@ This repository can be cloned on top of any Drupal installation but it is easier
 borg list --last 9 fsicos.lunarc.lu.se:/disk/data/bbserver/repos/fsicos2.lunarc.lu.se/drupal/default/
 ```
 
-and then extract one of them
+and then extract one of them:
 
 ```
 borg extract fsicos.lunarc.lu.se:/disk/data/bbserver/repos/fsicos2.lunarc.lu.se/drupal/default/::cp-2021-04-01T03:11:29
@@ -27,3 +27,5 @@ docker compose up -d
 ```
 
 Once the container is running, you must run the `composer update` command inside the Drupal container. Additionally, you must run `chown -R www-data:www-data /var/www/html/sites/default/files` inside the Drupal container in order to enable file uploading.
+
+Note that by using a production backup, **all of the production configuration settings are present**, including SMTP settings for sending emails (e.g., scheduled emails from webforms). Ensure you disable this setting if you are creating a development environment (Admin -> Configuration -> System -> SMTP Authentication Support).
