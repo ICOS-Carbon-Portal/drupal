@@ -1,13 +1,12 @@
-
 /* Latest news block and view */
-.view-display-id-block_1.view-news .views-field-field-image img,
-.view-display-id-block_1.view-news .views-field-field-cp-event-picture img {
+.sidebar-second .view-news .views-field-field-image img,
+.sidebar-second .view-news .views-field-field-cp-event-picture img {
   float: right;
   margin-left: 2rem;
 }
 
 /* News block/pages */
-.view-news:not(.view-display-id-block_1) .view-content .float-view {
+#content .view-news .view-content .float-view {
   margin-top: 1em;
   
   &::after {
@@ -23,32 +22,48 @@
   }
 
   & > *, .views-field-body {
-    margin-left: 27.5%; /* 25% for image, 2.5% for white space */
+    margin-left: 27.5%; /* 20% for image, 2.5% for white space */
     max-width: 70%;
   }
 
   .views-field-field-image, .views-field-field-cp-event-picture {
     float: left;
-    min-height: 20vh;
+    height: auto;
     width: 25%;
+    aspect-ratio: auto;
     margin-left: 0;
+    overflow: hidden;
+
+    .field-content, a {
+      height: 100%;
+      width: 100%;
+    }
+
+    a {
+      display: flex;
+      align-items: start;
+      justify-content: center;
+    }
 
     img {
-      max-height: 20vh;
-      object-fit: contain;
+      object-fit: cover;
+      object-position: top;
+      max-height: unset;
+      max-width: 100%;
     }
   }
 
 }
 
 @media all and (max-width: 799px) {
-  .view-news:not(.view-display-id-block_1) .view-content .float-view > *, .float-view .views-field-body{
+  #content .view-news .view-content .float-view > *, 
+  #content .view-news .view-content .float-view .views-field-body {
     margin-left: auto;
     max-width: 100%;
   }
 
-  .view-news:not(.view-display-id-block_1) .view-content .float-view .views-field-field-image,
-  .view-news:not(.view-display-id-block_1) .view-content .float-view .views-field-field-cp-event-picture {
+  #content .view-news .view-content .float-view .views-field-field-image,
+  #content .view-news .view-content .float-view .views-field-field-cp-event-picture {
     display: none;
   }
 }
