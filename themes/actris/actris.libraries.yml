@@ -1,4 +1,4 @@
 global:
   css:
     theme:
-      css/actris.css: {}
+      css/actris.css: { weight: 1 }

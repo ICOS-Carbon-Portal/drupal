@@ -2,6 +2,11 @@
   --actris-blue: #0071b3;
 }
 
+body,
+.site-footer {
+  background: #fff;
+}
+
 #header {
   background-color: #fff;
   background-image: url(../images/ac_header.png);
