@@ -1,69 +1,43 @@
-/* Latest news block and view */
-.sidebar .view-news .views-field-field-image img,
-.sidebar .view-news .views-field-field-cp-event-picture img {
+/* Latest news block and view use .sidebar-list
+  .sidebar-list forces images to float right, with a left margin. */
+.sidebar-list img {
   float: right;
   margin-left: 2rem;
 }
 
-/* News block/pages */
-#content .view-news .view-content .float-view {
-  margin-top: 1em;
+/* News pages use the .views-two-column
+
+  .views-two-column should be applied to each row in an unformatted list.
+
+  .float-left should be applied to the field you would like to have on the left 
+    (which will responsively disappear at small page widths).
+*/
+.views-two-column {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border-bottom: solid 1px var(--icos-grey-50);
+  padding-bottom: 2em;
   
-  &::after {
-    width: 100%;
-    border-bottom: solid 2px;
-    border-image: linear-gradient(90deg, var(--icos-magenta) 26.25%, var(--icos-cyan) 26.25%) 100% 1;
-    padding-bottom: 1em;
-    margin-bottom: 1em;
-  }
-
-  h3 {
-    margin: 0;
-  }
-
-  & > *, .views-field-body {
+  .views-field {
     margin-left: 27.5%; /* 20% for image, 2.5% for white space */
     max-width: 70%;
   }
 
-  .views-field-field-image, .views-field-field-cp-event-picture {
+  .views-field.float-left {
     float: left;
-    height: auto;
     width: 25%;
-    aspect-ratio: auto;
     margin-left: 0;
-    overflow: hidden;
-
-    .field-content, a {
-      height: 100%;
-      width: 100%;
-    }
-
-    a {
-      display: flex;
-      align-items: start;
-      justify-content: center;
-    }
-
-    img {
-      object-fit: cover;
-      object-position: top;
-      max-height: unset;
-      max-width: 100%;
-    }
   }
 
 }
 
 @media all and (max-width: 799px) {
-  #content .view-news .view-content .float-view > *, 
-  #content .view-news .view-content .float-view .views-field-body {
+  .views-two-column .views-field {
     margin-left: auto;
     max-width: 100%;
   }
 
-  #content .view-news .view-content .float-view .views-field-field-image,
-  #content .view-news .view-content .float-view .views-field-field-cp-event-picture {
+  .views-two-column .views-field.float-left {
     display: none;
   }
 }
