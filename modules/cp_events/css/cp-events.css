@@ -1,0 +1,43 @@
+/* Latest news block and view use .sidebar-list
+  .sidebar-list forces images to float right, with a left margin. */
+.sidebar-list img {
+  float: right;
+  margin-left: 2rem;
+}
+
+/* News pages use the .views-two-column
+
+  .views-two-column should be applied to each row in an unformatted list.
+
+  .float-left should be applied to the field you would like to have on the left 
+    (which will responsively disappear at small page widths).
+*/
+.views-two-column {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border-bottom: solid 1px #d6d6d6;
+  padding-bottom: 2em;
+  
+  .views-field {
+    margin-left: 27.5%; /* 20% for image, 2.5% for white space */
+    max-width: 70%;
+  }
+
+  .views-field.float-left {
+    float: left;
+    width: 25%;
+    margin-left: 0;
+  }
+
+}
+
+@media all and (max-width: 799px) {
+  .views-two-column .views-field {
+    margin-left: 0;
+    max-width: 100%;
+  }
+
+  .views-two-column .views-field.float-left {
+    display: none;
+  }
+}

@@ -1,6 +1,16 @@
 <?php
 
 /**
+ * Implements hook_preprocess_views_view().
+ */
+
+function cp_events_preprocess_views_view(&$vars) {
+  if ($vars['view']->storage->id() === 'news') {
+    $vars['#attached']['library'][] = 'cp_events/style';
+  }
+}
+
+/**
  * Implements hook_theme().
  */
 function cp_events_theme() {
