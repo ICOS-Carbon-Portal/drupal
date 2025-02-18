@@ -111,7 +111,7 @@ global:
   css:
     theme:
       //static.icos-cp.eu/css/bootstrap/5.3.2/sites-bootstrap.css: { type: external, minified: true }
-      //use.fontawesome.com/releases/v5.15.1/css/all.css: { type: external, minified: true }
+      //use.fontawesome.com/releases/v6.7.2/css/all.css: { type: external, minified: true }
       //static.icos-cp.eu/css/fonts/source-sans-pro.css: { type: external, minified: true }
       css/main.css: {}
       css/breadcrumb.css: {}
