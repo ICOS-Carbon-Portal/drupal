@@ -170,7 +170,8 @@
     transition: border 0.1s ease-out;
   }
 
-  #cp_theme_d8_menu li:hover {
+  #cp_theme_d8_menu li:hover,
+  #cp_theme_d8_menu li:has(a:focus) {
     background-color: var(--icos-grey-90);
   }
 
@@ -198,7 +199,8 @@
     flex-wrap: wrap;
   }
 
-  #cp_theme_d8_menu .is_topnode:hover > ul {
+  #cp_theme_d8_menu .is_topnode:hover > ul,
+  #cp_theme_d8_menu .is_topnode:has(a:focus) > ul {
     visibility: visible;
     z-index: 11;
     transition: visibility 0s 0.4s;
