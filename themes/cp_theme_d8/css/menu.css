@@ -143,7 +143,7 @@
   #cp_theme_d8_menu li {
     list-style: none;
     cursor: pointer;
-    transition: background-color 0.1s ease-out;
+    transition: background-color 0.4s ease-out;
   }
 
   #cp_theme_d8_menu li li {
@@ -170,7 +170,8 @@
     transition: border 0.1s ease-out;
   }
 
-  #cp_theme_d8_menu li:hover {
+  #cp_theme_d8_menu li:hover,
+  #cp_theme_d8_menu li:has(a:focus) {
     background-color: var(--icos-grey-90);
   }
 
@@ -185,21 +186,38 @@
   #cp_theme_d8_menu .is_topnode > ul {
     max-width: 1100px;
     visibility: hidden;
+    max-height: 0;
     position: absolute;
     left: 50px;
     right: 50px;
     justify-content: flex-start;
-    padding: 1rem 1rem 1.5rem;
+    padding: 0 1rem;
     background-color: var(--icos-grey-90);
     z-index: 10;
-    transition: visibility 0.1s ease-out;
+    transition: visibility 0s 0.6s, max-height ease-out 0.3s 0.3s, padding-top 0.1s 0.4s, padding-bottom 0.1s 0.4s; /* exit hover transitions */
     margin: 0 auto;
     box-shadow: 0px 1px 1px #333;
     flex-wrap: wrap;
+    overflow: hidden;
   }
 
-  #cp_theme_d8_menu .is_topnode:hover > ul {
+  #cp_theme_d8_menu .is_topnode:hover > ul,
+  #cp_theme_d8_menu .is_topnode:has(a:focus) > ul {
     visibility: visible;
+    z-index: 11;
+    max-height: 650px;
+    padding: 1rem 1rem 1.5rem;
+    transition: visibility 0s 0.3s, max-height ease-in 0.3s 0.3s, padding-top 0.1s 0.3s, padding-bottom 0.1s 0.3s; /* enter hover transitions*/
+  }
+
+  #cp_theme_d8_menu .is_topnode ul li {
+    opacity: 0;
+    transition: opacity linear 0.2s 0.3s;
+  }
+
+  #cp_theme_d8_menu .is_topnode:hover ul li {
+    opacity: 1;
+    transition: opacity linear 0.2s 0.3s;
   }
 
   #cp_theme_d8_menu li li a {
