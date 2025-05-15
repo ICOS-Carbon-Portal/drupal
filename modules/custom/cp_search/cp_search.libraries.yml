@@ -1,0 +1,13 @@
+search_results_page:
+  css:
+    theme:
+      //cdn.jsdelivr.net/npm/instantsearch.css@8.5.1/themes/reset-min.css: { type: external, minified: true }
+      css/page.css: {}
+  js:
+    //cdn.jsdelivr.net/npm/instantsearch.js@4.78.2/dist/instantsearch.production.min.js: { type: external, minified: true }
+    //cdn.jsdelivr.net/npm/typesense-instantsearch-adapter@2.9.0/dist/typesense-instantsearch-adapter.min.js: { type: external, minified: true}
+    js/page.js: {}
+
+#search_block:
+#  js:
+#    js/block.js: {}

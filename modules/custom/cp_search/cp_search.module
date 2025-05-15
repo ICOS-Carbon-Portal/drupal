@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function cp_search_theme() {
+  return [
+    'search_results_page' => [
+      'template' => 'search-results-page'
+    ],
+  ];
+}
+
+?>

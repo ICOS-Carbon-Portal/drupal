@@ -1,0 +1,7 @@
+cp_search.search_results_page:
+  path: '/search'
+  defaults:
+    _controller: '\Drupal\cp_search\Controller\SearchController::showresults'
+    _title: 'Search'
+  requirements:
+    _permission: 'access content'
