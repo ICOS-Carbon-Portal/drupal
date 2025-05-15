@@ -1,38 +1,12 @@
-/*
-(function (Drupal, once) {
+(function (Drupal) {
     Drupal.behaviors.searchBehavior = { attach: function (context, settings) {
-        once('readySearch', "#search-results").forEach((root) => {
-*/
-document.addEventListener("DOMContentLoaded", () => {
-            const root = document.getElementById("search-results");
-
-            if (root.getAttribute("data-cp-search-processed")) {
-                return;
-            }
+        const root = context.querySelector("#search-results:not([data-cp-search-processed])");
+        if (root) {
             root.setAttribute('data-cp-search-processed', 'true');
 
-            const searchboxDiv = document.getElementById("searchbox");
-            const hitsDiv = document.getElementById("hits");
-            const paginationDiv = document.getElementById("pagination");
-            console.log("showing elements")
-            console.log({root, searchboxDiv, hitsDiv, paginationDiv});
-
-            /* render everything here instead of the template; this ensures everything is present when loading 
-            const searchBoxDiv = document.createElement("DIV");
-            searchBoxDiv.id = "searchbox";
-            root.appendChild(searchBoxDiv);
-
-            const hitsHeader = document.createElement("H2");
-            hitsHeader.innerText = "Search results";
-            root.appendChild(hitsHeader);
-
-            const hitsDiv = document.createElement("DIV");
-            hitsDiv.id = "hits";
-            root.appendChild(hitsDiv);
-
-            const paginationDiv = document.createElement("DIV");
-            paginationDiv.id = "pagination";
-            root.appendChild(paginationDiv); */
+            const searchboxDiv = context.getElementById("searchbox");
+            const hitsDiv = context.getElementById("hits");
+            const paginationDiv = context.getElementById("pagination");
             
             const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
                 server: {
@@ -63,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         document.querySelectorAll(".hide-on-empty-query").forEach((element) => element.style.display = 'none');
                     } else {
                         document.querySelectorAll(".hide-on-empty-query").forEach((element) => element.style.display = '');
+                        helper.search();
                     }
                 }
             });
@@ -77,14 +52,13 @@ document.addEventListener("DOMContentLoaded", () => {
             
             search.addWidgets([
                 instantsearch.widgets.searchBox({
-                  container: "#searchbox"
+                  container: searchboxDiv
                 }),
                 paginationPanel({
-                  container: "#pagination"
+                  container: paginationDiv
                 }),
-                //hitsPanel({
-                instantsearch.widgets.hits({
-                    container: "#hits",
+                hitsPanel({
+                    container: hitsDiv,
                     escapeHTML: false,
                     /*transformItems(items) {
                         console.log(items);
@@ -109,20 +83,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
             search.start();
             
+            // If page is loaded with get parameter q="...", use query to start search
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has("q")) {
-                console.log("Attempting to setUiState")
                 search.setUiState({
                     basic_content: {
                         query: urlParams.get("q")
                     }
                 });
             }
-            console.log(search);
-});
-
-/*
-        });
+        }
     }};
-})(Drupal, once);
-*/
+})(Drupal);
