@@ -7,6 +7,9 @@ search_results_page:
     //cdn.jsdelivr.net/npm/instantsearch.js@4.78.2/dist/instantsearch.production.min.js: { type: external, minified: true }
     //cdn.jsdelivr.net/npm/typesense-instantsearch-adapter@2.9.0/dist/typesense-instantsearch-adapter.min.js: { type: external, minified: true}
     js/page.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
 
 #search_block:
 #  js:

@@ -1,10 +1,23 @@
-(function (Drupal) {
-    Drupal.behaviors.myCustomBehavior = { attach: function (context, settings) {
-        const root = context.querySelector("#search-results:not([data-cp-search-processed])");
-        if (root) {
+/*
+(function (Drupal, once) {
+    Drupal.behaviors.searchBehavior = { attach: function (context, settings) {
+        once('readySearch', "#search-results").forEach((root) => {
+*/
+document.addEventListener("DOMContentLoaded", () => {
+            const root = document.getElementById("search-results");
+
+            if (root.getAttribute("data-cp-search-processed")) {
+                return;
+            }
             root.setAttribute('data-cp-search-processed', 'true');
 
-            /* render everything here instead of the template; this ensures everything is present when loading */
+            const searchboxDiv = document.getElementById("searchbox");
+            const hitsDiv = document.getElementById("hits");
+            const paginationDiv = document.getElementById("pagination");
+            console.log("showing elements")
+            console.log({root, searchboxDiv, hitsDiv, paginationDiv});
+
+            /* render everything here instead of the template; this ensures everything is present when loading 
             const searchBoxDiv = document.createElement("DIV");
             searchBoxDiv.id = "searchbox";
             root.appendChild(searchBoxDiv);
@@ -19,7 +32,7 @@
 
             const paginationDiv = document.createElement("DIV");
             paginationDiv.id = "pagination";
-            root.appendChild(paginationDiv);
+            root.appendChild(paginationDiv); */
             
             const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
                 server: {
@@ -47,16 +60,10 @@
                 searchFunction(helper) {
                     if (helper.state.query.trim() === '') {
                         // Hide results when query is empty
-                        hitsHeader.style.display = 'none';
-                        hitsDiv.style.display = 'none';
-                        paginationDiv.style.display = 'none';
-                        return;
+                        document.querySelectorAll(".hide-on-empty-query").forEach((element) => element.style.display = 'none');
+                    } else {
+                        document.querySelectorAll(".hide-on-empty-query").forEach((element) => element.style.display = '');
                     }
-                    // Show results when query is not empty
-                    hitsHeader.style.display = '';
-                    hitsDiv.style.display = '';
-                    paginationDiv.style.display = '';
-                    helper.search();
                 }
             });
             
@@ -70,13 +77,14 @@
             
             search.addWidgets([
                 instantsearch.widgets.searchBox({
-                  container: '#searchbox'
+                  container: "#searchbox"
                 }),
                 paginationPanel({
-                  container: '#pagination'
+                  container: "#pagination"
                 }),
-                hitsPanel({
-                    container: '#hits',
+                //hitsPanel({
+                instantsearch.widgets.hits({
+                    container: "#hits",
                     escapeHTML: false,
                     /*transformItems(items) {
                         console.log(items);
@@ -110,7 +118,11 @@
                     }
                 });
             }
+            console.log(search);
+});
 
-        }
+/*
+        });
     }};
-})(Drupal);
+})(Drupal, once);
+*/
