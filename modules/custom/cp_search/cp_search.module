@@ -8,7 +8,25 @@ function cp_search_theme() {
     'search_results_page' => [
       'template' => 'search-results-page'
     ],
+    'cp_search_form_block' => [
+      'template' => 'cp-search-form-block'
+    ]
   ];
+}
+
+function cp_search_preprocess_search_results_page(&$variables) {
+  $config = \Drupal::config('cp_search.settings');
+  $variables['#attached']['drupalSettings']['cpSearch'] = [
+    'website' => $config->get('website'),
+    'apiKey' => $config->get('api_key')
+  ];
+}
+
+function cp_search_preprocess_block(&$variables) {
+  if ($variables['plugin_id'] == 'cp_search_block') {
+    $variables['attributes']['class'][] = "search-block-form";
+    $variables['attributes']['class'][] = "block-search";
+  }
 }
 
 ?>

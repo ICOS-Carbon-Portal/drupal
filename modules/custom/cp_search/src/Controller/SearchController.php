@@ -1,16 +1,16 @@
 <?php
+
 namespace Drupal\cp_search\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 
 /**
- * Provides route responses for the cp_search module.
+ * Provides route responses for search_results_page from the cp_search module.
  */
 class SearchController extends ControllerBase {
-    public function showresults() {
+    public function content() {
         return [
-          '#body' => $this->t('Hello from your custom controller!'),
-          '#theme' => 'search_results_page',
+          '#theme' => 'search_results_page'
         ];
       }
 }

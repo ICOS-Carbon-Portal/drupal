@@ -1,32 +1,34 @@
-(function (Drupal) {
+(function (Drupal, drupalSettings) {
     Drupal.behaviors.searchBehavior = { attach: function (context, settings) {
         const root = context.querySelector("#search-results:not([data-cp-search-processed])");
         if (root) {
+            // from Drupal settings for module:
+            const indexName = drupalSettings.cpSearch.website + "-main";
+            const typesenseApiKey = drupalSettings.cpSearch.apiKey;
+
             root.setAttribute('data-cp-search-processed', 'true');
 
             const searchboxDiv = context.getElementById("searchbox");
             const hitsDiv = context.getElementById("hits");
             const paginationDiv = context.getElementById("pagination");
-            
+
             const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
                 server: {
-                    apiKey: 'xyz',
+                    apiKey: typesenseApiKey,
                     nodes: [
                         {
-                            host: 'localhost',
-                            port: '8108',
-                            protocol: 'http',
+                            host: 'typesense.icos-cp.eu',
+                            protocol: 'https',
                         },
                     ],
                 },
                 additionalSearchParameters: {
-                    query_by: 'body,description,title',
+                    query_by: 'title,content,url',
                     highlight_affix_num_tokens: 15
                 },
             });
-            
+
             const searchClient = typesenseInstantsearchAdapter.searchClient;
-            const indexName = "basic_content";
 
             const search = instantsearch({
                 searchClient,
@@ -41,7 +43,7 @@
                     }
                 }
             });
-            
+
             const paginationPanel = instantsearch.widgets.panel({
                 hidden: ({ results }) => results.nbPages <= 1,
             })(instantsearch.widgets.pagination);
@@ -49,10 +51,12 @@
             const hitsPanel = instantsearch.widgets.panel({
                 hidden: () => false,
             })(instantsearch.widgets.hits);
-            
+
             search.addWidgets([
                 instantsearch.widgets.searchBox({
-                  container: searchboxDiv
+                  container: searchboxDiv,
+                  showSubmit: false,
+                  showReset: false
                 }),
                 paginationPanel({
                   container: paginationDiv
@@ -69,12 +73,15 @@
                     templates: {
                         item(item) {
                             return `<div class="search-results-hit">
-                                <strong><a href="${item.url}">${item._highlightResult.title.value}</a></strong>
-                                <p>${item._snippetResult.body.value.split(" ").length > 30
-                                    ? item._snippetResult.body.value.split(" ")
-                                    .flatMap((x, idx) => idx < 30 ? [x] : [])
-                                    .join(" ")
-                                    : item._snippetResult.body.value}</p>
+                                <h4 class="h5"><a href="${item.url}">${item._highlightResult.title.value}</a></h4>
+                                <p>${item._snippetResult.content
+                                    ? (item._snippetResult.content.value.split(" ").length > 30
+                                        ? item._snippetResult.content.value.split(" ")
+                                            .flatMap((x, idx) => idx < 30 ? [x] : [])
+                                            .join(" ")
+                                        : item._snippetResult.content.value)
+                                    : item._highlightResult.title.value
+                                }</p>
                     </div>`
                       },
                     },
@@ -82,16 +89,16 @@
             ]);
 
             search.start();
-            
+
             // If page is loaded with get parameter q="...", use query to start search
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has("q")) {
                 search.setUiState({
-                    basic_content: {
+                    [indexName]: {
                         query: urlParams.get("q")
                     }
                 });
             }
         }
     }};
-})(Drupal);
+})(Drupal, drupalSettings);

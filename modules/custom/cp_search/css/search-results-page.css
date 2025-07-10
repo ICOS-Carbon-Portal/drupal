@@ -1,0 +1,28 @@
+p mark {
+    padding: 0;
+}
+
+h4 mark {
+    padding: 0;
+    background-color: inherit;
+    color: inherit;
+}
+
+.ais-Pagination-list {
+    justify-content: center;
+    .ais-Pagination-link {
+        padding: 0.375rem;
+        font-size: larger;
+        margin: 0.125rem;
+    }
+
+    .ais-Pagination-item--selected a {
+        font-weight: bold;
+        color: black;
+    }
+
+    .ais-Pagination-item a:hover {
+        text-decoration: solid underline;
+        text-underline-offset: 0.125rem;
+    }
+}
