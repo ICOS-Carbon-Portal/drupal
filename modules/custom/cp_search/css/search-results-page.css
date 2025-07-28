@@ -26,3 +26,20 @@ h4 mark {
         text-underline-offset: 0.125rem;
     }
 }
+
+.ais-Hits-item {
+	padding-bottom: 1rem;
+}
+
+.ais-SearchBox {
+    margin-bottom: 1rem;
+}
+
+.ais-SearchBox-submit {
+    width: 2.25rem;
+    height: 2.25rem;
+    svg {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+}

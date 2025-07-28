@@ -55,7 +55,7 @@
             search.addWidgets([
                 instantsearch.widgets.searchBox({
                   container: searchboxDiv,
-                  showSubmit: false,
+                  showSubmit: true,
                   showReset: false
                 }),
                 paginationPanel({
