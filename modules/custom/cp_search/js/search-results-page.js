@@ -56,7 +56,18 @@
                 instantsearch.widgets.searchBox({
                   container: searchboxDiv,
                   showSubmit: true,
-                  showReset: false
+                  showReset: false,
+                  cssClasses: {
+                    form: "input-group",
+                    input: ["form-search", "form-control"],
+                    submit: ["btn", "btn-light", "border"],
+                    submitIcon: ["fas", "fa-search"]
+                  },
+                  templates: {
+                    submit({ cssClasses }, { html }) {
+                        return html`<i class="${cssClasses.submitIcon}"></i>`;
+                    },
+                  }
                 }),
                 paginationPanel({
                   container: paginationDiv
@@ -73,14 +84,12 @@
                     templates: {
                         item(item) {
                             return `<div class="search-results-hit">
-                                <h4 class="h5"><a href="${item.url}">${item._highlightResult.title.value}</a></h4>
-                                <p>${item._snippetResult.content
-                                    ? (item._snippetResult.content.value.split(" ").length > 30
-                                        ? item._snippetResult.content.value.split(" ")
-                                            .flatMap((x, idx) => idx < 30 ? [x] : [])
-                                            .join(" ")
-                                        : item._snippetResult.content.value)
-                                    : item._highlightResult.title.value
+                                <h4 class="h5"><a href="${item.url}">${item.title}</a></h4>
+                                <p>${ item.content.split(/[ \n]/).length > 30
+                                    ? item.content.split(/[ \n]/)
+                                        .flatMap((x, idx) => idx < 30 ? [x] : [])
+                                        .join(" ") + "&hellip;"
+                                    : item.content
                                 }</p>
                     </div>`
                       },
