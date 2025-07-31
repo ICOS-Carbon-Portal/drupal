@@ -24,7 +24,7 @@
                 },
                 additionalSearchParameters: {
                     query_by: 'title,content,url',
-                    highlight_affix_num_tokens: 15
+                    highlight_full_fields: 'content'
                 },
             });
 
@@ -51,6 +51,49 @@
             const hitsPanel = instantsearch.widgets.panel({
                 hidden: () => false,
             })(instantsearch.widgets.hits);
+
+            function processHighlightedContent(content) {
+                const contentWords = content.split(/[ \n]/);
+                const markedIndex = contentWords.findIndex((word) => word.startsWith("<mark>"));
+                const wordsOnSide = 20;
+
+                if (contentWords.length < (wordsOnSide*2)) {
+                    return contentWords.join(" ").replaceAll(/<\/?mark>/g, "");
+                }
+
+                if (markedIndex === -1) {
+                    return contentWords.slice(0, wordsOnSide*2).join(" ") + "&hellip;";
+                }
+
+                let start = Math.max(markedIndex - wordsOnSide, 0);
+                let end = Math.min(markedIndex + wordsOnSide + 1, contentWords.length);
+
+                const startExtensionLimit = wordsOnSide * 3;
+                const startOffset = 3;
+
+                // find a probable sentence-start by walking backwards through words
+                if (start > 0) {
+                    for (let i=start+startOffset; i>0 && i>start-startExtensionLimit; i--) {
+                        let sentenceLike = /[.,!?:;]$/.test(contentWords[i-1]) && /^[“”‘’"']?[A-Z]/.test(contentWords[i]);
+                        if (sentenceLike) {
+                            start = i;
+                            break;
+                        }
+                    }
+                }
+
+                // if start is unchanged and the content to beginning is short, include from beginning
+                if (start === markedIndex - wordsOnSide && start - startExtensionLimit <= 0) {
+                    start = 0;
+                }
+                
+                let contentHighlight = contentWords.slice(start, end).join(" ");
+                if (end !== contentWords.length) {
+                    contentHighlight += "&hellip;";
+                }
+
+                return contentHighlight.replaceAll(/<\/?mark>/g, "");
+            }
 
             search.addWidgets([
                 instantsearch.widgets.searchBox({
@@ -85,13 +128,8 @@
                         item(item) {
                             return `<div class="search-results-hit">
                                 <h4 class="h5"><a href="${item.url}">${item.title}</a></h4>
-                                <p>${ item.content.split(/[ \n]/).length > 30
-                                    ? item.content.split(/[ \n]/)
-                                        .flatMap((x, idx) => idx < 30 ? [x] : [])
-                                        .join(" ") + "&hellip;"
-                                    : item.content
-                                }</p>
-                    </div>`
+                                <p>${processHighlightedContent(item._highlightResult.content.value)}</p>
+                            </div>`;
                       },
                     },
                 }),

@@ -1,6 +1,10 @@
+#search-results {
+    max-width: 90ch;
+}
 
 #searchbox {
     max-width: 250px;
+    margin-bottom: 3rem;
 }
 
 #searchbox .ais-SearchBox .ais-SearchBox-form .ais-SearchBox-submit {
@@ -19,6 +23,10 @@
     margin-bottom: 3rem;
 }
 
+.search-results-hit h4 {
+    font-weight: 600;
+}
+
 .ais-Pagination-list {
     justify-content: center;
     list-style-type: none;
@@ -28,14 +36,21 @@
     flex-direction: row;
 
     .ais-Pagination-link {
-        padding: 0.375rem;
-        font-size: larger;
-        margin: 0.125rem;
+        padding: 0.45rem;
+        margin: 0.05rem;
     }
 
     .ais-Pagination-item--selected a {
         font-weight: bold;
         color: black;
+    }
+
+    .ais-Pagination-item--disabled {
+        display: none;
+    }
+
+    .ais-Pagination-item--lastPage {
+        display: none;
     }
 
     .ais-Pagination-item a:hover {
