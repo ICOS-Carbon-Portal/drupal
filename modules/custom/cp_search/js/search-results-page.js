@@ -34,13 +34,17 @@
                 searchClient,
                 indexName,
                 searchFunction(helper) {
+                    let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?q=' + encodeURIComponent(helper.state.query.trim());
+
                     if (helper.state.query.trim() === '') {
+                        newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
                         // Hide results when query is empty
                         document.querySelectorAll(".hide-on-empty-query").forEach((element) => element.style.display = 'none');
                     } else {
                         document.querySelectorAll(".hide-on-empty-query").forEach((element) => element.style.display = '');
                         helper.search();
                     }
+                    window.history.replaceState({path:newurl},'',newurl);
                 }
             });
 
@@ -142,7 +146,7 @@
             if (urlParams.has("q")) {
                 search.setUiState({
                     [indexName]: {
-                        query: urlParams.get("q")
+                        query: decodeURIComponent(urlParams.get("q"))
                     }
                 });
             }
