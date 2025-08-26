@@ -10,6 +10,12 @@ base theme: bartik
 libraries:
   - cp_theme_d8/global
 
+libraries-override:
+  bartik/global-styling:
+    css:
+      component:
+        css/components/table.css: false
+
 regions:
   above_header: 'Above the header'
   header: Header
