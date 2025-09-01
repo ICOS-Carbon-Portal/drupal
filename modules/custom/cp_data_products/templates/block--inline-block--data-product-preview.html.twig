@@ -43,9 +43,9 @@
 	{{ title_suffix }}
 
 	<table border="1" cellpadding="1" cellspacing="1"
-		class="data-product-preview-table"
+		class="data-product-preview-table table table-hover"
 		id="{{ parameters[0] }}-table">
-		<thead>
+		<thead class="table-secondary">
 			<tr>
 				<th scope="row">Station</th>
 					{% for row in 1..content['field_number_of_columns'].0['#markup'] %}
