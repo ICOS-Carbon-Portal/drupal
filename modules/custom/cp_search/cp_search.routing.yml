@@ -1,0 +1,14 @@
+cp_search.search_results_page:
+  path: '/search'
+  defaults:
+    _controller: '\Drupal\cp_search\Controller\SearchController::content'
+    _title: 'Search'
+  requirements:
+    _permission: 'access content'
+cp_search.settings:
+  path: '/admin/config/search/cp-search'
+  defaults:
+    _form: '\Drupal\cp_search\Form\SettingsForm'
+    _title: 'Typesense'
+  requirements:
+    _permission: 'administer site configuration'

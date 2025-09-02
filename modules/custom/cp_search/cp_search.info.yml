@@ -1,0 +1,8 @@
+name: Typesense Fuzzy Search
+description: Integrates front-end for Typesense server
+package: CP
+type: module
+core_version_requirement: ^10
+libraries:
+  - cp_search/search-results-page
+#  - cp_search/search-block
