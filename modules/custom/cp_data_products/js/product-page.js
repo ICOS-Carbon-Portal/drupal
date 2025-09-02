@@ -77,6 +77,7 @@
 			let station = '';
 			let rowNumber = 1;
 			let tableLength = $(`#${tableConfig.param[0]}-table thead th`).length - 1;
+			let addAllHeader = false;
 			const rows = $(result.results.bindings.map((binding, index) => {
 				let row = '';
 				if (tableConfig.previewType == "map-graph") {
@@ -126,11 +127,17 @@
 				const allPreviews = (ids.length > 1)
 					? `<a href="https://data.icos-cp.eu/dygraph-light/?objId=${ids}&x=TIMESTAMP&type=line&linking=overlap&y=${tableConfig.param[0]}">All</a>`
 					: '';
-				this.children.length > 2 && tableConfig.previewType != "map-graph" && tableConfig.param.length == 1 ? $(this).append(`<td>${allPreviews}</td>`) : '';
+				if (this.children.length > 2 && tableConfig.previewType != "map-graph" && tableConfig.param.length == 1) {
+					addAllHeader = true;
+					$(this).append(`<td>${allPreviews}</td>`);
+				}
 				return this;
 			});
 			$(`#${tableConfig.param[0]}-table tbody`).html(rows);
 			$(`#${tableConfig.param[0]}-table`).show();
+			if (addAllHeader) {
+				$(`#${tableConfig.param[0]}-table thead tr`).append("<th>All</th>");
+			}
 		})
 	}
 })(jQuery, Drupal);

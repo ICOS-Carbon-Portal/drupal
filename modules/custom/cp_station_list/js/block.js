@@ -14,7 +14,7 @@ Drupal.behaviors.stationListBehavior = {
 								<td>${station[titles.indexOf("Id")]}</td>
 							</tr>`
 					}).join('');
-					const tableHtml = `<table class="mb-5">${headerHtml}${stationHtml}</table>`;
+					const tableHtml = `<table class="mb-5 table"><thead class="table-secondary">${headerHtml}</thead><tbody>${stationHtml}</tbody></table>`;
 
 					document.querySelector('.block-station-list-block .content').innerHTML = tableHtml;
 				});
