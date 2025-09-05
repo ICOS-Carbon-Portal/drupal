@@ -1,10 +1,17 @@
 :root {
   --actris-blue: #0071b3;
+  --actris-light: #f0f7fb;
 }
 
-body,
-.site-footer {
+body {
   background: #fff;
+}
+
+.site-footer {
+  background: var(--actris-light);
+  div.content {
+    color: #000;
+  }
 }
 
 #header {
@@ -24,7 +31,7 @@ body,
 }
 
 #cp_theme_d8_menu {
-  background: #f0f7fb;
+  background: var(--actris-light);
 }
 
 #cp_theme_d8_menu li:hover a:hover {
