@@ -9,13 +9,13 @@ We deploy this repository to production using [this Ansible role](https://github
 This repository can be cloned on top of any Drupal installation but it is easier to get started by extracting a Borg backup from our production server. You will need access rights to fsicos to do this. You can get a list of the latest backups for all the websites by running:
 
 ```
-borg list --last 9 fsicos.lunarc.lu.se:/disk/data/bbserver/repos/fsicos2.lunarc.lu.se/drupal/default/
+borg list --last 9 icos1:/~bbserver/repos/drupal.repo
 ```
 
 and then extract one of them:
 
 ```
-borg extract fsicos.lunarc.lu.se:/disk/data/bbserver/repos/fsicos2.lunarc.lu.se/drupal/default/::cp-2021-04-01T03:11:29
+borg extract icos1:/~bbserver/repos/drupal.repo::cp-2025-09-15T00:45:22
 ```
 
 Our main website is https://www.icos-cp.eu/ and its archive name will look like `cp-{date}`. All our modules are enabled and used on this website however the archive includes many files and is >3GB compressed. Other backups are much smaller.
