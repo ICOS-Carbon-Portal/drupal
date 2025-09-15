@@ -9,7 +9,7 @@ body {
 
 .site-footer {
   background: var(--actris-light);
-  div.content, div.content a, div.content a:hover {
+  div.content, div.content a, div.content a:hover, div.content a:focus {
     color: #000;
   }
 }
