@@ -1,0 +1,55 @@
+uuid: 2e4e7168-3156-44ed-9180-934344131f48
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.service.body
+    - field.field.node.service.field_access_rights
+    - field.field.node.service.field_contacts
+    - field.field.node.service.field_group
+    - field.field.node.service.field_header
+    - field.field.node.service.field_key_service
+    - field.field.node.service.field_kpis
+    - field.field.node.service.field_main_users
+    - field.field.node.service.field_organisations
+    - field.field.node.service.field_other_links
+    - field.field.node.service.field_primary_link
+    - field.field.node.service.field_subservices
+    - field.field.node.service.field_thumbnail
+    - node.type.service
+  module:
+    - text
+    - user
+id: node.service.teaser
+targetEntityType: node
+bundle: service
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_access_rights: true
+  field_contacts: true
+  field_group: true
+  field_header: true
+  field_key_service: true
+  field_kpis: true
+  field_main_users: true
+  field_organisations: true
+  field_other_links: true
+  field_primary_link: true
+  field_subservices: true
+  field_thumbnail: true
+  search_api_excerpt: true

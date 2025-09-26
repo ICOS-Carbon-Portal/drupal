@@ -1,0 +1,23 @@
+uuid: c8ba9ec1-da90-44c4-ad23-3236597e56c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_primary_link
+    - node.type.service
+  module:
+    - link
+id: node.service.field_primary_link
+field_name: field_primary_link
+entity_type: node
+bundle: service
+label: 'Primary link'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 2
+  link_type: 17
+field_type: link

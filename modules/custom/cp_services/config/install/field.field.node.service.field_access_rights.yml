@@ -1,0 +1,21 @@
+uuid: bfd84d6e-d6a5-4310-976d-d83f0a87fe71
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_access_rights
+    - node.type.service
+  module:
+    - options
+id: node.service.field_access_rights
+field_name: field_access_rights
+entity_type: node
+bundle: service
+label: 'Access rights'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

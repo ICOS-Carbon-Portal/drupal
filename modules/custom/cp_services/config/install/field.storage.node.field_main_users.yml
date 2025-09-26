@@ -1,0 +1,27 @@
+uuid: 3114cb45-6af0-4a48-9bb9-c00cefe607e0
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_main_users
+field_name: field_main_users
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: icos
+      label: ICOS
+    -
+      value: public
+      label: Public
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

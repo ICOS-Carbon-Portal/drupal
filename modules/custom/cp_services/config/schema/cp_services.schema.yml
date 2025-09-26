@@ -1,0 +1,10 @@
+field.field_settings.field_described_data:
+  type: mapping
+  label: 'Described data settings'
+  mapping:
+    descriptor_label:
+      type: string
+      label: 'Descriptor label'
+    data_label:
+      type: string
+      label: 'Data label'

@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * Implements hook_preprocess().
+ */
+function cp_services_preprocess_field(&$variables) {
+
+}
+
+function cp_services_preprocess_node__service(&$variables) {
+	$variables['#attached']['library'][] = 'cp_services/style';
+}
+
+/**
+ * Implements hook_theme().
+ */
+
