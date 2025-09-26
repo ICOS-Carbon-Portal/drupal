@@ -6,7 +6,7 @@ dependencies:
     - field.storage.node.field_cpservices_kpis
     - node.type.service
 id: node.service.field_cpservices_kpis
-field_cpservices_name: field_cpservices_kpis
+field_name: field_cpservices_kpis
 entity_type: node
 bundle: service
 label: 'KPIs'
@@ -15,5 +15,7 @@ required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
-settings: {  }
-field_cpservices_type: described_data
+settings:
+  descriptor_label: Number
+  data_label: Label
+field_type: described_data

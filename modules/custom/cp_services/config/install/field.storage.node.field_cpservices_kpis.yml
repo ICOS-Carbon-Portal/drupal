@@ -5,9 +5,9 @@ dependencies:
   module:
     - node
 id: node.field_cpservices_kpis
-field_cpservices_name: field_cpservices_kpis
+field_name: field_cpservices_kpis
 entity_type: node
-type: string
+type: described_data
 settings:
   max_length: 64
   case_sensitive: false

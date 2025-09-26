@@ -6,7 +6,7 @@ dependencies:
     - field.storage.node.field_cpservices_organisations
     - node.type.service
 id: node.service.field_cpservices_organisations
-field_cpservices_name: field_cpservices_organisations
+field_name: field_cpservices_organisations
 entity_type: node
 bundle: service
 label: Organisations
@@ -16,4 +16,4 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_cpservices_type: string
+field_type: string

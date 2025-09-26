@@ -6,7 +6,7 @@ dependencies:
     - node
     - options
 id: node.field_cpservices_main_users
-field_cpservices_name: field_cpservices_main_users
+field_name: field_cpservices_main_users
 entity_type: node
 type: list_string
 settings:

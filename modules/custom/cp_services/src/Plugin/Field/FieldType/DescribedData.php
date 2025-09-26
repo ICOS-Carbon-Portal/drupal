@@ -83,12 +83,12 @@ class DescribedData extends FieldItemBase {
     // The key of the element should be the setting name
     $elements['descriptor_label'] = [
       '#title' => $this->t('Descriptor label'),
-      '#type' => 'text',
+      '#type' => 'textfield',
       '#default_value' => $this->getSetting('descriptor_label'),
     ];
     $elements['data_label'] = [
       '#title' => $this->t('Data label'),
-      '#type' => 'text',
+      '#type' => 'textfield',
       '#default_value' => $this->getSetting('data_label'),
     ];
 

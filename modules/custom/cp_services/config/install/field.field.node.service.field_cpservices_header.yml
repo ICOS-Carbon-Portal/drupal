@@ -7,7 +7,7 @@ dependencies:
     - media.type.image
     - node.type.service
 id: node.service.field_cpservices_header
-field_cpservices_name: field_cpservices_header
+field_name: field_cpservices_header
 entity_type: node
 bundle: service
 label: 'Header image'
@@ -26,4 +26,4 @@ settings:
       direction: ASC
     auto_create: false
     auto_create_bundle: ''
-field_cpservices_type: entity_reference
+field_type: entity_reference

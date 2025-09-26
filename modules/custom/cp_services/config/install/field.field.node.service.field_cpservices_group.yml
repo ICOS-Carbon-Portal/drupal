@@ -8,7 +8,7 @@ dependencies:
   module:
     - options
 id: node.service.field_cpservices_group
-field_cpservices_name: field_cpservices_group
+field_name: field_cpservices_group
 entity_type: node
 bundle: service
 label: Group
@@ -18,4 +18,4 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_cpservices_type: list_string
+field_type: list_string

@@ -24,8 +24,8 @@ class DescribedDataWidget extends WidgetBase {
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
-    $descriptor = $items[$delta]->descriptor ?? '';
-    $descriptor_label = $this->getFieldSetting('descriptor_label');
+    $descriptor = $items[$delta]?->descriptor ?? '';
+    $descriptor_label = $this->getFieldSetting('descriptor_label') ?? $this->t('Descriptor');
     $descriptor_element = [
       '#type' => 'textfield',
       '#default_value' => $descriptor,
@@ -33,8 +33,8 @@ class DescribedDataWidget extends WidgetBase {
       '#size' => 64,
       '#maxlength' => 64,
     ];
-    $data = $items[$delta]->data ?? '';
-    $data_label = $this->getFieldSetting('data_label');
+    $data = $items[$delta]?->data ?? '';
+    $data_label = $this->getFieldSetting('data_label') ?? $this->t('Data');
     $data_element = [
       '#type' => 'textfield',
       '#default_value' => $data,

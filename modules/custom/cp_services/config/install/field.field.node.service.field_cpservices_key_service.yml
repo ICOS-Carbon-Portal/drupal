@@ -6,7 +6,7 @@ dependencies:
     - field.storage.node.field_cpservices_key_service
     - node.type.service
 id: node.service.field_cpservices_key_service
-field_cpservices_name: field_cpservices_key_service
+field_name: field_cpservices_key_service
 entity_type: node
 bundle: service
 label: 'Key service'
@@ -20,4 +20,4 @@ default_value_callback: ''
 settings:
   on_label: 'Yes'
   off_label: 'No'
-field_cpservices_type: boolean
+field_type: boolean

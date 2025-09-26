@@ -5,9 +5,9 @@ dependencies:
   module:
     - node
 id: node.field_cpservices_contacts
-field_cpservices_name: field_cpservices_contacts
+field_name: field_cpservices_contacts
 entity_type: node
-type: email
+type: described_data
 settings: {  }
 module: core
 locked: false

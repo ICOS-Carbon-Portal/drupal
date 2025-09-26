@@ -8,7 +8,7 @@ dependencies:
   module:
     - link
 id: node.service.field_cpservices_other_links
-field_cpservices_name: field_cpservices_other_links
+field_name: field_cpservices_other_links
 entity_type: node
 bundle: service
 label: 'Other links'
@@ -20,4 +20,4 @@ default_value_callback: ''
 settings:
   title: 2
   link_type: 17
-field_cpservices_type: link
+field_type: link

@@ -6,7 +6,7 @@ dependencies:
     - node
     - options
 id: node.field_cpservices_access_rights
-field_cpservices_name: field_cpservices_access_rights
+field_name: field_cpservices_access_rights
 entity_type: node
 type: list_string
 settings:

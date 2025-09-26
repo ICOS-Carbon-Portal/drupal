@@ -8,7 +8,7 @@ dependencies:
   module:
     - text
 id: node.service.body
-field_cpservices_name: body
+field_name: body
 entity_type: node
 bundle: service
 label: Description
@@ -21,4 +21,4 @@ settings:
   display_summary: false
   required_summary: false
   allowed_formats: {  }
-field_cpservices_type: text_with_summary
+field_type: text_with_summary
