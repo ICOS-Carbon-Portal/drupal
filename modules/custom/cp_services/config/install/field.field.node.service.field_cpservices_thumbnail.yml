@@ -1,18 +1,18 @@
-uuid: 5213043d-9662-425c-8fa2-43c1e433e426
+uuid: 5fb89d37-f28e-41d4-82ce-0c304076160d
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_header
+    - field.storage.node.field_cpservices_thumbnail
     - media.type.image
     - node.type.service
-id: node.service.field_header
-field_name: field_header
+id: node.service.field_cpservices_thumbnail
+field_cpservices_name: field_cpservices_thumbnail
 entity_type: node
 bundle: service
-label: 'Header image'
+label: Thumbnail
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
@@ -26,4 +26,4 @@ settings:
       direction: ASC
     auto_create: false
     auto_create_bundle: ''
-field_type: entity_reference
+field_cpservices_type: entity_reference

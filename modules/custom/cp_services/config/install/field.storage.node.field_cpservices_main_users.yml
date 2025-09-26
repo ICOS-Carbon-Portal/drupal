@@ -1,26 +1,26 @@
-uuid: 0d7f3430-6904-4fc5-8910-7f4166396776
+uuid: 3114cb45-6af0-4a48-9bb9-c00cefe607e0
 langcode: en
 status: true
 dependencies:
   module:
     - node
     - options
-id: node.field_access_rights
-field_name: field_access_rights
+id: node.field_cpservices_main_users
+field_cpservices_name: field_cpservices_main_users
 entity_type: node
 type: list_string
 settings:
   allowed_values:
     -
-      value: public_domain
-      label: 'Public domain'
+      value: icos
+      label: ICOS
     -
-      value: cc_4_0_by
-      label: 'CC 4.0 BY'
+      value: public
+      label: Public
   allowed_values_function: ''
 module: options
 locked: false
-cardinality: 1
+cardinality: -1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

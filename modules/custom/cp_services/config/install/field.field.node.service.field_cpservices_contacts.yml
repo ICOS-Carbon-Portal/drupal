@@ -3,10 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_contacts
+    - field.storage.node.field_cpservices_contacts
     - node.type.service
-id: node.service.field_contacts
-field_name: field_contacts
+id: node.service.field_cpservices_contacts
+field_cpservices_name: field_cpservices_contacts
 entity_type: node
 bundle: service
 label: 'Contacts'
@@ -16,4 +16,4 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: described_data
+field_cpservices_type: described_data

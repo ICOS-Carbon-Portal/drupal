@@ -1,15 +1,15 @@
-uuid: eb542757-9f2a-47b5-8143-7d2bf967772e
+uuid: f6226a5b-2c18-4738-87a2-982021adf0a6
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: node.field_kpis
-field_name: field_kpis
+id: node.field_cpservices_subservices
+field_cpservices_name: field_cpservices_subservices
 entity_type: node
 type: string
 settings:
-  max_length: 64
+  max_length: 255
   case_sensitive: false
   is_ascii: false
 module: core

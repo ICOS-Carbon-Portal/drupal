@@ -5,8 +5,8 @@ dependencies:
   module:
     - media
     - node
-id: node.field_header
-field_name: field_header
+id: node.field_cpservices_header
+field_cpservices_name: field_cpservices_header
 entity_type: node
 type: entity_reference
 settings:

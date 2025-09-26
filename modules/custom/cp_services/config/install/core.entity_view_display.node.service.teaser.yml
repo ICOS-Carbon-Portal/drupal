@@ -5,18 +5,18 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.service.body
-    - field.field.node.service.field_access_rights
-    - field.field.node.service.field_contacts
-    - field.field.node.service.field_group
-    - field.field.node.service.field_header
-    - field.field.node.service.field_key_service
-    - field.field.node.service.field_kpis
-    - field.field.node.service.field_main_users
-    - field.field.node.service.field_organisations
-    - field.field.node.service.field_other_links
-    - field.field.node.service.field_primary_link
-    - field.field.node.service.field_subservices
-    - field.field.node.service.field_thumbnail
+    - field.field.node.service.field_cpservices_access_rights
+    - field.field.node.service.field_cpservices_contacts
+    - field.field.node.service.field_cpservices_group
+    - field.field.node.service.field_cpservices_header
+    - field.field.node.service.field_cpservices_key_service
+    - field.field.node.service.field_cpservices_kpis
+    - field.field.node.service.field_cpservices_main_users
+    - field.field.node.service.field_cpservices_organisations
+    - field.field.node.service.field_cpservices_other_links
+    - field.field.node.service.field_cpservices_primary_link
+    - field.field.node.service.field_cpservices_subservices
+    - field.field.node.service.field_cpservices_thumbnail
     - node.type.service
   module:
     - text
@@ -40,16 +40,16 @@ content:
     weight: 100
     region: content
 hidden:
-  field_access_rights: true
-  field_contacts: true
-  field_group: true
-  field_header: true
-  field_key_service: true
-  field_kpis: true
-  field_main_users: true
-  field_organisations: true
-  field_other_links: true
-  field_primary_link: true
-  field_subservices: true
-  field_thumbnail: true
+  field_cpservices_access_rights: true
+  field_cpservices_contacts: true
+  field_cpservices_group: true
+  field_cpservices_header: true
+  field_cpservices_key_service: true
+  field_cpservices_kpis: true
+  field_cpservices_main_users: true
+  field_cpservices_organisations: true
+  field_cpservices_other_links: true
+  field_cpservices_primary_link: true
+  field_cpservices_subservices: true
+  field_cpservices_thumbnail: true
   search_api_excerpt: true

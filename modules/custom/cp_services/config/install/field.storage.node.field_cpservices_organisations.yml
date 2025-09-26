@@ -4,8 +4,8 @@ status: true
 dependencies:
   module:
     - node
-id: node.field_organisations
-field_name: field_organisations
+id: node.field_cpservices_organisations
+field_cpservices_name: field_cpservices_organisations
 entity_type: node
 type: string
 settings:

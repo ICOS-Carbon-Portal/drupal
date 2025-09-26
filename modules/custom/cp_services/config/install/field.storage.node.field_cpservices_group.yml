@@ -1,26 +1,23 @@
-uuid: 3114cb45-6af0-4a48-9bb9-c00cefe607e0
+uuid: a007c246-9b61-4588-adad-3a8e24a4e8a7
 langcode: en
 status: true
 dependencies:
   module:
     - node
     - options
-id: node.field_main_users
-field_name: field_main_users
+id: node.field_cpservices_group
+field_cpservices_name: field_cpservices_group
 entity_type: node
 type: list_string
 settings:
   allowed_values:
     -
-      value: icos
-      label: ICOS
-    -
-      value: public
-      label: Public
+      value: data
+      label: Data
   allowed_values_function: ''
 module: options
 locked: false
-cardinality: -1
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

@@ -3,10 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_kpis
+    - field.storage.node.field_cpservices_kpis
     - node.type.service
-id: node.service.field_kpis
-field_name: field_kpis
+id: node.service.field_cpservices_kpis
+field_cpservices_name: field_cpservices_kpis
 entity_type: node
 bundle: service
 label: 'KPIs'
@@ -16,4 +16,4 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: described_data
+field_cpservices_type: described_data

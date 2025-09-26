@@ -3,12 +3,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_access_rights
+    - field.storage.node.field_cpservices_access_rights
     - node.type.service
   module:
     - options
-id: node.service.field_access_rights
-field_name: field_access_rights
+id: node.service.field_cpservices_access_rights
+field_cpservices_name: field_cpservices_access_rights
 entity_type: node
 bundle: service
 label: 'Access rights'
@@ -18,4 +18,4 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: list_string
+field_cpservices_type: list_string

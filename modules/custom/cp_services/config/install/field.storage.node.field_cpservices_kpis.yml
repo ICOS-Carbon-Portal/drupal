@@ -1,14 +1,17 @@
-uuid: 71c62803-0c58-4b2f-8153-08315fea9488
+uuid: eb542757-9f2a-47b5-8143-7d2bf967772e
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: node.field_contacts
-field_name: field_contacts
+id: node.field_cpservices_kpis
+field_cpservices_name: field_cpservices_kpis
 entity_type: node
-type: email
-settings: {  }
+type: string
+settings:
+  max_length: 64
+  case_sensitive: false
+  is_ascii: false
 module: core
 locked: false
 cardinality: -1

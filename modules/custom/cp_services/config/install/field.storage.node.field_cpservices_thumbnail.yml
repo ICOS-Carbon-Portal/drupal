@@ -5,8 +5,8 @@ dependencies:
   module:
     - media
     - node
-id: node.field_thumbnail
-field_name: field_thumbnail
+id: node.field_cpservices_thumbnail
+field_cpservices_name: field_cpservices_thumbnail
 entity_type: node
 type: entity_reference
 settings:
