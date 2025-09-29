@@ -109,14 +109,10 @@ content:
     weight: 106
     region: content
   field_cpservices_primary_link:
-    type: link
+    type: string
     label: above
     settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
+      link_to_entity: false
     third_party_settings: {  }
     weight: 105
     region: content

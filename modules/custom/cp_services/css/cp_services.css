@@ -1,0 +1,53 @@
+
+.cpservices-main-content {
+    color: inherit;
+}
+
+.cpservices-categories {
+    div {        
+        border-radius: 10px;
+        border: solid thin #666;
+        padding: .25em;
+        font-weight: 600;
+        margin: .25em;
+        user-select: none;
+    }
+    .field--name-field-cpservices-group {
+        background-color: #ccf;
+    }
+    .field--name-field-cpservices-key-service {
+        background-color: #fcc;
+    }
+    .field--name-field-cpservices-access-rights {
+        background-color: #cfc;
+    }
+    .field--name-field-cpservices-main-users {
+        background-color: #ffa;
+    }
+}
+
+.cpservices-links {
+    color: inherit;
+}
+
+.field--name-field-cpservices-kpis {
+    background-color: #acf;
+    border-radius: 10px;
+    padding: 3em 0;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: 1em 0;
+    .described-data-item {
+        width: auto;
+        text-align: center;
+        font-weight: 700;
+        .descriptor {
+            font-size: 4em;
+        }
+        .data {
+            font-size: 1.25em;
+        }
+    }
+}

@@ -14,4 +14,56 @@ function cp_services_preprocess_node__service(&$variables) {
 /**
  * Implements hook_theme().
  */
+function cp_services_theme() {
+	return [
+		'field__node__body__service' => [
+			'template' => 'field--node--body--service',
+			'base hook' => 'field'
+		],
+		'field__node__field_cpservices_access_rights' => [
+			'template' => 'field--node--field-cpservices-access-rights',
+			'base hook' => 'field'
+		],
+		'field__node__field_cpservices_contacts' => [
+			'template' => 'field--node--field-cpservices-contacts',
+			'base hook' => 'field'
+		],
+		'field__node__field_cpservices_group' => [
+			'template' => 'field--node--field-cpservices-group',
+			'base hook' => 'field'
+		],
+		'field__node__field_cpservices_key_service' => [
+			'template' => 'field--node--field-cpservices-key-service',
+			'base hook' => 'field'
+		],
+		'field__node__field_cpservices_kpis' => [
+			'template' => 'field--node--field-cpservices-kpis',
+			'base hook' => 'field'
+		],
+		'field__node__field_cpservices_main_users' => [
+			'template' => 'field--node--field-cpservices-main-users',
+			'base hook' => 'field'
+		],
+		'field__node__field_cpservices_organisations' => [
+			'template' => 'field--node--field-cpservices-organisations',
+			'base hook' => 'field'
+		],
+		'field__node__field_cpservices_other_links' => [
+			'template' => 'field--node--field-cpservices-other-links',
+			'base hook' => 'field'
+		],
+		'field__node__field_cpservices_primary_link' => [
+			'template' => 'field--node--field-cpservices-primary-link',
+			'base hook' => 'field'
+		],
+		'field__node__field_cpservices_subservices' => [
+			'template' => 'field--node--field-cpservices-subservices',
+			'base hook' => 'field'
+		],
+		'node__service' => [
+			'template' => 'node--service',
+			'base hook' => 'node'
+		],
+	];
+}
 

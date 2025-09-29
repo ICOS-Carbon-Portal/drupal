@@ -41,7 +41,7 @@ class ContactDescribedDataFormatter extends FormatterBase {
         'email' => [
           '#type' => 'html_tag',
           '#tag' => 'a',
-          '#attributes' => ['href' => $item->data],
+          '#attributes' => ['href' => "mailto:" . $item->data],
           '#value' => $item->descriptor,
         ],
       ];
