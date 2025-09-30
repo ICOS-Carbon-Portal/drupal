@@ -1,10 +1,12 @@
-uuid: 0024c13a-d671-441e-b561-a0012c236427
+uuid: 329c9373-1dad-4bcf-bdf7-22e246979347
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_cpservices_organisations
     - node.type.service
+  module:
+    - cp_services
 id: node.service.field_cpservices_organisations
 field_name: field_cpservices_organisations
 entity_type: node
@@ -15,5 +17,7 @@ required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
-settings: {  }
-field_type: string
+settings:
+  descriptor_label: Name
+  data_label: URL
+field_type: described_data

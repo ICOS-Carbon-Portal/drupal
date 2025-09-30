@@ -21,7 +21,7 @@ function cp_services_theme() {
 			'base hook' => 'field'
 		],
 		'field__node__field_cpservices_access_rights' => [
-			'template' => 'field--node--field-cpservices-access-rights',
+			'template' => 'field--node--field-cpservices-tag',
 			'base hook' => 'field'
 		],
 		'field__node__field_cpservices_contacts' => [
@@ -29,7 +29,7 @@ function cp_services_theme() {
 			'base hook' => 'field'
 		],
 		'field__node__field_cpservices_group' => [
-			'template' => 'field--node--field-cpservices-group',
+			'template' => 'field--node--field-cpservices-tag',
 			'base hook' => 'field'
 		],
 		'field__node__field_cpservices_key_service' => [
@@ -41,7 +41,7 @@ function cp_services_theme() {
 			'base hook' => 'field'
 		],
 		'field__node__field_cpservices_main_users' => [
-			'template' => 'field--node--field-cpservices-main-users',
+			'template' => 'field--node--field-cpservices-tag',
 			'base hook' => 'field'
 		],
 		'field__node__field_cpservices_organisations' => [
@@ -60,8 +60,12 @@ function cp_services_theme() {
 			'template' => 'field--node--field-cpservices-subservices',
 			'base hook' => 'field'
 		],
-		'node__service' => [
-			'template' => 'node--service',
+		'node__service__full' => [
+			'template' => 'node--service--full',
+			'base hook' => 'node'
+		],
+		'node__service__teaser' => [
+			'template' => 'node--service--teaser',
 			'base hook' => 'node'
 		],
 	];

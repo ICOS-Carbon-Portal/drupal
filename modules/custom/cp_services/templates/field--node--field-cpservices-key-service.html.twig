@@ -48,5 +48,10 @@
 %}
 
 {% if items[0].content["#markup"] == 1 %}
-  <div{{ attributes.addClass(classes) }} title="Key service">*key*</div>
+  <div {{ attributes.addClass(classes) }} title="{{ label }}">
+    <label class="text-secondary text-uppercase mb-1">&nbsp;</label>
+    <div class="d-flex flex-row">
+      <span class="d-block border border-secondary rounded-4 p-1 me-1 fw-bold"><i class="fa-solid fa-star"></i></span>
+    </div>
+  </div>
 {% endif %}

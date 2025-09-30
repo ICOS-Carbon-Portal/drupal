@@ -1,17 +1,27 @@
-uuid: fb9fcb81-82e9-47ac-a22b-90d845b142be
+uuid: 90307c2e-35bd-403a-a781-249f5a3ada53
 langcode: en
 status: true
 dependencies:
   module:
-    - media
+    - file
+    - image
     - node
 id: node.field_cpservices_thumbnail
 field_name: field_cpservices_thumbnail
 entity_type: node
-type: entity_reference
+type: image
 settings:
-  target_type: media
-module: core
+  target_type: file
+  display_field: false
+  display_default: true
+  uri_scheme: public
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+module: image
 locked: false
 cardinality: 1
 translatable: true

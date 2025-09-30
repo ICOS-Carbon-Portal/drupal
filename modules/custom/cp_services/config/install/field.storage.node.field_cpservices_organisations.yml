@@ -1,4 +1,4 @@
-uuid: 19ff3991-13f6-4294-adc3-a9045de1875e
+uuid: 7e9876e8-52f3-4132-a84e-2362777af671
 langcode: en
 status: true
 dependencies:
@@ -7,12 +7,9 @@ dependencies:
 id: node.field_cpservices_organisations
 field_name: field_cpservices_organisations
 entity_type: node
-type: string
-settings:
-  max_length: 255
-  case_sensitive: false
-  is_ascii: false
-module: core
+type: described_data
+settings: {  }
+module: cp_services
 locked: false
 cardinality: -1
 translatable: true

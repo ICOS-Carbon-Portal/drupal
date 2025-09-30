@@ -1,4 +1,3 @@
-uuid: 3970f9df-8a53-40bf-b763-acaa908668f0
 langcode: en
 status: true
 dependencies:
@@ -16,10 +15,11 @@ dependencies:
     - field.field.node.service.field_cpservices_primary_link
     - field.field.node.service.field_cpservices_subservices
     - field.field.node.service.field_cpservices_thumbnail
+    - image.style.thumbnail
     - node.type.service
   module:
+    - image
     - link
-    - media_library
     - path
     - text
 id: node.service.default
@@ -45,59 +45,58 @@ content:
     third_party_settings: {  }
   field_cpservices_access_rights:
     type: options_select
-    weight: 21
+    weight: 19
     region: content
     settings: {  }
     third_party_settings: {  }
   field_cpservices_contacts:
     type: described_data_widget
-    weight: 22
+    weight: 20
     region: content
     settings: {  }
     third_party_settings: {  }
   field_cpservices_group:
     type: options_select
-    weight: 10
+    weight: 17
     region: content
     settings: {  }
     third_party_settings: {  }
   field_cpservices_header:
-    type: media_library_widget
-    weight: 13
+    type: image_image
+    weight: 10
     region: content
     settings:
-      media_types: {  }
+      progress_indicator: throbber
+      preview_image_style: thumbnail
     third_party_settings: {  }
   field_cpservices_key_service:
     type: boolean_checkbox
-    weight: 11
+    weight: 16
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_cpservices_kpis:
     type: described_data_widget
-    weight: 22
+    weight: 21
     region: content
     settings: {  }
     third_party_settings: {  }
   field_cpservices_main_users:
     type: options_buttons
-    weight: 17
+    weight: 18
     region: content
     settings: {  }
     third_party_settings: {  }
   field_cpservices_organisations:
-    type: string_textfield
-    weight: 20
+    type: described_data_widget
+    weight: 12
     region: content
-    settings:
-      size: 60
-      placeholder: ''
+    settings: {  }
     third_party_settings: {  }
   field_cpservices_other_links:
     type: link_default
-    weight: 16
+    weight: 15
     region: content
     settings:
       placeholder_url: ''
@@ -105,7 +104,7 @@ content:
     third_party_settings: {  }
   field_cpservices_primary_link:
     type: string_textfield
-    weight: 15
+    weight: 14
     region: content
     settings:
       size: 60
@@ -113,18 +112,19 @@ content:
     third_party_settings: {  }
   field_cpservices_subservices:
     type: string_textfield
-    weight: 14
+    weight: 13
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
   field_cpservices_thumbnail:
-    type: media_library_widget
-    weight: 12
+    type: image_image
+    weight: 11
     region: content
     settings:
-      media_types: {  }
+      progress_indicator: throbber
+      preview_image_style: thumbnail
     third_party_settings: {  }
   path:
     type: path

@@ -9,7 +9,7 @@ field_name: field_cpservices_contacts
 entity_type: node
 type: described_data
 settings: {  }
-module: core
+module: cp_services
 locked: false
 cardinality: -1
 translatable: true

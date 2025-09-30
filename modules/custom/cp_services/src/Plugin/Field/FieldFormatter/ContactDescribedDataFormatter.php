@@ -36,14 +36,10 @@ class ContactDescribedDataFormatter extends FormatterBase {
     foreach ($items as $delta => $item) {
       // Render each element as markup.
       $element[$delta] = [
-        '#type' => 'container',
-        '#attributes' => ['class' => ['email-described-data-item']],
-        'email' => [
-          '#type' => 'html_tag',
-          '#tag' => 'a',
-          '#attributes' => ['href' => "mailto:" . $item->data],
-          '#value' => $item->descriptor,
-        ],
+        '#type' => 'html_tag',
+        '#tag' => 'a',
+        '#attributes' => ['href' => "mailto:" . $item->data],
+        '#value' => $item->descriptor,
       ];
     }
 

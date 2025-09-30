@@ -48,5 +48,12 @@
 %}
 
 {% if items[0].content %}
-  <div{{ attributes.addClass(classes) }} title="Access rights">{{ items[0].content }}</div>
+  <div {{ attributes.addClass(classes) }} title="{{ label }}">
+    <label class="text-secondary text-uppercase mb-1">{{ label }}</label>
+    <div class="d-flex">
+      {% for item in items %}
+        <span class="d-block border border-secondary rounded-4 p-1 me-1 fw-bold">{{ item.content }}</span>
+      {% endfor %}
+    </div>
+  </div>
 {% endif %}

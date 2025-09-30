@@ -9,7 +9,7 @@ id: node.service.field_cpservices_subservices
 field_name: field_cpservices_subservices
 entity_type: node
 bundle: service
-label: Subservices
+label: 'Included services'
 description: ''
 required: false
 translatable: false

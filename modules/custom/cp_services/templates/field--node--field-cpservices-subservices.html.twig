@@ -48,7 +48,9 @@
 %}
 
 {% if items[0].content %}
-  <h2 class="h3 fs-3 mt-2">Included services</h2>
+  {% if not label_hidden %}
+    <h2 class="h3 fs-3 mt-2">{{ label }}</h2>
+  {% endif %}
   <div{{ attributes.addClass(classes, 'field__name') }}>
     <ul>
     {% for item in items %}

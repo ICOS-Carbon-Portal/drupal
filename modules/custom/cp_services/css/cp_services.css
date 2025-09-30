@@ -1,27 +1,28 @@
-
 .cpservices-main-content {
     color: inherit;
 }
 
-.cpservices-categories {
-    div {        
-        border-radius: 10px;
-        border: solid thin #666;
-        padding: .25em;
-        font-weight: 600;
-        margin: .25em;
-        user-select: none;
+.cpservices-categories>div {
+    margin: .25em;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    label {
+        font-size: 0.75em;
     }
-    .field--name-field-cpservices-group {
+}
+
+.cpservices-categories {
+    .field--name-field-cpservices-group span {
         background-color: #ccf;
     }
-    .field--name-field-cpservices-key-service {
+    .field--name-field-cpservices-key-service span {
         background-color: #fcc;
     }
-    .field--name-field-cpservices-access-rights {
+    .field--name-field-cpservices-access-rights span {
         background-color: #cfc;
     }
-    .field--name-field-cpservices-main-users {
+    .field--name-field-cpservices-main-users span {
         background-color: #ffa;
     }
 }
@@ -50,4 +51,21 @@
             font-size: 1.25em;
         }
     }
+}
+
+.field--name-field-cpservices-header {
+    aspect-ratio: 5 / 1;
+    overflow: hidden;
+    display: flex;
+    margin-bottom: 1em;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
+.cpservices-teaser {
+    color: inherit;
 }
