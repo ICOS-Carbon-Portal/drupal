@@ -66,6 +66,50 @@
     }
 }
 
-.cpservices-teaser {
-    color: inherit;
+
+.field--name-field-cpservices-thumbnail {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    display: flex;
+    margin-bottom: 1em;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
+.cpservices-catalogue {
+    container: service-catalogue / inline-size;
+    .view-filters {
+        color: inherit;
+    }
+    .view-content {
+        display: grid;
+        gap: 1rem;
+        align-items: stretch;
+        .views-row {
+            color: inherit;
+        }
+
+    }
+}
+
+@container service-catalogue (min-width: calc(900px + 2rem)) {
+    .view-content {
+        grid-template-columns: repeat(3, minmax(300px, 1fr));
+    }
+}
+
+@container service-catalogue (max-width: calc(899px + 2rem)) {
+    .view-content {
+        grid-template-columns: repeat(2, minmax(300px, 1fr));
+    }
+}
+
+@container service-catalogue (max-width: calc(599px + 1rem)) {
+    .view-content {
+        grid-template-columns: 1fr;
+    }
 }

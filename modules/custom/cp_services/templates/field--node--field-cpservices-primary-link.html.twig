@@ -47,4 +47,10 @@
   ]
 %}
 
-<a{{ attributes.addClass(classes, "btn btn-primary fs-3 px-3 mb-1") }} href={{ item.content }} target="_blank">Access</a>
+{% set teaser = (element['#view_mode'] == 'teaser') %}
+
+{% if teaser %}
+<a{{ attributes.addClass(classes, "btn btn-secondary px-2 mb-1 ms-1") }} href={{ items[0].content }} target="_blank">Access</a>
+{% else %}
+<a{{ attributes.addClass(classes, "btn btn-primary fs-3 px-3 mb-1") }} href={{ items[0].content }} target="_blank">Access</a>
+{% endif %}

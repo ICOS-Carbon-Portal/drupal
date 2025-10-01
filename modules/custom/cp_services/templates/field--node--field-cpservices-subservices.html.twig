@@ -47,8 +47,10 @@
   ]
 %}
 
+{% set teaser = (element['#view_mode'] == 'teaser') %}
+
 {% if items[0].content %}
-  {% if not label_hidden %}
+  {% if not teaser %}
     <h2 class="h3 fs-3 mt-2">{{ label }}</h2>
   {% endif %}
   <div{{ attributes.addClass(classes, 'field__name') }}>

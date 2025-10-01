@@ -60,19 +60,22 @@
  */
 #}
 
-<div{{ attributes }}>
-  <div{{ content_attributes }} class="cpservices-teaser border">
+<div{{ attributes.addClass("h-100") }}>
+  <div{{ content_attributes.addClass("border bg-secondary-subtle h-100") }}>
     {{ content.field_cpservices_thumbnail }}
-    <h4>{{ label }}</h4>
-    {{ content.field_cpservices_organisations }}
-    <div class="cpservices-categories">
-      {{ content.field_cpservices_key_service }}
-      {{ content.field_cpservices_group }}
-      {{ content.field_cpservices_access_rights }}
-      {{ content.field_cpservices_main_users }}
+    <div class="px-2 pt-0 pb-2">
+      <h4>{{ label }}</h4>
+      {{ content.field_cpservices_organisations }}
+      <div class="cpservices-categories">
+        {{ content.field_cpservices_key_service }}
+        {{ content.field_cpservices_group }}
+        {{ content.field_cpservices_access_rights }}
+        {{ content.field_cpservices_main_users }}
+      </div>
+      {{ content.field_cpservices_subservices }}
+      {{ content.body }}
+      <a class="btn btn-primary px-2 mb-1 ms-1" href={{ url }}>View details</a>
+      {{ content.field_cpservices_primary_link }}
     </div>
-    {{ content.field_cpservices_subservices }}
-    {{ content.body }}
-    {{ content.field_cpservices_primary_link }}
-    {{ dump(content) }}
+  </div>
 </div>
