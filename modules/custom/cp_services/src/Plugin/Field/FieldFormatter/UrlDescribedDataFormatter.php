@@ -57,5 +57,4 @@ class UrlDescribedDataFormatter extends FormatterBase {
 
     return $element;
   }
-
 }

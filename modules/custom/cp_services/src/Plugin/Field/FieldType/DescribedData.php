@@ -94,7 +94,4 @@ class DescribedData extends FieldItemBase {
 
     return $elements;
   }
-
-
 }
-

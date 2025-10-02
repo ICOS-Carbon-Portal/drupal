@@ -55,5 +55,4 @@ class PlainDescribedDataFormatter extends FormatterBase {
 
     return $element;
   }
-
 }

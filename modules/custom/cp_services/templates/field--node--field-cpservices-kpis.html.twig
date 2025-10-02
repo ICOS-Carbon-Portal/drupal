@@ -50,7 +50,8 @@
 {% if items[0].content %}
   <h2 class="visually-hidden">Key performance indicators (KPIs)</h2>
 
-  <div{{ attributes.addClass(classes, 'field__name') }}>
+  <div{{ attributes.addClass(classes,
+         'rounded-3 py-4 my-2 w-100 d-flex justify-content-around text-center fw-bold') }}>
     {% for item in items %}
       {{ item.content }}
     {% endfor %}

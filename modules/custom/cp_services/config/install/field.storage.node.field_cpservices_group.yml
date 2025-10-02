@@ -1,4 +1,3 @@
-uuid: a007c246-9b61-4588-adad-3a8e24a4e8a7
 langcode: en
 status: true
 dependencies:
@@ -14,6 +13,24 @@ settings:
     -
       value: data
       label: Data
+    -
+      value: innovation
+      label: Innovation
+    -
+      value: qaqc
+      label: Quality assurance & control (QAQC)
+    -
+      value: manufacturing
+      label: Manufacturing
+    -
+      value: cooperation
+      label: European and International Cooperation
+    -
+      value: community
+      label: Community engagement
+    -
+      value: training
+      label: Training
   allowed_values_function: ''
 module: options
 locked: false

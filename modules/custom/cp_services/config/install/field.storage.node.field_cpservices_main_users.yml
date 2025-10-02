@@ -1,4 +1,3 @@
-uuid: 3114cb45-6af0-4a48-9bb9-c00cefe607e0
 langcode: en
 status: true
 dependencies:
@@ -13,10 +12,34 @@ settings:
   allowed_values:
     -
       value: icos
-      label: ICOS
+      label: ICOS community
     -
       value: public
       label: Public
+    -
+      value: researchers
+      label: Researchers
+    -
+      value: educators
+      label: Educators
+    -
+      value: research_infrastructures
+      label: Research infrastructures
+    -
+      value: modellers
+      label: Modellers
+    -
+      value: policy_makers
+      label: Policy makers
+    -
+      value: modellers
+      label: Modellers
+    -
+      value: media
+      label: Media
+    -
+      value: stations
+      label: ICOS stations
   allowed_values_function: ''
 module: options
 locked: false

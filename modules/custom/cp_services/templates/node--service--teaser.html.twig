@@ -66,15 +66,17 @@
     <div class="px-2 pt-0 pb-2">
       <h4>{{ label }}</h4>
       {{ content.field_cpservices_organisations }}
-      <div class="cpservices-categories">
+      <div class="cpservices-categories d-flex">
         {{ content.field_cpservices_key_service }}
         {{ content.field_cpservices_group }}
         {{ content.field_cpservices_access_rights }}
+      </div>
+      <div class="cpservices-categories">
         {{ content.field_cpservices_main_users }}
       </div>
       {{ content.field_cpservices_subservices }}
       {{ content.body }}
-      <a class="btn btn-primary px-2 mb-1 ms-1" href={{ url }}>View details</a>
+      <a class="btn btn-primary border-0 px-2 mb-1" href={{ url }}>View details</a>
       {{ content.field_cpservices_primary_link }}
     </div>
   </div>

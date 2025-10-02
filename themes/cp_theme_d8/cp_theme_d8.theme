@@ -79,3 +79,16 @@ function cp_theme_d8_preprocess_responsive_image(&$variables)
     $variables['img_element']['#attributes']['width'] = 100;
   }
 }
+
+
+/**
+ * Implements hook_theme().
+ */
+function cp_theme_d8_theme() {
+  return [
+    'input__submit' => [
+      'template' => 'input--submit',
+      'base hook' => 'input'
+    ]
+  ];
+}

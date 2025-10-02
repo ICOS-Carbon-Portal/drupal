@@ -1,4 +1,3 @@
-uuid: bfd84d6e-d6a5-4310-976d-d83f0a87fe71
 langcode: en
 status: true
 dependencies:
@@ -13,7 +12,7 @@ entity_type: node
 bundle: service
 label: 'Access rights'
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''

@@ -48,11 +48,11 @@
 %}
 
 {% if items[0].content %}
-  <div {{ attributes.addClass(classes) }} title="{{ label }}">
+  <div {{ attributes.addClass(classes, "m-1 user-select-none d-flex flex-column") }} title="{{ label }}">
     <label class="text-secondary text-uppercase mb-1">{{ label }}</label>
-    <div class="d-flex">
+    <div class="d-flex flex-wrap">
       {% for item in items %}
-        <span class="d-block border border-secondary rounded-4 p-1 me-1 fw-bold">{{ item.content }}</span>
+        <span class="d-block border border-secondary rounded-pill py-1 px-2 me-1 mb-1 fw-bold">{{ item.content }}</span>
       {% endfor %}
     </div>
   </div>

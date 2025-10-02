@@ -50,7 +50,7 @@
 {% set teaser = (element['#view_mode'] == 'teaser') %}
 
 {% if teaser %}
-<a{{ attributes.addClass(classes, "btn btn-secondary px-2 mb-1 ms-1") }} href={{ items[0].content }} target="_blank">Access</a>
+  <a{{ attributes.addClass(classes, "btn btn-secondary border-0 px-2 mb-1 ms-1") }} href={{ items[0].content }}>Access</a>
 {% else %}
-<a{{ attributes.addClass(classes, "btn btn-primary fs-3 px-3 mb-1") }} href={{ items[0].content }} target="_blank">Access</a>
+  <a{{ attributes.addClass(classes, "btn btn-primary border-0 fs-3 px-3 mb-1") }} href={{ items[0].content }}>Access service</a>
 {% endif %}

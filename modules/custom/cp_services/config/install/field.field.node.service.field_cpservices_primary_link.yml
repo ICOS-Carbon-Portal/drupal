@@ -1,4 +1,3 @@
-uuid: c8ba9ec1-da90-44c4-ad23-3236597e56c4
 langcode: en
 status: true
 dependencies:
@@ -11,7 +10,7 @@ entity_type: node
 bundle: service
 label: 'Primary link'
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''

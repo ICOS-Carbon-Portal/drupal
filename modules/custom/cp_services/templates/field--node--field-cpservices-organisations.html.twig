@@ -47,10 +47,10 @@
   ]
 %}
 
-<div{{ attributes.addClass(classes, 'field__name') }}><em>
+<div{{ attributes.addClass(classes, 'field--name my-2') }}><em>
   Service provided by 
   {% for item in items %}
-    <span{{ attributes.addClass(classes, 'field__item') }}>
+    <span class="field--item fw-bold">
       {{ item.content }}{% if loop.revindex0 > 1 %},{% elseif loop.revindex0 == 1 %} and{% endif %}
     </span>
   {% endfor %}
