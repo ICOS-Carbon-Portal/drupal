@@ -68,5 +68,6 @@ function cp_services_theme() {
 			'template' => 'node--service--teaser',
 			'base hook' => 'node'
 		],
+
 	];
 }

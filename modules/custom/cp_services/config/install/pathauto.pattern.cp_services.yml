@@ -1,0 +1,22 @@
+uuid: f534b3f1-0231-48ad-86af-9e203b2719d0
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: cp_services
+label: Services
+type: 'canonical_entities:node'
+pattern: '/service-catalogue/[node:title]'
+selection_criteria:
+  69ee020f-ac36-47ef-910d-5b6a7213c430:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 69ee020f-ac36-47ef-910d-5b6a7213c430
+    context_mapping:
+      node: node
+    bundles:
+      service: service
+selection_logic: and
+weight: -5
+relationships: {  }

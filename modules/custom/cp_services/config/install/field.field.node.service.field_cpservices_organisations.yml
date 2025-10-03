@@ -4,19 +4,25 @@ dependencies:
   config:
     - field.storage.node.field_cpservices_organisations
     - node.type.service
-  module:
-    - cp_services
+    - taxonomy.vocabulary.organisations
 id: node.service.field_cpservices_organisations
 field_name: field_cpservices_organisations
 entity_type: node
 bundle: service
 label: Organisations
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  descriptor_label: Name
-  data_label: URL
-field_type: described_data
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      organisations: organisations
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

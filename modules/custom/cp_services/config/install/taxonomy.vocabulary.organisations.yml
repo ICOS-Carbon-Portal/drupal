@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+third_party_settings: {  }
+name: Organisations
+vid: organisations
+description: 'Organisations for Service Catalog'
+weight: 0
+new_revision: false
