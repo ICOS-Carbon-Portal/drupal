@@ -12,5 +12,8 @@
  * @ingroup themeable
  */
 #}
-
-<input{{ attributes.addClass("btn btn-primary") }} />{{ children }}
+{% set classAdd = "btn-secondary" %}
+{% if attributes.value == "Submit" or attributes.value == "Apply" %}
+    {% set classAdd = "btn-primary" %}
+{% endif %}
+<input{{ attributes.addClass("btn w-auto border-0", classAdd).removeClass("form-submit", "button") }} />{{ children }}
