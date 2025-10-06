@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.storage.node.field_cpservices_contacts
     - node.type.cp_contact
+    - node.type.service
 id: node.service.field_cpservices_contacts
 field_name: field_cpservices_contacts
 entity_type: node
