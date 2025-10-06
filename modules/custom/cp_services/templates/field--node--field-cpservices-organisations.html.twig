@@ -50,9 +50,6 @@
 <div{{ attributes.addClass(classes, 'field--name my-2') }}><em>
   Service provided by 
   {% for item in items %}
-    <span class="field--item fw-bold">
-      {{ item.content }}
-    </span>
-    {% if loop.revindex0 > 1 %},{% elseif loop.revindex0 == 1 %} and{% endif %}
+    <span class="field--item fw-bold">{{ item.content }}</span>{% if loop.revindex0 > 1 %},{% elseif loop.revindex0 == 1 %} and{% endif %}
   {% endfor %}
 </em></div>
