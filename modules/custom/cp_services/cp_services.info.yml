@@ -9,5 +9,6 @@ dependencies:
   - drupal:views
   - better_exposed_filters
   - pathauto:pathauto
+  - cp_contacts
 libraries:
   - cp_services/style

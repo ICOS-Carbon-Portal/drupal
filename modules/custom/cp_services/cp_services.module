@@ -68,6 +68,9 @@ function cp_services_theme() {
 			'template' => 'node--service--teaser',
 			'base hook' => 'node'
 		],
-
+		'taxonomy_term__organisations' => [
+			'template' => 'taxonomy-term--organisations',
+			'base hook' => 'taxonomy_term'
+		],
 	];
 }

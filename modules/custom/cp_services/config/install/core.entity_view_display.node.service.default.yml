@@ -43,9 +43,10 @@ content:
     weight: 4
     region: content
   field_cpservices_contacts:
-    type: url_described_data_formatter
+    type: entity_reference_label
     label: hidden
-    settings: {  }
+    settings:
+      link: true
     third_party_settings: {  }
     weight: 11
     region: content

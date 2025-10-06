@@ -1,4 +1,3 @@
-uuid: 7d2fc3bc-1549-4cf6-bbf0-e0d07e9c11b6
 langcode: en
 status: true
 dependencies:
@@ -7,7 +6,6 @@ dependencies:
     - taxonomy.vocabulary.organisations
   module:
     - link
-    - text
 id: taxonomy_term.organisations.default
 targetEntityType: taxonomy_term
 bundle: organisations
@@ -18,12 +16,13 @@ content:
     label: hidden
     settings:
       trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
+      url_only: true
+      url_plain: true
+      rel: '0'
+      target: '0'
     third_party_settings: {  }
-    weight: 1
+    weight: 0
     region: content
 hidden:
+  description: true
   field_description: true

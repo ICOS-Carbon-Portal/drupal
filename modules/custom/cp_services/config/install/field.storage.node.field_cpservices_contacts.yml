@@ -6,9 +6,10 @@ dependencies:
 id: node.field_cpservices_contacts
 field_name: field_cpservices_contacts
 entity_type: node
-type: described_data
-settings: {  }
-module: cp_services
+type: entity_reference
+settings:
+  target_type: node
+module: core
 locked: false
 cardinality: -1
 translatable: true

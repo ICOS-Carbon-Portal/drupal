@@ -25,4 +25,9 @@
  */
 #}
 
-{{ content }}
+
+{% if content.field_url %}
+    <a href="{{ content.field_url[0] }}">{{ name[0] }}</a>
+{% else %}
+    {{ name[0] }}
+{% endif %}

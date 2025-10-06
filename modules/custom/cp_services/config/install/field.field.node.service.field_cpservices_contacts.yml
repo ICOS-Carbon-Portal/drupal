@@ -3,18 +3,25 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_cpservices_contacts
-    - node.type.service
+    - node.type.cp_contact
 id: node.service.field_cpservices_contacts
 field_name: field_cpservices_contacts
 entity_type: node
 bundle: service
-label: 'Contacts'
+label: Contacts
 description: ''
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  descriptor_label: Name
-  data_label: Email
-field_type: described_data
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      cp_contact: cp_contact
+    sort:
+      field: title
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

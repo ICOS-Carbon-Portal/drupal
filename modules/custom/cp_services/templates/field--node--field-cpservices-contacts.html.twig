@@ -47,16 +47,15 @@
   ]
 %}
 
+
 {% if items[0].content %}
+  {{ attach_library('cp_contacts/style') }}
   <h2 class="h3 fs-3 mt-2">Primary contacts</h2>
 
-  <div{{ attributes.addClass(classes, 'field__name') }}>
-    <ul>
+  <div{{ attributes.addClass(classes, 'cp_contacts') }}>
     {% for item in items %}
-      <li{{ attributes.addClass(classes, 'field__item') }}>
-        {{ item.content }}
-      </li>
+      {% set contact = item.content["#entity"] %}
+      {% include '@cp_contacts/contact-details.html.twig' %}
     {% endfor %}
-    </ul>
   </div>
 {% endif %}
