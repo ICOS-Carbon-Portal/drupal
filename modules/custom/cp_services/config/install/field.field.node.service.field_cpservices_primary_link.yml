@@ -4,6 +4,8 @@ dependencies:
   config:
     - field.storage.node.field_cpservices_primary_link
     - node.type.service
+  module:
+    - link
 id: node.service.field_cpservices_primary_link
 field_name: field_cpservices_primary_link
 entity_type: node
@@ -14,5 +16,7 @@ required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
-settings: {  }
-field_type: string
+settings:
+  title: 0
+  link_type: 17
+field_type: link
