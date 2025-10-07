@@ -16,6 +16,9 @@ settings:
     -
       value: cc_by_4_0
       label: 'CC BY 4.0'
+    -
+      value: icos_stations
+      label: 'ICOS Stations'
   allowed_values_function: ''
 module: options
 locked: false

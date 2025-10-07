@@ -93,9 +93,11 @@ content:
     weight: 6
     region: content
   field_cpservices_organisations:
-    type: url_described_data_formatter
+    type: entity_reference_entity_view
     label: hidden
-    settings: {  }
+    settings:
+      view_mode: default
+      link: false
     third_party_settings: {  }
     weight: 1
     region: content
