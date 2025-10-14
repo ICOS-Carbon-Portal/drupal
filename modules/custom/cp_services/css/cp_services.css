@@ -5,21 +5,20 @@
         font-size: 0.75rem;
     }
     .field--name-field-cpservices-group span {
-        background-color: var(--bs-primary-bg-subtle);
+        background-color: var(--icos-cyan-50);
     }
     .field--name-field-cpservices-key-service span {
-        background-color: var(--bs-warning-bg-subtle);
+        background-color: var(--icos-cyan-50);
     }
     .field--name-field-cpservices-access-rights span {
-        background-color: var(--bs-success-bg-subtle);
+        background-color: var(--icos-cyan-50);
     }
     .field--name-field-cpservices-main-users span {
-        background-color: var(--bs-danger-bg-subtle);
+        background-color: var(--icos-cyan-50);
     }
 }
 
 .field--name-field-cpservices-kpis {
-    background-color: #acf;
     .described-data-item {
         .descriptor {
             font-size: 4em;

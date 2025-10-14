@@ -12,7 +12,7 @@ dependencies:
 id: cpservices_catalogue
 label: 'Service Catalogue'
 module: views
-description: ''
+description: 'Catalogue of ICOS services'
 tag: ''
 base_table: node_field_data
 base_field: nid
@@ -138,7 +138,7 @@ display:
                 select_all_none: false
                 select_all_none_nested: false
                 display_inline: false
-              field_cpservices_group_value:
+              field_cpservices_category_value:
                 plugin_id: bef
                 advanced:
                   sort_options: false
@@ -152,7 +152,7 @@ display:
                 select_all_none: false
                 select_all_none_nested: false
                 display_inline: false
-              field_cpservices_main_users_value:
+              field_cpservices_audience_value:
                 plugin_id: bef
                 advanced:
                   sort_options: false
@@ -173,8 +173,34 @@ display:
       cache:
         type: tag
         options: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text
+          empty: true
+          content:
+            value: '<em>No services found.</em>'
+            format: basic_html
+          tokenize: false
       sorts:
+        field_cpservices_key_service_value:
+          id: field_cpservices_key_service_value
+          table: node__field_cpservices_key_service
+          field: field_cpservices_key_service_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: standard
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
         title:
           id: title
           table: node_field_data
@@ -309,10 +335,10 @@ display:
               2: {  }
               3: {  }
           reduce_duplicates: false
-        field_cpservices_group_value:
-          id: field_cpservices_group_value
-          table: node__field_cpservices_group
-          field: field_cpservices_group_value
+        field_cpservices_category_value:
+          id: field_cpservices_category_value
+          table: node__field_cpservices_category
+          field: field_cpservices_category_value
           relationship: none
           group_type: group
           admin_label: ''
@@ -322,11 +348,11 @@ display:
           group: 1
           exposed: true
           expose:
-            operator_id: field_cpservices_group_value_op
+            operator_id: field_cpservices_category_value_op
             label: Group
             description: ''
             use_operator: false
-            operator: field_cpservices_group_value_op
+            operator: field_cpservices_category_value_op
             operator_limit_selection: false
             operator_list: {  }
             identifier: group_value
@@ -355,10 +381,10 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
-        field_cpservices_main_users_value:
-          id: field_cpservices_main_users_value
-          table: node__field_cpservices_main_users
-          field: field_cpservices_main_users_value
+        field_cpservices_audience_value:
+          id: field_cpservices_audience_value
+          table: node__field_cpservices_audience
+          field: field_cpservices_audience_value
           relationship: none
           group_type: group
           admin_label: ''
@@ -368,11 +394,11 @@ display:
           group: 1
           exposed: true
           expose:
-            operator_id: field_cpservices_main_users_value_op
+            operator_id: field_cpservices_audience_value_op
             label: 'Main users'
             description: ''
             use_operator: false
-            operator: field_cpservices_main_users_value_op
+            operator: field_cpservices_audience_value_op
             operator_limit_selection: false
             operator_list: {  }
             identifier: main_users_value
@@ -439,8 +465,7 @@ display:
         - url.query_args
         - 'user.node_grants:view'
         - user.permissions
-      tags:
-        - 'config:field.storage.node.field_cpservices_primary_link'
+      tags: {  }
   page_1:
     id: page_1
     display_title: Page
@@ -469,5 +494,4 @@ display:
         - url.query_args
         - 'user.node_grants:view'
         - user.permissions
-      tags:
-        - 'config:field.storage.node.field_cpservices_primary_link'
+      tags: {  }

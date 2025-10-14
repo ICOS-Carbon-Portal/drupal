@@ -11,14 +11,14 @@ type: list_string
 settings:
   allowed_values:
     -
-      value: public_domain
-      label: 'Public domain'
+      value: open
+      label: 'Open'
     -
-      value: cc_by_4_0
-      label: 'CC BY 4.0'
+      value: login
+      label: 'Login required'
     -
-      value: icos_stations
-      label: 'ICOS Stations'
+      value: restricted
+      label: 'Restricted'
   allowed_values_function: ''
 module: options
 locked: false

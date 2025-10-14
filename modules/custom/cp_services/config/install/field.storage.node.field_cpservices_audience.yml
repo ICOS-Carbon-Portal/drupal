@@ -4,8 +4,8 @@ dependencies:
   module:
     - node
     - options
-id: node.field_cpservices_main_users
-field_name: field_cpservices_main_users
+id: node.field_cpservices_audience
+field_name: field_cpservices_audience
 entity_type: node
 type: list_string
 settings:

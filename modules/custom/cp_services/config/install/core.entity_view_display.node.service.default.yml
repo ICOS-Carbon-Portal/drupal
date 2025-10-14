@@ -4,16 +4,15 @@ dependencies:
   config:
     - field.field.node.service.body
     - field.field.node.service.field_cpservices_access_rights
+    - field.field.node.service.field_cpservices_audience
+    - field.field.node.service.field_cpservices_category
     - field.field.node.service.field_cpservices_contacts
-    - field.field.node.service.field_cpservices_group
     - field.field.node.service.field_cpservices_header
+    - field.field.node.service.field_cpservices_introduction
     - field.field.node.service.field_cpservices_key_service
     - field.field.node.service.field_cpservices_kpis
-    - field.field.node.service.field_cpservices_main_users
     - field.field.node.service.field_cpservices_organisations
-    - field.field.node.service.field_cpservices_other_links
     - field.field.node.service.field_cpservices_primary_link
-    - field.field.node.service.field_cpservices_subservices
     - field.field.node.service.field_cpservices_thumbnail
     - image.style.max_1300x1300
     - node.type.service
@@ -33,7 +32,7 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 7
+    weight: 6
     region: content
   field_cpservices_access_rights:
     type: list_default
@@ -42,20 +41,27 @@ content:
     third_party_settings: {  }
     weight: 4
     region: content
+  field_cpservices_audience:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_cpservices_category:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
   field_cpservices_contacts:
     type: entity_reference_label
     label: hidden
     settings:
       link: true
     third_party_settings: {  }
-    weight: 11
-    region: content
-  field_cpservices_group:
-    type: list_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 3
+    weight: 9
     region: content
   field_cpservices_header:
     type: image
@@ -83,35 +89,16 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 10
-    region: content
-  field_cpservices_main_users:
-    type: list_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 6
+    weight: 8
     region: content
   field_cpservices_organisations:
     type: entity_reference_entity_view
     label: hidden
     settings:
       view_mode: default
-      link: false
+      link: true
     third_party_settings: {  }
     weight: 1
-    region: content
-  field_cpservices_other_links:
-    type: link
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    weight: 9
     region: content
   field_cpservices_primary_link:
     type: link
@@ -123,17 +110,10 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
-    weight: 8
-    region: content
-  field_cpservices_subservices:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 5
+    weight: 7
     region: content
 hidden:
+  field_cpservices_introduction: true
   field_cpservices_thumbnail: true
   links: true
   search_api_excerpt: true

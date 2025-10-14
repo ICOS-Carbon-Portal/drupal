@@ -11,7 +11,7 @@ field_name: body
 entity_type: node
 bundle: service
 label: Description
-description: ''
+description: "<p>Provide a full, detailed service description. This can and should include:</p>\r\n<ul>\r\n<li>Included services and how to obtain those services</li>\r\n<li>Relevant links to supporting documentation</li>\r\n<li>If the service is not open to all, details about who can use the service</li>\r\n<li>Information about timing, for example if the service is available for a limited time or only at specific times</li>\r\n</ul>"
 required: true
 translatable: true
 default_value: {  }
