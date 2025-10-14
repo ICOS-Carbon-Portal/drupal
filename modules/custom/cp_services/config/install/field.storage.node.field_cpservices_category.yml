@@ -4,8 +4,8 @@ dependencies:
   module:
     - node
     - options
-id: node.field_cpservices_group
-field_name: field_cpservices_group
+id: node.field_cpservices_category
+field_name: field_cpservices_category
 entity_type: node
 type: list_string
 settings:
