@@ -48,10 +48,10 @@
 %}
 
 {% if items[0].content["#markup"] == 1 %}
-  <div {{ attributes.addClass(classes, "m-1 user-select-none d-flex flex-column") }} title="{{ label }}">
+  <div {{ attributes.addClass(classes, "m-1 my-3 user-select-none d-flex flex-column") }} title="{{ label }}">
     <label class="text-secondary text-uppercase mb-1">&nbsp;</label>
     <div class="d-flex flex-row">
-      <span class="d-block border border-secondary rounded-pill p-1 me-1 fw-bold"><i class="fa-solid fa-star"></i></span>
+      <span class="d-block border-0 py-1 me-1 fw-bold text-black bg-white"><i class="fa-solid fa-star"></i></span>
     </div>
   </div>
 {% endif %}

@@ -4,22 +4,12 @@
     label {
         font-size: 0.75rem;
     }
-    .field--name-field-cpservices-group span {
-        background-color: var(--icos-cyan-50);
-    }
-    .field--name-field-cpservices-key-service span {
-        background-color: var(--icos-cyan-50);
-    }
-    .field--name-field-cpservices-access-rights span {
-        background-color: var(--icos-cyan-50);
-    }
-    .field--name-field-cpservices-main-users span {
-        background-color: var(--icos-cyan-50);
-    }
 }
 
 .field--name-field-cpservices-kpis {
     .described-data-item {
+        margin: 1rem;
+        padding: 0 1rem;
         .descriptor {
             font-size: 4em;
         }
