@@ -60,13 +60,16 @@
  */
 #}
 
+<h1 class="title page-title">
+  {{ content.field_cpservices_key_service }}
+  {{ elements["#title"]}}
+</h1>
 <div{{ attributes }}>
   <div{{ content_attributes }}>
     {{ content.field_cpservices_header }}
     <div class="row">
       <div class="cpservices-main-content col-lg-8">
         <div class="cpservices-categories d-flex flex-wrap">
-          {{ content.field_cpservices_key_service }}
           {{ content.field_cpservices_category }}
           {{ content.field_cpservices_access_rights }}
           {{ content.field_cpservices_audience }}

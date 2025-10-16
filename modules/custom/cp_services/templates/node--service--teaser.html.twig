@@ -63,10 +63,12 @@
 <div{{ attributes.addClass("card h-100 text-bg-light") }}>
     {{ content.field_cpservices_thumbnail }}
     <div class="card-body">
-      <h4 class="card-title"><a href="{{ url }}" class="text-black">{{ label }}</a></h4>
+      <h4 class="card-title"><a href="{{ url }}" class="text-black">
+        {{ content.field_cpservices_key_service }}
+        {{ label }}
+      </a></h4>
       {{ content.field_cpservices_organisations }}
       <div class="cpservices-categories d-flex flex-wrap">
-        {{ content.field_cpservices_key_service }}
         {{ content.field_cpservices_category }}
         {{ content.field_cpservices_access_rights }}
         {{ content.field_cpservices_audience }}
