@@ -17,7 +17,6 @@ dependencies:
     - field.field.node.service.field_cpservices_thumbnail
     - node.type.service
   module:
-    - image
     - link
     - options
     - text
@@ -96,7 +95,7 @@ content:
     weight: 8
     region: content
   field_cpservices_thumbnail:
-    type: image
+    type: card_img_top
     label: hidden
     settings:
       image_link: ''

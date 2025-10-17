@@ -70,3 +70,7 @@
         grid-template-columns: 1fr;
     }
 }
+
+body.path-service-catalogue .ajax-progress {
+    display: none;
+}
