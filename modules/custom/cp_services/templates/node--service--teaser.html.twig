@@ -61,7 +61,7 @@
 #}
 
 <div{{ attributes.addClass("card h-100 text-bg-light") }}>
-    {{ content.field_cpservices_thumbnail }}
+    <a href="{{ url }}">{{ content.field_cpservices_thumbnail }}</a>
     <div class="card-body">
       <h4 class="card-title"><a href="{{ url }}" class="text-black">
         {{ content.field_cpservices_key_service }}

@@ -18,13 +18,13 @@ settings:
       label: Innovation
     -
       value: qaqc
-      label: Quality assurance & control (QAQC)
+      label: Quality assurance & control
     -
       value: manufacturing
       label: Manufacturing
     -
       value: cooperation
-      label: European and International Cooperation
+      label: European & International cooperation
     -
       value: community
       label: Community engagement
