@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function cp_theme_d10_theme_suggestions_region_alter(array &$suggestions, array $variables) {
+
+  $footer_regions = [
+    'footer_first',
+    'footer_second',
+    'footer_third',
+    'footer_fourth',
+  ];
+
+  if (in_array($variables['elements']['#region'], $footer_regions, true)) {
+    $suggestions[] = 'region__footer';
+  }
+}
