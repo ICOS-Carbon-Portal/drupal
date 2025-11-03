@@ -47,10 +47,13 @@
   ]
 %}
 {% set teaser = (element['#view_mode'] == 'teaser') %}
-{% set fs = "fs-5" %}
-{% if not teaser %}
-  {% set fs = "fs-2" %}
-{% endif %}
+
 {% if items[0].content["#markup"] == 1 %}
-  <span class="text-primary {{fs}}"><i class="fa-solid fa-star"></i></span>
+  {% if not teaser %}
+    <div class="card-header">
+      <i class="fa-solid fa-star"></i> Featured service
+    </div>
+  {% else %}
+    <span class="fs-5"><i class="fa-solid fa-star"></i></span>
+  {% endif %}
 {% endif %}

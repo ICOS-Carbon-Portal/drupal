@@ -67,14 +67,17 @@
         {{ content.field_cpservices_key_service }}
         {{ label }}
       </a></h4>
-      {{ content.field_cpservices_organisations }}
       <!--div class="cpservices-categories d-flex flex-wrap my-3">
+        {# content.field_cpservices_organisations #}
         {# content.field_cpservices_category #}
         {# content.field_cpservices_access_rights #}
         {# content.field_cpservices_audience #}
       </!div-->
       {{ content.field_cpservices_introduction }}
-      <a class="btn btn-primary border-0 px-2 my-2" href={{ url }}>View details</a>
-      {{ content.field_cpservices_link }}
+      <a class="btn btn-primary border-0 px-2 my-2 me-1" href={{ url }}>View details <i class="fa-solid fa-arrow-right-long"></i></a>
+      <a class="no-external btn btn-secondary border-0 px-2 my-2" href="{{ content.field_cpservices_link[0] }}" target="_blank">
+        Go to service <i class="fa-solid fa-arrow-right-long"></i>
+      </a>
+
     </div>
 </div>

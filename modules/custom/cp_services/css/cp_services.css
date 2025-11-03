@@ -74,3 +74,8 @@
 body.path-service-catalogue .ajax-progress {
     display: none;
 }
+
+.no-external::after {
+    content: "" !important;
+    margin: 0 !important;
+}

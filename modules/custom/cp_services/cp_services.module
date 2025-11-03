@@ -49,7 +49,7 @@ function cp_services_theme() {
 			'base hook' => 'field'
 		],
 		'field__node__field_cpservices_organisations' => [
-			'template' => 'field--node--field-cpservices-organisations',
+			'template' => 'field--node--field-cpservices-tag',
 			'base hook' => 'field'
 		],
 		'field__node__field_cpservices_link_text' => [

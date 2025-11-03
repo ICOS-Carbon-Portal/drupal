@@ -64,20 +64,22 @@
   <div{{ content_attributes }}>
     {{ content.field_cpservices_header }}
     <div class="row">
-      <div class="cpservices-main-content col-lg-8 mt-3">
-        <div class="cpservices-categories d-flex flex-wrap mb-3">
-          {{ content.field_cpservices_category }}
-          {{ content.field_cpservices_access_rights }}
-          {{ content.field_cpservices_audience }}
-        </div>
-        {{ content.field_cpservices_organisations }}
+      <div class="cpservices-main-content col-lg-8 my-4">
         {{ content.body }}
       </div>
-      <div class="cpservices-links col-lg-4 mt-3">
-      <a class="btn btn-secondary border-0 px-2 my-2 ms-1" href="{{ content.field_cpservices_link }}">
-        {{ content.field_cpservices_link_text }}
-      </a>
-
+      <div class="col-lg-4 my-4 d-flex flex-column">
+        <a class="no-external btn btn-primary border-0 px-4 py-2 mb-4 mx-auto fs-4" href="{{ content.field_cpservices_link[0] }}" target="_blank">
+          {{ content.field_cpservices_link_text }} <i class="fa-solid fa-arrow-right-long"></i>
+        </a>
+        <div class="card">
+          <ul class="list-group list-group-flush">
+            {{ content.field_cpservices_key_service }}
+            {{ content.field_cpservices_organisations }}
+            {{ content.field_cpservices_category }}
+            {{ content.field_cpservices_access_rights }}
+            {{ content.field_cpservices_audience }}
+          </ul>
+        </div>
       </div>
     </div>
     {{ content.field_cpservices_kpis }}

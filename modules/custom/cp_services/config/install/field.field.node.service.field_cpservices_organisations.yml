@@ -9,7 +9,7 @@ id: node.service.field_cpservices_organisations
 field_name: field_cpservices_organisations
 entity_type: node
 bundle: service
-label: Organisations
+label: Service providers
 description: ''
 required: true
 translatable: false

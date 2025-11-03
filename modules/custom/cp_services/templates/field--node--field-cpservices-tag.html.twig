@@ -47,13 +47,27 @@
   ]
 %}
 
+{% set icon_name = "info" %}
+
+{% if field_name == "field_cpservices_organisations" %}
+  {% set icon_name = "screwdriver-wrench" %}
+{% elseif field_name == "field_cpservices_audience" %}
+  {% set icon_name = "people-group" %}
+{% elseif field_name == "field_cpservices_category" %}
+  {% set icon_name = "sitemap" %}
+{% elseif field_name == "field_cpservices_access_rights" %}
+  {% set icon_name = "lock" %}
+{% endif %}
+
 {% if items[0].content %}
-  <div {{ attributes.addClass(classes, "mx-1 mb-1 user-select-none d-flex flex-column") }} title="{{ label }}">
-    <label class="text-secondary text-uppercase mb-1">{{ label }}</label>
-    <div class="d-flex flex-wrap">
-      {% for item in items %}
-        <span class="d-block border border-black rounded-pill py-1 px-2 me-1 mb-1 fw-bold bg-secondary text-white">{{ item.content }}</span>
-      {% endfor %}
-    </div>
-  </div>
+  <li class="list-group-item">
+    <h4 class="card-title fs-6 text-secondary">
+      <i class="fa-solid fa-{{ icon_name }} me-1"></i> {{ label }}
+    </h4>
+    <p class="card-text">
+        {% for item in items %}
+          {{ item.content }}{% if loop.revindex0 > 1 %},{% elseif loop.revindex0 == 1 %} and{% endif %}
+        {% endfor %}
+    </p>
+  </li>
 {% endif %}
