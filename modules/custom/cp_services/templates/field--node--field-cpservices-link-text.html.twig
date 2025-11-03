@@ -49,8 +49,8 @@
 
 {% set teaser = (element['#view_mode'] == 'teaser') %}
 
-{% if teaser %}
-  <a{{ attributes.addClass(classes, "btn btn-secondary border-0 px-2 my-2 ms-1") }} href={{ items[0].content }}>Access</a>
+{% if not teaser and items[0] %}
+  {{ items[0].content }}
 {% else %}
-  <a{{ attributes.addClass(classes, "btn btn-primary border-0 fs-3 px-3 mb-1") }} href={{ items[0].content }}>Access service</a>
+  Go to service
 {% endif %}

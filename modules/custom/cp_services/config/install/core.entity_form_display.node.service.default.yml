@@ -11,8 +11,9 @@ dependencies:
     - field.field.node.service.field_cpservices_introduction
     - field.field.node.service.field_cpservices_key_service
     - field.field.node.service.field_cpservices_kpis
+    - field.field.node.service.field_cpservices_link
+    - field.field.node.service.field_cpservices_link_text
     - field.field.node.service.field_cpservices_organisations
-    - field.field.node.service.field_cpservices_primary_link
     - field.field.node.service.field_cpservices_thumbnail
     - image.style.thumbnail
     - node.type.service
@@ -44,19 +45,19 @@ content:
     third_party_settings: {  }
   field_cpservices_access_rights:
     type: options_select
-    weight: 18
+    weight: 19
     region: content
     settings: {  }
     third_party_settings: {  }
   field_cpservices_audience:
     type: options_buttons
-    weight: 17
+    weight: 18
     region: content
     settings: {  }
     third_party_settings: {  }
   field_cpservices_contacts:
     type: entity_reference_autocomplete
-    weight: 19
+    weight: 20
     region: content
     settings:
       match_operator: CONTAINS
@@ -66,7 +67,7 @@ content:
     third_party_settings: {  }
   field_cpservices_category:
     type: options_select
-    weight: 16
+    weight: 17
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -88,30 +89,38 @@ content:
     third_party_settings: {  }
   field_cpservices_key_service:
     type: boolean_checkbox
-    weight: 15
+    weight: 16
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   field_cpservices_kpis:
     type: described_data_widget
-    weight: 20
+    weight: 21
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_cpservices_organisations:
-    type: options_buttons
-    weight: 13
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_cpservices_primary_link:
+  field_cpservices_link:
     type: link_default
     weight: 14
     region: content
     settings:
       placeholder_url: ''
       placeholder_title: ''
+    third_party_settings: {  }
+  field_cpservices_link_text:
+    type: string_textfield
+    weight: 15
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_cpservices_organisations:
+    type: options_buttons
+    weight: 13
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_cpservices_thumbnail:
     type: image_image

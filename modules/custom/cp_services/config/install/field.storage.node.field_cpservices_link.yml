@@ -4,8 +4,8 @@ dependencies:
   module:
     - link
     - node
-id: node.field_cpservices_primary_link
-field_name: field_cpservices_primary_link
+id: node.field_cpservices_link
+field_name: field_cpservices_link
 entity_type: node
 type: link
 settings: {  }

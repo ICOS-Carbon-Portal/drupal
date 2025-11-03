@@ -12,8 +12,9 @@ dependencies:
     - field.field.node.service.field_cpservices_introduction
     - field.field.node.service.field_cpservices_key_service
     - field.field.node.service.field_cpservices_kpis
+    - field.field.node.service.field_cpservices_link
+    - field.field.node.service.field_cpservices_link_text
     - field.field.node.service.field_cpservices_organisations
-    - field.field.node.service.field_cpservices_primary_link
     - field.field.node.service.field_cpservices_thumbnail
     - node.type.service
   module:
@@ -82,7 +83,7 @@ content:
     third_party_settings: {  }
     weight: 2
     region: content
-  field_cpservices_primary_link:
+  field_cpservices_link:
     type: link
     label: hidden
     settings:
@@ -114,4 +115,5 @@ hidden:
   field_cpservices_contacts: true
   field_cpservices_header: true
   field_cpservices_kpis: true
+  field_cpservices_link_text: true
   search_api_excerpt: true

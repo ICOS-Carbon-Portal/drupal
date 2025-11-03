@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cpservices_link_text
+    - node.type.service
+id: node.service.field_cpservices_link_text
+field_name: field_cpservices_link_text
+entity_type: node
+bundle: service
+label: Link text
+description: 'This text appears on the button from the service page and should be a "call to action" to use the service. For example, "Go to Data Portal", "Request service from lab", or "Access service".'
+required: false
+translatable: false
+default_value:
+  -
+    value: 'Go to service'
+default_value_callback: ''
+settings: {  }
+field_type: string

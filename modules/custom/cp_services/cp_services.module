@@ -52,8 +52,8 @@ function cp_services_theme() {
 			'template' => 'field--node--field-cpservices-organisations',
 			'base hook' => 'field'
 		],
-		'field__node__field_cpservices_primary_link' => [
-			'template' => 'field--node--field-cpservices-primary-link',
+		'field__node__field_cpservices_link_text' => [
+			'template' => 'field--node--field-cpservices-link-text',
 			'base hook' => 'field'
 		],
 		'node__service__full' => [

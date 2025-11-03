@@ -60,10 +60,6 @@
  */
 #}
 
-<h1 class="title page-title">
-  {{ content.field_cpservices_key_service }}
-  {{ elements["#title"]}}
-</h1>
 <div{{ attributes }}>
   <div{{ content_attributes }}>
     {{ content.field_cpservices_header }}
@@ -78,7 +74,10 @@
         {{ content.body }}
       </div>
       <div class="cpservices-links col-lg-4 mt-3">
-        {{ content.field_cpservices_primary_link }}
+      <a class="btn btn-secondary border-0 px-2 my-2 ms-1" href="{{ content.field_cpservices_link }}">
+        {{ content.field_cpservices_link_text }}
+      </a>
+
       </div>
     </div>
     {{ content.field_cpservices_kpis }}
