@@ -1,4 +1,6 @@
 style:
   css:
     theme:
-      css/cp_services.css: {}
+      css/cp-services.css: {}
+  js:
+    js/cp-services-view.js: {}

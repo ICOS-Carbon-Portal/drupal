@@ -1,3 +1,10 @@
+/* Utility class for hiding external link icon */
+
+.no-external::after {
+    content: "" !important;
+    margin: 0 !important;
+}
+
 /* Full/Teaser view styles */
 
 .cpservices-categories {
@@ -43,13 +50,44 @@
 
 .cpservices-catalogue {
     container: service-catalogue / inline-size;
+
     .view-filters .form-type-textfield label {
         display: table;
     }
+
     .view-content {
         display: grid;
         gap: 1rem;
         align-items: stretch;
+        margin-top: 0.5rem;
+    }
+
+    .view-filters {
+        .views-exposed-form.bef-exposed-form {
+            .form--inline {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                padding: 0.5rem;
+                padding-left: 4rem;
+                left: -100vw;
+                z-index: 1;
+                background-color: white;
+                border: 1px solid #aaa;
+                border-radius: 5px;
+                overflow: hidden;
+                transition: left 0.2s ease-in;
+            }
+
+            .form--inline.displayed {
+                transition: left 0.2s ease-out;
+            }
+
+            legend, label[for="edit-service-name"] {
+                font-size: 1em;
+                margin-bottom: 0.5rem;
+            }
+        }
     }
 }
 
@@ -73,9 +111,4 @@
 
 body.path-service-catalogue .ajax-progress {
     display: none;
-}
-
-.no-external::after {
-    content: "" !important;
-    margin: 0 !important;
 }

@@ -77,7 +77,7 @@ display:
         options:
           offset: 0
           pagination_heading_level: h4
-          items_per_page: 10
+          items_per_page: 12
           total_pages: null
           id: 0
           tags:
@@ -349,7 +349,7 @@ display:
           exposed: true
           expose:
             operator_id: field_cpservices_category_value_op
-            label: Group
+            label: Category
             description: ''
             use_operator: false
             operator: field_cpservices_category_value_op
@@ -395,7 +395,7 @@ display:
           exposed: true
           expose:
             operator_id: field_cpservices_audience_value_op
-            label: 'Main users'
+            label: 'Audience'
             description: ''
             use_operator: false
             operator: field_cpservices_audience_value_op
