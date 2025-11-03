@@ -2,5 +2,3 @@ style:
   css:
     theme:
       css/cp-services.css: {}
-  js:
-    js/cp-services-view.js: {}
