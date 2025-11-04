@@ -65,16 +65,19 @@
     .view-filters {
         .views-exposed-form.bef-exposed-form {
             .form--inline {
-                max-height: 160px;
-                overflow: scroll;
-                margin-bottom: 2em;
-                background: rgb(var(--bs-light-rgb));
-                border-width: var(--bs-border-width);
-                border-color: var(--bs-border-color-translucent);
-                border-radius: var(--bs-border-radius);
-                border-style: solid;
-                padding-left: 1em;
-                padding-right: 1em;
+                details {
+                    border-width: 0;
+                    summary {
+                        color: black;
+                        background: unset;
+                        font-weight: bold;
+                        padding: 0;
+                    }
+                    .details-wrapper {
+                        padding-left: 0;
+                        padding-right: 0;
+                    }
+                }
             }
 
             legend, label[for="edit-service-name"] {
