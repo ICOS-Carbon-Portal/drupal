@@ -13,14 +13,8 @@
         {id: "edit-main-users-value-collapsible", open: isFilterOpen("edit-main-users-value-collapsible")}
     ];
 
-    // addEventListener for click on elements with ids = id within context
     function toggleFilter(e) {
-        console.log("filters before");
-        console.log(filters);
-        console.log(e.target);
         filters = filters.map((filter) => filter.id === e.target.dataset["drupalSelector"] ? {id: filter.id, open: e.target.open} : filter);
-        console.log("filters after");
-        console.log(filters);
     }
 
     Drupal.behaviors.servicesViewRefresh = {
