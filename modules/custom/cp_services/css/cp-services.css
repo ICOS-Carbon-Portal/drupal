@@ -67,6 +67,9 @@
             .form--inline {
                 details {
                     border-width: 0;
+                    min-width: 200px;
+                    width: 23%;
+                    min-height: 60px;
                     summary {
                         color: #414042;
                         background: unset;
@@ -77,6 +80,10 @@
                         padding-left: 0;
                         padding-right: 0;
                     }
+                }
+                .form-item-service-name {
+                    min-width: 200px;
+                    width: 25%;
                 }
             }
 
