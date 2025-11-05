@@ -330,10 +330,7 @@ display:
             remember: false
             default_group: All
             default_group_multiple: {  }
-            group_items:
-              1: {  }
-              2: {  }
-              3: {  }
+            group_items: {  }
           reduce_duplicates: false
         field_cpservices_category_value:
           id: field_cpservices_category_value
@@ -395,7 +392,7 @@ display:
           exposed: true
           expose:
             operator_id: field_cpservices_audience_value_op
-            label: 'Audience'
+            label: Audience
             description: ''
             use_operator: false
             operator: field_cpservices_audience_value_op
@@ -426,7 +423,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          reduce_duplicates: false
+          reduce_duplicates: true
       filter_groups:
         operator: AND
         groups:
