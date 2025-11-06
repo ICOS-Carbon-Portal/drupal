@@ -10,7 +10,7 @@ id: node.service.field_cpservices_audience
 field_name: field_cpservices_audience
 entity_type: node
 bundle: service
-label: 'Main users'
+label: Audience
 description: ''
 required: false
 translatable: false

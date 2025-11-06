@@ -9,8 +9,8 @@
     
     let filters = [
         {id: "edit-access-rights-value-collapsible", open: isFilterOpen("edit-access-rights-value-collapsible")},
-        {id: "edit-group-value-collapsible", open: isFilterOpen("edit-group-value-collapsible")},
-        {id: "edit-main-users-value-collapsible", open: isFilterOpen("edit-main-users-value-collapsible")}
+        {id: "edit-category-value-collapsible", open: isFilterOpen("edit-category-value-collapsible")},
+        {id: "edit-audience-value-collapsible", open: isFilterOpen("edit-audience-value-collapsible")}
     ];
 
     function toggleFilter(e) {
