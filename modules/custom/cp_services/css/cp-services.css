@@ -81,13 +81,13 @@
                         padding-right: 0;
                     }
                 }
-                .form-item-service-name {
+                .form-item-freetext {
                     min-width: 200px;
                     width: 25%;
                 }
             }
 
-            legend, label[for="edit-service-name"] {
+            legend, .form-item-freetext label {
                 font-size: 1em;
                 margin-bottom: 0.5rem;
             }
