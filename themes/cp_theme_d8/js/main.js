@@ -1,4 +1,4 @@
-'use strict';
+
 Drupal.behaviors.cp_theme_d8 = {
 	attach: function(context) {
 		once('cp_theme_d8', '#menu-button', context).forEach(function(button) {
