@@ -1,0 +1,254 @@
+.menu--main {
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#cp_theme_d10_menu {
+  a {
+    text-decoration: none;
+    color: var(--bs-dark);
+    display: inline-block;
+  }
+}
+
+@media all and (min-width: 768px) { /* Bootstrap medium breakpoint*/
+  .mobile {
+    display: none;
+  }
+  
+  #cp_theme_d10_menu {
+    
+    ul {
+      list-style-type: none;
+    }
+
+    .top-node:hover .dropdown-menu {
+      display: flex;
+      flex-wrap: wrap;
+
+      & > li {
+        width: 316px;
+        margin-right: 1rem;
+      }
+    }
+
+    .top-node .dropdown-menu {
+      width: 100%;
+      left: 0;
+      border-width: 1px 0;
+      border-radius: 0;
+      box-shadow: none;
+      max-width: 1400px;
+    }
+
+  }
+}
+
+
+
+.not-relevant-dont-trigger-plx {
+.region-primary-menu {
+  border-bottom: 1px solid #eee;
+}
+
+/* Not included in #cp_theme_d10_menu */
+#menu-button {
+  margin: auto 20px;
+  font-weight: bold;
+  color: white;
+  background: rgba(255, 255, 255, 0.3);
+  font-size: 24px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  line-height: 24px;
+}
+
+/* Not menu related */
+.header-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-section .region-header {
+  margin-right: auto;
+}
+
+#cp_theme_d10_menu.open {
+  display: block;
+}
+
+/* General styling (<768px) */
+#cp_theme_d10_menu {
+  display: none;
+  font-weight: bold;
+
+  .account {
+    display: none;
+    cursor: pointer;
+
+    a {
+      display: block;
+    }
+  }
+
+  li {
+    text-transform: uppercase;
+    li li {
+      text-transform: initial;
+    }
+  }
+
+  .fas.fa-home {
+    display: inline-block;
+  }
+
+  /* Previously, a:hover applied globally */
+  a:hover {
+    border-bottom-style: none;
+  }
+}
+
+/* Small screen layout (<768px) */
+#cp_theme_d10_menu {
+  li ul {
+    display: block;
+  }
+
+  li.open ul {
+    display: block;
+  }
+/*
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+*/
+  ul li {
+    display: block;
+    /*background: #414042;*/
+  }
+
+  ul li a {
+    display: block;
+  }
+}
+
+@media all and (min-width: 768px) { /* Bootstrap medium breakpoint*/
+  #menu-button {
+    display: none;
+  }
+
+  .header-section {
+    display: block;
+  }
+
+
+  #cp_theme_d10_menu {
+    display: block;
+    width: 100%;
+
+    /* Disabling chevrons */
+    .fas {
+      display: none;
+    }
+
+    li ul {
+      display: flex;
+    }
+
+    ul {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      /*margin: 0;
+      padding: 0;*/
+    }
+
+    li {
+      list-style: none;
+      cursor: pointer;
+      transition: background-color 0.1s ease-out;
+    }
+
+    /*
+    li li {
+      width: 268px;
+      line-height: 1.2;
+    }
+
+    li li li {
+      padding: 0;
+      width: auto;
+      font-weight: normal;
+      line-height: 1;
+    }
+
+    li li li li {
+      padding: 0 1.5rem;
+    }
+*/
+    li a {
+      display: block;
+      /*border: solid transparent;
+      border-width: 5px 0;
+      padding: 0.65rem 1.5rem;
+      transition: border 0.1s ease-out;*/
+    }
+
+    .active-trail {
+      border-bottom-color: var(--icos-magenta);
+    }
+
+    .is_topnode > ul {
+      max-width: 1100px;
+      visibility: hidden;
+      position: absolute;
+      left: 50px;
+      right: 50px;
+      justify-content: flex-start;
+      padding: 1rem 1rem 1.5rem;
+      /*background-color: var(--icos-grey-90);*/
+      z-index: 10;
+      /*transition: visibility 0.1s ease-out;
+      margin: 0 auto;
+      box-shadow: 0px 1px 1px #333;*/
+      flex-wrap: wrap;
+    }
+
+    .is_topnode:hover > ul {
+      visibility: visible;
+    }
+/*
+    li li a {
+      color: white;
+    }
+
+    li li a:hover {
+      text-decoration-line: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 0.2em;
+      text-decoration-thickness: 0.1em;
+    }
+*/
+    ul ul ul {
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    ul ul ul ul {
+      margin-bottom: 0;
+    }
+/*
+    li li li a {
+      padding-top: 0;
+      padding-bottom: 0;
+      color: #eee;
+    }
+*/
+    .account {
+      display: none !important;
+    }
+  }
+}
+}
