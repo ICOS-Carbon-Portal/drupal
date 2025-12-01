@@ -5,7 +5,8 @@ global-styling:
   css:
     component:
       css/style.css: { weight: 100 }
-      css/menu.css: { weight: 99 }
+      css/page.css: { weight: 99 }
+      css/menu.css: { weight: 98 }
       //use.fontawesome.com/releases/v6.7.2/css/all.css: { type: external, minified: true }
   dependencies:
     - core/once

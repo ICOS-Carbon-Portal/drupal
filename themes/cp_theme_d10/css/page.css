@@ -1,0 +1,9 @@
+/**
+ * @file
+ * Subtheme specific CSS for elements present on every page.
+ */
+
+.navbar-brand img {
+  height: 36px;
+}
+

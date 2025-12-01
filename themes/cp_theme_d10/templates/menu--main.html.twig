@@ -50,7 +50,6 @@
 {{ _self.menu_links(items, attributes, 0, _context, "") }}
 
 {% macro menu_links(items, attributes, menu_level, variables, last_level_2_url) %}
-	<script>console.log("Initiating macro with at level={{ menu_level }} and l_l_2_url = {{ last_level_2_url }}")</script>
 	{% set prev_level_2 = "" %}
 	{% if items %}
 		{% if menu_level == 0 %}
