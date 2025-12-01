@@ -56,50 +56,55 @@
 	{% if items %}
 		{% if menu_level == 0 %}
 			<div id="cp_theme_d10_menu" class="layout-container">
-			<ul{{ attributes.removeClass('clearfix').addClass('nav navbar-nav justify-content-center px-4')|without('id') }}>
+			<div{{ attributes.removeClass('clearfix').addClass('nav navbar-nav justify-content-center px-4 was-ul')|without('id') }}>
 		{% elseif menu_level == 1 %}
-			<ul class="dropdown-menu p-4">
-		{% else %}
-			<ul class="ps-0">
+			<div class="dropdown-menu py-4 border rounded-0 justify-content-between">
 		{% endif %}
 		{% for item in items %}
 			{% set item_classes = [
 					menu_level == 0 and item.below ? 'top-node',
 					menu_level == 0 ? 'flex-grow-1',
+					menu_level == 1 ? 'menu-col',
+					menu_level > 1 ? 'list-item',
 				]
 			%}
-			<li{{ item.attributes.addClass(item_classes) }}>
+			<div{{ item.attributes.addClass(item_classes) }}>
 				{% set link_classes = [
 						menu_level == 0 ? 'text-dark py-2 px-3 w-100 d-flex justify-content-center',
 						menu_level == 0 and item.in_active_trail ? 'active-trail',
-						menu_level == 1 ? 'fw-bold pb-1 pt-2',
+						menu_level == 2 ? 'fw-bold pb-1 pt-2',
 						menu_level > 1 ? 'pb-1 pt-2'
 					]
 				%}
+				{% set hide_link = menu_level > 1 ? (item.url.toString() == "/" or item.title.toString() == "Empty") : false %}
+				{% if hide_link %}
+					<div class="{{ link_classes|join(" ") }} user-select-none">&nbsp;</div>
+				{% elseif menu_level != 1 %} {# show link #}
 					<a href="{{ item.url }}" class="{{ link_classes|join(" ") }}">
-					{% if menu_level == 0%}
+					{% if menu_level == 0 %}
 						<div>
-						{% endif %}
-						{{ item.title }}
-						{#% if menu_level > 0 and item.below %}
-						<span class="open-menu submenu-icon"><i class="fas fa-chevron-right"></i></span>
-						{% endif %#}
-			
-				{% if menu_level == 0 %}
-					{% if item.below %}
-						<span class="open-menu menu-icon"><i class="fas fa-chevron-down"></i></span>
 					{% endif %}
+					{{ item.title }}
+					{% if menu_level == 0 %}
+						{% if item.below %}
+							<span class="open-menu menu-icon"><i class="fas fa-chevron-down"></i></span>
+						{% endif %}
 						</div>
-				{% endif %}
+					{% endif %}
 					</a>
+				{% endif %}
 				{% if item.below %}
 					{{ menus.menu_links(item.below, attributes, menu_level + 1) }}
 				{% endif %}
-			</li>
+			</div>
 		{% endfor %}
-		</ul>
 		{% if menu_level == 0 %}
-		</div>
+			</div> {# .navbar-nav #}
+			</div> {# #cp_theme_d10_menu #}
+		{% elseif menu_level <= 1 %}
+			</div> {# .dropdown-menu #}
+		{% endif %}
+		{% if menu_level == 0 %}
 		{% endif %}
 	{% endif %}
 {% endmacro %}
