@@ -42,23 +42,22 @@
  */
 #}
 
-{% import _self as menus %}
-
 {#
 	We call a macro which calls itself to render the full tree.
 	@see http://twig.sensiolabs.org/doc/tags/macro.html
 #}
+{% set prev_level_2 = "" %}
+{{ _self.menu_links(items, attributes, 0, _context, "") }}
 
-{{ menus.menu_links(items, attributes, 0, _context) }}
-
-{% macro menu_links(items, attributes, menu_level, variables) %}
-	{% import _self as menus %}
+{% macro menu_links(items, attributes, menu_level, variables, last_level_2_url) %}
+	<script>console.log("Initiating macro with at level={{ menu_level }} and l_l_2_url = {{ last_level_2_url }}")</script>
+	{% set prev_level_2 = "" %}
 	{% if items %}
 		{% if menu_level == 0 %}
 			<div id="cp_theme_d10_menu" class="layout-container">
 			<div{{ attributes.removeClass('clearfix').addClass('nav navbar-nav justify-content-center px-4 was-ul')|without('id') }}>
 		{% elseif menu_level == 1 %}
-			<div class="dropdown-menu py-4 border rounded-0 justify-content-between">
+			<div class="dropdown-menu pt-3 pb-4 border rounded-0 justify-content-between">
 		{% endif %}
 		{% for item in items %}
 			{% set item_classes = [
@@ -72,11 +71,11 @@
 				{% set link_classes = [
 						menu_level == 0 ? 'text-dark py-2 px-3 w-100 d-flex justify-content-center',
 						menu_level == 0 and item.in_active_trail ? 'active-trail',
-						menu_level == 2 ? 'fw-bold pb-1 pt-2',
-						menu_level > 1 ? 'pb-1 pt-2'
+						menu_level == 2 ? 'text-dark fw-semibold pt-3 pb-3 ',
+						menu_level > 2 ? 'text-secondary pt-1 pb-2'
 					]
 				%}
-				{% set hide_link = menu_level > 1 ? (item.url.toString() == "/" or item.title.toString() == "Empty") : false %}
+				{% set hide_link = menu_level == 2 ? (item.url.toString() == last_level_2_url) : false %}
 				{% if hide_link %}
 					<div class="{{ link_classes|join(" ") }} user-select-none">&nbsp;</div>
 				{% elseif menu_level != 1 %} {# show link #}
@@ -94,9 +93,15 @@
 					</a>
 				{% endif %}
 				{% if item.below %}
-					{{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+					{% set prev_level_2 = prev_level_2 != "" ? prev_level_2 : last_level_2_url %}
+					{{ _self.menu_links(item.below, attributes, menu_level + 1, variables, prev_level_2) }}
 				{% endif %}
 			</div>
+			{% if menu_level == 1 and item.below %}
+				{% for below_item in item.below|slice(0,1) %}
+					{% set prev_level_2 = below_item.url.toString() %}
+				{% endfor %}
+			{% endif %}
 		{% endfor %}
 		{% if menu_level == 0 %}
 			</div> {# .navbar-nav #}
