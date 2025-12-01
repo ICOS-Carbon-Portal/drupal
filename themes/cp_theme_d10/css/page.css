@@ -24,6 +24,8 @@
 
     .content h3 {
       font-weight: 600;
+      font-size: 1.125rem;
+      line-height: 120%;
     }
 
     .content a {
