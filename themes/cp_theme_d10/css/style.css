@@ -11,3 +11,14 @@
     vertical-align: middle;
     text-decoration: none;
 }
+
+.external-link::after,
+a[target=_blank]::after {
+    font-family: "Font Awesome 6 Free";
+    content: "\f08e";
+    display: inline-block;
+    font-weight: 900;
+    padding-left: 0.5rem;
+    vertical-align: middle;
+    text-decoration: none;
+}

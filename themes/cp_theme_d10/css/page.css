@@ -3,7 +3,62 @@
  * Subtheme specific CSS for elements present on every page.
  */
 
-.navbar-brand img {
+.header .navbar-brand img {
   height: 36px;
 }
 
+.site-footer {
+  background-color: var(--bs-primary);
+
+  .navbar-brand img {
+    height: 60px;
+  }
+
+  .block {
+    border-width: 0 !important;
+
+    .content, .content p, .content a, .content h3 {
+      color: var(--bs-light);
+      font-size: 1rem;
+    }
+
+    .content h3 {
+      font-weight: 600;
+    }
+
+    .content a {
+      text-decoration: underline;
+    }
+
+    .content ul {
+      list-style-type: none;
+      display: flex;
+      flex-direction: row;
+      padding-left: 0;
+      li {
+        margin-right: 2rem;
+      }
+    }
+    
+    .content ul.social-media li {
+      margin-right: 0.875rem;
+      a {
+        font-size: 25px;
+        text-decoration: none !important;
+      }
+    }
+  }
+}
+
+@media all and (min-width: 1400px) { /* Bootstrap XXL breakpoint */
+  .header {
+    width: 100%;
+    padding-left: calc((100% - 1400px)/2);
+    padding-right: calc((100% - 1400px)/2);
+  }
+}
+
+/* Correct font family on contributed theme components */
+.site-footer, .ui-dialog, #page .ui-widget {
+  font-family: var(--bs-body-font-family) !important;
+}
