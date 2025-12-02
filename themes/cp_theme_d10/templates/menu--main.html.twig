@@ -68,7 +68,7 @@
 			%}
 			<div{{ item.attributes.addClass(item_classes) }}>
 				{% set link_classes = [
-						menu_level == 0 ? 'text-dark py-2 px-3 w-100 d-flex justify-content-center',
+						menu_level == 0 ? 'text-dark py-2 px-3 w-100 d-flex justify-content-center top-link',
 						menu_level == 0 and item.in_active_trail ? 'active-trail',
 						menu_level == 2 ? 'text-dark fw-semibold pt-3 pb-3 ',
 						menu_level > 2 ? 'text-secondary pt-1 pb-2'

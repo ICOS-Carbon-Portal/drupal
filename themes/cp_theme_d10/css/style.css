@@ -3,6 +3,8 @@
  * Subtheme specific CSS for utility classes.
  */
 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 .right-arrow::after {
     font-family: "Font Awesome 6 Free";
     content: "\f178";
@@ -21,4 +23,16 @@ a[target=_blank]::after {
     padding-left: 0.5rem;
     vertical-align: middle;
     text-decoration: none;
+}
+
+.fs-xs {
+    font-size: 0.75rem;
+}
+
+.fs-sm {
+    font-size: 0.875rem;
+}
+
+.fs-lg {
+    font-size: 1.125rem;
 }

@@ -10,9 +10,47 @@ function cp_theme_d10_theme_suggestions_region_alter(array &$suggestions, array 
     'footer_second',
     'footer_third',
     'footer_fourth',
+    'footer_bottom_second',
   ];
 
   if (in_array($variables['elements']['#region'], $footer_regions, true)) {
     $suggestions[] = 'region__footer';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page templates.
+ */
+function cp_theme_d10_preprocess_page(&$variables) {
+  // Get the node object if this route displays one.
+  $node = \Drupal::routeMatch()->getParameter('node');
+
+  // Ensure it's a node.
+  if ($node instanceof \Drupal\node\NodeInterface) {
+
+    // Check for the "page" content type.
+    if ($node->bundle() === 'page') {
+
+      // Check that the field exists and has a value.
+      if ($node->hasField('field_header_image') && !$node->get('field_header_image')->isEmpty()) {
+
+        // Render the field. Use the view builder for proper rendering.
+        $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
+
+        // Render just this field using a specific view mode or field formatter.
+        // Option A: Render the entire node in a view mode and pick the field.
+        // $build = $view_builder->view($node, 'default');
+        // $render_array = $build['field_header_image'] ?? NULL;
+
+        // Option B: Render the field directly (safer if you only want this field).
+        // Uncomment this instead if preferred:
+        $render_array = $node->get('field_header_image')->view([
+          'label' => 'hidden',
+        ]);
+
+        // Add the rendered field as a new variable for page.html.twig.
+        $variables['main_image'] = $render_array;
+      }
+    }
   }
 }
