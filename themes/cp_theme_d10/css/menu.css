@@ -23,7 +23,7 @@
 
   a:hover {
     color: var(--bs-danger) !important;
-    text-decoration-thickness: 10%;
+    text-decoration: underline 10%;
   }
 
   .top-link:hover, .top-node:hover .top-link {
@@ -42,10 +42,6 @@
     .top-node:hover .dropdown-menu {
       display: flex;
       flex-wrap: none;
-
-      & > div {
-        width: 20%;
-      }
     }
 
     .top-node .dropdown-menu {
@@ -54,6 +50,10 @@
       width: 100%;
       padding-left: 1rem;
       padding-right: 1rem;
+      
+      & > div {
+        width: 20%;
+      }
     }
   }
 

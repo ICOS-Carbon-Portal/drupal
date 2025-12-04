@@ -5,26 +5,35 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
-.right-arrow::after {
+.right-arrow::after, .down-arrow::after,
+.external-link::after, a[target=_blank]::after,
+.download::after {
     font-family: "Font Awesome 6 Free";
-    content: "\f178";
     display: inline-block;
-    padding-left: 0.5rem;
+    padding-left: 0.65rem;
     vertical-align: middle;
     text-decoration: none;
+    font-weight: 900;
+}
+
+.right-arrow::after {
+    content: "\f178";
+}
+
+.down-arrow::after {
+    content: "\f063";
 }
 
 .external-link::after,
 a[target=_blank]::after {
-    font-family: "Font Awesome 6 Free";
     content: "\f08e";
-    display: inline-block;
-    font-weight: 900;
-    padding-left: 0.5rem;
-    vertical-align: middle;
-    text-decoration: none;
 }
 
+.download::after {
+    content: "\f019";
+}
+
+/* Additional font size utilities */
 .fs-xs {
     font-size: 0.75rem;
 }

@@ -2,6 +2,14 @@
  * @file
  * Subtheme specific CSS for elements present on every page.
  */
+ 
+ :root {
+  --blue-10: #E5F7FA;
+ }
+
+ * {
+  transition: font-weight 0.1s;
+ }
 
  /* Link styling */
 a, a:not([class]) {
@@ -25,11 +33,14 @@ a.fw-semibold:hover {
 }
 
 a.social-media-icon {
-  font-size: 25px;
+  font-size: 20px;
   text-decoration: none !important;
   font-weight: 400;
 }
 
+.text-light a, .text-light a:hover {
+  color: var(--bs-light);
+}
 
 /* Header */
 .header .navbar-brand img {
@@ -62,14 +73,8 @@ footer {
   }
 
   .block {
-    .content ul {
-      list-style-type: none;
-      display: flex;
-      flex-direction: row;
-      padding-left: 0;
-      li {
-        margin-right: 2rem;
-      }
+    .content ul li {
+      margin-right: 2rem;
     }
     
     .content ul.social-media li {
@@ -83,6 +88,14 @@ footer {
     height: 1px;
     opacity: 0.16;
     background: var(--bs-light);
+  }
+
+  h3, .h6 {
+    margin-bottom: 1rem;
+  }
+
+  .footer-bottom {
+    margin-top: 6rem;
   }
 }
 
@@ -106,3 +119,70 @@ footer {
 .node__content {
   font-size: 1rem;
 }
+
+/* Basic page specific */
+
+/* "On this page" and "Learn more" links boxes */
+.layout--twocol-section.layout--twocol-section--50-50 {
+  /* Left box */
+  .layout__region:has(.toc-js),
+  .layout__region:has(.block-field-blocknodepagefield-side-links-title),
+  .layout__region:has(.block-field-blocknodepagefield-side-links) {
+    background-color: var(--bs-primary);
+    color: var(--bs-light);
+    padding: 2rem;
+    border-radius: 0.4rem;
+
+    ul {
+      margin-bottom: 0;
+    }
+
+    a, a:hover {
+      color: var(--bs-light);
+    }
+  }
+
+  .layout__region:has(.toc-js) .block-field-blocknodepagefield-side-links-title,
+  .layout__region:has(.block-field-blocknodepagefield-bottom-left-links) .block-field-blocknodepagefield-bottom-right-links-title {
+    margin-top: 2.5rem;
+  }
+
+  /* Right box */
+  .layout__region:has(.block-field-blocknodepagefield-bottom-left-links-title),
+  .layout__region:has(.block-field-blocknodepagefield-bottom-left-links),
+  .layout__region:has(.block-field-blocknodepagefield-bottom-right-links-title),
+  .layout__region:has(.block-field-blocknodepagefield-bottom-right-links) {
+    background-color: var(--blue-10);
+    padding: 2rem;
+    border-radius: 0.4rem;
+
+    ul {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media all and (min-width: 992px) {
+  .layout--twocol-section.layout--twocol-section--50-50 {
+    justify-content: space-between;
+  }
+
+  .layout--twocol-section.layout--twocol-section--50-50 > .layout__region--first,
+  .layout--twocol-section.layout--twocol-section--50-50 > .layout__region--second {
+    flex-basis: calc(50% - 1rem);
+  }
+}
+
+@media all and (max-width: 991px) {
+  .layout--twocol-section.layout--twocol-section--50-50 {
+    display: block;
+  }
+
+  .layout--twocol-section.layout--twocol-section--50-50 > .layout__region--second {
+    margin-top: 2rem;
+  }
+}
+
+/* General page stuff */
+
+

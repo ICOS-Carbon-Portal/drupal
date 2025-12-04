@@ -64,7 +64,12 @@
 
 {# Copied and modified from @bootstrap/layouts/page.html.twig #}
 
-<div id="page-wrapper">
+{% set template_class = "" %}
+{% if node.field_template.value %}
+  {% set template_class = ("template-" ~ node.field_template.value)|replace({'_': '-', ' ': '-'}) %}
+{% endif %}
+
+<div id="page-wrapper" class="{{ route_class }} {{ content_type }} {{ template_class }}">
   <div id="page">
     <header>
       {% if page.above_header %}
@@ -105,7 +110,7 @@
             {{ page.above_content }}
           </div>
           {{ page.breadcrumb }}
-          <div class="row row-offcanvas row-offcanvas-left clearfix">
+          <div class="row row-offcanvas row-offcanvas-left clearfix page-content {{ template_class }}">
               <main{{ content_attributes }}>
                 <section class="section">
                   <a href="#main-content" id="main-content" tabindex="-1"></a>
@@ -131,7 +136,7 @@
             {{ page.footer_third }}
             {{ page.footer_fourth }}
           </div>
-          <div class="row">
+          <div class="row footer-bottom">
             {{ page.footer_bottom_first }}
             {{ page.footer_bottom_second }}
           </div>
@@ -139,10 +144,3 @@
     </footer>
   </div>
 </div>
-
-
-
-
-
-
-
