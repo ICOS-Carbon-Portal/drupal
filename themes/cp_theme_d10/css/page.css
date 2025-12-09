@@ -5,6 +5,9 @@
  
  :root {
   --blue-10: #E5F7FA;
+  --blue-10-rgb: 229, 247, 250;
+  --icos-violet: #5C2B93;
+  --icos-violet-rgb: 92, 43, 147;
  }
 
  * {
@@ -99,14 +102,6 @@ footer {
   }
 }
 
-/* Bootstrap XXL breakpoint */
-@media all and (min-width: 1400px) { 
-  .header {
-    width: 100%;
-    padding-left: calc((100% - 1400px)/2);
-    padding-right: calc((100% - 1400px)/2);
-  }
-}
 
 /* Overriding Bootstrap theme defaults */
 
@@ -123,66 +118,126 @@ footer {
 /* Basic page specific */
 
 /* "On this page" and "Learn more" links boxes */
-.layout--twocol-section.layout--twocol-section--50-50 {
-  /* Left box */
-  .layout__region:has(.toc-js),
-  .layout__region:has(.block-field-blocknodepagefield-side-links-title),
-  .layout__region:has(.block-field-blocknodepagefield-side-links) {
-    background-color: var(--bs-primary);
-    color: var(--bs-light);
+.layout--colored-flex {
+  margin: 3rem auto;
+
+  /* Do not display empty layout region */
+  .layout__region:not(:has(.block)) {
+    display: none;
+  }
+
+  /* Do not display left box if toc is hidden and links not present */
+  .layout__region--left:has(.toc-js.is-hidden):not(:has(.block-field-blocknodepagefield-side-links-title), :has(.block-field-blocknodepagefield-side-links)) {
+    display: none;
+  }
+
+  /* Layout builder - always display with black text */
+  .layout__region.layout-builder__region {
+    display: block !important;
+    color: black !important;
+    a {
+      color: black !important;
+    }
+  }
+
+  .layout__region--left, .layout__region--right {
     padding: 2rem;
-    border-radius: 0.4rem;
 
     ul {
       margin-bottom: 0;
     }
+  }
 
+  /* Left box */
+  .layout__region--left {
     a, a:hover {
       color: var(--bs-light);
     }
   }
 
-  .layout__region:has(.toc-js) .block-field-blocknodepagefield-side-links-title,
+  /* Right box */
+  .layout__region--right {
+    background-color: var(--blue-10);
+  }
+
+  /* Ensure margin-top is applied to titles if and only if there is a section above the titles */
+  .layout__region--left:has(.toc-js.is-visible) .block-field-blocknodepagefield-side-links-title,
   .layout__region:has(.block-field-blocknodepagefield-bottom-left-links) .block-field-blocknodepagefield-bottom-right-links-title {
     margin-top: 2.5rem;
   }
 
-  /* Right box */
-  .layout__region:has(.block-field-blocknodepagefield-bottom-left-links-title),
-  .layout__region:has(.block-field-blocknodepagefield-bottom-left-links),
-  .layout__region:has(.block-field-blocknodepagefield-bottom-right-links-title),
-  .layout__region:has(.block-field-blocknodepagefield-bottom-right-links) {
-    background-color: var(--blue-10);
-    padding: 2rem;
-    border-radius: 0.4rem;
-
-    ul {
-      margin-bottom: 0;
-    }
-  }
-}
-
-@media all and (min-width: 992px) {
-  .layout--twocol-section.layout--twocol-section--50-50 {
-    justify-content: space-between;
-  }
-
-  .layout--twocol-section.layout--twocol-section--50-50 > .layout__region--first,
-  .layout--twocol-section.layout--twocol-section--50-50 > .layout__region--second {
-    flex-basis: calc(50% - 1rem);
-  }
-}
-
-@media all and (max-width: 991px) {
-  .layout--twocol-section.layout--twocol-section--50-50 {
-    display: block;
-  }
-
-  .layout--twocol-section.layout--twocol-section--50-50 > .layout__region--second {
-    margin-top: 2rem;
-  }
 }
 
 /* General page stuff */
+.page {
+  .page-content {
+    max-width: 70.5rem; /* 1128px */
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.page.full-width {
+  .page-content {
+    max-width: 100%;
+  }
+}
+
+.page-content {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  a:hover {
+    font-weight: inherit;
+  }
+}
+
+/* Contacts */
+.cp-contacts {  
+  .cp-contact {
+    min-width: 250px;
+    width: 23%;
+  }
+}
 
 
+/* Larger than Bootstrap XXL breakpoint */
+@media all and (min-width: 1400px) { 
+  .header {
+    width: 100%;
+    padding-left: calc((100% - 1400px)/2);
+    padding-right: calc((100% - 1400px)/2);
+  }
+}
+
+/* Smaller than Bootstrap L breakpoint */
+@media all and (max-width: 991px) { 
+  footer {
+    #block-cp-theme-d10-footersecond {
+      margin-top: 2rem;
+    }
+
+    .footer-bottom {
+      margin-top: 3rem;
+
+      .list-inline-item {
+        display: block;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  .cp-contacts .cp-contact {
+    width: 48%;
+    min-width: 250px;
+  }
+}
+
+/* Smaller than Bootstrap M breakpoint */
+@media all and (max-width: 767px) { 
+  .cp-contacts .cp-contact {
+    width: 100%;
+  }
+}

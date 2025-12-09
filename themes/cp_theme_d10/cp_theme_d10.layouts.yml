@@ -1,0 +1,10 @@
+colored_flex_layout:
+  label: 'Colored Flex Section (two column)'
+  category: 'CP'
+  template: 'layouts/colored-flex'
+  library: cp_colored_flex_layout/colored-flex
+  regions:
+    left:
+      label: 'Left box (dark cyan)'
+    right:
+      label: 'Right box (light cyan)'

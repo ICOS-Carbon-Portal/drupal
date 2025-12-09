@@ -100,47 +100,48 @@
         </div>
       </nav>
     </header>
-    
+
     <div id="main-wrapper" class="layout-main-wrapper clearfix">
-        <div id="main" class="{{ container }}">
-          <div class="above-content">
-            {% if main_image %}
-              {{ main_image }}
-            {% endif %}
-            {{ page.above_content }}
-          </div>
-          {{ page.breadcrumb }}
-          <div class="row row-offcanvas row-offcanvas-left clearfix page-content {{ template_class }}">
-              <main{{ content_attributes }}>
-                <section class="section">
-                  <a href="#main-content" id="main-content" tabindex="-1"></a>
-                  {{ page.content }}
-                </section>
-              </main>
-          </div>
+      <div id="main" class="{{ container }}">
+        <div class="above-content">
+          {% if main_image %}
+            {{ main_image }}
+          {% endif %}
+          {{ page.above_content }}
         </div>
+        <div class="row row-offcanvas row-offcanvas-left clearfix page-content">
+          {{ page.breadcrumb }}
+          <main{{ content_attributes }}>
+            <section class="section">
+              <a href="#main-content" id="main-content" tabindex="-1"></a>
+              {{ page.content }}
+            </section>
+          </main>
+        </div>
+      </div>
     </div>
+
     <footer class="bg-primary text-light">
-        <div class="{{ container }}">
-          <a class="navbar-brand" href="/" title="Home" rel="home">
-            <img src="/{{ directory }}/logo-white.png">
-          </a>
-          <hr />
-          <div class="row">
-            {{ page.footer_first }}
-            {% if page.footer_second %}
-              {{ page.footer_second }}
-            {% else %}
-              <section class="row region-footer region-footer-second col-lg-3"></section>
-            {% endif %}
-            {{ page.footer_third }}
-            {{ page.footer_fourth }}
-          </div>
-          <div class="row footer-bottom">
-            {{ page.footer_bottom_first }}
-            {{ page.footer_bottom_second }}
-          </div>
+      <div class="{{ container }}">
+        <a class="navbar-brand" href="/" title="Home" rel="home">
+          <img src="/{{ directory }}/logo-white.png">
         </a>
+        <hr />
+        <div class="row">
+          {{ page.footer_first }}
+          {% if page.footer_second %}
+            {{ page.footer_second }}
+          {% else %}
+            <section class="row region-footer region-footer-second col-lg-3"></section>
+          {% endif %}
+          {{ page.footer_third }}
+          {{ page.footer_fourth }}
+        </div>
+        <div class="row footer-bottom">
+          {{ page.footer_bottom_first }}
+          {{ page.footer_bottom_second }}
+        </div>
+      </div>
     </footer>
   </div>
 </div>

@@ -1,0 +1,34 @@
+
+<div class="p-4 rounded bg-blue-10 cp-contact">
+{% if contact.field_cp_contact_photo.value is empty %}
+	<img width="110" height="110" class="rounded-circle" src="{{ default_picture }}">
+{% else %}
+	{% set image = {
+		'#theme':      'responsive_image',
+		'#responsive_image_style_id': 'square_110x110',
+		'#uri':        contact.field_cp_contact_photo.entity.uri.value,
+		'#alt':        contact.field_cp_contact_photo.alt,
+		'#attributes': { class: 'rounded-circle' },
+	} %}
+	{{ image }}
+{% endif %}
+	<div class="fs-xs">
+		<div class="text-primary fw-semibold my-1">{{ contact.field_cp_contact_title.value }}</div>
+		<div class="fw-semibold fs-md my-1">{{ contact.title.value }}</div>
+		<div class="my-1">{{ contact.field_educational_title.value }}</div>
+		<ul class="ps-3">
+		{% for task in contact.field_work_tasks %}
+			<li class="my-1">{{ task.value }}</li>
+		{% endfor %}
+		</ul>
+		{% if contact.field_cp_contact_email.value is not empty %}
+		<div class="my-1"><i class="fas fa-envelope me-2"></i>{{ contact.field_cp_contact_email.value }}</div>
+		{% endif %}
+		{% if contact.field_cp_contact_phone.value is not empty %}
+		<div class="my-1"><i class="fas fa-phone me-2"></i>{{ contact.field_cp_contact_phone.value }}</div>
+		{% endif %}
+		{% if contact.field_twitter_username is not empty %}
+		<div class="my-1"><i class="fab fa-twitter me-2"></i><a href="https://x.com/{{ contact.field_twitter_username.value }}">@{{ contact.field_twitter_username.value }}</a></div>
+		{% endif %}
+	</div>
+</div>

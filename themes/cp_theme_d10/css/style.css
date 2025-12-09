@@ -5,43 +5,71 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
-.right-arrow::after, .down-arrow::after,
-.external-link::after, a[target=_blank]::after,
+.right-arrow::after,
+.down-arrow::after,
+.external-link::after,
+a[target=_blank]::after,
 .download::after {
-    font-family: "Font Awesome 6 Free";
-    display: inline-block;
-    padding-left: 0.65rem;
-    vertical-align: middle;
-    text-decoration: none;
-    font-weight: 900;
+  font-family: "Font Awesome 6 Free";
+  display: inline-block;
+  padding-left: 0.65rem;
+  vertical-align: middle;
+  text-decoration: none;
+  font-weight: 900;
 }
 
 .right-arrow::after {
-    content: "\f178";
+  content: "\f178";
 }
 
 .down-arrow::after {
-    content: "\f063";
+  content: "\f063";
 }
 
 .external-link::after,
 a[target=_blank]::after {
-    content: "\f08e";
+  content: "\f08e";
 }
 
 .download::after {
-    content: "\f019";
+  content: "\f019";
 }
 
 /* Additional font size utilities */
 .fs-xs {
-    font-size: 0.75rem;
+  font-size: 0.75rem;
 }
 
 .fs-sm {
-    font-size: 0.875rem;
+  font-size: 0.875rem;
+}
+
+.fs-md {
+  font-size: 1rem;
 }
 
 .fs-lg {
-    font-size: 1.125rem;
+  font-size: 1.125rem;
+}
+
+/* Violet color variants */
+.text-violet {
+  --bs-text-opacity: 1;
+  color: rgba(var(--icos-violet-rgb), var(--bs-text-opacity)) !important;
+}
+
+.bg-violet {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--icos-violet-rgb), var(--bs-bg-opacity)) !important;
+}
+
+/* Blue 10 color variants */
+.text-blue-10 {
+  --bs-text-opacity: 1;
+  color: rgba(var(--blue-10-rgb), var(--bs-text-opacity)) !important;
+}
+
+.bg-blue-10 {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--blue-10-rgb), var(--bs-bg-opacity)) !important;
 }
