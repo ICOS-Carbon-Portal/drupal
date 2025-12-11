@@ -31,7 +31,7 @@ figure {
   /* eliminate "align left and break" style by always aligning center */
   &:not(.align-left, .align-right) {
     display: table;
-    margin: 4rem auto;    
+    margin: var(--fig-margin-size) auto;    
   }
 
   img {
@@ -51,6 +51,23 @@ figure {
     }
   }
 }
+/* Analogous styling as figures for stand-alone images */
+.article .node__content .field--name-body>img {
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+  border-radius: 0.375rem;
+  max-width: 100%;
+  height: auto;
+  width: unset;
+
+  /* eliminate "align left and break" style by always aligning center */
+  &:not(.align-left, .align-right) {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+}
+
 
 /* Blockquote element, used via template */
 .blockquote-wrapper {

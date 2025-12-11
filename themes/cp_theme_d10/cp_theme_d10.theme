@@ -48,6 +48,14 @@ function cp_theme_d10_theme() {
 			'template' => 'field--links-right',
 			'base hook' => 'field'
 		],
+		'field__node__field_cp_event_link' => [
+			'template' => 'field--link-danger',
+			'base hook' => 'field'
+		],
+		'field__node__field_link' => [
+			'template' => 'field--link-danger',
+			'base hook' => 'field'
+		],
 	];
 }
 /**
@@ -60,12 +68,27 @@ function cp_theme_d10_preprocess_page(&$variables) {
   if ($node instanceof \Drupal\node\NodeInterface) {
     if ($node->bundle() === 'page') {
       if ($node->hasField('field_header_image') && !$node->get('field_header_image')->isEmpty()) {
-
         $render_array = $node->get('field_header_image')->view([
           'label' => 'hidden',
         ]);
 
         $variables['main_image'] = $render_array;
+      }
+    } elseif ($node->bundle() === 'article') {
+      if ($node->hasField('field_image') && !$node->get('field_image')->isEmpty()) {
+        $render_array = $node->get('field_image')->view([
+          'label' => 'hidden',
+        ]);
+
+        $variables['sub_image'] = $render_array;
+      }
+    } elseif ($node->bundle() === "cp_event") {
+      if ($node->hasField('field_cp_event_picture') && !$node->get('field_cp_event_picture')->isEmpty()) {
+        $render_array = $node->get('field_cp_event_picture')->view([
+          'label' => 'hidden',
+        ]);
+
+        $variables['sub_image'] = $render_array;
       }
     }
     $variables['content_type'] = $node->bundle();

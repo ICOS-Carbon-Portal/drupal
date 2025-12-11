@@ -5,6 +5,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
+/* Icons */
+
 .right-arrow::after,
 .down-arrow::after,
 .external-link::after,
@@ -72,4 +74,8 @@ a[target=_blank]::after {
 .bg-blue-10 {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--blue-10-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.clear-both {
+  clear: both;
 }

@@ -102,18 +102,24 @@
     </header>
 
     <div id="main-wrapper" class="layout-main-wrapper clearfix">
+      <div class="above-content">
+        {% if main_image %}
+          {{ main_image }}
+        {% endif %}
+        {{ page.above_content }}
+      </div>
       <div id="main" class="{{ container }}">
-        <div class="above-content">
-          {% if main_image %}
-            {{ main_image }}
-          {% endif %}
-          {{ page.above_content }}
-        </div>
+
         <div class="row row-offcanvas row-offcanvas-left clearfix page-content">
           {{ page.breadcrumb }}
           <main{{ content_attributes }}>
             <section class="section">
               <a href="#main-content" id="main-content" tabindex="-1"></a>
+              {% if sub_image %}
+                <div class="news-main-image">
+                  {{ sub_image }}
+                </div>
+              {% endif %}
               {{ page.content }}
             </section>
           </main>
