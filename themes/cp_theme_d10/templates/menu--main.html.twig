@@ -64,6 +64,7 @@
 					menu_level == 0 ? 'flex-grow-1',
 					menu_level == 1 ? 'menu-col',
 					menu_level > 1 ? 'list-item',
+					'menu-level-' ~ menu_level
 				]
 			%}
 			<div{{ item.attributes.addClass(item_classes) }}>

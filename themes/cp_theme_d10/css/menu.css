@@ -33,6 +33,44 @@
   }
 }
 
+@media all and (max-width: 991.999px) { /* Smaller than Bootstrap LG */
+  #cp_theme_d10_menu {
+    .nav {
+      padding-bottom: 1rem;
+    }
+
+    .nav>div>a {
+      justify-content: flex-start !important;
+    }
+
+    .top-node .dropdown-menu {
+      border: none !important;
+      box-shadow: none;
+      padding-left: 3rem;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+
+      .list-item>div.pt-3.pb-3 {
+        height: 0;
+        font-size: 0;
+        padding: 0 !important;
+      }
+    }
+
+    .top-node.open .dropdown-menu {
+      display: block;
+    }
+
+    .top-node.open>a {
+      font-weight: 600;
+    }
+
+    .menu-level-3 {
+      padding-left: 2rem;
+    }
+  }
+}
+
 @media all and (min-width: 992px) { /* Bootstrap LG breakpoint */
   .mobile {
     display: none;
