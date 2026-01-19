@@ -6,6 +6,8 @@
 :root {
   --blue-10: #E5F7FA;
   --blue-10-rgb: 229, 247, 250;
+  --blue-20: #CCEEF3;
+  --blue-20-rgb: 204, 238, 243;
   --icos-violet: #5C2B93;
   --icos-violet-rgb: 92, 43, 147;
 }
@@ -239,19 +241,47 @@ footer {
 
 }
 
-/* General page styles */
-.page {
-  .page-content {
+.page .page-content .layout--light-blue {
+  background-color: var(--blue-10);
+  margin-right: 0;
+  margin-left: 0;
+
+  .block:not(.block-system-main-block) {
+    max-width: unset;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  &>.row {
     max-width: 70.5rem;
-    /* 1128px */
     margin-left: auto;
     margin-right: auto;
+    padding: 1rem;
   }
 }
 
-.page.template-full-width {
-  .page-content {
-    max-width: 100%;
+.page.template-full-width .page-content .layout--light-blue {
+  &>.row {
+    max-width: 1400px;
+  }
+}
+
+/* General page styles */
+
+.page .page-content {
+
+  .block:not(.block-system-main-block) {
+    max-width: 70.5rem; /* 1128px */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+.page.template-full-width .page-content {
+  .block:not(.block-system-main-block) {
+    max-width: 1400px;
   }
 }
 
