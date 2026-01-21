@@ -76,39 +76,39 @@
 {{ attach_library('cp_forecast/script') }}
 
 <article{{attributes}}>
+	<div class="layout--twocol-section">
+		{{ title_prefix }}
+		{% if label and not page %}
+			<h2{{title_attributes}}>
+				<a href="{{ url }}" rel="bookmark">{{ label }}</a>
+			</h2>
+		{% endif %}
+		{{ title_suffix }}
 
-	{{ title_prefix }}
-	{% if label and not page %}
-		<h2{{title_attributes}}>
-			<a href="{{ url }}" rel="bookmark">{{ label }}</a>
-		</h2>
-	{% endif %}
-	{{ title_suffix }}
+		<div id="alert-placeholder"></div>
 
-	<div id="alert-placeholder"></div>
-
-	<div class="forecast-controls">
-		<label for="forecast-select" class="form-label">Station</label>
-		<select id="forecast-select" class="form-element"></select>
-	</div>
-
-	<div class="forecast-controls mb-5">
-		<a id="video-download-button" class="btn btn-primary" download>Download video</a>
-		<a id="data-download-button" class="btn btn-primary" download>Download data</a>
-	</div>
-
-	<div class="row">
-		<div class="col-lg">
-			<div>
-				<video id="video-player" height="512" controls style="border: 1px solid darkgray; max-width: 100%;">
-					<p>Your browser doesn't support HTML5 video, please download the video instead.
-				</video>
-			</div>
+		<div class="forecast-controls">
+			<label for="forecast-select" class="form-label">Station</label>
+			<select id="forecast-select" class="form-element"></select>
 		</div>
 
-		<div class="col-lg">
-			<div style="min-width:280px; max-width: 425px; height:512px; margin-bottom:30px;">
-				<iframe scrolling="no" src="https://static.icos-cp.eu/share/stationsproj/?fitView=false&mode=droughtAtm&zoom=1.457380879072535&center=4477335.698,4078564.01&visibleToggles=as,bdr&srid=3035" style="width:100%; height:100%; border:1px solid darkgray"></iframe>
+		<div class="forecast-controls mb-5">
+			<a id="video-download-button" class="btn btn-primary" download>Download video</a>
+			<a id="data-download-button" class="btn btn-primary" download>Download data</a>
+		</div>
+		<div class="row justify-content-between gap-3">
+			<div class="col-lg">
+				<div>
+					<video id="video-player" height="512" controls style="border: 1px solid darkgray; max-width: 100%;">
+						<p>Your browser doesn't support HTML5 video, please download the video instead.
+					</video>
+				</div>
+			</div>
+
+			<div class="col-lg">
+				<div style="min-width:280px; max-width: 425px; height:512px; margin-bottom:30px;">
+					<iframe scrolling="no" src="https://static.icos-cp.eu/share/stationsproj/?fitView=false&mode=droughtAtm&zoom=1.457380879072535&center=4477335.698,4078564.01&visibleToggles=as,bdr&srid=3035" style="width:100%; height:100%; border:1px solid darkgray"></iframe>
+				</div>
 			</div>
 		</div>
 	</div>
