@@ -4,6 +4,8 @@
  */
 
 :root {
+  --light-gray: #F5F5F6;
+  --light-gray-rgb: 245, 245, 246;
   --blue-10: #E5F7FA;
   --blue-10-rgb: 229, 247, 250;
   --blue-20: #CCEEF3;
@@ -95,7 +97,7 @@ a:hover {
   text-underline-position: from-font;
 }
 
-a.fw-semibold:hover {
+a.fw-semibold:not(.btn):hover {
   font-weight: 700 !important;
 }
 
@@ -241,10 +243,12 @@ footer {
 
 }
 
-.page .page-content .layout--light-blue {
-  background-color: var(--blue-10);
+.page .page-content .layout--light-blue,
+.page .page-content .layout--light-gray {
   margin-right: 0;
   margin-left: 0;
+  padding-top: 2.75rem;
+  padding-bottom: 2.75rem;
 
   .block:not(.block-system-main-block) {
     max-width: unset;
@@ -260,7 +264,16 @@ footer {
   }
 }
 
-.page.template-full-width .page-content .layout--light-blue {
+.page .page-content .layout--light-blue {
+  background-color: var(--blue-10);
+}
+
+.page .page-content .layout--light-gray {
+  background-color: var(--light-gray);
+}
+
+.page.template-full-width .page-content .layout--light-blue,
+.page.template-full-width .page-content .layout--light-gray {
   &>.row {
     max-width: 1400px;
   }
@@ -268,22 +281,25 @@ footer {
 
 /* General page styles */
 
-.page .page-content {
-
-  .block:not(.block-system-main-block) {
-    max-width: 70.5rem; /* 1128px */
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
+.page .page-content .block:not(.block-system-main-block),
+.page .page-content .layout--threecol-section,
+.page .page-content .layout--twocol-section,
+.page .page-content .layout--colored-flex {
+  max-width: 70.5rem; /* 1128px */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
-.page.template-full-width .page-content {
-  .block:not(.block-system-main-block) {
-    max-width: 1400px;
-  }
+
+.page.template-full-width .page-content .block:not(.block-system-main-block),
+.page.template-full-width .page-content .layout--twocol-section,
+.page.template-full-width .page-content .layout--threecol-section,
+.page.template-full-width .page-content .layout--colored-flex {
+  max-width: 1400px;
 }
+
 
 .page-content {
   img {
