@@ -140,3 +140,9 @@ figure {
     padding-left: 1.25rem;
   }
 }
+
+.block-link-box {
+  img {
+    border-radius: 0.4rem;
+  }
+}

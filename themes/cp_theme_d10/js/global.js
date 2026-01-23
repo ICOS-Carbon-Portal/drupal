@@ -14,14 +14,12 @@
         });
       });*/
 
-      once('cp_theme_d10', '#cp_theme_d10_menu .top-node .open-menu').forEach(function (el) {
+      once('cp_theme_d10', '#cp_theme_d10_menu .top-node .dd-toggle').forEach(function (el) {
         el.addEventListener('click', function (event) {
           let target = el.closest(".top-node");
           target.classList.toggle("open");
           event.preventDefault();
         });
-        console.log("added listener to ");
-        console.log(el);
       });
     },
   };

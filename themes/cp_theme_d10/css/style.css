@@ -11,15 +11,28 @@
 .down-arrow::after,
 .external-link::after,
 a[target=_blank]::after,
-.download::after {
+.download::after,
+.date::before {
   font-family: "Font Awesome 6 Free";
   display: inline-block;
-  padding-left: 0.65rem;
   vertical-align: middle;
   text-decoration: none;
   font-weight: 900;
 }
 
+.right-arrow::after,
+.down-arrow::after,
+.external-link::after,
+a[target=_blank]::after,
+.download::after {
+  padding-left: 0.65rem;
+}
+
+.date::before {
+  padding-right: 0.65rem;
+}
+
+/* Icon content */
 .right-arrow::after {
   content: "\f178";
 }
@@ -35,6 +48,10 @@ a[target=_blank]::after {
 
 .download::after {
   content: "\f019";
+}
+
+.date::before {
+  content: "\f073";
 }
 
 /* Additional font size utilities */

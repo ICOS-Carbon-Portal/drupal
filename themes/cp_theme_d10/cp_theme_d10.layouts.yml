@@ -46,6 +46,23 @@ lblue_three_col_layout:
       label: 'Column 3'
   icon_map:
     - [one, two, three]
+lblue_three_col_title_layout:
+  label: 'Light Blue Full Width (three column with title)'
+  category: 'CP'
+  template: 'layouts/light-blue-three-title'
+  library: cp_layouts/light-blue-three-title
+  regions:
+    title:
+      label: 'Title'
+    one:
+      label: 'Column 1'
+    two:
+      label: 'Column 2'
+    three:
+      label: 'Column 3'
+  icon_map:
+    - [title]
+    - [one, two, three]
 lgray_two_col_layout:
   label: 'Light Gray Full Width (two column)'
   category: 'CP'
@@ -58,3 +75,13 @@ lgray_two_col_layout:
       label: 'Column 2'
   icon_map:
     - [one, two]
+video_layout:
+  label: 'Video background'
+  category: 'CP'
+  template: 'layouts/video'
+  library: cp_layouts/video
+  regions:
+    text:
+      label: 'Overlay text'
+  icon_map:
+    - [text]

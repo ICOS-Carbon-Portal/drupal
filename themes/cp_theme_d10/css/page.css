@@ -27,9 +27,10 @@
   font-family: var(--bs-body-font-family) !important;
 }
 
-/* Fix body text size */
+/* Fix body text size and margin */
 .node__content {
   font-size: 1rem;
+  margin-top: unset;
 }
 
 .node .field--type-image {
@@ -144,7 +145,7 @@ a.social-media-icon {
 /* Footer */
 footer {
   padding: 1.8125rem 5.9375rem;
-  margin-top: 8.75rem;
+  /*margin-top: 8.75rem;*/
 
   .navbar-brand img {
     height: 60px;
@@ -256,7 +257,7 @@ footer {
     padding-right: 0;
   }
 
-  &>.row {
+  &>div {
     max-width: 70.5rem;
     margin-left: auto;
     margin-right: auto;
@@ -274,12 +275,29 @@ footer {
 
 .page.template-full-width .page-content .layout--light-blue,
 .page.template-full-width .page-content .layout--light-gray {
-  &>.row {
+  &>div {
     max-width: 1400px;
   }
 }
 
 /* General page styles */
+
+.webform #page .page-content,
+.article #page .page-content,
+.view-data-products-page-1 #page .page-content {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-bottom: 6rem;
+
+  main {
+    max-width: 70.5rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 
 .page .page-content .block:not(.block-system-main-block),
 .page .page-content .layout--threecol-section,

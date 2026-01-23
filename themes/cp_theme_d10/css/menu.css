@@ -43,6 +43,10 @@
       justify-content: flex-start !important;
     }
 
+    .top-node .top-link {
+      display: block !important;
+    }
+
     .top-node .dropdown-menu {
       border: none !important;
       box-shadow: none;
