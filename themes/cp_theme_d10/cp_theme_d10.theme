@@ -58,6 +58,7 @@ function cp_theme_d10_theme() {
 		],
 	];
 }
+
 /**
  * Implements hook_preprocess_HOOK() for page templates.
  */
@@ -101,4 +102,14 @@ function cp_theme_d10_preprocess_page(&$variables) {
     '.' => '-',
     '_' => '-',
   ]);
+}
+
+/**
+ * Implements hook_form_node_form_alter() for editing forms.
+ */
+function cp_theme_d10_form_node_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  // Ensure that the delete action is styled as a "danger" button
+  if (isset($form['actions']['delete'])) {
+    $form['actions']['delete']['#attributes']['class'][] = 'btn btn-danger';
+  }
 }

@@ -121,12 +121,13 @@
   left: 0;
   width: 100%;
   max-height: 600px;
-  object-fit:cover;
+  object-fit: cover;
 }
 
-.layout--video {
+.page .page-content .layout.layout--video {
   width: 100%;
   position: relative;
+  margin-bottom: 0;
   .text-overlay {
     position: relative;
     margin-right: auto;

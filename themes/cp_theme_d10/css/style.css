@@ -10,9 +10,13 @@
 .right-arrow::after,
 .down-arrow::after,
 .external-link::after,
-a[target=_blank]::after,
+a[target=_blank]:not(.hide-external)::after,
 .download::after,
-.date::before {
+.date::before,
+.success::before,
+.warning::before,
+.info::before,
+.danger::before {
   font-family: "Font Awesome 6 Free";
   display: inline-block;
   vertical-align: middle;
@@ -23,12 +27,16 @@ a[target=_blank]::after,
 .right-arrow::after,
 .down-arrow::after,
 .external-link::after,
-a[target=_blank]::after,
+a[target=_blank]:not(.hide-external)::after,
 .download::after {
   padding-left: 0.65rem;
 }
 
-.date::before {
+.date::before,
+.success::before,
+.warning::before,
+.info::before,
+.danger::before {
   padding-right: 0.65rem;
 }
 
@@ -42,7 +50,7 @@ a[target=_blank]::after,
 }
 
 .external-link::after,
-a[target=_blank]::after {
+a[target=_blank]:not(.hide-external)::after {
   content: "\f08e";
 }
 
@@ -52,6 +60,22 @@ a[target=_blank]::after {
 
 .date::before {
   content: "\f073";
+}
+
+.success::before {
+  content: "\f058";
+}
+
+.warning::before {
+  content: "\f071";
+}
+
+.info::before {
+  content: "\f05a";
+}
+
+.danger::before {
+  content: "\f057";
 }
 
 /* Additional font size utilities */
@@ -95,4 +119,8 @@ a[target=_blank]::after {
 
 .clear-both {
   clear: both;
+}
+
+.checkbox input, .radio input {
+  border-color: var(--bs-secondary);
 }
