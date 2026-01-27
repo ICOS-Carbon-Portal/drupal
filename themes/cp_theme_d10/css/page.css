@@ -313,7 +313,8 @@ footer {
   padding-right: 1rem;
   /*margin-bottom: 6rem;*/
   
-  #block-cp-theme-d10-content {
+  #block-cp-theme-d10-content,
+  #toc-js-block {
     max-width: 70.5rem;
     margin-left: auto;
     margin-right: auto;
