@@ -120,7 +120,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  max-height: 600px;
+  height: 600px;
   object-fit: cover;
 }
 
@@ -136,13 +136,13 @@
     color: white;
     z-index: 5;
     height: 600px;
-    background: linear-gradient(270deg, rgba(0, 171, 201, 0.10) 41.58%, rgba(0, 123, 144, 0.80) 61.65%, #005463 99.41%);
-    div {
+    background: linear-gradient(270deg, rgba(0, 171, 201, 0.10) 42%, rgba(0, 123, 144, 0.80) 62%, #005463 100%);
+    & > div {
       max-width: 1400px;
       margin-left: auto;
       margin-right: auto;
-      div {
-        max-width: 600px;
+      & > div {
+        max-width: 50%;
         margin-left: 0;
       }
     }
@@ -160,3 +160,64 @@
 .space-bottom {
   margin-bottom: 8.75rem !important;
 }
+
+
+/* Larger than Bootstrap XXL breakpoint */
+@media all and (min-width: 1400px) {}
+
+/* Smaller than Bootstrap XXL breakpoint */
+@media all and (max-width: 1399.98px) {}
+
+/* Smaller than Bootstrap XL breakpoint */
+@media all and (max-width: 1199.98px) {
+  #fp-video {
+    height: 500px;
+  }  
+  .page .page-content .layout.layout--video {
+    .text-overlay {
+      padding-top: 8rem;
+      height: 500px;
+      background: linear-gradient(270deg, rgba(0, 171, 201, 0.10) 42%, rgba(0, 123, 144, 0.80) 62%, #005463 100%);
+    }
+  }
+}
+
+/* Smaller than Bootstrap L breakpoint */
+@media all and (max-width: 991.98px) {
+  #fp-video {
+    height: 420px;
+  }  
+  .page .page-content .layout.layout--video {
+    .text-overlay {
+      padding-top: 5rem;
+      height: 420px;
+      background: linear-gradient(270deg, rgba(0, 171, 201, 0.10) 21%, rgba(0, 123, 144, 0.80) 42%, #005463 100%);
+      & > div {
+        & > div {
+          max-width: 70%;
+        }
+      }
+    }
+  }
+}
+
+/* Smaller than Bootstrap M breakpoint */
+@media all and (max-width: 767.98px) {
+  .page .page-content .layout.layout--video {
+    .text-overlay {
+      min-height: 420px;
+      height: unset;
+      padding-bottom: 5rem;
+      /* TODO set background to image by URL instead of gradient */
+      a {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+  #fp-video {
+    display: none;
+  }
+}
+
+/* Smaller than Bootstrap S breakpoint */
+@media all and (max-width: 575.98px) {}

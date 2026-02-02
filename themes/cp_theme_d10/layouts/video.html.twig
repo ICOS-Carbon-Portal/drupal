@@ -32,7 +32,7 @@
     <video autoplay disablepictureinpicture loop muted playsinline id="fp-video">
       <source src="/media/534" type="video/mp4">
     </video>
-    <div class="text-overlay">
+    <div class="text-overlay position-relative">
       {% if content.text %}
         <div>
           <div{{ region_attributes.text.addClass(text_classes) }}>
@@ -40,6 +40,35 @@
           </div>
         </div>
       {% endif %}
+      <button
+        type="button"
+        id="toggle-video"
+        class="btn btn-outline-light rounded-circle position-absolute d-flex justify-content-center align-items-center"
+        style="bottom: 3rem; right: 3rem; height: 45px; width: 45px;"><i class="fas fa-pause"></i></button>
     </div>
   </div>
+
+  <script>
+    function initVideoToggle() {
+      const video = document.getElementById("fp-video");
+      const button = document.getElementById("toggle-video");
+      const pauseIcon = button.children[0];
+      const playIcon = document.createElement("i");
+      playIcon.classList.add("fas", "fa-play");
+
+      button.addEventListener("click", (event) => {
+        if (video.paused) {
+          video.play()
+          button.removeChild(playIcon);
+          button.appendChild(pauseIcon);
+        } else {
+          video.pause();
+          button.removeChild(pauseIcon);
+          button.appendChild(playIcon);
+        }
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", initVideoToggle);
+  </script>
 {% endif %}

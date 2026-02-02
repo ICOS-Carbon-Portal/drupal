@@ -305,7 +305,7 @@ footer {
 .webform #page .page-content,
 .entity-webform-canonical #page .page-content,
 .article #page .page-content,
-.view-data-products-page-1 #page .page-content {
+.cp_event #page .page-content {
   max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
@@ -373,6 +373,8 @@ footer {
   max-width: 70.5rem;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 /* Data products */
@@ -405,12 +407,22 @@ footer {
 
 /* Other full-width templates for different content types */
 .data_product .page-content,
-.entity-node-edit-form .page-content {
+.entity-node-edit-form .page-content,
+.node-add .page-content,
+.node-add-page .page-content,
+.system-404 .page-content,
+.fluxes_volume .page-content,
+.fluxes_article .page-content,
+.view-data-products-page-1 #page .page-content  {
   max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 1rem;
+}
+
+.node-add .above-content,
+.entity-node-edit-form .above-content {
+  display: none;
 }
 
 /* Contacts */
@@ -450,7 +462,8 @@ footer {
 }
 
 /* Admin - editing page */
-.entity-node-edit-form .page-content {
+.entity-node-edit-form .page-content,
+.node-add .page-content {
   .description {
     .item-list .list-group-item {
       border-style: none;
