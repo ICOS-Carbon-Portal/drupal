@@ -75,13 +75,16 @@ function cp_theme_d10_preprocess_page(&$variables) {
 
         $variables['main_image'] = $render_array;
       }
-    } elseif ($node->bundle() === 'article') {
+    } elseif ($node->bundle() === 'article' or $node->bundle() === 'fluxes_volume') {
       if ($node->hasField('field_image') && !$node->get('field_image')->isEmpty()) {
         $render_array = $node->get('field_image')->view([
           'label' => 'hidden',
         ]);
-
-        $variables['sub_image'] = $render_array;
+        if ($node->bundle() === 'article') {
+          $variables['sub_image'] = $render_array;
+        } else {
+          $variables['main_image'] = $render_array;
+        } 
       }
     } elseif ($node->bundle() === "cp_event") {
       if ($node->hasField('field_cp_event_picture') && !$node->get('field_cp_event_picture')->isEmpty()) {
@@ -90,6 +93,16 @@ function cp_theme_d10_preprocess_page(&$variables) {
         ]);
 
         $variables['sub_image'] = $render_array;
+      }
+    } elseif ($node->bundle() === "fluxes_article") {
+      if ($node->hasField('field_featured_image') && !$node->get('field_featured_image')->isEmpty()) {
+        $variables['sub_image'] = $node->get('field_featured_image')->view([
+          'label' => 'hidden',
+          'type' => 'entity_reference_entity_view',
+          'settings' => [
+            'view_mode' => 'default',
+          ],
+        ]);
       }
     }
     $variables['content_type'] = $node->bundle();
@@ -102,6 +115,26 @@ function cp_theme_d10_preprocess_page(&$variables) {
     '.' => '-',
     '_' => '-',
   ]);
+}
+
+use Drupal\views\Views;
+
+/**
+ * Implements hook_preprocess_HOOK() for FLUXES volume templates.
+ */
+function cp_theme_d10_preprocess_node__fluxes_volume__full(&$variables) {
+  $art_view = Views::getView('fluxes_articles');
+  if ($art_view) {
+    $art_view->setDisplay('articles_with_img');
+    $art_view->execute();
+    $variables['articles_with_img_block'] = $art_view->render();
+  }
+  $vol_view = Views::getView('fluxes_volumes');
+  if ($vol_view) {
+    $vol_view->setDisplay('all_issues');
+    $vol_view->execute();
+    $variables['all_issues_block'] = $vol_view->render();
+  }
 }
 
 /**
