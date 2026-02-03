@@ -11,6 +11,7 @@
             const searchboxDiv = context.getElementById("searchbox");
             const hitsDiv = context.getElementById("hits");
             const paginationDiv = context.getElementById("pagination");
+            const categoriesDiv = context.getElementById("categories");
 
             const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
                 server: {
@@ -26,6 +27,9 @@
                     query_by: 'title,content,url',
                     highlight_full_fields: 'content'
                 },
+                filterByOptions: {
+                    category: { exactMatch: true}
+                }
             });
 
             const searchClient = typesenseInstantsearchAdapter.searchClient;
@@ -99,6 +103,60 @@
                 return contentHighlight.replaceAll(/<\/?mark>/g, "");
             }
 
+            const { connectConfigure } = instantsearch.connectors;
+
+            const renderConfigure = (renderOptions, isFirstRender) => {
+                const { refine, widgetParams } = renderOptions;
+
+                if (isFirstRender) {
+                    const buttonInfos = [
+                        {key: "all", label: "All"},
+                        {key: "events", label: "Events"},
+                        {key: "news", label: "News"},
+                        {key: "main_website", label: "Pages"},
+                        {key: "station", label: "Stations"},
+                    ];
+
+                    const buttonElements = buttonInfos.map((btnInfo) => {
+                        let el = document.createElement("button");
+                        el.type = "button";
+                        el.classList.add("btn","me-2","rounded-1","fw-normal");
+                        if (btnInfo.key !== "all") {
+                            el.classList.add("btn-outline-primary");
+                        } else {
+                            el.classList.add("btn-primary");
+                        }
+                        el.innerText = btnInfo.label;
+                        el.dataset["category"] = btnInfo.key;
+                        return el;
+                    });
+
+                    for (let button of buttonElements) {
+                        button.addEventListener("click", () => {
+                            refine({ filters: button.dataset["category"] === "all"
+                                ? ""
+                                : "category:=" + button.dataset["category"]});
+                            for (let b of buttonElements) {
+                                b.classList.add("btn-outline-primary");
+                                b.classList.remove("btn-primary");
+                            }
+                            button.classList.remove("btn-outline-primary");
+                            button.classList.add("btn-primary");
+                        });
+                        widgetParams.container.appendChild(button);
+                    }
+                }
+            };
+
+            const categoryConfigure = connectConfigure(renderConfigure);
+
+            const categoryLabels = {
+                "main_website": "Page",
+                "news": "News",
+                "events": "Event",
+                "station": "Station",
+            };
+
             search.addWidgets([
                 instantsearch.widgets.searchBox({
                   container: searchboxDiv,
@@ -107,17 +165,32 @@
                   cssClasses: {
                     form: "input-group",
                     input: ["form-search", "form-control"],
-                    submit: ["btn", "btn-light", "border"],
-                    submitIcon: ["fas", "fa-search"]
+                    submit: ["btn", "btn-primary", "ms-3", "rounded-5"]
                   },
-                  templates: {
+                  /*templates: {
                     submit({ cssClasses }, { html }) {
                         return html`<i class="${cssClasses.submitIcon}"></i>`;
+                    },
+                  }*/
+                  templates: {
+                    submit({ cssClasses }, { html }) {
+                        return "Search";
                     },
                   }
                 }),
                 paginationPanel({
-                  container: paginationDiv
+                  container: paginationDiv,
+                  cssClasses: {
+                    link: ["btn", "btn-outline-primary", "me-2", "rounded",
+                        "d-flex", "justify-content-center", "align-items-center", "fs-sm"
+                    ]
+                  },
+                  templates: {
+                    last: "Last &nbsp;&raquo;",
+                    next: "Next &nbsp;&rsaquo;",
+                    previous: "&lsaquo;&nbsp; Previous",
+                    first: "&laquo;&nbsp; First",
+                  }
                 }),
                 hitsPanel({
                     container: hitsDiv,
@@ -130,12 +203,19 @@
                     },*/
                     templates: {
                         item(item) {
-                            return `<div class="search-results-hit">
-                                <h4 class="h5"><a href="${item.url}">${item.title}</a></h4>
+                            return `<div class="search-results-hit p-4 bg-blue-10 mb-25 rounded">
+                                <div class="text-primary text-uppercase mb-1">${categoryLabels[item.category]}</div>
+                                <h3><a href="${item.url}" class="text-dark">${item.title}</a></h3>
                                 <p>${processHighlightedContent(item._highlightResult.content.value)}</p>
                             </div>`;
                       },
                     },
+                }),
+                categoryConfigure({
+                    container: categoriesDiv,
+                    searchParameters: {
+                        filters: ""
+                    }
                 }),
             ]);
 
