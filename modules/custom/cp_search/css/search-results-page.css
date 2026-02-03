@@ -34,6 +34,9 @@
     list-style-type: none;
     padding-left: 0;
     /* margin: 0; */
+    .ais-Hits-item a.text-dark:hover {
+        color: var(--bs-danger) !important;
+    }
 }
 
 .ais-Pagination-list {
