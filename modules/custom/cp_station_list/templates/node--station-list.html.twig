@@ -89,8 +89,9 @@
 		{{ content }}
 	</div>
 
-	<div class="container-fluid station-list-container">
-		<div class="row" style="margin-bottom: 20px;">
+	<div class="container-fluid station-list-container bg-blue-10 px-3 pt-5 pb-6">
+		<h2 class="mb-4">Station list</h2>
+		<div class="row mb-4">
 			<div class="col">
 				<button id="kmlExportBtn" class="btn btn-primary" style="margin-right:10px;">Export stations to KML</button>
 				<button id="csvExportBtn" class="btn btn-primary">Export stations to CSV</button>
@@ -98,7 +99,7 @@
 		</div>
 		<div class="row">
 			<div class="col">
-				<table class="table table-striped table-condensed table-bordered station-table" id="stationsTable" width="100%"></table>
+				<table class="table station-table" id="stationsTable" width="100%"></table>
 			</div>
 		</div>
 	</div>
