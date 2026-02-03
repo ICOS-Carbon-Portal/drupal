@@ -419,6 +419,7 @@ footer {
 .system-404 .page-content,
 .fluxes_article .page-content,
 .view-data-products-page-1 #page .page-content,
+.cp-search-search-results-page #page .page-content,
 .fluxes_volume .page-content .block:not(.block-system-main-block),
 .fluxes_volume .page-content .layout--normal {
   max-width: 1400px;

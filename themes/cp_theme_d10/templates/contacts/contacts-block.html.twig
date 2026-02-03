@@ -45,7 +45,7 @@
 	{{ title_suffix }}
 	{% block content %}
 		<div{{content_attributes.addClass('content')}}>
-			<div class="cp-contacts gap-4 d-flex flex-wrap">
+			<div class="cp-contacts gap-4 d-flex flex-wrap mb-6">
 
 			{% for contact in list %}
 				{{ include('@cp_theme_d10/contacts/contact-details.html.twig') }}
