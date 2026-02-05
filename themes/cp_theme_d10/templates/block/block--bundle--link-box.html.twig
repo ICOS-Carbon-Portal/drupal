@@ -36,8 +36,7 @@
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
     'clearfix',
-    'row',
-    'my-5'
+    'row'
   ]
 %}
 
@@ -48,24 +47,36 @@
   '#alt': content['#block_content'].field_image.alt,
 } %}
 
-<div{{ attributes.addClass(classes) }}>
+{% if content.field_linkbox_display_type.0["#markup"] == "narrow" %}
+  {% set h3_class = "h6" %}
+  {% set container_div_class ="mb-5" %}
+{% else %}{# content.field_linkbox_display_type == "wide" or is not defined #}
+  {% set img_div_class = "col-lg-4" %}
+  {% set content_div_class = "col-lg-8" %}
+  {% set container_div_class ="my-5" %}
+{% endif %}
+
+<div{{ attributes.addClass(classes).addClass(container_div_class) }}>
 
   {% block content %}
-  {{ title_prefix }}
-  <div class="col-lg-4 mb-3">
+
+  <div class="{{ img_div_class }} mb-3">
     {{ image }}
   </div>
-  {{ title_suffix }}
 
-  <div class="col-lg-8">
+  <div class="{{ content_div_class }}">
+    {{ title_prefix }}
     {% if label %}
-      <h3 {{ title_attributes }}>{{ label }}</h3>
+      <h3 {{ title_attributes.addClass(h3_class) }}>{{ label }}</h3>
     {% endif %}
+    {{ title_suffix }}
 
     {{ content.body }}
     {% if content.field_link.0['#title'] %}
       {% if content.field_link_type.0["#markup"] == "download" %}
         <a href="{{ content.field_link.0['#url'] }}" class="btn btn-primary {{ content.field_link_type.0['#markup'] }}">
+      {% elseif content.field_link_type.0["#markup"] == "outline" %}
+        <a href="{{ content.field_link.0['#url'] }}" class="btn btn-outline-primary {{ content.field_link_type.0['#markup'] }}">
       {% elseif content.field_link_type.0["#markup"] %}
         <a href="{{ content.field_link.0['#url'] }}" class="fw-semibold {{ content.field_link_type.0['#markup'] }}">
       {% else %}

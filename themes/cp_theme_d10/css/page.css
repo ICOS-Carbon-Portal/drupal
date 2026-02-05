@@ -206,14 +206,15 @@ footer {
   }
 }
 
-
+iframe {
+  max-width: 100%;
+}
 
 
 /* Basic page specific */
 
 /* "On this page" and "Learn more" links boxes */
 .layout--colored-flex {
-  margin: 3rem auto;
 
   /* Do not display empty layout region */
   .layout__region:not(:has(.block)) {
@@ -237,6 +238,7 @@ footer {
 
   .layout__region--left,
   .layout__region--right {
+    margin-top: 3rem;
     padding: 2rem;
 
     ul {
@@ -308,6 +310,13 @@ footer {
 .fluxes_volume .page-content .layout--light-gray {
   &>div {
     max-width: 1400px;
+  }
+}
+
+/* change three column 33-34-33 into 33-33-33 */
+@media screen and (min-width: 40em) {
+  .layout--threecol-section--33-34-33 > .layout__region--second {
+    flex: 0 1 33% !important;
   }
 }
 

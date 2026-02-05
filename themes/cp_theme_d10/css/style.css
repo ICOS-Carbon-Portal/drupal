@@ -51,7 +51,7 @@ a[target=_blank]:not(.hide-external)::after,
 }
 
 .external-link::after,
-a[target=_blank]:not(.hide-external)::after {
+a[target=_blank]:not(.hide-external):not(.btn)::after {
   content: "\f08e";
 }
 
