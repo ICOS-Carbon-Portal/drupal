@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme override to display a node.
+ * CP's theme implementation to display an event/news.
  *
  * Available variables:
  * - node: The node entity with limited access to object properties and methods.
@@ -64,7 +64,6 @@
  *   is an administrator.
  *
  * @see template_preprocess_node()
- *
  */
 #}
 {%
@@ -75,32 +74,7 @@
     node.isSticky() ? 'node--sticky',
     not node.isPublished() ? 'node--unpublished',
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-    'col',
   ]
 %}
 
-<article{{ attributes.addClass(classes) }}>
-
-  <div class="teaser-news-image">
-    {% if content.field_image %}
-      {{ content.field_image }}
-    {% elseif content.field_cp_event_picture %}
-      {{ content.field_cp_event_picture }}
-    {% endif %}
-  </div>
-
-  <div class="node__meta fs-xs text-secondary">
-    {{ node.createdtime | date("d M Y") }}
-  </div>
-
-  {{ title_prefix }}
-  {% if label %}
-    <h2{{ title_attributes.addClass("h6") }}>
-      {{ label }}
-    </h2>
-  {% endif %}
-  {{ title_suffix }}
-
-  <a href="{{ url }}" class="btn btn-outline-primary">Read more</a>
-
-</article>
+{{ include("@cp_theme_d10/news-and-events/node--article--teaser.html.twig") }}

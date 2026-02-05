@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Implements hook_theme_suggestions_HOOK_alter().
+ * Implements hook_theme_suggestions_HOOK_alter() for region templates.
  */
 function cp_theme_d10_theme_suggestions_region_alter(array &$suggestions, array $variables) {
 
@@ -18,6 +18,17 @@ function cp_theme_d10_theme_suggestions_region_alter(array &$suggestions, array 
   }
 }
 
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for block templates.
+ * @param array $suggestions
+ * @param array $variables
+ */
+function cp_theme_d8_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  // Block suggestions for custom block bundles.
+  if (isset($variables['elements']['content']['#block_content'])) {
+    array_splice($suggestions, 1, 0, 'block__bundle__' . $variables['elements']['content']['#block_content']->bundle());
+  }
+}
 
 /**
  * Implements hook_theme().

@@ -30,6 +30,7 @@ a[target=_blank]:not(.hide-external)::after,
 a[target=_blank]:not(.hide-external)::after,
 .download::after {
   padding-left: 0.65rem;
+  margin-right: 0.25rem;
 }
 
 .date::before,

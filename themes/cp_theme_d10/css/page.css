@@ -58,6 +58,10 @@ thead > tr {
   border-bottom-width: 0;
 }
 
+.field--type-image img {
+  margin: 0;
+}
+
 /* Overriding styles that come with MailerLite forms */
 
 #block-cp-theme-d10-content .ml-embedded .ml-form-embedContainer .ml-form-embedWrapper.embedForm {
@@ -151,6 +155,7 @@ a.social-media-icon {
   font-size: 0.875rem;
   --bs-breadcrumb-divider: "\f105";
   --bs-breadcrumb-divider-color: var(--bs-primary);
+  margin-top: 1rem;
 }
 
 .breadcrumb-item::before {
