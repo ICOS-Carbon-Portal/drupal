@@ -66,6 +66,7 @@ thead > tr {
 
 #block-cp-theme-d10-content .ml-embedded .ml-form-embedContainer .ml-form-embedWrapper.embedForm {
   max-width: unset;
+  background-color: rgba(255,255,255,0) !important;
 
   .ml-form-embedBody .ml-form-horizontalRow button {
     border-radius: 100px;
