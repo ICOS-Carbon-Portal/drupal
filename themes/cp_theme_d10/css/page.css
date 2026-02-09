@@ -542,6 +542,9 @@ iframe {
 /* Smaller than Bootstrap L breakpoint */
 @media all and (max-width: 991.98px) {
   footer {
+    padding-left: 3rem;
+    padding-right: 3rem;
+
     #block-cp-theme-d10-footersecond {
       margin-top: 2rem;
     }
@@ -568,6 +571,10 @@ iframe {
 
 /* Smaller than Bootstrap M breakpoint */
 @media all and (max-width: 767.98px) {
+  footer {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
   .above-content img {
     height: 247px;
   }
