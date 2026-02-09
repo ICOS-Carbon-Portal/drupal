@@ -515,6 +515,7 @@ iframe {
   }
 }
 
+/* Admin - fix for offcanvas text editor content */
 #drupal-off-canvas {
   .text-muted {
     color: rgba(var(--bs-light-rgb), 0.8) !important;

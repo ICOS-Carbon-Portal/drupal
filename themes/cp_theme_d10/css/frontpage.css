@@ -86,12 +86,8 @@
 }
 
 .highlights {
-  display: flex;
-  justify-content: space-between;
-
   &>div {
     --bs-bg-opacity: .2 !important;
-    width: 313px;
   }
 
   &>div>div {
@@ -107,7 +103,6 @@
   }
 
   img {
-    width: 313px;
     aspect-ratio: 1 / 1;
     object-fit: cover;
     border-bottom-left-radius: 0.4rem;
