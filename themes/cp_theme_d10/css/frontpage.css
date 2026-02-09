@@ -211,6 +211,17 @@
   #fp-video {
     display: none;
   }
+  .highlights {
+    &>div>div {
+      &>div {
+        height: unset;
+      }
+    }
+
+    img {
+      display: none;
+    }
+  }
 }
 
 /* Smaller than Bootstrap S breakpoint */
