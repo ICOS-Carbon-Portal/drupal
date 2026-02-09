@@ -90,7 +90,7 @@
     --bs-bg-opacity: .2 !important;
   }
 
-  &>div>div {
+  &>div>div>div {
     height: 260px;
     padding-top: 3rem;
     padding-bottom: 3rem;
