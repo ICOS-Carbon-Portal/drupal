@@ -326,7 +326,7 @@ iframe {
 .webform #page .page-content,
 .entity-webform-canonical #page .page-content,
 .article #page .page-content,
-.cp_event #page .page-content {
+.cp_event #page .page-content{
   max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
@@ -353,12 +353,13 @@ iframe {
   padding-right: 1rem;
 }
 
-
-.page.template-full-width .page-content .block:not(.block-system-main-block),
-.page.template-full-width .page-content .layout--twocol-section,
-.page.template-full-width .page-content .layout--threecol-section,
-.page.template-full-width .page-content .layout--colored-flex {
-  max-width: 1400px;
+.page.template-full-width .page-content {
+  .block:not(.block-system-main-block),
+  .layout--twocol-section,
+  .layout--threecol-section,
+  .layout--colored-flex {
+    max-width: 1400px;
+  }
 }
 
 .page-content {
@@ -436,7 +437,8 @@ iframe {
 .view-data-products-page-1 #page .page-content,
 .cp-search-search-results-page #page .page-content,
 .fluxes_volume .page-content .block:not(.block-system-main-block),
-.fluxes_volume .page-content .layout--normal {
+.fluxes_volume .page-content .layout--normal,
+.path-user #page .page-content  {
   max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
