@@ -14,10 +14,6 @@
   --icos-violet-rgb: 92, 43, 147;
 }
 
-* {
-  transition: font-weight 0.1s;
-}
-
 /*** Overriding Bootstrap theme defaults/other CSS ***/
 
 /* Correct font family on contributed theme components */
@@ -108,26 +104,30 @@ a.btn, a.btn:hover {
 
 a:hover {
   color: var(--bs-danger);
-  font-weight: 600;
   text-decoration: underline 6%;
   text-decoration-skip-ink: none;
   text-underline-offset: 25%;
   text-underline-position: from-font;
 }
 
-a.fw-semibold:not(.btn):hover {
-  font-weight: 700 !important;
-}
-
 a.social-media-icon {
   font-size: 20px;
   text-decoration: none !important;
   font-weight: 400;
+  transition: color 0.1s;
+}
+
+a.social-media-icon:hover {
+  color: #f7bbd0 !important;
 }
 
 .text-light a,
 .text-light a:hover {
   color: var(--bs-light);
+}
+
+.text-light a:hover {
+  text-decoration-style: dashed;
 }
 
 .bg-success a,
@@ -174,9 +174,12 @@ footer {
     height: 60px;
   }
 
-  a,
-  a:hover {
+  a {
     color: var(--bs-light);
+  }
+
+  a:hover {
+    color: var(--bs-danger);
   }
 
   .block {
@@ -239,7 +242,6 @@ iframe {
 
   .layout__region--left,
   .layout__region--right {
-    margin-top: 3rem;
     padding: 2rem;
 
     ul {
@@ -366,10 +368,6 @@ iframe {
   img {
     max-width: 100%;
     height: auto;
-  }
-
-  a:not(.btn):hover {
-    font-weight: inherit;
   }
 }
 

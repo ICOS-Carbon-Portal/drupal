@@ -19,6 +19,7 @@
   a {
     text-decoration: none;
     display: inline-block;
+    transition: color 0.1s;
   }
 
   a:hover {
@@ -27,8 +28,8 @@
   }
 
   .top-link:hover, .top-node:hover .top-link {
-    font-weight: 600;
-    text-decoration: none;
+    text-decoration: underline 5%;
+    text-underline-offset: 20%;
     color: var(--bs-dark) !important;
   }
 }
