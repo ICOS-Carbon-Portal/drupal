@@ -75,17 +75,20 @@
     node.isSticky() ? 'node--sticky',
     not node.isPublished() ? 'node--unpublished',
     view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-    'd-flex'
+    'row',
+    'g-4'
   ]
 %}
 
 <article{{attributes.addClass(classes)}}>
 
-	<div>
-		{{ content.field_image }}
+	<div class="col-md-5">
+    <a href="{{ url }}">
+		  {{ content.field_image }}
+    </a>
 	</div>
 
-  <div>
+  <div class="col-md">
     {{ title_prefix }}
     {% if label %}
       <h3{{title_attributes.addClass("h6", "mb-1")}}>
