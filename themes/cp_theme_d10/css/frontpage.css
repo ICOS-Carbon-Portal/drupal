@@ -222,6 +222,23 @@
       display: none;
     }
   }
+  .node--type-cp-event.node--view-mode-teaser-fp {
+    .row {
+      display: block;
+      width: 370px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .event-text {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    .event-image {
+      border-radius: 0.4rem 0.4rem 0 0 !important;
+      padding-right: 0;
+    }
+  }
 }
 
 /* Smaller than Bootstrap S breakpoint */
