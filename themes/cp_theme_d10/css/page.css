@@ -326,7 +326,7 @@ iframe {
 .webform #page .page-content,
 .entity-webform-canonical #page .page-content,
 .article #page .page-content,
-.cp_event #page .page-content{
+.cp_event #page .page-content {
   max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
@@ -438,7 +438,7 @@ iframe {
 .cp-search-search-results-page #page .page-content,
 .fluxes_volume .page-content .block:not(.block-system-main-block),
 .fluxes_volume .page-content .layout--normal,
-.path-user #page .page-content  {
+.path-user #page .page-content {
   max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
