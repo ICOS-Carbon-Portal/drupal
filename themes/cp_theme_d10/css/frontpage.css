@@ -150,6 +150,11 @@
   margin-bottom: 8.75rem !important;
 }
 
+.event-image img {
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+
 
 /* Larger than Bootstrap XXL breakpoint */
 @media all and (min-width: 1400px) {}
