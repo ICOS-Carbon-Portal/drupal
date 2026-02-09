@@ -325,36 +325,60 @@ iframe {
 
 /* General page styles */
 
+/* "Narrow" pages -- all content narrow (70.5rem) */´
+.fluxes_article .page-content,
 .webform #page .page-content,
 .entity-webform-canonical #page .page-content,
 .article #page .page-content,
 .cp_event #page .page-content {
-  max-width: 1400px;
+  max-width: 70.5rem;
   margin-left: auto;
   margin-right: auto;
   padding-left: 1rem;
   padding-right: 1rem;
   /*margin-bottom: 6rem;*/
-  
-  #block-cp-theme-d10-content,
-  #toc-js-block {
-    max-width: 70.5rem;
-    margin-left: auto;
-    margin-right: auto;
+}
+
+/* Wide pages -- all content wide (1400px) */
+.data_product .page-content,
+.entity-node-edit-form .page-content,
+.node-add .page-content,
+.node-add-page .page-content,
+.system-404 .page-content,
+.view-data-products-page-1 #page .page-content,
+.cp-search-search-results-page #page .page-content,
+.fluxes_volume .page-content .block:not(.block-system-main-block),
+.fluxes_volume .page-content .layout--normal,
+.path-user #page .page-content {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+}
+
+/* Content bottom on wide pages, when needed */
+.article #page .page-content,
+.cp_event #page .page-content {
+  #block-cp-theme-d10-content {
+    margin-bottom: 6rem;
   }
 }
 
-.page .page-content .block:not(.block-system-main-block),
-.page .page-content .layout--threecol-section,
-.page .page-content .layout--twocol-section,
-.page .page-content .layout--colored-flex {
-  max-width: 70.5rem; /* 1128px */
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
+/* Blocks/layouts on normal pages - narrow */
+.page .page-content {
+  .block:not(.block-system-main-block),
+  .layout--threecol-section,
+  .layout--twocol-section,
+  .layout--colored-flex {
+    max-width: 70.5rem; /* 1128px */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
+/* Blocks/layouts on template-full-width pages - wide */
 .page.template-full-width .page-content {
   .block:not(.block-system-main-block),
   .layout--twocol-section,
@@ -425,23 +449,6 @@ iframe {
   }
 }
 
-/* Other full-width templates for different content types */
-.data_product .page-content,
-.entity-node-edit-form .page-content,
-.node-add .page-content,
-.node-add-page .page-content,
-.system-404 .page-content,
-.fluxes_article .page-content,
-.view-data-products-page-1 #page .page-content,
-.cp-search-search-results-page #page .page-content,
-.fluxes_volume .page-content .block:not(.block-system-main-block),
-.fluxes_volume .page-content .layout--normal,
-.path-user #page .page-content {
-  max-width: 1400px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 1rem;
-}
 
 
 .fluxes_volume .page-content .block:not(.block-system-main-block) {
