@@ -82,11 +82,13 @@
 <article{{ attributes.addClass(classes) }}>
 
   <div class="teaser-news-image">
-    {% if content.field_image %}
-      {{ content.field_image }}
-    {% elseif content.field_cp_event_picture %}
-      {{ content.field_cp_event_picture }}
-    {% endif %}
+    <a href="{{ url }}">
+      {% if content.field_image %}
+        {{ content.field_image }}
+      {% elseif content.field_cp_event_picture %}
+        {{ content.field_cp_event_picture }}
+      {% endif %}
+    </a>
   </div>
 
   <div class="node__meta fs-xs text-secondary">
