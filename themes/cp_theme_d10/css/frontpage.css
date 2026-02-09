@@ -86,7 +86,7 @@
 }
 
 .highlights {
-  &>div {
+  &>div>div {
     --bs-bg-opacity: .2 !important;
   }
 
