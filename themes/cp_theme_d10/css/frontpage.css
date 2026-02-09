@@ -88,14 +88,13 @@
 .highlights {
   &>div>div {
     --bs-bg-opacity: .2 !important;
-  }
-
-  &>div>div>div {
-    height: 260px;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
+      &>div {
+      height: 260px;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
   }
 
   a {
