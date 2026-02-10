@@ -36,7 +36,7 @@
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
     'clearfix',
-    'row'
+    'row',
   ]
 %}
 
@@ -49,7 +49,7 @@
 
 {% if content.field_linkbox_display_type.0["#markup"] == "narrow" %}
   {% set h3_class = "h6" %}
-  {% set container_div_class ="mb-5" %}
+  {% set container_div_class ="mb-5 px-0 gx-0" %}
 {% else %}{# content.field_linkbox_display_type == "wide" or is not defined #}
   {% set img_div_class = "col-lg-4" %}
   {% set content_div_class = "col-lg-8" %}
