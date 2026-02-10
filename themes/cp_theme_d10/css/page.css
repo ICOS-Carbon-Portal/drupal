@@ -103,7 +103,7 @@ a.btn, a.btn:hover, a.btn:focus-within {
   text-decoration: none;
 }
 
-a:hover, a:focus-within {
+a:hover, a:not(.btn):focus-within {
   color: var(--bs-danger);
   text-decoration: underline 6%;
   text-decoration-skip-ink: none;
