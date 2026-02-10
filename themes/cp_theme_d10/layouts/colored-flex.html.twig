@@ -43,16 +43,20 @@
 %}
 
 {% if content %}
+  {% set rendered_left = content.left|render %}
+  {% set rendered_right = content.right|render %}
+  {% if rendered_left|striptags|trim or rendered_right|striptags|trim %}
   <div{{ attributes.addClass(classes) }}>
-    {% if content.left %}
+    {% if rendered_left|striptags|trim %}
       <div{{ region_attributes.left.addClass(left_classes) }}>
-        {{ content.left }}
+        {{ rendered_left }}
       </div>
     {% endif %}
-    {% if content.right %}
+    {% if rendered_right|striptags|trim %}
       <div{{ region_attributes.right.addClass(right_classes) }}>
-        {{ content.right }}
+        {{ rendered_right }}
       </div>
     {% endif %}
   </div>
+  {% endif %}
 {% endif %}
