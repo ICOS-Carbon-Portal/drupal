@@ -346,6 +346,11 @@ iframe {
 /* Wide pages -- all content wide (1400px) */
 .data_product .page-content,
 .entity-node-edit-form .page-content,
+.entity-node-edit-form.article #page .page-content,
+.entity-node-edit-form.fluxes_article .page-content,
+.entity-node-edit-form.webform #page .page-content,
+.entity-node-edit-form.entity-webform-canonical #page .page-content,
+.entity-node-edit-form.cp_event #page .page-content,
 .node-add .page-content,
 .node-add-page .page-content,
 .system-404 .page-content,
