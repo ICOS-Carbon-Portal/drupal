@@ -393,6 +393,9 @@ iframe {
     max-width: 100%;
     height: auto;
   }
+  figure {
+    clear: both;
+  }
 }
 
 /* Webforms */
