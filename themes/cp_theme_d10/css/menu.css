@@ -22,12 +22,13 @@
     transition: color 0.1s;
   }
 
-  a:hover {
+  a:hover, a:focus-within {
     color: var(--bs-danger) !important;
     text-decoration: underline 10%;
   }
 
-  .top-link:hover, .top-node:hover .top-link {
+  .top-link:hover, .top-node:hover .top-link,
+  .top-link:focus-within, .top-node:focus-within .top-link {
     text-decoration: underline 5%;
     text-underline-offset: 20%;
     color: var(--bs-dark) !important;
@@ -82,7 +83,8 @@
   }
 
   #cp_theme_d10_menu {
-    .top-node:hover .dropdown-menu {
+    .top-node:hover .dropdown-menu,
+    .top-node:focus-within .dropdown-menu {
       display: flex;
       flex-wrap: none;
     }
@@ -110,7 +112,8 @@
   }
   
   #cp_theme_d10_menu {
-    .top-node:hover .dropdown-menu {
+    .top-node:hover .dropdown-menu,
+    .top-node:focus-within .dropdown-menu {
       & > div {
         width: 316px;
       }

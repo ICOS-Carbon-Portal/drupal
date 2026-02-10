@@ -72,7 +72,8 @@ thead > tr {
     font-size: 1rem !important;
   }
 
-  .ml-form-embedBody .ml-form-horizontalRow button:hover {
+  .ml-form-embedBody .ml-form-horizontalRow button:hover,
+  .ml-form-embedBody .ml-form-horizontalRow button:focus-within {
     background-color: rgb(0, 95, 117) !important;
     border-color: rgb(0, 90, 110);
   }
@@ -98,11 +99,11 @@ a:not([class]) {
   text-underline-position: from-font;
 }
 
-a.btn, a.btn:hover {
+a.btn, a.btn:hover, a.btn:focus-within {
   text-decoration: none;
 }
 
-a:hover {
+a:hover, a:focus-within {
   color: var(--bs-danger);
   text-decoration: underline 6%;
   text-decoration-skip-ink: none;
@@ -117,22 +118,30 @@ a.social-media-icon {
   transition: color 0.1s;
 }
 
-a.social-media-icon:hover {
+a.social-media-icon:hover,
+a.social-media-icon:focus-within {
   color: #f7bbd0 !important;
 }
 
 .text-light a,
-.text-light a:hover {
+.text-light a:hover,
+.text-light a:focus-within {
   color: var(--bs-light);
 }
 
-.text-light a:hover {
+.text-light a:hover,
+.text-light a:focus-within {
   text-decoration-style: dashed;
 }
 
 .bg-success a,
-.bg-success a:hover {
+.bg-success a:hover,
+.bg-success a:focus-within {
   color: var(--bs-black);
+}
+
+div:focus-visible, a:focus-visible {
+  outline: var(--bs-primary) 1px solid;
 }
 
 /*** Page elements, top to bottom ***/
@@ -174,12 +183,8 @@ footer {
     height: 60px;
   }
 
-  a {
+  a, a:hover, a:focus-within {
     color: var(--bs-light);
-  }
-
-  a:hover {
-    color: var(--bs-danger);
   }
 
   .block {
@@ -252,8 +257,7 @@ iframe {
   /* Left box */
   .layout__region--left {
 
-    a,
-    a:hover {
+    a, a:hover, a:focus-within {
       color: var(--bs-light);
     }
   }
@@ -438,12 +442,12 @@ iframe {
     padding: 2rem;
     margin-bottom: 1rem;
 
-    a, a:hover {
+    a, a:hover, a:focus-within {
       color: var(--bs-light);
     }
   }
 
-  h3 a, h3 a:hover {
+  h3 a, h3 a:hover, h3 a:focus-within {
     text-decoration: none;
   }
 
@@ -608,7 +612,8 @@ iframe {
         
       }
     }
-    .table-hover > tbody > tr:hover > * {
+    .table-hover > tbody > tr:hover > *,
+    .table-hover > tbody > tr:focus-within > * {
       --bs-table-bg-state: unset;
     }
   }
