@@ -7,6 +7,8 @@ base theme: bootstrap
 libraries:
   - cp_theme_d10/global-styling
   - cp_theme_d10/bootstrap
+  - cp_theme_d10/freshdesk
+  - cp_theme_d10/cookie-consent
 
 regions:
   above_header: 'Above the header'

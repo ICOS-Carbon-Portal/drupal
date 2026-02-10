@@ -31,3 +31,14 @@ color.preview:
     color/preview.js: {}
   dependencies:
     - color/drupal.color
+
+freshdesk:
+  js:
+    js/freshdesk.js: {}
+
+cookie-consent:
+  css:
+    theme:
+      //cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css: {}
+  js:
+    //static.icos-cp.eu/share/cookie-consent/cookieconsent-config.js?1732799321: { type: external, attributes: {type: module}}
