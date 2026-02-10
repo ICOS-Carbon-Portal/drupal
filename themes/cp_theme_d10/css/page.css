@@ -457,7 +457,8 @@ iframe {
 }
 
 .node-add .above-content,
-.entity-node-edit-form .above-content {
+.entity-node-edit-form .above-content,
+.entity-node-edit-form .news-main-image {
   display: none;
 }
 
