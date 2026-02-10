@@ -84,7 +84,7 @@
   <div class="teaser-news-image d-flex justify-content-center">
     <a href="{{ url }}" tabindex="-1">
       {% set rendered_thumb = content.field_thumbnail|render %}
-      {% if rendered_thumb|striptags|trim %}
+      {% if rendered_thumb|trim %}
         {{ rendered_thumb }}
       {% elseif content.field_image %}
         {{ content.field_image }}
