@@ -141,7 +141,7 @@ a.social-media-icon:focus-within {
 }
 
 div:focus-visible, a:focus-visible {
-  outline: var(--bs-primary) 1px solid;
+  outline: var(--bs-primary) 2px solid;
 }
 
 /*** Page elements, top to bottom ***/
