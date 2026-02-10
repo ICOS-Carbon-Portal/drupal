@@ -36,35 +36,35 @@ function cp_theme_d8_theme_suggestions_block_alter(array &$suggestions, array $v
 function cp_theme_d10_theme() {
 	return [
 		'field__field_side_links_title' => [
-			'template' => 'field--title-h6',
+			'template' => 'field/field--title-h6',
 			'base hook' => 'field'
 		],
 		'field__field_bottom_left_links_title' => [
-			'template' => 'field--title-h6',
+			'template' => 'field/field--title-h6',
 			'base hook' => 'field'
 		],
 		'field__field_bottom_right_links_title' => [
-			'template' => 'field--title-h6',
+			'template' => 'field/field--title-h6',
 			'base hook' => 'field'
 		],
 		'field__field_side_links' => [
-			'template' => 'field--links-left',
+			'template' => 'field/field--links-left',
 			'base hook' => 'field'
 		],
 		'field__field_bottom_left_links' => [
-			'template' => 'field--links-right',
+			'template' => 'field/field--links-right',
 			'base hook' => 'field'
 		],
 		'field__field_bottom_right_links' => [
-			'template' => 'field--links-right',
+			'template' => 'field/field--links-right',
 			'base hook' => 'field'
 		],
 		'field__node__field_cp_event_link' => [
-			'template' => 'field--link-danger',
+			'template' => 'field/field--link-danger',
 			'base hook' => 'field'
 		],
 		'field__node__field_link' => [
-			'template' => 'field--link-danger',
+			'template' => 'field/field--link-danger',
 			'base hook' => 'field'
 		],
 	];
