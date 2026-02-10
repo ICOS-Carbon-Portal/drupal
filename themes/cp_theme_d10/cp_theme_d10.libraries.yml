@@ -43,4 +43,6 @@ cookie-consent:
   js:
     //static.icos-cp.eu/share/cookie-consent/cookieconsent-config.js?1732799321: { type: external, attributes: {type: module}}
   dependencies:
+    - core/jquery
+    - core/drupalSettings
     - matomo/matomo
