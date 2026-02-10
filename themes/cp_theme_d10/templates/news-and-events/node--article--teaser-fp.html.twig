@@ -84,8 +84,9 @@
 
 	<div class="col-md-5">
     <a href="{{ url }}" tabindex="-1">
-      {% if content.field_thumbnail %}
-        {{ content.field_thumbnail }}
+      {% set rendered_thumb = content.field_thumbnail|render %}
+      {% if rendered_thumb|striptags|trim %}
+        {{ rendered_thumb }}
       {% else %}
         {{ content.field_image }}
       {% endif %}
