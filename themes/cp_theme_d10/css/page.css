@@ -14,6 +14,12 @@
   --icos-violet-rgb: 92, 43, 147;
 }
 
+.btn {
+  --bs-btn-border-radius: 100px !important;
+  --bs-btn-font-weight: 600 !important;
+  --bs-btn-padding-x: 1.25rem !important;
+}
+
 /*** Overriding Bootstrap theme defaults/other CSS ***/
 
 /* Correct font family on contributed theme components */
