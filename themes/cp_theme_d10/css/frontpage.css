@@ -131,7 +131,7 @@
     position: relative;
     margin-right: auto;
     margin-left: auto;
-    padding-top: 10rem;
+    padding-top: 8.5rem;
     color: white;
     z-index: 5;
     height: 600px;
@@ -182,9 +182,15 @@
 
   .page .page-content .layout.layout--video {
     .text-overlay {
-      padding-top: 8rem;
+      padding-top: 5rem;
       height: 500px;
-      background: linear-gradient(270deg, rgba(0, 171, 201, 0.10) 42%, rgba(0, 123, 144, 0.80) 62%, #005463 100%);
+      background: linear-gradient(270deg, rgba(0, 171, 201, 0.10) 32%, rgba(0, 123, 144, 0.80) 52%, #005463 100%);
+      
+      &>div {
+        &>div {
+          max-width: 60%;
+        }
+      }
     }
   }
 }
@@ -197,13 +203,13 @@
 
   .page .page-content .layout.layout--video {
     .text-overlay {
-      padding-top: 5rem;
+      padding-top: 4rem;
       height: 420px;
-      background: linear-gradient(270deg, rgba(0, 171, 201, 0.10) 21%, rgba(0, 123, 144, 0.80) 42%, #005463 100%);
+      background: linear-gradient(270deg, rgba(0, 171, 201, 0.10) 16%, rgba(0, 123, 144, 0.80) 37%, #005463 100%);
 
       &>div {
         &>div {
-          max-width: 70%;
+          max-width: 75%;
         }
       }
     }
@@ -221,14 +227,29 @@
   }
 
   .page .page-content .layout.layout--video {
+    background: url('/home-image');
+    background-position-x: center;
+    background-position-y: bottom;
+    background-repeat: no-repeat;
+
     .text-overlay {
       min-height: 420px;
       height: unset;
       padding-bottom: 5rem;
+      background: rgba(0, 123, 144, 0.70);
 
-      /* TODO set background to image by URL instead of gradient */
+      &>div {
+        &>div {
+          max-width: 100%;
+        }
+      }
+
       a {
         margin-bottom: 0.5rem;
+      }
+
+      #toggle-video {
+        display: none !important;
       }
     }
   }
