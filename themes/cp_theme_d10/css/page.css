@@ -446,22 +446,9 @@ iframe {
 }
 
 /* Data products */
-.view-data-products-block-1 {
+.block-views-blockdata-products-block-1 {
   .view-header {
     margin-bottom: 2rem;
-  }
-
-  #toc-js-block {
-    --bs-bg-opacity: 1;
-    background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity));
-    color: var(--bs-light);
-    border-radius: 0.4rem;
-    padding: 2rem;
-    margin-bottom: 1rem;
-
-    a, a:hover, a:focus-within {
-      color: var(--bs-light);
-    }
   }
 
   h3 a, h3 a:hover, h3 a:focus-within {
