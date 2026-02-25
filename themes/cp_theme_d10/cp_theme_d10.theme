@@ -78,7 +78,7 @@ function cp_theme_d10_preprocess_page(&$variables) {
   $node = \Drupal::routeMatch()->getParameter('node');
 
   if ($node instanceof \Drupal\node\NodeInterface) {
-    if ($node->bundle() === 'page') {
+    if ($node->bundle() === 'page' or $node->bundle() === 'webform') {
       if ($node->hasField('field_header_image') && !$node->get('field_header_image')->isEmpty()) {
         $render_array = $node->get('field_header_image')->view([
           'label' => 'hidden',
