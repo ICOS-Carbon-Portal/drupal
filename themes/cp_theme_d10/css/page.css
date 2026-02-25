@@ -524,6 +524,12 @@ iframe {
   }
 }
 
+.teaser-fluxes-img {
+  img {
+    border-radius: 0.4rem;
+  }
+}
+
 /* Admin - editing page */
 .entity-node-edit-form .page-content,
 .node-add .page-content {
