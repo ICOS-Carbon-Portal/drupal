@@ -82,6 +82,10 @@ function cp_theme_d10_preprocess_page(&$variables) {
       if ($node->hasField('field_header_image') && !$node->get('field_header_image')->isEmpty()) {
         $render_array = $node->get('field_header_image')->view([
           'label' => 'hidden',
+          'type' => 'image',
+          'settings' => [
+            'image_style' => 'hero_1440x450',
+          ],
         ]);
 
         $variables['main_image'] = $render_array;
@@ -92,28 +96,47 @@ function cp_theme_d10_preprocess_page(&$variables) {
           'label' => 'hidden',
         ]);
         if ($node->bundle() === 'article') {
-          $variables['sub_image'] = $render_array;
+          $variables['sub_image'] = $node->get('field_image')->view([
+            'label' => 'hidden',
+            'type' => 'image',
+            'settings' => [
+              'image_style' => 'news_header',
+            ],
+          ]);
         } else {
-          $variables['main_image'] = $render_array;
+          $variables['main_image'] = $node->get('field_image')->view([
+            'label' => 'hidden',
+            'type' => 'image',
+            'settings' => [
+              'image_style' => 'hero_1440x450',
+            ],
+          ]);
         } 
       }
     } elseif ($node->bundle() === "cp_event") {
       if ($node->hasField('field_cp_event_picture') && !$node->get('field_cp_event_picture')->isEmpty()) {
         $render_array = $node->get('field_cp_event_picture')->view([
           'label' => 'hidden',
+          'type' => 'image',
+          'settings' => [
+            'image_style' => 'news_header',
+          ],
         ]);
 
         $variables['sub_image'] = $render_array;
       }
     } elseif ($node->bundle() === "fluxes_article") {
       if ($node->hasField('field_featured_image') && !$node->get('field_featured_image')->isEmpty()) {
-        $variables['sub_image'] = $node->get('field_featured_image')->view([
-          'label' => 'hidden',
-          'type' => 'entity_reference_entity_view',
-          'settings' => [
-            'view_mode' => 'default',
-          ],
-        ]);
+        $media = $node->get('field_featured_image')->entity;
+        if ($media) {
+          $variables['sub_image'] = $media->get('field_media_image')->view([
+            'label' => 'hidden',
+            'type' => 'image',
+            'settings' => [
+              'image_style' => 'news_header',
+            ],
+          ]);
+        }
       }
     }
     $variables['content_type'] = $node->bundle();
