@@ -20,7 +20,7 @@
 
 {% set rendered_content = content ? content.content|render : false %}
 
-{% if rendered_content|striptags|trim %}
+{% if rendered_content|trim %}
   <div{{ attributes.addClass(classes) }}>
     <div{{ region_attributes.content.addClass('layout__region', 'layout__region--content') }}>
       {{ rendered_content }}
