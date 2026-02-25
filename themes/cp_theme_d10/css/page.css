@@ -641,4 +641,14 @@ iframe {
   .above-content img {
     height: 186px;
   }
+
+  #search-block-form {
+    #edit-keys {
+      display: none;
+    }
+
+    #edit-submit {
+      border-radius: 100px;
+    }
+  }
 }
