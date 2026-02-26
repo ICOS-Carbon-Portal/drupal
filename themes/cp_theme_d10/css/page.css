@@ -503,11 +503,11 @@ iframe {
 
 .news-main-image {
   margin-bottom: 3rem;
-  max-height: 538px;
+  max-height: 616px;
 
   img {
     width: 100%;
-    max-height: 538px;
+    max-height: 616px;
   }
 }
 
