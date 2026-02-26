@@ -270,7 +270,6 @@ iframe {
 
   /* Right box */
   .layout__region--right {
-    max-width: 50%;
     background-color: var(--blue-10);
   }
 
@@ -278,6 +277,16 @@ iframe {
     margin-top: 1.5rem;
   }
 
+  /* toc.js */
+  .toc-js {
+    .toc-title {
+      margin-bottom: 1.5rem;
+    }
+
+    nav ul {
+      padding-bottom: 0.5rem;
+    }
+  }
 }
 
 .page .page-content .layout {
