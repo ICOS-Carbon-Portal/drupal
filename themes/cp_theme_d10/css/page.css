@@ -274,10 +274,8 @@ iframe {
     background-color: var(--blue-10);
   }
 
-  /* Ensure margin-top is applied to titles if and only if there is a section above the titles */
-  .layout__region--left:has(.toc-js.is-visible) .block-field-blocknodepagefield-side-links-title,
-  .layout__region:has(.block-field-blocknodepagefield-bottom-left-links) .block-field-blocknodepagefield-bottom-right-links-title {
-    margin-top: 2.5rem;
+  .layout__region>.block:not(:first-child) {
+    margin-top: 1.5rem;
   }
 
 }
