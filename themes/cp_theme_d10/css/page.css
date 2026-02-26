@@ -492,6 +492,7 @@ iframe {
 .news-main-image, .teaser-news-image {
   width: 100%;
   overflow: hidden;
+  border-radius: 0.625rem;
 
   img {
     object-fit: cover;
