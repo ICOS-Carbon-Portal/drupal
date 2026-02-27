@@ -45,14 +45,14 @@
 {% if content %}
   {% set rendered_left = content.left|render %}
   {% set rendered_right = content.right|render %}
-  {% if rendered_left|striptags|trim or rendered_right|striptags|trim %}
+  {% if rendered_left|trim or rendered_right|trim %}
   <div{{ attributes.addClass(classes) }}>
-    {% if rendered_left|striptags|trim %}
+    {% if rendered_left|trim %}
       <div{{ region_attributes.left.addClass(left_classes) }}>
         {{ rendered_left }}
       </div>
     {% endif %}
-    {% if rendered_right|striptags|trim %}
+    {% if rendered_right|trim %}
       <div{{ region_attributes.right.addClass(right_classes) }}>
         {{ rendered_right }}
       </div>
