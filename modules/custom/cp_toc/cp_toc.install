@@ -1,0 +1,71 @@
+<?php
+
+/**
+ * @file
+ * Install, update, and uninstall functions for the CP Table of Contents module.
+ */
+
+use Drupal\Core\Field\BaseFieldDefinition;
+
+/**
+ * Implements hook_update_8001().
+ *
+ * Installs the three per-node CP TOC base fields for sites that had the module
+ * installed before this feature was added.  Fresh installs do not need this
+ * because Drupal automatically applies pending entity definition updates when
+ * a module is first installed.
+ */
+function cp_toc_update_8001(): void {
+  $manager = \Drupal::entityDefinitionUpdateManager();
+
+  $fields['cp_toc_enabled'] = BaseFieldDefinition::create('boolean')
+    ->setLabel(t('CP TOC: enable on this node'))
+    ->setDescription(t('Uncheck to suppress the table of contents on this specific page.'))
+    ->setRevisionable(TRUE)
+    ->setTranslatable(FALSE)
+    ->setDefaultValue(TRUE);
+
+  $fields['cp_toc_selectors_override'] = BaseFieldDefinition::create('boolean')
+    ->setLabel(t('CP TOC: override heading selectors'))
+    ->setDescription(t('Use a custom selector list for this node instead of the content-type default.'))
+    ->setRevisionable(TRUE)
+    ->setTranslatable(FALSE)
+    ->setDefaultValue(FALSE);
+
+  $fields['cp_toc_selectors'] = BaseFieldDefinition::create('string')
+    ->setLabel(t('CP TOC: custom heading selectors'))
+    ->setDescription(t('Comma-separated CSS selectors used to build the TOC on this node.'))
+    ->setRevisionable(TRUE)
+    ->setTranslatable(FALSE)
+    ->setDefaultValue('')
+    ->setSetting('max_length', 255);
+
+  foreach ($fields as $field_name => $definition) {
+    $manager->installFieldStorageDefinition($field_name, 'node', 'cp_toc', $definition);
+  }
+}
+
+/**
+ * Implements hook_update_8002().
+ *
+ * Installs the two per-node minimum-headings override base fields.
+ */
+function cp_toc_update_8002(): void {
+  $manager = \Drupal::entityDefinitionUpdateManager();
+
+  $fields['cp_toc_min_headings_override'] = BaseFieldDefinition::create('boolean')
+    ->setLabel(t('CP TOC: override minimum headings'))
+    ->setRevisionable(TRUE)
+    ->setTranslatable(FALSE)
+    ->setDefaultValue(FALSE);
+
+  $fields['cp_toc_min_headings'] = BaseFieldDefinition::create('integer')
+    ->setLabel(t('CP TOC: custom minimum headings'))
+    ->setRevisionable(TRUE)
+    ->setTranslatable(FALSE)
+    ->setDefaultValue(2);
+
+  foreach ($fields as $field_name => $definition) {
+    $manager->installFieldStorageDefinition($field_name, 'node', 'cp_toc', $definition);
+  }
+}
