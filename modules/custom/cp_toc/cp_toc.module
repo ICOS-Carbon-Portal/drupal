@@ -2,7 +2,7 @@
 
 /**
  * @file
- * CP Table of Contents module.
+ * CP Table of contents module.
  *
  * Provides a configurable, jQuery-free table of contents block.
  * Settings are stored as third-party settings on each node type.
@@ -150,6 +150,13 @@ function cp_toc_preprocess_block(array &$variables): void {
     return;
   }
 
+  // In the Layout Builder admin UI build() returns a plain placeholder, so
+  // there is nothing to configure here.
+  $route_name = \Drupal::routeMatch()->getRouteName() ?? '';
+  if (str_starts_with($route_name, 'layout_builder.')) {
+    return;
+  }
+
   // Obtain the block plugin. Standard block placement exposes the block entity
   // via #block; Layout Builder renders blocks via SectionComponent and does
   // NOT set a block entity (it sets #block = NULL). The fallback re-instantiates
@@ -198,9 +205,9 @@ function cp_toc_form_node_type_form_alter(array &$form, FormStateInterface $form
 
   $form['cp_toc'] = [
     '#type'        => 'details',
-    '#title'       => t('CP Table of Contents'),
+    '#title'       => t('CP Table of contents'),
     '#group'       => 'additional_settings',
-    '#description' => t('Configure the CP Table of Contents for this content type. When enabled, a per-page override section appears on every node edit form of this type.'),
+    '#description' => t('Configure the CP Table of contents for this content type. When enabled, a per-page override section appears on every node edit form of this type.'),
   ];
 
   $form['cp_toc']['cp_toc_enabled'] = [
@@ -316,7 +323,7 @@ function cp_toc_form_node_type_form_builder(string $entity_type, NodeTypeInterfa
 /**
  * Implements hook_form_BASE_FORM_ID_alter() for node_form.
  *
- * When a content type has the TOC enabled, this adds a "CP Table of Contents"
+ * When a content type has the TOC enabled, this adds a "CP Table of contents"
  * panel to the node edit form's sidebar so editors can override the TOC
  * enabled/disabled state and heading selectors per piece of content.
  */
@@ -351,7 +358,7 @@ function cp_toc_form_node_form_alter(array &$form, FormStateInterface $form_stat
 
   $form['cp_toc_node'] = [
     '#type'   => 'details',
-    '#title'  => t('CP Table of Contents'),
+    '#title'  => t('CP Table of contents'),
     '#group'  => 'advanced',
     '#weight' => 40,
     '#tree'   => TRUE,

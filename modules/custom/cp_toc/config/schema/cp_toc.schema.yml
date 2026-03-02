@@ -1,7 +1,7 @@
 # Schema for third-party settings stored on node types.
 node.type.*.third_party.cp_toc:
   type: mapping
-  label: 'CP Table of Contents – node-type settings'
+  label: 'CP Table of contents – node-type settings'
   mapping:
     enabled:
       type: boolean
@@ -40,7 +40,7 @@ node.type.*.third_party.cp_toc:
 # Schema for the block plugin configuration.
 block.settings.cp_toc_block:
   type: block_settings
-  label: 'CP Table of Contents – block settings'
+  label: 'CP Table of contents – block settings'
   mapping:
     override_nodetype:
       type: boolean

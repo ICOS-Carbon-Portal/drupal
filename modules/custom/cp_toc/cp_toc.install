@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Install, update, and uninstall functions for the CP Table of Contents module.
+ * Install, update, and uninstall functions for the CP Table of contents module.
  */
 
 use Drupal\Core\Field\BaseFieldDefinition;

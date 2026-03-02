@@ -10,7 +10,7 @@ use Drupal\node\Entity\NodeType;
 use Drupal\node\NodeInterface;
 
 /**
- * Provides the CP Table of Contents block.
+ * Provides the CP Table of contents block.
  *
  * Settings are resolved in this priority order:
  *  1. Block's own configuration when "Override content-type settings" is on.
@@ -21,7 +21,7 @@ use Drupal\node\NodeInterface;
  *
  * @Block(
  *   id = "cp_toc_block",
- *   admin_label = @Translation("CP Table of Contents"),
+ *   admin_label = @Translation("CP Table of contents"),
  *   category = @Translation("CP")
  * )
  */
@@ -164,6 +164,13 @@ class CpTocBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build(): array {
+    // Inside the Layout Builder admin UI the block should never try to scan
+    // the page for headings.  Return a plain placeholder instead.
+    $route_name = \Drupal::routeMatch()->getRouteName() ?? '';
+    if (str_starts_with($route_name, 'layout_builder.')) {
+      return ['#markup' => $this->t('Placeholder for the "CP Table of contents" block')];
+    }
+
     $settings = $this->resolveSettings();
 
     if (empty($settings)) {

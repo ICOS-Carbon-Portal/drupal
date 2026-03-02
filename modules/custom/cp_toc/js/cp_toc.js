@@ -1,6 +1,6 @@
 /**
  * @file
- * CP Table of Contents – vanilla JS, no jQuery dependency.
+ * CP Table of contents – vanilla JS, no jQuery dependency.
  *
  * Reads configuration from data-* attributes on the .cp-toc wrapper element,
  * traverses the article body for matching headings, and builds a flat <ul>.
