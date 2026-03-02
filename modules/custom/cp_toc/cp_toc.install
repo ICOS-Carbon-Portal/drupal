@@ -88,3 +88,24 @@ function cp_toc_update_8003(): void {
     $manager->installFieldStorageDefinition($field_name, 'node', 'cp_toc', $definition);
   }
 }
+
+/**
+ * Implements hook_update_8004().
+ *
+ * Installs the per-node nesting override base field.
+ */
+function cp_toc_update_8004(): void {
+  $manager = \Drupal::entityDefinitionUpdateManager();
+
+  $manager->installFieldStorageDefinition(
+    'cp_toc_nesting',
+    'node',
+    'cp_toc',
+    BaseFieldDefinition::create('boolean')
+      ->setLabel(t('CP TOC: enable one-level nesting'))
+      ->setDescription(t('When enabled, sub-headings are nested one level inside their nearest top-level heading in the TOC.'))
+      ->setRevisionable(TRUE)
+      ->setTranslatable(FALSE)
+      ->setDefaultValue(FALSE)
+  );
+}

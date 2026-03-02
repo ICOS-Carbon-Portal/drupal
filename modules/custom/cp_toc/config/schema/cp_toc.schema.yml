@@ -33,6 +33,9 @@ node.type.*.third_party.cp_toc:
     scroll_offset:
       type: integer
       label: 'Scroll offset in pixels'
+    nesting:
+      type: boolean
+      label: 'Enable one-level nesting'
     node_default_enabled:
       type: boolean
       label: 'Enable TOC by default on new content'
@@ -72,3 +75,6 @@ block.settings.cp_toc_block:
     scroll_offset:
       type: integer
       label: 'Scroll offset'
+    nesting:
+      type: boolean
+      label: 'Enable one-level nesting'

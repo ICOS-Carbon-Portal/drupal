@@ -25,15 +25,16 @@ use Drupal\node\NodeTypeInterface;
 function cp_toc_default_settings(): array {
   return [
     'enabled'           => FALSE,
-    'headings'          => 'h2, h3',
-    'title'             => 'Contents',
-    'title_classes'     => '',
-    'list_classes'      => '',
-    'list_item_classes' => '',
-    'link_classes'      => '',
-    'min_headings'         => 2,
+    'headings'          => 'h2',
+    'title'             => 'On this page',
+    'title_classes'     => 'toc-title h6',
+    'list_classes'      => 'list-unstyled',
+    'list_item_classes' => 'mt-3',
+    'link_classes'      => 'down-arrow',
+    'min_headings'         => 3,
     'smooth_scroll'        => TRUE,
     'scroll_offset'        => 0,
+    'nesting'              => FALSE,
     'node_default_enabled' => TRUE,
   ];
 }
@@ -142,7 +143,123 @@ function cp_toc_entity_base_field_info(EntityTypeInterface $entity_type): array 
     ->setDisplayOptions('form', ['weight' => 105, 'region' => 'hidden'])
     ->setDisplayConfigurable('form', FALSE);
 
+  $fields['cp_toc_nesting'] = BaseFieldDefinition::create('boolean')
+    ->setLabel(t('CP TOC: enable one-level nesting'))
+    ->setDescription(t('When enabled, sub-headings are nested one level inside their nearest top-level heading in the TOC.'))
+    ->setRevisionable(TRUE)
+    ->setTranslatable(FALSE)
+    ->setDefaultValue(FALSE)
+    ->setDisplayOptions('form', ['weight' => 106, 'region' => 'hidden'])
+    ->setDisplayConfigurable('form', FALSE);
+
   return $fields;
+}
+
+// ---------------------------------------------------------------------------
+// Entity display (extra field)
+// ---------------------------------------------------------------------------
+
+/**
+ * Implements hook_entity_extra_field_info().
+ *
+ * Registers a "CP Table of contents" display component on every node bundle
+ * that has the TOC enabled.  Placing this component in Manage Display makes
+ * the TOC available as {{ content.cp_toc }} in node templates.
+ */
+function cp_toc_entity_extra_field_info(): array {
+  $extra = [];
+
+  foreach (NodeType::loadMultiple() as $bundle => $node_type) {
+    $settings = $node_type->getThirdPartySettings('cp_toc');
+    if (!empty($settings['enabled'])) {
+      $extra['node'][$bundle]['display']['cp_toc'] = [
+        'label'       => t('CP Table of contents'),
+        'description' => t('Table of contents block rendered inline via the cp_toc module.'),
+        'weight'      => 0,
+        'visible'     => FALSE,
+      ];
+    }
+  }
+
+  return $extra;
+}
+
+/**
+ * Implements hook_entity_view().
+ *
+ * When the cp_toc extra field is placed in the node's Manage Display
+ * configuration, this builds the full TOC render array – including the outer
+ * wrapper div, data-* attributes, and the hidden attribute – and adds it to
+ * $build['cp_toc'] so the template can print it as {{ content.cp_toc }}.
+ *
+ * This path bypasses the block render pipeline (and therefore
+ * cp_toc_preprocess_block()), so all block-template work is replicated here
+ * using the plugin's getPreprocessData() public method.
+ */
+function cp_toc_entity_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode): void {
+  if ($entity->getEntityTypeId() !== 'node') {
+    return;
+  }
+
+  $node_type = NodeType::load($entity->bundle());
+  if (!$node_type) {
+    return;
+  }
+
+  $type_settings = $node_type->getThirdPartySettings('cp_toc') + cp_toc_default_settings();
+  if (empty($type_settings['enabled'])) {
+    return;
+  }
+
+  // Only render when the component is actually placed in this display.
+  $component = $display->getComponent('cp_toc');
+  if (!$component) {
+    return;
+  }
+
+  // Instantiate the block plugin with default (non-override) configuration so
+  // it reads from node-type third-party settings and per-node base fields.
+  try {
+    /** @var \Drupal\cp_toc\Plugin\Block\CpTocBlock $plugin */
+    $plugin = \Drupal::service('plugin.manager.block')
+      ->createInstance('cp_toc_block', []);
+  }
+  catch (\Exception $e) {
+    return;
+  }
+
+  if (!method_exists($plugin, 'getPreprocessData')) {
+    return;
+  }
+
+  // Returns NULL when the block should not render (e.g. per-node TOC disabled).
+  $data = $plugin->getPreprocessData();
+  if (!is_array($data)) {
+    return;
+  }
+
+  // Replicate the class list from block--cp-toc-block.html.twig.
+  $classes = ['block', 'block-cp-toc', 'block-cp-toc-block', 'cp-toc'];
+  try {
+    if ((bool) $entity->get('cp_toc_full_width')->value) {
+      $classes[] = 'full-width-block';
+    }
+  }
+  catch (\Exception $e) {}
+
+  // Build the render array. #type => 'container' produces a <div>, supports
+  // child render arrays, and bubbles cache metadata and #attached assets from
+  // its children automatically.
+  $build['cp_toc'] = [
+    '#type'       => 'container',
+    '#attributes' => ['class' => $classes, 'hidden' => TRUE] + $data['data_attributes'],
+    'content'     => $plugin->build(),
+    '#cache'      => [
+      'contexts' => ['url.path'],
+      'tags'     => $entity->getCacheTags(),
+    ],
+    '#weight'     => $component['weight'] ?? 0,
+  ];
 }
 
 /**
@@ -314,6 +431,14 @@ function cp_toc_form_node_type_form_alter(array &$form, FormStateInterface $form
     '#states'        => $when_enabled,
   ];
 
+  $form['cp_toc']['cp_toc_nesting'] = [
+    '#type'          => 'checkbox',
+    '#title'         => t('Enable one-level nesting'),
+    '#default_value' => $settings['nesting'],
+    '#description'   => t('Nest sub-headings one level inside their nearest top-level heading. The top level is the lowest heading rank (e.g. h2 when both h2 and h3 are selected).'),
+    '#states'        => $when_enabled,
+  ];
+
   $form['cp_toc']['cp_toc_node_default_enabled'] = [
     '#type'          => 'checkbox',
     '#title'         => t('Enable TOC by default on new content'),
@@ -339,6 +464,7 @@ function cp_toc_form_node_type_form_builder(string $entity_type, NodeTypeInterfa
   $node_type->setThirdPartySetting('cp_toc', 'min_headings',         (int) $form_state->getValue('cp_toc_min_headings'));
   $node_type->setThirdPartySetting('cp_toc', 'smooth_scroll',        (bool) $form_state->getValue('cp_toc_smooth_scroll'));
   $node_type->setThirdPartySetting('cp_toc', 'scroll_offset',        (int) $form_state->getValue('cp_toc_scroll_offset'));
+  $node_type->setThirdPartySetting('cp_toc', 'nesting',              (bool) $form_state->getValue('cp_toc_nesting'));
   $node_type->setThirdPartySetting('cp_toc', 'node_default_enabled', (bool) $form_state->getValue('cp_toc_node_default_enabled'));
 }
 
@@ -373,6 +499,7 @@ function cp_toc_form_node_form_alter(array &$form, FormStateInterface $form_stat
     $node_min_headings_override = $node->get('cp_toc_min_headings_override')->value;
     $node_min_headings          = $node->get('cp_toc_min_headings')->value;
     $node_full_width            = $node->get('cp_toc_full_width')->value;
+    $node_nesting               = $node->get('cp_toc_nesting')->value;
   }
   catch (\Exception $e) {
     // Base fields not yet installed – silently skip the form section.
@@ -442,6 +569,13 @@ function cp_toc_form_node_form_alter(array &$form, FormStateInterface $form_stat
     '#description'   => t('The ToC block is usually half the page width. This allows the block to span the full width of the content for this page only.'),
   ];
 
+  $form['cp_toc_node']['nesting'] = [
+    '#type'          => 'checkbox',
+    '#title'         => t('Enable one-level nesting'),
+    '#default_value' => ($node_nesting === NULL) ? (bool) $settings['nesting'] : (bool) $node_nesting,
+    '#description'   => t('Override the content-type nesting setting for this page only.'),
+  ];
+
   $form['#entity_builders'][] = 'cp_toc_node_form_entity_builder';
 }
 
@@ -462,6 +596,7 @@ function cp_toc_node_form_entity_builder(string $entity_type, NodeInterface $nod
     $node->set('cp_toc_min_headings_override', (bool) ($values['min_headings_override'] ?? FALSE));
     $node->set('cp_toc_min_headings',          (int) ($values['min_headings'] ?? 2));
     $node->set('cp_toc_full_width',            (bool) ($values['full_width'] ?? FALSE));
+    $node->set('cp_toc_nesting',               (bool) ($values['nesting'] ?? FALSE));
   }
   catch (\Exception $e) {
     // Base fields not installed – skip silently.

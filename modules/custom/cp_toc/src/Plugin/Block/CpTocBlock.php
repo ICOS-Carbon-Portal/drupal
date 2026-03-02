@@ -49,6 +49,7 @@ class CpTocBlock extends BlockBase {
       'min_headings'      => 2,
       'smooth_scroll'     => TRUE,
       'scroll_offset'     => 0,
+      'nesting'           => FALSE,
     ];
   }
 
@@ -138,6 +139,13 @@ class CpTocBlock extends BlockBase {
       '#description'   => $this->t('Pixel offset when jumping to a heading (e.g. for a fixed header).'),
     ];
 
+    $form['toc_settings']['nesting'] = [
+      '#type'          => 'checkbox',
+      '#title'         => $this->t('Enable one-level nesting'),
+      '#default_value' => $config['nesting'],
+      '#description'   => $this->t('Nest sub-headings one level inside their nearest top-level heading.'),
+    ];
+
     return $form;
   }
 
@@ -158,6 +166,7 @@ class CpTocBlock extends BlockBase {
     $this->configuration['min_headings']      = (int) ($sub['min_headings'] ?? 2);
     $this->configuration['smooth_scroll']     = (bool) ($sub['smooth_scroll'] ?? TRUE);
     $this->configuration['scroll_offset']     = (int) ($sub['scroll_offset'] ?? 0);
+    $this->configuration['nesting']           = (bool) ($sub['nesting'] ?? FALSE);
   }
 
   /**
@@ -226,6 +235,7 @@ class CpTocBlock extends BlockBase {
         'data-list-classes'      => $settings['list_classes'],
         'data-list-item-classes' => $settings['list_item_classes'],
         'data-link-classes'      => $settings['link_classes'],
+        'data-nesting'           => $settings['nesting'] ? '1' : '0',
       ],
     ];
   }
@@ -298,6 +308,12 @@ class CpTocBlock extends BlockBase {
       // Apply custom minimum-headings threshold when the override is active.
       if ((bool) $node->get('cp_toc_min_headings_override')->value) {
         $settings['min_headings'] = (int) ($node->get('cp_toc_min_headings')->value ?? $settings['min_headings']);
+      }
+
+      // Apply per-node nesting override (the field always wins over the type setting).
+      $node_nesting = $node->get('cp_toc_nesting')->value;
+      if ($node_nesting !== NULL) {
+        $settings['nesting'] = (bool) $node_nesting;
       }
     }
     catch (\Exception $e) {

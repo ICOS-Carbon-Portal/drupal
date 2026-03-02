@@ -88,11 +88,19 @@
   {% endif %}
   {{ title_suffix }}
 
-  <div class="node__meta fs-sm text-danger mb-5">
+  <div class="node__meta fs-sm text-danger mb-4">
     {{ content.field_author }}
   </div>
 
-  <div{{ content_attributes.addClass('node__content') }}>
+  {% if content.cp_toc %}
+  <div class="layout layout--colored-flex row justify-content-between gap-3">
+    <div class="layout__region layout__region--left col-lg bg-primary text-light rounded">
+      {{ content.cp_toc }}
+    </div>
+  </div>
+  {% endif %}
+
+  <div{{ content_attributes.addClass('node__content mt-4') }}>
     {{ content.body }}
   </div>
 
