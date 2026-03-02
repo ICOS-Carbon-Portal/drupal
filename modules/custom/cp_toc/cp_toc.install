@@ -63,7 +63,26 @@ function cp_toc_update_8002(): void {
     ->setLabel(t('CP TOC: custom minimum headings'))
     ->setRevisionable(TRUE)
     ->setTranslatable(FALSE)
-    ->setDefaultValue(2);
+    ->setDefaultValue(3);
+
+  foreach ($fields as $field_name => $definition) {
+    $manager->installFieldStorageDefinition($field_name, 'node', 'cp_toc', $definition);
+  }
+}
+
+/**
+ * Implements hook_update_8003().
+ *
+ * Installs the per-node full width block settings.
+ */
+function cp_toc_update_8003(): void {
+  $manager = \Drupal::entityDefinitionUpdateManager();
+
+  $fields['cp_toc_full_width'] = BaseFieldDefinition::create('boolean')
+    ->setLabel(t('CP TOC: allow block to be full-width'))
+    ->setRevisionable(TRUE)
+    ->setTranslatable(FALSE)
+    ->setDefaultValue(FALSE);
 
   foreach ($fields as $field_name => $definition) {
     $manager->installFieldStorageDefinition($field_name, 'node', 'cp_toc', $definition);

@@ -133,6 +133,15 @@ function cp_toc_entity_base_field_info(EntityTypeInterface $entity_type): array 
     ->setDisplayOptions('form', ['weight' => 104, 'region' => 'hidden'])
     ->setDisplayConfigurable('form', FALSE);
 
+  $fields['cp_toc_full_width'] = BaseFieldDefinition::create('boolean')
+    ->setLabel(t('CP TOC: allow block to be full-width'))
+    ->setDescription(t('When enabled, adds the full-width-block class to the TOC block wrapper on this page.'))
+    ->setRevisionable(TRUE)
+    ->setTranslatable(FALSE)
+    ->setDefaultValue(FALSE)
+    ->setDisplayOptions('form', ['weight' => 105, 'region' => 'hidden'])
+    ->setDisplayConfigurable('form', FALSE);
+
   return $fields;
 }
 
@@ -193,6 +202,19 @@ function cp_toc_preprocess_block(array &$variables): void {
 
   // Hide the whole block; JS removes this once it finds enough headings.
   $variables['attributes']['hidden'] = 'hidden';
+
+  // Pass the full-width flag to the Twig template.
+  $node = \Drupal::routeMatch()->getParameter('node');
+  $full_width = FALSE;
+  if ($node instanceof \Drupal\node\NodeInterface) {
+    try {
+      $full_width = (bool) $node->get('cp_toc_full_width')->value;
+    }
+    catch (\Exception $e) {
+      // Field not yet installed – default to FALSE.
+    }
+  }
+  $variables['cp_toc_full_width'] = $full_width;
 }
 
 /**
@@ -350,6 +372,7 @@ function cp_toc_form_node_form_alter(array &$form, FormStateInterface $form_stat
     $node_selectors             = $node->get('cp_toc_selectors')->value;
     $node_min_headings_override = $node->get('cp_toc_min_headings_override')->value;
     $node_min_headings          = $node->get('cp_toc_min_headings')->value;
+    $node_full_width            = $node->get('cp_toc_full_width')->value;
   }
   catch (\Exception $e) {
     // Base fields not yet installed – silently skip the form section.
@@ -412,6 +435,13 @@ function cp_toc_form_node_form_alter(array &$form, FormStateInterface $form_stat
     ],
   ];
 
+  $form['cp_toc_node']['full_width'] = [
+    '#type'          => 'checkbox',
+    '#title'         => t('Allow ToC to take full-width when possible'),
+    '#default_value' => ($node_full_width === NULL) ? FALSE : (bool) $node_full_width,
+    '#description'   => t('The ToC block is usually half the page width. This allows the block to span the full width of the content for this page only.'),
+  ];
+
   $form['#entity_builders'][] = 'cp_toc_node_form_entity_builder';
 }
 
@@ -431,6 +461,7 @@ function cp_toc_node_form_entity_builder(string $entity_type, NodeInterface $nod
     $node->set('cp_toc_selectors',             $values['selectors'] ?? '');
     $node->set('cp_toc_min_headings_override', (bool) ($values['min_headings_override'] ?? FALSE));
     $node->set('cp_toc_min_headings',          (int) ($values['min_headings'] ?? 2));
+    $node->set('cp_toc_full_width',            (bool) ($values['full_width'] ?? FALSE));
   }
   catch (\Exception $e) {
     // Base fields not installed – skip silently.

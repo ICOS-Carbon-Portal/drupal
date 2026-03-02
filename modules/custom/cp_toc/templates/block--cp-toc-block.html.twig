@@ -23,6 +23,9 @@
     'cp-toc',
   ]
 %}
+{% if cp_toc_full_width %}
+  {% set classes = classes|merge(['full-width-block']) %}
+{% endif %}
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {% if label %}

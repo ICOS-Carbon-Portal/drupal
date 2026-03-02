@@ -261,6 +261,11 @@ iframe {
     }
   }
 
+  .layout__region--left:has(.full-width-block),
+  .layout__region--right:has(.full-width-block) {
+    max-width: 100%;
+  }
+
   /* Left box */
   .layout__region--left {
     a, a:hover, a:focus-within {
