@@ -26,11 +26,6 @@ use Drupal\node\NodeInterface;
  * )
  */
 class CpTocBlock extends BlockBase {
-
-  // ---------------------------------------------------------------------------
-  // Configuration
-  // ---------------------------------------------------------------------------
-
   /**
    * {@inheritdoc}
    */
@@ -54,15 +49,8 @@ class CpTocBlock extends BlockBase {
       'min_headings'      => 2,
       'smooth_scroll'     => TRUE,
       'scroll_offset'     => 0,
-      'highlight'         => TRUE,
-      'back_to_top'       => FALSE,
-      'back_to_top_label' => 'Back to top',
     ];
   }
-
-  // ---------------------------------------------------------------------------
-  // Block form
-  // ---------------------------------------------------------------------------
 
   /**
    * {@inheritdoc}
@@ -150,24 +138,6 @@ class CpTocBlock extends BlockBase {
       '#description'   => $this->t('Pixel offset when jumping to a heading (e.g. for a fixed header).'),
     ];
 
-    $form['toc_settings']['highlight'] = [
-      '#type'          => 'checkbox',
-      '#title'         => $this->t('Highlight active item on scroll'),
-      '#default_value' => $config['highlight'],
-    ];
-
-    $form['toc_settings']['back_to_top'] = [
-      '#type'          => 'checkbox',
-      '#title'         => $this->t('Show "back to top" links next to headings'),
-      '#default_value' => $config['back_to_top'],
-    ];
-
-    $form['toc_settings']['back_to_top_label'] = [
-      '#type'          => 'textfield',
-      '#title'         => $this->t('"Back to top" label'),
-      '#default_value' => $config['back_to_top_label'],
-    ];
-
     return $form;
   }
 
@@ -188,14 +158,7 @@ class CpTocBlock extends BlockBase {
     $this->configuration['min_headings']      = (int) ($sub['min_headings'] ?? 2);
     $this->configuration['smooth_scroll']     = (bool) ($sub['smooth_scroll'] ?? TRUE);
     $this->configuration['scroll_offset']     = (int) ($sub['scroll_offset'] ?? 0);
-    $this->configuration['highlight']         = (bool) ($sub['highlight'] ?? TRUE);
-    $this->configuration['back_to_top']       = (bool) ($sub['back_to_top'] ?? FALSE);
-    $this->configuration['back_to_top_label'] = $sub['back_to_top_label'] ?? 'Back to top';
   }
-
-  // ---------------------------------------------------------------------------
-  // Render
-  // ---------------------------------------------------------------------------
 
   /**
    * {@inheritdoc}
@@ -228,10 +191,6 @@ class CpTocBlock extends BlockBase {
     ];
   }
 
-  // ---------------------------------------------------------------------------
-  // Helpers
-  // ---------------------------------------------------------------------------
-
   /**
    * Returns the data needed by cp_toc_preprocess_block(), or NULL.
    *
@@ -257,9 +216,6 @@ class CpTocBlock extends BlockBase {
         'data-min-headings'      => (string) $settings['min_headings'],
         'data-smooth-scroll'     => $settings['smooth_scroll'] ? '1' : '0',
         'data-scroll-offset'     => (string) $settings['scroll_offset'],
-        'data-highlight'         => $settings['highlight'] ? '1' : '0',
-        'data-back-to-top'       => $settings['back_to_top'] ? '1' : '0',
-        'data-back-to-top-label' => $settings['back_to_top_label'],
         'data-list-classes'      => $settings['list_classes'],
         'data-list-item-classes' => $settings['list_item_classes'],
         'data-link-classes'      => $settings['link_classes'],
@@ -343,5 +299,4 @@ class CpTocBlock extends BlockBase {
 
     return $settings;
   }
-
 }

@@ -8,15 +8,12 @@
  * Features:
  *   - Configurable CSS selectors (any valid querySelectorAll string)
  *   - Custom CSS classes on the list container and each list item
- *   - Scroll-based active-item highlighting via IntersectionObserver
- *   - Optional "back to top" links injected after each heading
  *   - Smooth-scroll with configurable pixel offset
  */
 
 /* global Drupal, once */
 
 ((Drupal, once) => {
-  const ACTIVE_CLASS   = 'is-active';
   const PROCESSED_ATTR = 'data-cp-toc-id';
 
   /**
@@ -32,9 +29,7 @@
       .replace(/[\s_]+/g, '-')
       .replace(/-{2,}/g, '-');
 
-    if (!base) {
-      base = 'heading';
-    }
+    if (!base) base = 'heading';
 
     let id = base;
     let n  = 1;
@@ -67,19 +62,15 @@
   class CpToc {
     constructor(wrapper) {
       this.wrapper = wrapper;
-      this.nav     = wrapper.querySelector('.cp-toc__nav');
       this.list    = wrapper.querySelector('.cp-toc__list');
 
       const d = wrapper.dataset;
 
       this.settings = {
-        headings:       d.headings       || 'h2, h3',
-        minHeadings:    parseInt(d.minHeadings  || '2', 10),
-        smoothScroll:   d.smoothScroll   !== '0',
-        scrollOffset:   parseInt(d.scrollOffset || '0', 10),
-        highlight:      d.highlight      !== '0',
-        backToTop:      d.backToTop      === '1',
-        backToTopLabel: d.backToTopLabel || 'Back to top',
+        headings:        d.headings      || 'h2, h3',
+        minHeadings:     parseInt(d.minHeadings  || '2', 10),
+        smoothScroll:    d.smoothScroll  !== '0',
+        scrollOffset:    parseInt(d.scrollOffset || '0', 10),
         listClasses:     splitClasses(d.listClasses),
         listItemClasses: splitClasses(d.listItemClasses),
         linkClasses:     splitClasses(d.linkClasses),
@@ -93,15 +84,12 @@
       );
 
       this._usedIds    = [];
-      this._observer   = null;
       this._headingEls = [];
-      this._linkMap    = new Map(); // heading el -> <a> in TOC
 
       this._init();
     }
 
     _init() {
-      // Apply custom list classes to the server-rendered root <ul>.
       if (this.settings.listClasses.length) {
         this.list.classList.add(...this.settings.listClasses);
       }
@@ -113,14 +101,6 @@
       }
 
       this.wrapper.removeAttribute('hidden');
-
-      if (this.settings.backToTop) {
-        this._addBackToTopLinks();
-      }
-
-      if (this.settings.highlight) {
-        this._initObserver();
-      }
     }
 
     _buildToc() {
@@ -175,30 +155,6 @@
         li.appendChild(a);
         this.list.appendChild(li);
         this._headingEls.push(heading);
-        this._linkMap.set(heading, a);
-      });
-    }
-
-    _addBackToTopLinks() {
-      const label = this.settings.backToTopLabel;
-
-      this._headingEls.forEach(heading => {
-        const a = document.createElement('a');
-        a.className   = 'cp-toc__back-to-top';
-        a.href        = '#';
-        a.textContent = label;
-        a.setAttribute('aria-label', label);
-
-        a.addEventListener('click', (e) => {
-          e.preventDefault();
-          window.scrollTo({ top: 0, behavior: this.settings.smoothScroll ? 'smooth' : 'auto' });
-          const first = document.querySelector(
-            'a[href], button:not([disabled]), input:not([disabled]), [tabindex="0"]'
-          );
-          if (first) first.focus({ preventScroll: true });
-        });
-
-        heading.insertAdjacentElement('afterend', a);
       });
     }
 
@@ -220,44 +176,7 @@
       heading.focus({ preventScroll: true });
     }
 
-    _initObserver() {
-      if (!('IntersectionObserver' in window)) return;
-
-      const offset        = this.settings.scrollOffset;
-      const rootMarginTop = offset > 0 ? `-${offset}px` : '0px';
-
-      this._observer = new IntersectionObserver(
-        (entries) => this._handleIntersection(entries),
-        { rootMargin: `${rootMarginTop} 0px -80% 0px`, threshold: 0 }
-      );
-
-      this._headingEls.forEach(h => this._observer.observe(h));
-    }
-
-    _handleIntersection(entries) {
-      entries.forEach(entry => {
-        const link = this._linkMap.get(entry.target);
-        if (link && entry.isIntersecting) {
-          this._setActive(link);
-        }
-      });
-    }
-
-    _setActive(link) {
-      this._linkMap.forEach(a => a.classList.remove(ACTIVE_CLASS));
-      link.classList.add(ACTIVE_CLASS);
-
-      if (this.nav.scrollHeight > this.nav.clientHeight) {
-        link.scrollIntoView({ block: 'nearest' });
-      }
-    }
-
     destroy() {
-      if (this._observer) {
-        this._observer.disconnect();
-        this._observer = null;
-      }
-
       this._headingEls.forEach(h => {
         if (h.getAttribute(PROCESSED_ATTR)) {
           h.removeAttribute('id');
@@ -265,34 +184,10 @@
         }
       });
 
-      if (this.settings.backToTop) {
-        this.container
-          .querySelectorAll('.cp-toc__back-to-top')
-          .forEach(el => el.remove());
-      }
-
       this.list.innerHTML = '';
       this.wrapper.setAttribute('hidden', '');
     }
   }
-
-  (function initScrollClass() {
-    const CLS   = 'is-scrolled';
-    const THRESH = 200;
-    let ticking  = false;
-
-    function update() {
-      document.body.classList.toggle(CLS, window.scrollY > THRESH);
-      ticking = false;
-    }
-
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(update);
-        ticking = true;
-      }
-    }, { passive: true });
-  }());
 
   Drupal.behaviors.cpToc = {
     attach(context) {

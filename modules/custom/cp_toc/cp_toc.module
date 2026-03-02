@@ -19,10 +19,6 @@ use Drupal\node\Entity\NodeType;
 use Drupal\node\NodeInterface;
 use Drupal\node\NodeTypeInterface;
 
-// ---------------------------------------------------------------------------
-// Module defaults
-// ---------------------------------------------------------------------------
-
 /**
  * Returns default settings for the TOC.
  */
@@ -35,18 +31,12 @@ function cp_toc_default_settings(): array {
     'list_classes'      => '',
     'list_item_classes' => '',
     'link_classes'      => '',
-    'min_headings'      => 2,
-    'smooth_scroll'     => TRUE,
-    'scroll_offset'     => 0,
-    'highlight'         => TRUE,
-    'back_to_top'       => FALSE,
-    'back_to_top_label' => 'Back to top',
+    'min_headings'         => 2,
+    'smooth_scroll'        => TRUE,
+    'scroll_offset'        => 0,
+    'node_default_enabled' => TRUE,
   ];
 }
-
-// ---------------------------------------------------------------------------
-// Core hooks
-// ---------------------------------------------------------------------------
 
 /**
  * Implements hook_help().
@@ -81,14 +71,10 @@ function cp_toc_theme(): array {
   ];
 }
 
-// ---------------------------------------------------------------------------
-// Entity base fields (per-node overrides)
-// ---------------------------------------------------------------------------
-
 /**
  * Implements hook_entity_base_field_info().
  *
- * Adds three per-node fields that store TOC overrides.
+ * Adds per-node fields that store TOC overrides.
  * These appear on the node edit form whenever the content type has the TOC
  * enabled, giving editors per-page control without extra configuration.
  */
@@ -150,10 +136,6 @@ function cp_toc_entity_base_field_info(EntityTypeInterface $entity_type): array 
   return $fields;
 }
 
-// ---------------------------------------------------------------------------
-// Block preprocess
-// ---------------------------------------------------------------------------
-
 /**
  * Implements hook_preprocess_block() for the cp_toc_block plugin.
  *
@@ -205,10 +187,6 @@ function cp_toc_preprocess_block(array &$variables): void {
   // Hide the whole block; JS removes this once it finds enough headings.
   $variables['attributes']['hidden'] = 'hidden';
 }
-
-// ---------------------------------------------------------------------------
-// Content-type configuration form
-// ---------------------------------------------------------------------------
 
 /**
  * Implements hook_form_FORM_ID_alter() for node_type_form.
@@ -307,30 +285,12 @@ function cp_toc_form_node_type_form_alter(array &$form, FormStateInterface $form
     '#states'        => $when_enabled,
   ];
 
-  $form['cp_toc']['cp_toc_highlight'] = [
+  $form['cp_toc']['cp_toc_node_default_enabled'] = [
     '#type'          => 'checkbox',
-    '#title'         => t('Highlight active item on scroll'),
-    '#default_value' => $settings['highlight'],
+    '#title'         => t('Enable TOC by default on new content'),
+    '#default_value' => $settings['node_default_enabled'],
+    '#description'   => t('When an editor creates a new piece of content of this type, the per-page "Enable table of contents" checkbox will default to this value.'),
     '#states'        => $when_enabled,
-  ];
-
-  $form['cp_toc']['cp_toc_back_to_top'] = [
-    '#type'          => 'checkbox',
-    '#title'         => t('Show "back to top" links next to headings'),
-    '#default_value' => $settings['back_to_top'],
-    '#states'        => $when_enabled,
-  ];
-
-  $form['cp_toc']['cp_toc_back_to_top_label'] = [
-    '#type'          => 'textfield',
-    '#title'         => t('"Back to top" link label'),
-    '#default_value' => $settings['back_to_top_label'],
-    '#states'        => [
-      'visible' => [
-        ':input[name="cp_toc_enabled"]'     => ['checked' => TRUE],
-        ':input[name="cp_toc_back_to_top"]' => ['checked' => TRUE],
-      ],
-    ],
   ];
 
   $form['#entity_builders'][] = 'cp_toc_form_node_type_form_builder';
@@ -340,24 +300,18 @@ function cp_toc_form_node_type_form_alter(array &$form, FormStateInterface $form
  * Entity builder: persists TOC settings as third-party settings on the node type.
  */
 function cp_toc_form_node_type_form_builder(string $entity_type, NodeTypeInterface $node_type, array &$form, FormStateInterface $form_state): void {
-  $node_type->setThirdPartySetting('cp_toc', 'enabled',           (bool) $form_state->getValue('cp_toc_enabled'));
-  $node_type->setThirdPartySetting('cp_toc', 'headings',          trim($form_state->getValue('cp_toc_headings')) ?: 'h2, h3');
-  $node_type->setThirdPartySetting('cp_toc', 'title',             $form_state->getValue('cp_toc_title'));
-  $node_type->setThirdPartySetting('cp_toc', 'title_classes',     $form_state->getValue('cp_toc_title_classes'));
-  $node_type->setThirdPartySetting('cp_toc', 'list_classes',      $form_state->getValue('cp_toc_list_classes'));
-  $node_type->setThirdPartySetting('cp_toc', 'list_item_classes', $form_state->getValue('cp_toc_list_item_classes'));
-  $node_type->setThirdPartySetting('cp_toc', 'link_classes',      $form_state->getValue('cp_toc_link_classes'));
-  $node_type->setThirdPartySetting('cp_toc', 'min_headings',      (int) $form_state->getValue('cp_toc_min_headings'));
-  $node_type->setThirdPartySetting('cp_toc', 'smooth_scroll',     (bool) $form_state->getValue('cp_toc_smooth_scroll'));
-  $node_type->setThirdPartySetting('cp_toc', 'scroll_offset',     (int) $form_state->getValue('cp_toc_scroll_offset'));
-  $node_type->setThirdPartySetting('cp_toc', 'highlight',         (bool) $form_state->getValue('cp_toc_highlight'));
-  $node_type->setThirdPartySetting('cp_toc', 'back_to_top',       (bool) $form_state->getValue('cp_toc_back_to_top'));
-  $node_type->setThirdPartySetting('cp_toc', 'back_to_top_label', $form_state->getValue('cp_toc_back_to_top_label'));
+  $node_type->setThirdPartySetting('cp_toc', 'enabled',              (bool) $form_state->getValue('cp_toc_enabled'));
+  $node_type->setThirdPartySetting('cp_toc', 'headings',             trim($form_state->getValue('cp_toc_headings')) ?: 'h2, h3');
+  $node_type->setThirdPartySetting('cp_toc', 'title',                $form_state->getValue('cp_toc_title'));
+  $node_type->setThirdPartySetting('cp_toc', 'title_classes',        $form_state->getValue('cp_toc_title_classes'));
+  $node_type->setThirdPartySetting('cp_toc', 'list_classes',         $form_state->getValue('cp_toc_list_classes'));
+  $node_type->setThirdPartySetting('cp_toc', 'list_item_classes',    $form_state->getValue('cp_toc_list_item_classes'));
+  $node_type->setThirdPartySetting('cp_toc', 'link_classes',         $form_state->getValue('cp_toc_link_classes'));
+  $node_type->setThirdPartySetting('cp_toc', 'min_headings',         (int) $form_state->getValue('cp_toc_min_headings'));
+  $node_type->setThirdPartySetting('cp_toc', 'smooth_scroll',        (bool) $form_state->getValue('cp_toc_smooth_scroll'));
+  $node_type->setThirdPartySetting('cp_toc', 'scroll_offset',        (int) $form_state->getValue('cp_toc_scroll_offset'));
+  $node_type->setThirdPartySetting('cp_toc', 'node_default_enabled', (bool) $form_state->getValue('cp_toc_node_default_enabled'));
 }
-
-// ---------------------------------------------------------------------------
-// Per-node node-edit form
-// ---------------------------------------------------------------------------
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter() for node_form.
@@ -406,7 +360,7 @@ function cp_toc_form_node_form_alter(array &$form, FormStateInterface $form_stat
   $form['cp_toc_node']['enabled'] = [
     '#type'          => 'checkbox',
     '#title'         => t('Enable table of contents on this page'),
-    '#default_value' => ($node_enabled === NULL) ? TRUE : (bool) $node_enabled,
+    '#default_value' => ($node_enabled === NULL) ? (bool) $settings['node_default_enabled'] : (bool) $node_enabled,
     '#description'   => t('Uncheck to hide the table of contents on this specific piece of content.'),
   ];
 

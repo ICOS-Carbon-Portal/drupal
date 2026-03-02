@@ -33,15 +33,9 @@ node.type.*.third_party.cp_toc:
     scroll_offset:
       type: integer
       label: 'Scroll offset in pixels'
-    highlight:
+    node_default_enabled:
       type: boolean
-      label: 'Highlight active item on scroll'
-    back_to_top:
-      type: boolean
-      label: 'Show back-to-top links'
-    back_to_top_label:
-      type: label
-      label: 'Back-to-top link label'
+      label: 'Enable TOC by default on new content'
 
 # Schema for the block plugin configuration.
 block.settings.cp_toc_block:
@@ -78,12 +72,3 @@ block.settings.cp_toc_block:
     scroll_offset:
       type: integer
       label: 'Scroll offset'
-    highlight:
-      type: boolean
-      label: 'Highlight active item'
-    back_to_top:
-      type: boolean
-      label: 'Back-to-top links'
-    back_to_top_label:
-      type: label
-      label: 'Back-to-top label'
