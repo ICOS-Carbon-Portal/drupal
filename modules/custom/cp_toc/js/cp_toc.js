@@ -32,17 +32,12 @@
 
     if (!base) base = 'heading';
 
-    let id = base;
-    let n  = 1;
+    let id = base, n  = 1;
     while (usedIds.includes(id)) {
       id = `${base}-${n++}`;
     }
     usedIds.push(id);
     return id;
-  }
-
-  function headingLevel(el) {
-    return parseInt(el.tagName[1], 10);
   }
 
   function plainText(el) {
@@ -53,7 +48,7 @@
    * Splits a space-separated class string into an array, filtering empties.
    */
   function splitClasses(str) {
-    return (str || '').split(/\s+/).filter(Boolean);
+    return str ? str.split(/\s+/).filter(s => typeof s === "string" && s.length > 0) : [];
   }
 
   /**
@@ -75,240 +70,149 @@
     return 999;
   }
 
-  class CpToc {
+  /** @param {HTMLElement} wrapper  The .cp-toc element rendered by Twig. */
+  function buildToc(wrapper) {
+    const list = wrapper.querySelector('.cp-toc__list');
 
-    /** @param {HTMLElement} wrapper  The .cp-toc element rendered by Twig. */
-    constructor(wrapper) {
-      this.wrapper = wrapper;
-      this.list    = wrapper.querySelector('.cp-toc__list');
+    const d = wrapper.dataset;
 
-      const d = wrapper.dataset;
+    const settings = {
+      headings: d.headings || 'h2, h3',
+      minHeadings: parseInt(d.minHeadings || '2', 10),
+      smoothScroll: d.smoothScroll  !== '0',
+      scrollOffset: parseInt(d.scrollOffset || '0', 10),
+      nesting: d.nesting === '1',
+      listClasses: splitClasses(d.listClasses),
+      listItemClasses: splitClasses(d.listItemClasses),
+      linkClasses: splitClasses(d.linkClasses),
+    };
 
-      this.settings = {
-        headings:        d.headings      || 'h2, h3',
-        minHeadings:     parseInt(d.minHeadings  || '2', 10),
-        smoothScroll:    d.smoothScroll  !== '0',
-        scrollOffset:    parseInt(d.scrollOffset || '0', 10),
-        nesting:         d.nesting       === '1',
-        listClasses:     splitClasses(d.listClasses),
-        listItemClasses: splitClasses(d.listItemClasses),
-        linkClasses:     splitClasses(d.linkClasses),
-      };
+    // Scan container: prefer the nearest <article>, then <main>, then <body>.
+    const container = wrapper.closest('article') ??
+      wrapper.closest('main') ??
+      document.body;
 
-      // Scan container: prefer the nearest <article>, then <main>, then <body>.
-      this.container = (
-        wrapper.closest('article') ||
-        wrapper.closest('main')    ||
-        document.body
-      );
+    let usedIds = [];
 
-      this._usedIds    = [];
-      this._headingEls = [];
-
-      this._init();
+    if (settings.listClasses.length > 0) {
+      list.classList.add(...settings.listClasses);
     }
 
-    _init() {
-      if (this.settings.listClasses.length) {
-        this.list.classList.add(...this.settings.listClasses);
-      }
+    const selectors = settings.headings.split(',')
+      .map(s => s.trim()).filter(s => typeof s === "string" && s.length > 0);
 
-      this._buildToc();
+    if (selectors.length === 0) return;
 
-      if (this._headingEls.length < this.settings.minHeadings) {
-        return; // Not enough headings – keep the block hidden.
-      }
+    const headings = Array.from(container.querySelectorAll(selectors.join(','))).filter(el => {
+      if (wrapper.contains(el)) return false;
+      const style = window.getComputedStyle(el);
+      return style.display !== 'none' && style.visibility !== 'hidden';
+    });
 
-      this.wrapper.removeAttribute('hidden');
+    if (headings.length < settings.minHeadings) {
+      return; // Not enough headings – keep the block hidden.
     }
 
-    _buildToc() {
-      const selectors = this.settings.headings
-        .split(',')
-        .map(s => s.trim())
-        .filter(Boolean);
-
-      if (!selectors.length) return;
-
-      const headings = Array.from(
-        this.container.querySelectorAll(selectors.join(','))
-      ).filter(el => {
-        if (this.wrapper.contains(el)) return false;
-        const style = window.getComputedStyle(el);
-        return style.display !== 'none' && style.visibility !== 'hidden';
-      });
-
-      if (!headings.length) return;
-
-      if (this.settings.nesting) {
-        this._buildNestedList(headings, selectors);
-      } else {
-        this._buildFlatList(headings);
-      }
-    }
-
-    /**
-     * Appends every heading as a direct child of the root list.
-     *
-     * @param {HTMLElement[]} headings
-     */
-    _buildFlatList(headings) {
-      headings.forEach(heading => {
-        this.list.appendChild(this._buildItem(heading));
-        this._headingEls.push(heading);
-      });
-    }
-
-    /**
-     * Appends top-level headings as direct children of the root list and
-     * nests all other headings one level deep inside the preceding top-level
-     * item.  The top level is defined as the lowest heading rank (smallest hN
-     * number) found among the collected headings.  Only one level of nesting
-     * is ever created regardless of how many distinct heading levels are
-     * present.
-     *
-     * When a nested heading appears before any top-level heading it is added
-     * to the root list instead of being silently dropped.
-     *
-     * @param {HTMLElement[]} headings
-     * @param {string[]}      selectors  Trimmed selector strings.
-     */
-    _buildNestedList(headings, selectors) {
+    if (settings.nesting) {
       const ranks  = headings.map(h => elementRank(h, selectors));
       const topRank = Math.min(...ranks);
 
-      let currentParent = null; // Current top-level <li> element.
+      let currentParent = null;
 
       headings.forEach((heading, i) => {
-        const li = this._buildItem(heading);
-        this._headingEls.push(heading);
+        const li = buildItem(heading, settings, usedIds);
 
         if (ranks[i] <= topRank) {
-          // Top-level item.
-          this.list.appendChild(li);
+          list.appendChild(li);
           currentParent = li;
         } else {
-          // Nested item – always one level regardless of rank difference.
           if (currentParent) {
             let sublist = currentParent.querySelector('.cp-toc__sublist');
             if (!sublist) {
               sublist = document.createElement('ul');
-              sublist.classList.add('cp-toc__sublist','ms-3');
-              if (this.settings.listClasses.length) {
-                sublist.classList.add(...this.settings.listClasses);
+              sublist.classList.add('cp-toc__sublist', 'ms-3');
+              if (settings.listClasses.length > 0) {
+                sublist.classList.add(...settings.listClasses);
               }
               currentParent.appendChild(sublist);
             }
             sublist.appendChild(li);
           } else {
-            // No parent exists yet; promote to root level.
-            this.list.appendChild(li);
+            list.appendChild(li);
             currentParent = li;
           }
         }
       });
+    } else {
+      headings.forEach(heading => list.appendChild(buildItem(heading, settings, usedIds)));
     }
 
-    /**
-     * Creates a single <li><a> pair for the given heading element.
-     * Assigns a slug-based id to the heading if it does not already have one.
-     *
-     * @param  {HTMLElement} heading
-     * @returns {HTMLElement}  The <li> element (not yet attached to the DOM).
-     */
-    _buildItem(heading) {
-      const level = headingLevel(heading);
 
-      // Assign a stable id if the heading doesn't have one.
-      if (!heading.id) {
-        heading.id = slugify(plainText(heading), this._usedIds);
-        heading.setAttribute(PROCESSED_ATTR, '1');
-      } else {
-        this._usedIds.push(heading.id);
-      }
-
-      // Build <li>.
-      const li = document.createElement('li');
-      li.className = `cp-toc__item cp-toc__item--h${level}`;
-      if (this.settings.listItemClasses.length) {
-        li.classList.add(...this.settings.listItemClasses);
-      }
-
-      // Build <a>.
-      const a = document.createElement('a');
-      a.className   = 'cp-toc__link';
-      a.href        = `#${heading.id}`;
-      a.textContent = plainText(heading);
-      if (this.settings.linkClasses.length) {
-        a.classList.add(...this.settings.linkClasses);
-      }
-      a.addEventListener('click', (e) => {
-        e.preventDefault();
-        this._scrollTo(heading);
-      });
-
-      li.appendChild(a);
-      return li;
-    }
-
-    // -----------------------------------------------------------------------
-    // Scroll behaviour
-    // -----------------------------------------------------------------------
-
-    _scrollTo(heading) {
-      const offset = this.settings.scrollOffset;
-
-      if (offset === 0 && this.settings.smoothScroll) {
-        heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else {
-        const top = heading.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: this.settings.smoothScroll ? 'smooth' : 'auto' });
-      }
-
-      history.replaceState(null, '', `#${heading.id}`);
-
-      if (!heading.hasAttribute('tabindex')) {
-        heading.setAttribute('tabindex', '-1');
-      }
-      heading.focus({ preventScroll: true });
-    }
-
-    // -----------------------------------------------------------------------
-    // Teardown
-    // -----------------------------------------------------------------------
-
-    destroy() {
-      this._headingEls.forEach(h => {
-        if (h.getAttribute(PROCESSED_ATTR)) {
-          h.removeAttribute('id');
-          h.removeAttribute(PROCESSED_ATTR);
-        }
-      });
-
-      this.list.innerHTML = '';
-      this.wrapper.setAttribute('hidden', '');
-    }
+    wrapper.removeAttribute('hidden');
   }
 
-  // -------------------------------------------------------------------------
-  // Drupal behaviour
-  // -------------------------------------------------------------------------
+
+  /**
+   * Creates a single <li><a> pair for the given heading element.
+   * Assigns a slug-based id to the heading if it does not already have one.
+   *
+   * @returns {HTMLElement}  The <li> element (not yet attached to the DOM).
+   */
+  function buildItem(heading, settings, usedIds) {
+    // Assign a stable id if the heading doesn't have one.
+    if (!heading.id) {
+      heading.id = slugify(plainText(heading), usedIds);
+      heading.setAttribute(PROCESSED_ATTR, '1');
+    } else {
+      usedIds.push(heading.id);
+    }
+
+    // Build <li>.
+    const li = document.createElement('li');
+    li.className = 'cp-toc__item';
+    if (settings.listItemClasses.length) {
+      li.classList.add(...settings.listItemClasses);
+    }
+
+    // Build <a>.
+    const a = document.createElement('a');
+    a.className = 'cp-toc__link';
+    a.href = `#${heading.id}`;
+    a.textContent = plainText(heading);
+
+    if (settings.linkClasses.length) {
+      a.classList.add(...settings.linkClasses);
+    }
+
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      scrollTo(heading, settings);
+    });
+
+    li.appendChild(a);
+    return li;
+  }
+
+  function scrollTo(heading, settings) {
+    if (settings.scrollOffset === 0 && settings.smoothScroll) {
+      heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      const top = heading.getBoundingClientRect().top + window.scrollY - settings.scrollOffset;
+      window.scrollTo({ top, behavior: settings.smoothScroll ? 'smooth' : 'auto' });
+    }
+
+    history.replaceState(null, '', `#${heading.id}`);
+
+    if (!heading.hasAttribute('tabindex')) {
+      heading.setAttribute('tabindex', '-1');
+    }
+    heading.focus({ preventScroll: true });
+  }
 
   Drupal.behaviors.cpToc = {
     attach(context) {
       once('cp-toc', '.cp-toc', context).forEach(wrapper => {
-        wrapper._cpTocInstance = new CpToc(wrapper);
-      });
-    },
-
-    detach(context, settings, trigger) {
-      if (trigger !== 'unload') return;
-
-      context.querySelectorAll('.cp-toc').forEach(wrapper => {
-        if (wrapper._cpTocInstance) {
-          wrapper._cpTocInstance.destroy();
-          delete wrapper._cpTocInstance;
-        }
+        buildToc(wrapper);
       });
     },
   };
