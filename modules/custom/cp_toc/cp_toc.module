@@ -128,7 +128,7 @@ function cp_toc_entity_base_field_info(EntityTypeInterface $entity_type): array 
     ->setDescription(t('Minimum number of matched headings required before the TOC is shown on this node.'))
     ->setRevisionable(TRUE)
     ->setTranslatable(FALSE)
-    ->setDefaultValue(2)
+    ->setDefaultValue(3)
     ->setSetting('min', 1)
     ->setSetting('max', 20)
     ->setDisplayOptions('form', ['weight' => 104, 'region' => 'hidden'])
