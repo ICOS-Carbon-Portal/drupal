@@ -40,13 +40,13 @@ class CpTocBlock extends BlockBase {
    */
   protected function defaultTocSettings(): array {
     return [
-      'headings'          => 'h2, h3',
-      'title'             => 'Contents',
-      'title_classes'     => '',
-      'list_classes'      => '',
-      'list_item_classes' => '',
-      'link_classes'      => '',
-      'min_headings'      => 2,
+      'headings'          => 'h2',
+      'title'             => 'On this page',
+      'title_classes'     => 'toc-title h6',
+      'list_classes'      => 'list-unstyled',
+      'list_item_classes' => 'mt-3',
+      'link_classes'      => 'down-arrow',
+      'min_headings'      => 3,
       'smooth_scroll'     => TRUE,
       'scroll_offset'     => 0,
       'nesting'           => FALSE,

@@ -237,8 +237,7 @@ iframe {
   }
 
   /* Do not display left box if toc is hidden and links not present */
-  .layout__region--left:has(.toc-js.is-hidden):not(:has(.block-field-blocknodepagefield-side-links-title), :has(.block-field-blocknodepagefield-side-links)),
-  .layout__region--left:has(.cp-toc[hidden]):not(:has(.block-field-blocknodepagefield-side-links-title), :has(.block-field-blocknodepagefield-side-links)) {
+  .layout__region--left:has(.cp-toc[hidden]):not(:has(.block-field-blocknodepagefield-side-links-title), :has(.block-field-blocknodepagefield-side-links), :has(.block-field-blocknodepagefield-bottom-left-links-title)) {
     display: none;
   }
 
@@ -283,8 +282,8 @@ iframe {
     margin-top: 1.5rem;
   }
 
-  /* toc.js */
-  .toc-js, .cp-toc {
+  /* cp_toc */
+  .cp-toc {
     .toc-title {
       margin-bottom: 1.5rem;
     }
