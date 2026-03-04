@@ -2,7 +2,7 @@ colored_flex_layout:
   label: 'Colored Flex Section (two column)'
   category: 'CP'
   template: 'layouts/colored-flex'
-  library: cp_colored_flex_layout/colored-flex
+  library: cp_layouts/colored-flex
   regions:
     left:
       label: 'Left box (dark cyan)'
@@ -10,6 +10,21 @@ colored_flex_layout:
       label: 'Right box (light cyan)'
   icon_map:
     - [left, right]
+dark_blue_bot_left_two_layout:
+  label: 'Two column with dark blue box'
+  category: 'CP'
+  template: 'layouts/dark-blue-bot-left-two'
+  library: cp_layouts/dark-blue-bot-left-two
+  regions:
+    left_top:
+      label: 'Left, top'
+    left_bot:
+      label: 'Left, bottom (dark cyan box)'
+    right:
+      label: 'Right'
+  icon_map:
+    - [left_top, right]
+    - [left_bot, right]
 lblue_one_col_layout:
   label: 'Light Blue Full Width (one column)'
   category: 'CP'

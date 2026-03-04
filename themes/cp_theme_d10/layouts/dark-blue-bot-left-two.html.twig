@@ -1,0 +1,79 @@
+{#
+/**
+ * @file
+ * Theme implementation to display a two-column layout using colored boxes and responsive flex layout.
+ *
+ * Available variables:
+ * - in_preview: Whether the plugin is being rendered in preview mode.
+ * - content: The content for this layout.
+ * - attributes: HTML attributes for the layout <div>.
+ *
+ * @ingroup themeable
+ */
+#}
+
+{%
+  set classes = [
+    'layout',
+    'layout--dark-blue-bot-left-two',
+    'row',
+    'justify-content-between',
+    'gap-3',
+  ]
+%}
+
+{%
+  set left_top_classes = [
+    'layout__region',
+    'layout__region--left-top',
+    'px-0',
+  ]
+%}
+
+{%
+  set left_bot_classes = [
+    'layout__region',
+    'layout__region--left-bot',
+    'bg-primary',
+    'text-light',
+    'rounded',
+  ]
+%}
+
+{%
+  set right_classes = [
+    'layout__region',
+    'layout__region--right',
+    'col-lg',
+    'px-0',
+  ]
+%}
+
+{% if content %}
+  {% set rendered_left_top = content.left_top|render %}
+  {% set rendered_left_bot = content.left_bot|render %}
+  {% set rendered_right = content.right|render %}
+  {% if rendered_left_top|trim or rendered_right|trim or rendered_left_bot|trim %}
+  <div{{ attributes.addClass(classes) }}>
+    {% if rendered_left_top|trim or rendered_left_bot|trim %}
+      <div class="col-lg layout__region--left px-0">
+      {% if rendered_left_top|trim %}
+        <div{{ region_attributes.left_top.addClass(left_top_classes) }}>
+          {{ rendered_left_top }}
+        </div>
+      {% endif %}
+      {% if rendered_left_bot|trim %}
+        <div{{ region_attributes.left_bot.addClass(left_bot_classes) }}>
+          {{ rendered_left_bot }}
+        </div>
+      {% endif %}
+      </div>
+    {% endif %}
+    {% if rendered_right|trim %}
+      <div{{ region_attributes.right.addClass(right_classes) }}>
+        {{ rendered_right }}
+      </div>
+    {% endif %}
+  </div>
+  {% endif %}
+{% endif %}

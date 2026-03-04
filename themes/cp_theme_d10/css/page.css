@@ -398,11 +398,12 @@ iframe {
 }
 
 /* Blocks/layouts on normal pages - narrow */
-.page .page-content {
+.page-content {
   .block:not(.block-system-main-block),
   .layout--threecol-section,
   .layout--twocol-section,
-  .layout--colored-flex {
+  .layout--colored-flex,
+  .layout--dark-blue-bot-left-two {
     max-width: 70.5rem; /* 1128px */
     margin-left: auto;
     margin-right: auto;
@@ -416,7 +417,8 @@ iframe {
   .block:not(.block-system-main-block),
   .layout--twocol-section,
   .layout--threecol-section,
-  .layout--colored-flex {
+  .layout--colored-flex,
+  .layout--dark-blue-bot-left-two {
     max-width: 1400px;
   }
 }
@@ -428,6 +430,64 @@ iframe {
   }
   figure {
     clear: both;
+  }
+}
+
+.layout--dark-blue-bot-left-two {
+
+  /* Do not display empty layout region */
+  .layout__region:not(:has(.block)) {
+    display: none;
+  }
+
+  /* Layout builder - always display with black text */
+  .layout__region.layout-builder__region {
+    display: block !important;
+    color: black !important;
+
+    a {
+      color: black !important;
+    }
+  }
+
+  .layout__region--left,
+  .layout__region--right {
+    max-width: 50%;
+  }
+
+  .layout__region--left .layout__region--left-top .block,
+  & > .layout__region--right .block {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .layout__region--left-bot {
+    padding: 2rem;
+    ul {
+      margin-bottom: 0;
+    }
+  }
+
+  /* Left box */
+  .layout__region--left-bot {
+    a, a:hover, a:focus-within {
+      color: var(--bs-light);
+    }
+  }
+
+  .layout__region--left-bot>.block:not(:first-child) {
+    margin-top: 1.5rem;
+  }
+
+  /* cp_toc */
+  .cp-toc {
+    .toc-title {
+      margin-bottom: 1.5rem;
+    }
+
+    nav ul {
+      padding-bottom: 0.5rem;
+    }
   }
 }
 
@@ -612,7 +672,9 @@ iframe {
   }
 
   .layout--colored-flex .layout__region--left,
-  .layout--colored-flex .layout__region--right {
+  .layout--colored-flex .layout__region--right,
+  .layout--dark-blue-bot-left-two .layout__region--left,
+  .layout--dark-blue-bot-left-two .layout__region--right {
     max-width: 100%;
   }
 }
