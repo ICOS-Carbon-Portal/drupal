@@ -296,4 +296,10 @@
   .upcoming-events-title {
     display: block !important;
   }
+
+  .icos-station-network {
+    div:last-child {
+      display: none;
+    }
+  }
 }
