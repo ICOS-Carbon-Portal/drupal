@@ -21,6 +21,13 @@
           event.preventDefault();
         });
       });
+      once('cp_theme_d10', '#cp_theme_d10_menu').forEach(function (el) {
+        el.addEventListener('mouseout', function (event) {
+          if (event.target === document.activeElement) {
+            event.target.blur();
+          }
+        });
+      });
     },
   };
 })(Drupal);
