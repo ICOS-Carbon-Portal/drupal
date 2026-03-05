@@ -427,6 +427,7 @@ iframe {
   img {
     max-width: 100%;
     height: auto;
+    border-radius: 0.4rem;
   }
   figure {
     clear: both;
@@ -556,6 +557,11 @@ iframe {
   .cp-contact {
     min-width: 250px;
     width: 23%;
+    img {
+      max-width: 110px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+    }
   }
 }
 
