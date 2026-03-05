@@ -80,9 +80,6 @@
 
 .block-views-blockupcoming-events-block-1 {
   max-width: 900px !important;
-  img {
-    border-radius: 0 !important;
-  }
 }
 
 .upcoming-events-title {
@@ -168,6 +165,7 @@
 .event-image img {
   aspect-ratio: 16/9;
   object-fit: cover;
+  border-radius: 0 !important;
 }
 
 
