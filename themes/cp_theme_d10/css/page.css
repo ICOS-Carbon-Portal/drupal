@@ -237,7 +237,7 @@ iframe {
   }
 
   /* Do not display left box if toc is hidden and links not present */
-  .layout__region--left:has(.cp-toc[hidden]):not(:has(.block-field-blocknodepagefield-side-links-title), :has(.block-field-blocknodepagefield-side-links), :has(.block-field-blocknodepagefield-bottom-left-links-title)) {
+  .layout__region--left:has(.cp-toc[hidden]):not(:has(.block-field-blocknodepagefield-side-links), :has(.block-field-blocknodepagefield-bottom-right-links), :has(.block-field-blocknodepagefield-bottom-left-links)) {
     display: none;
   }
 
