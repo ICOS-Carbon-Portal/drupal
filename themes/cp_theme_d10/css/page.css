@@ -491,6 +491,12 @@ iframe {
   }
 }
 
+.container-fluid.station-list-container>* {
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Webforms */
 .webform #page .page-content,
 .entity-webform-canonical #page .page-content {
