@@ -80,6 +80,9 @@
 
 .block-views-blockupcoming-events-block-1 {
   max-width: 900px !important;
+  img {
+    border-radius: 0 !important;
+  }
 }
 
 .upcoming-events-title {
