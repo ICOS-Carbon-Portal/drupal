@@ -19,7 +19,7 @@ bootstrap:
     //cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js: { type: external, minified: true, weight: -20 }
   css:
     component:
-      //static.icos-cp.eu/css/bootstrap/test/icos-bootstrap.css: { type: external, minified: true }
+      //static.icos-cp.eu/css/bootstrap/next/icos-bootstrap.css: { type: external, minified: true }
   dependencies:
     - core/popperjs
 color.preview:
