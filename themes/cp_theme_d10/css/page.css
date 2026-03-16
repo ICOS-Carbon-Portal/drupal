@@ -517,6 +517,11 @@ iframe {
   }
 }
 
+.entity-webform-confirmation #page .page-content .webform-confirmation {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .status-messages {
   max-width: 70.5rem;
   margin-left: auto;
