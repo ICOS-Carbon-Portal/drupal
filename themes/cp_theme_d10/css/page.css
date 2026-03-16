@@ -414,6 +414,20 @@ iframe {
 }
 
 /* Blocks/layouts on template-full-width pages - wide */
+.data_product .page-content,
+.entity-node-edit-form .page-content,
+.entity-node-edit-form.article #page .page-content,
+.entity-node-edit-form.fluxes_article .page-content,
+.entity-node-edit-form.webform #page .page-content,
+.entity-node-edit-form.entity-webform-canonical #page .page-content,
+.entity-node-edit-form.cp_event #page .page-content,
+.node-add .page-content,
+.node-add-page .page-content,
+.system-404 .page-content,
+.view-data-products-page-1 #page .page-content,
+.fluxes_volume .page-content .block:not(.block-system-main-block),
+.fluxes_volume .page-content .layout--normal,
+.path-user #page .page-content,
 .page.template-full-width .page-content {
   .block:not(.block-system-main-block),
   .layout--twocol-section,
