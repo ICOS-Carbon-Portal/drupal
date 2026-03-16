@@ -359,7 +359,8 @@ iframe {
 .entity-webform-canonical #page .page-content,
 .entity-webform-confirmation #page .page-content,
 .article #page .page-content,
-.cp_event #page .page-content {
+.cp_event #page .page-content,
+.cp-search-search-results-page #page .page-content {
   max-width: 70.5rem;
   margin-left: auto;
   margin-right: auto;
@@ -380,7 +381,6 @@ iframe {
 .node-add-page .page-content,
 .system-404 .page-content,
 .view-data-products-page-1 #page .page-content,
-.cp-search-search-results-page #page .page-content,
 .fluxes_volume .page-content .block:not(.block-system-main-block),
 .fluxes_volume .page-content .layout--normal,
 .path-user #page .page-content {
