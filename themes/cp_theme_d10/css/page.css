@@ -357,6 +357,7 @@ iframe {
 .fluxes_article .page-content,
 .webform #page .page-content,
 .entity-webform-canonical #page .page-content,
+.entity-webform-confirmation #page .page-content,
 .article #page .page-content,
 .cp_event #page .page-content {
   max-width: 70.5rem;
