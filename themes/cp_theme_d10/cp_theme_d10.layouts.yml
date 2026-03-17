@@ -28,6 +28,7 @@ dark_blue_bot_left_two_layout:
 lblue_one_col_layout:
   label: 'Light Blue Full Width (one column)'
   category: 'CP'
+  class: 'Drupal\cp_layouts\Plugin\Layout\LightBlueOneColumnLayout'
   template: 'layouts/light-blue-one'
   library: cp_layouts/light-blue-one
   regions:
@@ -38,6 +39,7 @@ lblue_one_col_layout:
 lblue_two_col_layout:
   label: 'Light Blue Full Width (two column)'
   category: 'CP'
+  class: 'Drupal\cp_layouts\Plugin\Layout\LightBlueTwoColumnLayout'
   template: 'layouts/light-blue-two'
   library: cp_layouts/light-blue-two
   regions:
@@ -50,6 +52,7 @@ lblue_two_col_layout:
 lblue_three_col_layout:
   label: 'Light Blue Full Width (three column)'
   category: 'CP'
+  class: 'Drupal\cp_layouts\Plugin\Layout\LightBlueThreeColumnLayout'
   template: 'layouts/light-blue-three'
   library: cp_layouts/light-blue-three
   regions:
@@ -64,6 +67,7 @@ lblue_three_col_layout:
 lblue_two_col_title_layout:
   label: 'Light Blue Full Width (two column with title)'
   category: 'CP'
+  class: 'Drupal\cp_layouts\Plugin\Layout\LightBlueTwoColumnTitleLayout'
   template: 'layouts/light-blue-two-title'
   library: cp_layouts/light-blue-two-title
   regions:
@@ -79,6 +83,7 @@ lblue_two_col_title_layout:
 lblue_three_col_title_layout:
   label: 'Light Blue Full Width (three column with title)'
   category: 'CP'
+  class: 'Drupal\cp_layouts\Plugin\Layout\LightBlueThreeColumnTitleLayout'
   template: 'layouts/light-blue-three-title'
   library: cp_layouts/light-blue-three-title
   regions:
@@ -96,6 +101,7 @@ lblue_three_col_title_layout:
 lgray_two_col_layout:
   label: 'Light Gray Full Width (two column)'
   category: 'CP'
+  class: 'Drupal\cp_layouts\Plugin\Layout\LightGrayTwoColumnLayout'
   template: 'layouts/light-gray-two'
   library: cp_layouts/light-gray-two
   regions:

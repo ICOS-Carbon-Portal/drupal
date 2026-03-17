@@ -303,8 +303,6 @@ iframe {
 .fluxes_volume .page-content .layout--light-blue,
 .fluxes_volume .page-content .layout--light-gray {
   margin: 0;
-  padding-top: 2.75rem;
-  padding-bottom: 2.75rem;
 
   .block:not(.block-system-main-block) {
     max-width: unset;

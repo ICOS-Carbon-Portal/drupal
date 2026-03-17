@@ -16,7 +16,9 @@
 {%
   set classes = [
     'layout',
-    'layout--light-blue'
+    'layout--light-blue',
+    'pt-' ~ (settings.spacing_top ?? 5),
+    'pb-' ~ (settings.spacing_bottom ?? 5),
   ]
 %}
 
