@@ -1,0 +1,8 @@
+name: CP Layouts
+description: Layout plugin classes for the CP theme layouts.
+package: CP
+type: module
+core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:layout_builder
+  - drupal:layout_discovery
