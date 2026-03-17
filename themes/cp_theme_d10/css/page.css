@@ -367,6 +367,10 @@ iframe {
   padding-left: 1rem;
   padding-right: 1rem;
   /*margin-bottom: 6rem;*/
+  .block:not(.block-system-main-block) {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 /* Wide pages -- all content wide (1400px) */
