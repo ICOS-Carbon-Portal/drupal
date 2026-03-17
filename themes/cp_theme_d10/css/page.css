@@ -358,6 +358,8 @@ iframe {
 .entity-webform-confirmation #page .page-content,
 .article #page .page-content,
 .cp_event #page .page-content,
+.system-404 .page-content,
+.system-403 .page-content,
 .cp-search-search-results-page #page .page-content {
   max-width: 70.5rem;
   margin-left: auto;
@@ -381,7 +383,6 @@ iframe {
 .entity-node-edit-form.cp_event #page .page-content,
 .node-add .page-content,
 .node-add-page .page-content,
-.system-404 .page-content,
 .view-data-products-page-1 #page .page-content,
 .fluxes_volume .page-content .block:not(.block-system-main-block),
 .fluxes_volume .page-content .layout--normal,
@@ -390,6 +391,12 @@ iframe {
   margin-left: auto;
   margin-right: auto;
   padding: 1rem;
+}
+
+.system-403, .system-404 {
+  .page-content {
+    padding-bottom: 3rem;
+  }
 }
 
 /* Content bottom on wide pages, when needed */
@@ -425,7 +432,6 @@ iframe {
 .entity-node-edit-form.cp_event #page .page-content,
 .node-add .page-content,
 .node-add-page .page-content,
-.system-404 .page-content,
 .view-data-products-page-1 #page .page-content,
 .fluxes_volume .page-content .block:not(.block-system-main-block),
 .fluxes_volume .page-content .layout--normal,
