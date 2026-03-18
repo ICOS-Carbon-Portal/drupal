@@ -340,7 +340,7 @@ iframe {
 /* make three column 33-34-33 evenly spaced, with space between */
 @media screen and (min-width: 40em) {
   .layout--threecol-section--33-34-33 {
-    justify-content: space-between;
+    gap: 2%;
   }
   .layout--threecol-section--33-34-33 > .layout__region--first,
   .layout--threecol-section--33-34-33 > .layout__region--second,
