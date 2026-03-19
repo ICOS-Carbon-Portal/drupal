@@ -58,15 +58,29 @@
 
       button.addEventListener("click", (event) => {
         if (video.paused) {
-          video.play()
-          button.removeChild(playIcon);
-          button.appendChild(pauseIcon);
+          playVideo();
+          localStorage.removeItem("videoPaused");
         } else {
-          video.pause();
-          button.removeChild(pauseIcon);
-          button.appendChild(playIcon);
+          pauseVideo();
+          localStorage.setItem("videoPaused", "paused");
         }
       });
+
+      if (localStorage.getItem("videoPaused")) {
+        pauseVideo();
+      }
+
+      function pauseVideo() {
+        video.pause();
+        button.removeChild(pauseIcon);
+        button.appendChild(playIcon);
+      }
+
+      function playVideo() {
+        video.play()
+        button.removeChild(playIcon);
+        button.appendChild(pauseIcon);
+      }
     }
 
     document.addEventListener("DOMContentLoaded", initVideoToggle);
