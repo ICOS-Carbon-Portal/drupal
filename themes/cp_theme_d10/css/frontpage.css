@@ -215,6 +215,11 @@
       }
     }
   }
+
+  .row-two-front-page > div {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
 }
 
 /* Smaller than Bootstrap M breakpoint */
