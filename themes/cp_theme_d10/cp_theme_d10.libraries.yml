@@ -1,5 +1,4 @@
 global-styling:
-  version: VERSION
   js:
     js/global.js: {}
   css:
@@ -22,6 +21,7 @@ bootstrap:
       //static.icos-cp.eu/css/bootstrap/next/icos-bootstrap.css: { type: external, minified: true }
   dependencies:
     - core/popperjs
+
 color.preview:
   version: VERSION
   css:
