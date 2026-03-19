@@ -120,7 +120,7 @@
                     const buttonElements = buttonInfos.map((btnInfo) => {
                         let el = document.createElement("button");
                         el.type = "button";
-                        el.classList.add("btn","me-2","rounded-1","fw-normal");
+                        el.classList.add("btn", "me-2", "rounded-1", "fw-normal", "mb-2");
                         if (btnInfo.key !== "all") {
                             el.classList.add("btn-outline-primary");
                         } else {
