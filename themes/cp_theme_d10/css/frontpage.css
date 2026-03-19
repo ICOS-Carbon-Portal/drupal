@@ -291,6 +291,13 @@
   }
 }
 
+/* Smaller than ICOS Curve breakpoint (610px) */
+@media all and (max-width: 609.98px) {
+  .curve-app-iframe {
+    display: none;
+  }
+}
+
 /* Smaller than Bootstrap S breakpoint */
 @media all and (max-width: 575.98px) {
   .upcoming-events-title {
