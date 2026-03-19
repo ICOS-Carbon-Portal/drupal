@@ -688,7 +688,7 @@ iframe {
     padding-left: 3rem;
     padding-right: 3rem;
 
-    #block-cp-theme-d10-footersecond {
+    .region-footer-third, .region-footer-fourth {
       margin-top: 2rem;
     }
 
