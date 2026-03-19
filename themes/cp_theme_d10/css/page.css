@@ -157,6 +157,10 @@ div:focus-visible, a:focus-visible {
   height: 36px;
 }
 
+.header #search-block-form {
+  padding: 0px 15px;
+}
+
 /* Hero image */
 .above-content {
   img {
