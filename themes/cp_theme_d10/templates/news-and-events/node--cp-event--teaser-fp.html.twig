@@ -78,22 +78,21 @@
 %}
 
 <article{{ attributes.addClass(classes) }}>
-  <div class="row bg-white rounded align-items-center mb-4">
-    <div class="col-md-5 ps-0 rounded-start overflow-hidden event-image">  
+  <div class="row bg-white rounded align-items-center mb-4 overflow-hidden">
+    <div class="col-md-5 ps-0 event-image">  
       <a href="{{ url }}" tabindex="-1">
         {{ content.field_cp_event_picture[0] }}
       </a>
     </div>
-    <div class="col-md event-text">
+    <div class="col-md event-text py-3">
       {{ title_prefix }}
-      <h3{{ title_attributes }}>{{ label }}</h3>
+      <h3{{ title_attributes.addClass("h4") }}>{{ label }}</h3>
       {{ title_suffix }}
       {% if node.field_cp_event_from_date[0].value == node.field_cp_event_to_date[0].value %}
         <span class="date d-flex fs-sm">{{ content.field_cp_event_to_date[0] }}</span>
       {% else %}
         <span class="date d-flex fs-sm">{{ content.field_cp_event_from_date[0] }} to {{ content.field_cp_event_to_date[0] }}</span>
       {% endif %}
-      <a href="{{ url }}" class="btn btn-primary mt-4">Learn more</a>
+      <a href="{{ url }}" class="btn btn-primary mt-3">Learn more</a>
     </div>
-
 </article>
