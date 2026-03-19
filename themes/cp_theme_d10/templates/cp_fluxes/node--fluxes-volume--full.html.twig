@@ -87,7 +87,9 @@
       <h2>{{ label[0] }}</h2>
       <div>{{ content.body }}</div>
       <div>
-        <a href="{{ url }}" class="btn btn-primary me-2 mb-2">Read FLUXES Vol. {{ content.field_issue_number[0] }} online</a>
+        {% if content.field_flipbook_link[0] %}
+          <a href="{{ content.field_flipbook_link[0]["#url"] }}" class="btn btn-primary me-2 mb-2">Read FLUXES Vol. {{ content.field_issue_number[0] }} online</a>
+        {% endif %}
         <a href="{{ content.field_link[0]["#url"] }}" class="btn btn-outline-primary mb-2">{{ content.field_link[0]["#title"] }}</a>
       </div>
     </div>
