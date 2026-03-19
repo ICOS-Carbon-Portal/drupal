@@ -182,7 +182,7 @@ div:focus-visible, a:focus-visible {
 
 /* Footer */
 footer {
-  padding: 1.8125rem 5.9375rem;
+  padding: 2rem 5rem;
   /*margin-top: 8.75rem;*/
 
   .navbar-brand img {
@@ -756,6 +756,11 @@ iframe {
 
 /* Smaller than Bootstrap S breakpoint */
 @media all and (max-width: 575.98px) {
+  footer {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
   .above-content img {
     height: 186px;
   }

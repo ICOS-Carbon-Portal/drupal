@@ -6,10 +6,10 @@
 function cp_theme_d10_theme_suggestions_region_alter(array &$suggestions, array $variables) {
 
   $footer_regions = [
-    'footer_first',
     'footer_second',
     'footer_third',
     'footer_fourth',
+    'footer_bottom_first',
     'footer_bottom_second',
   ];
 
