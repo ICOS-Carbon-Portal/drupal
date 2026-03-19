@@ -25,7 +25,8 @@
   set one_classes = [
     'layout__region',
     'layout__region--one',
-    'col-lg'
+    'col-lg',
+    'px-0',
   ]
 %}
 
@@ -33,13 +34,14 @@
   set two_classes = [
     'layout__region',
     'layout__region--two',
-    'col-lg'
+    'col-lg',
+    'px-0',
   ]
 %}
 
 {% if content %}
   <div{{ attributes.addClass(classes) }}>
-    <div class="row justify-content-between gap-3">
+    <div class="row justify-content-between gap-5">
       {% if content.one %}
         <div{{ region_attributes.one.addClass(one_classes) }}>
           {{ content.one }}
