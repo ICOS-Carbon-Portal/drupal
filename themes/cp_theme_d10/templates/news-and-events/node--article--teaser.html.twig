@@ -100,11 +100,11 @@
 
   {{ title_prefix }}
   {% if label %}
-      <a href="{{ url }}" class="text-dark text-decoration-none" tabindex="-1">
-        <h2{{title_attributes.addClass("h6")}}>
+      <h2{{title_attributes.addClass("h6")}}>
+        <a href="{{ url }}" class="text-dark text-decoration-none" tabindex="-1">
           {{ label }}
-        </h2>
-      </a>
+        </a>
+      </h2>
   {% endif %}
   {{ title_suffix }}
 

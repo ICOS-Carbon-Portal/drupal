@@ -96,11 +96,11 @@
   <div class="col-md">
     {{ title_prefix }}
     {% if label %}
-      <a href="{{ url }}" class="text-dark text-decoration-none" tabindex="-1">
-        <h3{{title_attributes.addClass("h6", "mb-1")}}>
+      <h3{{title_attributes.addClass("h6", "mb-1")}}>
+        <a href="{{ url }}" class="text-dark text-decoration-none" tabindex="-1">
           {{ label }}
-        </h3>
-      </a>
+        </a>
+      </h3>
     {% endif %}
     {{ title_suffix }}
 
