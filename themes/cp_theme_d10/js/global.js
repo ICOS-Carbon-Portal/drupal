@@ -20,6 +20,13 @@
           target.classList.toggle("open");
           event.preventDefault();
         });
+        el.addEventListener('keyup', function (event) {
+          if(event.key === "Enter") {
+            let target = el.closest(".top-node");
+            target.classList.toggle("open");
+            event.preventDefault();
+            }
+        });
       });
       once('cp_theme_d10', '#cp_theme_d10_menu').forEach(function (el) {
         el.addEventListener('mouseout', function (event) {
