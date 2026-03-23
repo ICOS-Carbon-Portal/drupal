@@ -61,13 +61,17 @@
   {% block content %}
 
   <div class="{{ img_div_class }} mb-3">
-    {{ image }}
+    <a href="{{ content.field_link.0['#url'] }}" tabindex="-1">
+      {{ image }}
+    </a>
   </div>
 
   <div class="{{ content_div_class }}">
     {{ title_prefix }}
     {% if label %}
-      <h3 {{ title_attributes.addClass(h3_class) }}>{{ label }}</h3>
+      <a href="{{ content.field_link.0['#url'] }}" class="text-dark text-decoration-none d-inline-block" tabindex="-1">
+        <h3 {{ title_attributes.addClass(h3_class) }}>{{ label }}</h3>
+      </a>
     {% endif %}
     {{ title_suffix }}
 

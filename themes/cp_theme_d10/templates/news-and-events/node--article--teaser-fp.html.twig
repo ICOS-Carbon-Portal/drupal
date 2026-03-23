@@ -96,9 +96,11 @@
   <div class="col-md">
     {{ title_prefix }}
     {% if label %}
-      <h3{{title_attributes.addClass("h6", "mb-1")}}>
-        {{ label }}
-      </h3>
+      <a href="{{ url }}" class="text-dark text-decoration-none" tabindex="-1">
+        <h3{{title_attributes.addClass("h6", "mb-1")}}>
+          {{ label }}
+        </h3>
+      </a>
     {% endif %}
     {{ title_suffix }}
 

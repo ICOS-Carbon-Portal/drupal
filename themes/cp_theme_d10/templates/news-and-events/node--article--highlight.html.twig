@@ -67,47 +67,24 @@
  *
  */
 #}
-{%
-  set classes = [
-    'node',
-    'node--type-' ~ node.bundle|clean_class,
-    node.isPromoted() ? 'node--promoted',
-    node.isSticky() ? 'node--sticky',
-    not node.isPublished() ? 'node--unpublished',
-    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-    'col',
-  ]
-%}
 
-<article{{ attributes.addClass(classes) }}>
-
+<div>
   <a href="{{ url }}" tabindex="-1">
-    <div class="teaser-news-image d-flex justify-content-center">
-      {% set rendered_thumb = content.field_thumbnail|render %}
-      {% if rendered_thumb|trim %}
-        {{ rendered_thumb }}
-      {% elseif content.field_image %}
-        {{ content.field_image }}
-      {% elseif content.field_cp_event_picture %}
-        {{ content.field_cp_event_picture }}
-      {% endif %}
-    </div>
+    {% set rendered_thumb = content.field_thumbnail|render %}
+    {% if rendered_thumb|trim %}
+      {{ rendered_thumb }}
+    {% else %}
+      {{ content.field_image }}
+    {% endif %}
   </a>
-
-  <div class="node__meta fs-xs text-secondary">
-    {{ node.createdtime | date("d M Y") }}
-  </div>
 
   {{ title_prefix }}
   {% if label %}
-      <a href="{{ url }}" class="text-dark text-decoration-none" tabindex="-1">
-        <h2{{title_attributes.addClass("h6")}}>
-          {{ label }}
-        </h2>
-      </a>
+    <a href="{{ url }}" class="text-dark text-decoration-none" tabindex="-1">
+      <h3{{title_attributes.addClass("mb-2")}}>
+        {{ label }}
+      </h3>
+    </a>
   {% endif %}
   {{ title_suffix }}
-
-  <a href="{{ url }}" class="btn btn-outline-primary">Read more</a>
-
-</article>
+</div>
