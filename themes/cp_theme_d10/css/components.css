@@ -144,5 +144,9 @@ figure {
 .block-link-box {
   img {
     border-radius: 0.4rem;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border: none;
+    width: 100%;
   }
 }
