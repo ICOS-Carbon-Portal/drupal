@@ -562,6 +562,11 @@ iframe {
     margin-bottom: 2rem;
   }
 
+  h2 {
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
   h3 a, h3 a:hover, h3 a:focus-within {
     text-decoration: none;
   }
