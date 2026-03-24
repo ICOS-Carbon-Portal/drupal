@@ -3,6 +3,8 @@ type: theme
 description: 'ICOS ERIC/CP theme, created 2025, for Drupal 10 and beyond.' 
 core_version_requirement: ^10.3 || ^11
 base theme: bootstrap
+dependencies:
+  - cp_layouts
 
 libraries:
   - cp_theme_d10/global-styling
