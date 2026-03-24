@@ -22,20 +22,24 @@
     transition: color 0.1s;
   }
 
-  a:hover, a:focus-within {
+  a:hover,
+  a:focus-within {
     color: var(--bs-danger) !important;
     text-decoration: underline 10%;
   }
 
-  .top-link:hover, .top-node:hover .top-link,
-  .top-link:focus-within, .top-node:focus-within .top-link {
+  .top-link:hover,
+  .top-node:hover .top-link,
+  .top-link:focus-within,
+  .top-node:focus-within .top-link {
     text-decoration: underline 5%;
     text-underline-offset: 20%;
     color: var(--bs-dark) !important;
   }
 }
 
-@media all and (max-width: 991.999px) { /* Smaller than Bootstrap LG */
+/* Smaller than Bootstrap LG */
+@media all and (max-width: 991.999px) {
   #cp_theme_d10_menu {
     .nav {
       padding-bottom: 1rem;
@@ -77,7 +81,8 @@
   }
 }
 
-@media all and (min-width: 992px) { /* Bootstrap LG breakpoint */
+/* Bootstrap LG breakpoint */
+@media all and (min-width: 992px) {
   .mobile {
     display: none;
   }
@@ -95,8 +100,8 @@
       width: 100%;
       padding-left: 1rem;
       padding-right: 1rem;
-      
-      & > div {
+
+      &>div {
         width: 19%;
       }
     }
@@ -104,17 +109,18 @@
 
 }
 
-@media all and (min-width: 1400px) { /* Bootstrap XXL breakpoint */
+/* Bootstrap XXL breakpoint */
+@media all and (min-width: 1400px) {
   .menu--main {
     width: 100%;
     padding-left: calc((100% - 1400px)/2);
     padding-right: calc((100% - 1400px)/2);
   }
-  
+
   #cp_theme_d10_menu {
     .top-node:hover .dropdown-menu,
     .top-node:focus-within .dropdown-menu {
-      & > div {
+      &>div {
         width: 316px;
       }
     }

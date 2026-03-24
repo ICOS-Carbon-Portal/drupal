@@ -52,11 +52,12 @@ tr.odd {
   background-color: unset;
 }
 
-tr td, tr th {
+tr td,
+tr th {
   border-width: 0;
 }
 
-thead > tr {
+thead>tr {
   border-bottom-width: 0;
 }
 
@@ -68,7 +69,7 @@ thead > tr {
 
 #block-cp-theme-d10-content .ml-embedded .ml-form-embedContainer .ml-form-embedWrapper.embedForm {
   max-width: unset;
-  background-color: rgba(255,255,255,0) !important;
+  background-color: rgba(255, 255, 255, 0) !important;
 
   .ml-form-embedBody .ml-form-horizontalRow button {
     border-radius: 100px;
@@ -105,11 +106,14 @@ a:not([class]) {
   text-underline-position: from-font;
 }
 
-a.btn, a.btn:hover, a.btn:focus-within {
+a.btn,
+a.btn:hover,
+a.btn:focus-within {
   text-decoration: none;
 }
 
-a:hover, a:not(.btn):focus-within {
+a:hover,
+a:not(.btn):focus-within {
   color: var(--bs-danger);
   text-decoration: underline 6%;
   text-decoration-skip-ink: none;
@@ -146,7 +150,8 @@ a.social-media-icon:focus-within {
   color: var(--bs-black);
 }
 
-div:focus-visible, a:focus-visible {
+div:focus-visible,
+a:focus-visible {
   outline: var(--bs-primary) 2px solid;
 }
 
@@ -193,7 +198,9 @@ footer {
     height: 60px;
   }
 
-  a, a:hover, a:focus-within {
+  a,
+  a:hover,
+  a:focus-within {
     color: var(--bs-light);
   }
 
@@ -272,7 +279,10 @@ iframe {
 
   /* Left box */
   .layout__region--left {
-    a, a:hover, a:focus-within {
+
+    a,
+    a:hover,
+    a:focus-within {
       color: var(--bs-light);
     }
   }
@@ -346,9 +356,10 @@ iframe {
   .layout--threecol-section--33-34-33 {
     gap: 2%;
   }
-  .layout--threecol-section--33-34-33 > .layout__region--first,
-  .layout--threecol-section--33-34-33 > .layout__region--second,
-  .layout--threecol-section--33-34-33 > .layout__region--third {
+
+  .layout--threecol-section--33-34-33>.layout__region--first,
+  .layout--threecol-section--33-34-33>.layout__region--second,
+  .layout--threecol-section--33-34-33>.layout__region--third {
     flex-basis: 32% !important;
   }
 }
@@ -370,7 +381,7 @@ iframe {
   margin-right: auto;
   padding-left: 1rem;
   padding-right: 1rem;
-  /*margin-bottom: 6rem;*/
+
   .block:not(.block-system-main-block) {
     padding-left: 0;
     padding-right: 0;
@@ -397,7 +408,8 @@ iframe {
   padding: 1rem;
 }
 
-.system-403, .system-404 {
+.system-403,
+.system-404 {
   .page-content {
     padding-bottom: 3rem;
   }
@@ -413,12 +425,14 @@ iframe {
 
 /* Blocks/layouts on normal pages - narrow */
 .page-content {
+
   .block:not(.block-system-main-block),
   .layout--threecol-section,
   .layout--twocol-section,
   .layout--colored-flex,
   .layout--dark-blue-bot-left-two {
-    max-width: 70.5rem; /* 1128px */
+    max-width: 70.5rem;
+    /* 1128px */
     margin-left: auto;
     margin-right: auto;
     padding-left: 1rem;
@@ -441,6 +455,7 @@ iframe {
 .fluxes_volume .page-content .layout--normal,
 .path-user #page .page-content,
 .page.template-full-width .page-content {
+
   .block:not(.block-system-main-block),
   .layout--twocol-section,
   .layout--threecol-section,
@@ -456,6 +471,7 @@ iframe {
     height: auto;
     border-radius: 0.4rem;
   }
+
   figure {
     clear: both;
   }
@@ -484,13 +500,14 @@ iframe {
   }
 
   .layout__region--left .layout__region--left-top .block,
-  & > .layout__region--right .block {
+  &>.layout__region--right .block {
     padding-left: 0;
     padding-right: 0;
   }
 
   .layout__region--left-bot {
     padding: 2rem;
+
     ul {
       margin-bottom: 0;
     }
@@ -498,7 +515,10 @@ iframe {
 
   /* Left box */
   .layout__region--left-bot {
-    a, a:hover, a:focus-within {
+
+    a,
+    a:hover,
+    a:focus-within {
       color: var(--bs-light);
     }
   }
@@ -528,17 +548,17 @@ iframe {
 /* Webforms */
 .webform #page .page-content,
 .entity-webform-canonical #page .page-content {
-  .webform-likert-table-wrapper {
-    .webform-likert-table {
-      & > :not(caption) > * > *,
-      tr {
-        background-color: rgba(255, 255, 255, 0.3);
-        border-color: rgba(0, 0, 0, 0.1);
-      }
-      .radio {
-        display: flex;
-        justify-content: center;
-      }
+  .webform-likert-table-wrapper .webform-likert-table {
+
+    &> :not(caption)>*>*,
+    tr {
+      background-color: rgba(255, 255, 255, 0.3);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .radio {
+      display: flex;
+      justify-content: center;
     }
   }
 }
@@ -567,7 +587,9 @@ iframe {
     margin-bottom: 1.5rem;
   }
 
-  h3 a, h3 a:hover, h3 a:focus-within {
+  h3 a,
+  h3 a:hover,
+  h3 a:focus-within {
     text-decoration: none;
   }
 
@@ -576,17 +598,10 @@ iframe {
   }
 }
 
-
-
+/* FLUXES */
 .fluxes_volume .page-content .block:not(.block-system-main-block) {
   padding-top: 0;
   padding-bottom: 0;
-}
-
-.node-add .above-content,
-.entity-node-edit-form .above-content,
-.entity-node-edit-form .news-main-image {
-  display: none;
 }
 
 /* Contacts */
@@ -594,6 +609,7 @@ iframe {
   .cp-contact {
     min-width: 250px;
     width: 23%;
+
     img {
       max-width: 110px;
       aspect-ratio: 1;
@@ -603,7 +619,8 @@ iframe {
 }
 
 /* News and Events */
-.news-main-image, .teaser-news-image {
+.news-main-image,
+.teaser-news-image {
   width: 100%;
   overflow: hidden;
   border-radius: 0.625rem;
@@ -613,7 +630,6 @@ iframe {
     object-position: center;
   }
 }
-
 
 .news-main-image {
   margin-bottom: 3rem;
@@ -659,6 +675,12 @@ iframe {
   }
 }
 
+.node-add .above-content,
+.entity-node-edit-form .above-content,
+.entity-node-edit-form .news-main-image {
+  display: none;
+}
+
 .layout-builder-overrides-node-view.page .page-content {
   .main-content {
     padding: 1rem;
@@ -697,7 +719,8 @@ iframe {
     padding-left: 3rem;
     padding-right: 3rem;
 
-    .region-footer-third, .region-footer-fourth {
+    .region-footer-third,
+    .region-footer-fourth {
       margin-top: 2rem;
     }
 
@@ -745,21 +768,19 @@ iframe {
 
   .webform #page .page-content,
   .entity-webform-canonical #page .page-content {
-    .webform-likert-table-wrapper {
-      .webform-likert-table {
-        .radio {
-          display: block;
-        }
-        & > :not(caption) > * > *,
-        tr {
-          background-color: unset;
-        }
-        
+    .webform-likert-table-wrapper .webform-likert-table {
+      .radio {
+        display: block;
+      }
+
+      &> :not(caption)>*>*,
+      tr {
+        background-color: unset;
       }
     }
 
-    .table-hover > tbody > tr:hover > *,
-    .table-hover > tbody > tr:focus-within > * {
+    .table-hover>tbody>tr:hover>*,
+    .table-hover>tbody>tr:focus-within>* {
       --bs-table-bg-state: unset;
     }
   }

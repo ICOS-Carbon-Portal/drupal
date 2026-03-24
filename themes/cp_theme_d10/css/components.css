@@ -31,7 +31,7 @@ figure {
   /* eliminate "align left and break" style by always aligning center */
   &:not(.align-left, .align-right) {
     display: table;
-    margin: var(--fig-margin-size) auto;    
+    margin: var(--fig-margin-size) auto;
   }
 
   img {
@@ -51,6 +51,7 @@ figure {
     }
   }
 }
+
 /* Analogous styling as figures for stand-alone images */
 .article .node__content .field--name-body>img {
   margin-bottom: 3rem;
@@ -84,11 +85,12 @@ figure {
       font-weight: 900;
       font-size: 3.75rem;
     }
+
     font-size: 1.375rem;
     font-weight: 600;
     line-height: 1.5;
   }
-  
+
   .attribution {
     font-weight: 600;
     line-height: 1.5;

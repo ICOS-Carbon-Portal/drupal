@@ -7,7 +7,8 @@
   }
 }
 
-.block-views-blocknews-block-1 { /* News 1 */
+/* News 1 */
+.block-views-blocknews-block-1 {
   h3 {
     margin-top: 1.75rem;
     margin-bottom: 0.5rem;
@@ -22,7 +23,8 @@
 
 }
 
-.block-views-blocknews-block-4 { /* News 2-4 */
+/* News 2-4 */
+.block-views-blocknews-block-4 {
   margin-top: 3.3125rem;
 
   article {
@@ -186,7 +188,7 @@
       padding-top: 5rem;
       height: 500px;
       background: linear-gradient(270deg, rgba(0, 171, 201, 0.10) 32%, rgba(0, 123, 144, 0.80) 52%, #005463 100%);
-      
+
       &>div {
         &>div {
           max-width: 60%;
@@ -216,7 +218,7 @@
     }
   }
 
-  .row-two-front-page > div {
+  .row-two-front-page>div {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
