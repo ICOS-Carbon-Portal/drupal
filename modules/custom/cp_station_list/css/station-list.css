@@ -19,8 +19,8 @@
 }
 
 .station-table thead th {
-   white-space: nowrap;
-   color: inherit;
+  white-space: nowrap;
+  color: inherit;
 }
 
 .station-table thead th .input-group {
@@ -39,4 +39,99 @@
 .modal-body {
   height: 400px;
   width: 100%;
+}
+
+.input-group {
+  position: relative;
+}
+
+.input-group::before {
+  font-family: "Font Awesome 6 Free";
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 0.75rem;
+  padding: 0.5rem 0 0.5rem 0.5rem;
+  content: "\f002";
+  border-color: var(--bs-light);
+  color: white;
+  height: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 0.25rem 0 0 0.25rem;
+  z-index: 0;
+}
+
+.input-group>.form-control.search-box {
+  border-radius: 0.25rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--bs-light);
+  box-shadow: none;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0);
+  color: white !important;
+  padding-left: 1.25rem;
+}
+
+.station-table tbody tr:nth-child(2n),
+.station-table tbody tr:nth-child(2n) td {
+  background-color: white !important;
+}
+
+.station-table tbody tr:nth-child(2n+1),
+.station-table tbody tr:nth-child(2n+1) td {
+  background-color: var(--blue-20) !important;
+}
+
+.station-table thead th {
+  background-color: var(--bs-primary) !important;
+  color: white !important;
+  word-break: break-all;
+}
+
+div.dataTables_wrapper div.dataTables_info {
+  margin-top: 2rem;
+  padding-top: 0;
+}
+
+div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+  margin-top: 2rem;
+  padding-top: 0;
+
+  .page-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .page-item .page-link {
+    height: 1.875rem;
+    padding: 0 0.75rem;
+    margin: 0 0.25rem;
+    border-radius: 0.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    border-color: var(--bs-primary);
+
+    &:hover {
+      color: var(--bs-danger);
+      text-decoration: none;
+      font-weight: 600;
+    }
+  }
+
+  .page-item:not(.previous):not(.next) .page-link {
+    width: 1.875rem;
+    padding: 0;
+  }
+
+  .page-item.active .page-link {
+    background-color: var(--bs-primary);
+    color: white;
+  }
 }

@@ -27,7 +27,7 @@ class JsonMenuResource extends ResourceBase {
   public function get($menu = null) {
 
     $menu_name = $menu;
-    $menu_parameters = \Drupal::menuTree()->getCurrentRouteMenuTreeParameters($menu_name);
+    $menu_parameters = new \Drupal\Core\Menu\MenuTreeParameters();
     $menu_parameters->onlyEnabledLinks();
     $tree = \Drupal::menuTree()->load($menu_name, $menu_parameters);
     $manipulators = [

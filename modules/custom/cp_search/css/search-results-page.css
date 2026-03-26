@@ -1,48 +1,63 @@
-#search-results {
-    max-width: 90ch;
+#searchbox .ais-SearchBox .ais-SearchBox-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 50rem;
 }
 
-#searchbox {
-    max-width: 250px;
-    margin-bottom: 3rem;
+.ais-SearchBox-form::before {
+    font-family: "Font Awesome 6 Free";
+    display: inline-block;
+    vertical-align: middle;
+    text-decoration: none;
+    font-weight: 900;
+    padding: 0.5rem 0 0.5rem 0.75rem;
+    content: "\f002";
+    border-width: 1px 0 1px 1px;
+    border-style: solid;
+    border-color: var(--bs-dark);
+    color: var(--bs-primary);
+    height: 45px;
+    border-radius: 0.25rem 0 0 0.25rem;
 }
 
-#searchbox .ais-SearchBox .ais-SearchBox-form .ais-SearchBox-submit {
-    border-top-right-radius: var(--bs-btn-border-radius);
-    border-bottom-right-radius: var(--bs-btn-border-radius);
+#searchbox .ais-SearchBox-input {
+    border-radius: 0 0.25rem 0.25rem 0;
+    border-width: 1px 1px 1px 0;
+    border-style: solid;
+    border-color: var(--bs-dark);
+    box-shadow: none;
+    height: 45px;
 }
 
 .ais-Hits-list {
     list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-.ais-Hits-item {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-}
-
-.search-results-hit h4 {
-    font-weight: 600;
+    padding-left: 0;
+    /* margin: 0; */
+    .ais-Hits-item a.text-dark:hover {
+        color: var(--bs-danger) !important;
+    }
 }
 
 .ais-Pagination-list {
     justify-content: center;
     list-style-type: none;
-    padding: 0;
-    margin: 0;
     display: flex;
     flex-direction: row;
 
-    .ais-Pagination-link {
-        padding: 0.45rem;
-        margin: 0.05rem;
+    .ais-Pagination-item .ais-Pagination-link {
+        height: 1.875rem;
+        padding: 0 0.75rem;
     }
 
-    .ais-Pagination-item--selected a {
-        font-weight: bold;
-        color: black;
+    .ais-Pagination-item--page .ais-Pagination-link {
+        width: 1.875rem;
+        padding: 0;
+    }
+
+    .ais-Pagination-item--selected .ais-Pagination-link {
+        background-color: var(--bs-primary);
+        color: white;
     }
 
     .ais-Pagination-item--disabled {
@@ -52,11 +67,4 @@
     .ais-Pagination-item--lastPage {
         display: none;
     }
-
-    .ais-Pagination-item a:hover {
-        text-decoration: solid underline;
-        text-underline-offset: 0.125rem;
-    }
 }
-
-

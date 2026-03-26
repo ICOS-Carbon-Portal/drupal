@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * Template for the CP Table of contents block.
+ *
+ * The outer <div> carries the cp-toc class and all data-* configuration
+ * attributes consumed by cp_toc.js, and starts hidden. JavaScript removes
+ * `hidden` once it has confirmed that enough matching headings exist.
+ *
+ * Standard block variables (from template_preprocess_block()):
+ *   - plugin_id, configuration, label, title_attributes
+ *   - title_prefix, title_suffix
+ *   - content: rendered inner nav + list (from the cp_toc theme hook)
+ *   - attributes: HTML attributes for the outer wrapper; cp_toc_preprocess_block()
+ *     adds the cp-toc class, all data-* settings, and `hidden`.
+ */
+#}
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+    'cp-toc',
+  ]
+%}
+{% if cp_toc_full_width %}
+  {% set classes = classes|merge(['full-width-block']) %}
+{% endif %}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  {{ content }}
+</div>

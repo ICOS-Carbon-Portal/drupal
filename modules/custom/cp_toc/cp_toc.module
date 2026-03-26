@@ -1,0 +1,604 @@
+<?php
+
+/**
+ * @file
+ * CP Table of contents module.
+ *
+ * Provides a configurable, jQuery-free table of contents block.
+ * Settings are stored as third-party settings on each node type.
+ * Per-node overrides are stored as base fields on the node entity and are
+ * always available on the node edit form when TOC is enabled for the type.
+ */
+
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\Entity\NodeType;
+use Drupal\node\NodeInterface;
+use Drupal\node\NodeTypeInterface;
+
+/**
+ * Returns default settings for the TOC.
+ */
+function cp_toc_default_settings(): array {
+  return [
+    'enabled'           => FALSE,
+    'headings'          => 'h2',
+    'title'             => 'On this page',
+    'title_classes'     => 'toc-title h6',
+    'list_classes'      => 'list-unstyled',
+    'list_item_classes' => 'mt-3',
+    'link_classes'      => 'down-arrow',
+    'min_headings'         => 3,
+    'smooth_scroll'        => TRUE,
+    'scroll_offset'        => 0,
+    'nesting'              => FALSE,
+    'node_default_enabled' => TRUE,
+  ];
+}
+
+/**
+ * Implements hook_help().
+ */
+function cp_toc_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match) {
+  if ($route_name === 'help.page.cp_toc') {
+    return '<p>' . t('Provides a configurable table of contents block. Enable and configure per content type via <a href=":types">Content types</a>.', [
+      ':types' => \Drupal\Core\Url::fromRoute('entity.node_type.collection')->toString(),
+    ]) . '</p>';
+  }
+}
+
+/**
+ * Implements hook_theme().
+ *
+ * 'block__cp_toc_block' (base hook 'block') tells Drupal that
+ * block--cp-toc-block.html.twig lives in this module's templates/ directory.
+ *
+ * 'cp_toc' renders the inner nav + list inside that block template.
+ */
+function cp_toc_theme(): array {
+  return [
+    'block__cp_toc_block' => [
+      'base hook' => 'block',
+    ],
+    'cp_toc' => [
+      'variables' => [
+        'title'         => NULL,
+        'title_classes' => '',
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_entity_base_field_info().
+ *
+ * Adds per-node fields that store TOC overrides.
+ * These appear on the node edit form whenever the content type has the TOC
+ * enabled, giving editors per-page control without extra configuration.
+ */
+function cp_toc_entity_base_field_info(EntityTypeInterface $entity_type): array {
+  if ($entity_type->id() !== 'node') {
+    return [];
+  }
+
+  $fields = [];
+
+  $fields['cp_toc_enabled'] = BaseFieldDefinition::create('boolean')
+    ->setLabel(t('CP TOC: enable on this node'))
+    ->setDescription(t('Uncheck to suppress the table of contents on this specific page.'))
+    ->setRevisionable(TRUE)
+    ->setTranslatable(FALSE)
+    ->setDefaultValue(TRUE)
+    ->setDisplayOptions('form', ['weight' => 100, 'region' => 'hidden'])
+    ->setDisplayConfigurable('form', FALSE);
+
+  $fields['cp_toc_selectors_override'] = BaseFieldDefinition::create('boolean')
+    ->setLabel(t('CP TOC: override heading selectors'))
+    ->setDescription(t('Use a custom selector list for this node instead of the content-type default.'))
+    ->setRevisionable(TRUE)
+    ->setTranslatable(FALSE)
+    ->setDefaultValue(FALSE)
+    ->setDisplayOptions('form', ['weight' => 101, 'region' => 'hidden'])
+    ->setDisplayConfigurable('form', FALSE);
+
+  $fields['cp_toc_selectors'] = BaseFieldDefinition::create('string')
+    ->setLabel(t('CP TOC: custom heading selectors'))
+    ->setDescription(t('Comma-separated CSS selectors used to build the TOC on this node.'))
+    ->setRevisionable(TRUE)
+    ->setTranslatable(FALSE)
+    ->setDefaultValue('')
+    ->setSetting('max_length', 255)
+    ->setDisplayOptions('form', ['weight' => 102, 'region' => 'hidden'])
+    ->setDisplayConfigurable('form', FALSE);
+
+  $fields['cp_toc_min_headings_override'] = BaseFieldDefinition::create('boolean')
+    ->setLabel(t('CP TOC: override minimum headings'))
+    ->setDescription(t('Use a custom minimum-headings threshold for this node instead of the content-type default.'))
+    ->setRevisionable(TRUE)
+    ->setTranslatable(FALSE)
+    ->setDefaultValue(FALSE)
+    ->setDisplayOptions('form', ['weight' => 103, 'region' => 'hidden'])
+    ->setDisplayConfigurable('form', FALSE);
+
+  $fields['cp_toc_min_headings'] = BaseFieldDefinition::create('integer')
+    ->setLabel(t('CP TOC: custom minimum headings'))
+    ->setDescription(t('Minimum number of matched headings required before the TOC is shown on this node.'))
+    ->setRevisionable(TRUE)
+    ->setTranslatable(FALSE)
+    ->setDefaultValue(3)
+    ->setSetting('min', 1)
+    ->setSetting('max', 20)
+    ->setDisplayOptions('form', ['weight' => 104, 'region' => 'hidden'])
+    ->setDisplayConfigurable('form', FALSE);
+
+  $fields['cp_toc_full_width'] = BaseFieldDefinition::create('boolean')
+    ->setLabel(t('CP TOC: allow block to be full-width'))
+    ->setDescription(t('When enabled, adds the full-width-block class to the TOC block wrapper on this page.'))
+    ->setRevisionable(TRUE)
+    ->setTranslatable(FALSE)
+    ->setDefaultValue(FALSE)
+    ->setDisplayOptions('form', ['weight' => 105, 'region' => 'hidden'])
+    ->setDisplayConfigurable('form', FALSE);
+
+  $fields['cp_toc_nesting'] = BaseFieldDefinition::create('boolean')
+    ->setLabel(t('CP TOC: enable one-level nesting'))
+    ->setDescription(t('When enabled, sub-headings are nested one level inside their nearest top-level heading in the TOC.'))
+    ->setRevisionable(TRUE)
+    ->setTranslatable(FALSE)
+    ->setDefaultValue(FALSE)
+    ->setDisplayOptions('form', ['weight' => 106, 'region' => 'hidden'])
+    ->setDisplayConfigurable('form', FALSE);
+
+  return $fields;
+}
+
+// ---------------------------------------------------------------------------
+// Entity display (extra field)
+// ---------------------------------------------------------------------------
+
+/**
+ * Implements hook_entity_extra_field_info().
+ *
+ * Registers a "CP Table of contents" display component on every node bundle
+ * that has the TOC enabled.  Placing this component in Manage Display makes
+ * the TOC available as {{ content.cp_toc }} in node templates.
+ */
+function cp_toc_entity_extra_field_info(): array {
+  $extra = [];
+
+  foreach (NodeType::loadMultiple() as $bundle => $node_type) {
+    $settings = $node_type->getThirdPartySettings('cp_toc');
+    if (!empty($settings['enabled'])) {
+      $extra['node'][$bundle]['display']['cp_toc'] = [
+        'label'       => t('CP Table of contents'),
+        'description' => t('Table of contents block rendered inline via the cp_toc module.'),
+        'weight'      => 0,
+        'visible'     => FALSE,
+      ];
+    }
+  }
+
+  return $extra;
+}
+
+/**
+ * Implements hook_entity_view().
+ *
+ * When the cp_toc extra field is placed in the node's Manage Display
+ * configuration, this builds the full TOC render array – including the outer
+ * wrapper div, data-* attributes, and the hidden attribute – and adds it to
+ * $build['cp_toc'] so the template can print it as {{ content.cp_toc }}.
+ *
+ * This path bypasses the block render pipeline (and therefore
+ * cp_toc_preprocess_block()), so all block-template work is replicated here
+ * using the plugin's getPreprocessData() public method.
+ */
+function cp_toc_entity_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode): void {
+  if ($entity->getEntityTypeId() !== 'node') {
+    return;
+  }
+
+  $node_type = NodeType::load($entity->bundle());
+  if (!$node_type) {
+    return;
+  }
+
+  $type_settings = $node_type->getThirdPartySettings('cp_toc') + cp_toc_default_settings();
+  if (empty($type_settings['enabled'])) {
+    return;
+  }
+
+  // Only render when the component is actually placed in this display.
+  $component = $display->getComponent('cp_toc');
+  if (!$component) {
+    return;
+  }
+
+  // Instantiate the block plugin with default (non-override) configuration so
+  // it reads from node-type third-party settings and per-node base fields.
+  try {
+    /** @var \Drupal\cp_toc\Plugin\Block\CpTocBlock $plugin */
+    $plugin = \Drupal::service('plugin.manager.block')
+      ->createInstance('cp_toc_block', []);
+  }
+  catch (\Exception $e) {
+    return;
+  }
+
+  if (!method_exists($plugin, 'getPreprocessData')) {
+    return;
+  }
+
+  // Returns NULL when the block should not render (e.g. per-node TOC disabled).
+  $data = $plugin->getPreprocessData();
+  if (!is_array($data)) {
+    return;
+  }
+
+  // Replicate the class list from block--cp-toc-block.html.twig.
+  $classes = ['block', 'block-cp-toc', 'block-cp-toc-block', 'cp-toc'];
+  try {
+    if ((bool) $entity->get('cp_toc_full_width')->value) {
+      $classes[] = 'full-width-block';
+    }
+  }
+  catch (\Exception $e) {}
+
+  // Build the render array. #type => 'container' produces a <div>, supports
+  // child render arrays, and bubbles cache metadata and #attached assets from
+  // its children automatically.
+  $build['cp_toc'] = [
+    '#type'       => 'container',
+    '#attributes' => ['class' => $classes, 'hidden' => TRUE] + $data['data_attributes'],
+    'content'     => $plugin->build(),
+    '#cache'      => [
+      'contexts' => ['url.path'],
+      'tags'     => $entity->getCacheTags(),
+    ],
+    '#weight'     => $component['weight'] ?? 0,
+  ];
+}
+
+/**
+ * Implements hook_preprocess_block() for the cp_toc_block plugin.
+ *
+ * Reads #cp_toc_data from the block's render array and:
+ *  - Sets cp_toc_title and cp_toc_title_classes for the Twig template.
+ *  - Merges all data-* configuration attributes onto the block wrapper.
+ *  - Adds the HTML `hidden` attribute so the wrapper is invisible until JS
+ *    confirms enough headings exist and removes it.
+ */
+function cp_toc_preprocess_block(array &$variables): void {
+  if (($variables['plugin_id'] ?? '') !== 'cp_toc_block') {
+    return;
+  }
+
+  // In the Layout Builder admin UI build() returns a plain placeholder, so
+  // there is nothing to configure here.
+  $route_name = \Drupal::routeMatch()->getRouteName() ?? '';
+  if (str_starts_with($route_name, 'layout_builder.')) {
+    return;
+  }
+
+  // Obtain the block plugin. Standard block placement exposes the block entity
+  // via #block; Layout Builder renders blocks via SectionComponent and does
+  // NOT set a block entity (it sets #block = NULL). The fallback re-instantiates
+  // the plugin from the #configuration that both code-paths provide.
+  $block = $variables['elements']['#block'] ?? NULL;
+  if ($block instanceof \Drupal\block\BlockInterface) {
+    $plugin = $block->getPlugin();
+  }
+  else {
+    $configuration = $variables['elements']['#configuration'] ?? [];
+    try {
+      $plugin = \Drupal::service('plugin.manager.block')
+        ->createInstance('cp_toc_block', $configuration);
+    }
+    catch (\Exception $e) {
+      return;
+    }
+  }
+
+  if (!method_exists($plugin, 'getPreprocessData')) {
+    return;
+  }
+
+  $data = $plugin->getPreprocessData();
+  if (!is_array($data)) {
+    return;
+  }
+
+  // Merge data-* attributes onto the block wrapper so cp_toc.js can read them
+  // from the .cp-toc element (which is this wrapper, not the inner content).
+  foreach ($data['data_attributes'] ?? [] as $attr => $value) {
+    $variables['attributes'][$attr] = $value;
+  }
+
+  // Hide the whole block; JS removes this once it finds enough headings.
+  $variables['attributes']['hidden'] = 'hidden';
+
+  // Pass the full-width flag to the Twig template.
+  $node = \Drupal::routeMatch()->getParameter('node');
+  $full_width = FALSE;
+  if ($node instanceof \Drupal\node\NodeInterface) {
+    try {
+      $full_width = (bool) $node->get('cp_toc_full_width')->value;
+    }
+    catch (\Exception $e) {
+      // Field not yet installed – default to FALSE.
+    }
+  }
+  $variables['cp_toc_full_width'] = $full_width;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for node_type_form.
+ */
+function cp_toc_form_node_type_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
+  /** @var \Drupal\node\NodeTypeInterface $node_type */
+  $node_type = $form_state->getFormObject()->getEntity();
+  $settings  = $node_type->getThirdPartySettings('cp_toc') + cp_toc_default_settings();
+
+  $form['cp_toc'] = [
+    '#type'        => 'details',
+    '#title'       => t('CP Table of contents'),
+    '#group'       => 'additional_settings',
+    '#description' => t('Configure the CP Table of contents for this content type. When enabled, a per-page override section appears on every node edit form of this type.'),
+  ];
+
+  $form['cp_toc']['cp_toc_enabled'] = [
+    '#type'          => 'checkbox',
+    '#title'         => t('Enable table of contents'),
+    '#default_value' => $settings['enabled'],
+  ];
+
+  $when_enabled = ['visible' => [':input[name="cp_toc_enabled"]' => ['checked' => TRUE]]];
+
+  $form['cp_toc']['cp_toc_headings'] = [
+    '#type'          => 'textfield',
+    '#title'         => t('Heading selectors'),
+    '#default_value' => $settings['headings'],
+    '#placeholder'   => 'h2, h3',
+    '#description'   => t('Comma-separated CSS selectors for the headings to include, e.g. <code>h2, h3</code> or <code>h2, .section-title</code>.'),
+    '#states'        => $when_enabled,
+  ];
+
+  $form['cp_toc']['cp_toc_title'] = [
+    '#type'          => 'textfield',
+    '#title'         => t('TOC title'),
+    '#default_value' => $settings['title'],
+    '#description'   => t('Label shown above the list. Leave empty to hide.'),
+    '#states'        => $when_enabled,
+  ];
+
+  $form['cp_toc']['cp_toc_title_classes'] = [
+    '#type'          => 'textfield',
+    '#title'         => t('Title CSS classes'),
+    '#default_value' => $settings['title_classes'],
+    '#description'   => t('Space-separated CSS classes added to the title element.'),
+    '#states'        => $when_enabled,
+  ];
+
+  $form['cp_toc']['cp_toc_list_classes'] = [
+    '#type'          => 'textfield',
+    '#title'         => t('List container CSS classes'),
+    '#default_value' => $settings['list_classes'],
+    '#description'   => t('Space-separated CSS classes added to the <code>&lt;ul&gt;</code> element.'),
+    '#states'        => $when_enabled,
+  ];
+
+  $form['cp_toc']['cp_toc_list_item_classes'] = [
+    '#type'          => 'textfield',
+    '#title'         => t('List item CSS classes'),
+    '#default_value' => $settings['list_item_classes'],
+    '#description'   => t('Space-separated CSS classes added to every <code>&lt;li&gt;</code> item.'),
+    '#states'        => $when_enabled,
+  ];
+
+  $form['cp_toc']['cp_toc_link_classes'] = [
+    '#type'          => 'textfield',
+    '#title'         => t('TOC link CSS classes'),
+    '#default_value' => $settings['link_classes'],
+    '#description'   => t('Space-separated CSS classes added to every <code>&lt;a&gt;</code> link inside the TOC.'),
+    '#states'        => $when_enabled,
+  ];
+
+  $form['cp_toc']['cp_toc_min_headings'] = [
+    '#type'          => 'number',
+    '#title'         => t('Minimum headings'),
+    '#default_value' => $settings['min_headings'],
+    '#min'           => 1,
+    '#max'           => 20,
+    '#description'   => t('Hide the TOC if fewer than this many matching headings are found.'),
+    '#states'        => $when_enabled,
+  ];
+
+  $form['cp_toc']['cp_toc_smooth_scroll'] = [
+    '#type'          => 'checkbox',
+    '#title'         => t('Smooth scrolling'),
+    '#default_value' => $settings['smooth_scroll'],
+    '#states'        => $when_enabled,
+  ];
+
+  $form['cp_toc']['cp_toc_scroll_offset'] = [
+    '#type'          => 'number',
+    '#title'         => t('Scroll offset (px)'),
+    '#default_value' => $settings['scroll_offset'],
+    '#description'   => t('Offset in pixels when jumping to a heading (e.g. to clear a fixed header).'),
+    '#states'        => $when_enabled,
+  ];
+
+  $form['cp_toc']['cp_toc_nesting'] = [
+    '#type'          => 'checkbox',
+    '#title'         => t('Enable one-level nesting'),
+    '#default_value' => $settings['nesting'],
+    '#description'   => t('Nest sub-headings one level inside their nearest top-level heading. The top level is the lowest heading rank (e.g. h2 when both h2 and h3 are selected).'),
+    '#states'        => $when_enabled,
+  ];
+
+  $form['cp_toc']['cp_toc_node_default_enabled'] = [
+    '#type'          => 'checkbox',
+    '#title'         => t('Enable TOC by default on new content'),
+    '#default_value' => $settings['node_default_enabled'],
+    '#description'   => t('When an editor creates a new piece of content of this type, the per-page "Enable table of contents" checkbox will default to this value.'),
+    '#states'        => $when_enabled,
+  ];
+
+  $form['#entity_builders'][] = 'cp_toc_form_node_type_form_builder';
+}
+
+/**
+ * Entity builder: persists TOC settings as third-party settings on the node type.
+ */
+function cp_toc_form_node_type_form_builder(string $entity_type, NodeTypeInterface $node_type, array &$form, FormStateInterface $form_state): void {
+  $node_type->setThirdPartySetting('cp_toc', 'enabled',              (bool) $form_state->getValue('cp_toc_enabled'));
+  $node_type->setThirdPartySetting('cp_toc', 'headings',             trim($form_state->getValue('cp_toc_headings')) ?: 'h2, h3');
+  $node_type->setThirdPartySetting('cp_toc', 'title',                $form_state->getValue('cp_toc_title'));
+  $node_type->setThirdPartySetting('cp_toc', 'title_classes',        $form_state->getValue('cp_toc_title_classes'));
+  $node_type->setThirdPartySetting('cp_toc', 'list_classes',         $form_state->getValue('cp_toc_list_classes'));
+  $node_type->setThirdPartySetting('cp_toc', 'list_item_classes',    $form_state->getValue('cp_toc_list_item_classes'));
+  $node_type->setThirdPartySetting('cp_toc', 'link_classes',         $form_state->getValue('cp_toc_link_classes'));
+  $node_type->setThirdPartySetting('cp_toc', 'min_headings',         (int) $form_state->getValue('cp_toc_min_headings'));
+  $node_type->setThirdPartySetting('cp_toc', 'smooth_scroll',        (bool) $form_state->getValue('cp_toc_smooth_scroll'));
+  $node_type->setThirdPartySetting('cp_toc', 'scroll_offset',        (int) $form_state->getValue('cp_toc_scroll_offset'));
+  $node_type->setThirdPartySetting('cp_toc', 'nesting',              (bool) $form_state->getValue('cp_toc_nesting'));
+  $node_type->setThirdPartySetting('cp_toc', 'node_default_enabled', (bool) $form_state->getValue('cp_toc_node_default_enabled'));
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for node_form.
+ *
+ * When a content type has the TOC enabled, this adds a "CP Table of contents"
+ * panel to the node edit form's sidebar so editors can override the TOC
+ * enabled/disabled state and heading selectors per piece of content.
+ */
+function cp_toc_form_node_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $form_state->getFormObject()->getEntity();
+
+  $node_type = NodeType::load($node->bundle());
+  if (!$node_type) {
+    return;
+  }
+
+  $settings = $node_type->getThirdPartySettings('cp_toc') + cp_toc_default_settings();
+
+  // Show per-node controls whenever TOC is enabled for this content type.
+  if (empty($settings['enabled'])) {
+    return;
+  }
+
+  // Retrieve current field values with safe fallbacks for new/unsaved nodes.
+  try {
+    $node_enabled               = $node->get('cp_toc_enabled')->value;
+    $node_selectors_override    = $node->get('cp_toc_selectors_override')->value;
+    $node_selectors             = $node->get('cp_toc_selectors')->value;
+    $node_min_headings_override = $node->get('cp_toc_min_headings_override')->value;
+    $node_min_headings          = $node->get('cp_toc_min_headings')->value;
+    $node_full_width            = $node->get('cp_toc_full_width')->value;
+    $node_nesting               = $node->get('cp_toc_nesting')->value;
+  }
+  catch (\Exception $e) {
+    // Base fields not yet installed – silently skip the form section.
+    return;
+  }
+
+  $form['cp_toc_node'] = [
+    '#type'   => 'details',
+    '#title'  => t('CP Table of contents'),
+    '#group'  => 'advanced',
+    '#weight' => 40,
+    '#tree'   => TRUE,
+  ];
+
+  $form['cp_toc_node']['enabled'] = [
+    '#type'          => 'checkbox',
+    '#title'         => t('Enable table of contents on this page'),
+    '#default_value' => ($node_enabled === NULL) ? (bool) $settings['node_default_enabled'] : (bool) $node_enabled,
+    '#description'   => t('Uncheck to hide the table of contents on this specific piece of content.'),
+  ];
+
+  $form['cp_toc_node']['selectors_override'] = [
+    '#type'          => 'checkbox',
+    '#title'         => t('Use custom heading selectors'),
+    '#default_value' => (bool) $node_selectors_override,
+    '#description'   => t('Override the content-type selector setting (<code>%default</code>) for this page only.', [
+      '%default' => $settings['headings'],
+    ]),
+  ];
+
+  $form['cp_toc_node']['selectors'] = [
+    '#type'          => 'textfield',
+    '#title'         => t('Custom heading selectors'),
+    '#default_value' => $node_selectors ?? '',
+    '#placeholder'   => $settings['headings'],
+    '#description'   => t('Comma-separated CSS selectors, e.g. <code>h2, h3, h4</code>.'),
+    '#states'        => [
+      'visible' => [':input[name="cp_toc_node[selectors_override]"]' => ['checked' => TRUE]],
+    ],
+  ];
+
+  $form['cp_toc_node']['min_headings_override'] = [
+    '#type'          => 'checkbox',
+    '#title'         => t('Override minimum number of headings'),
+    '#default_value' => (bool) $node_min_headings_override,
+    '#description'   => t('Override the content-type minimum (<code>%default</code>) for this page only.', [
+      '%default' => $settings['min_headings'],
+    ]),
+  ];
+
+  $form['cp_toc_node']['min_headings'] = [
+    '#type'          => 'number',
+    '#title'         => t('Minimum number of headings'),
+    '#default_value' => $node_min_headings ?? $settings['min_headings'],
+    '#min'           => 1,
+    '#max'           => 20,
+    '#description'   => t('Hide the TOC on this page if fewer than this many matching headings are found.'),
+    '#states'        => [
+      'visible' => [':input[name="cp_toc_node[min_headings_override]"]' => ['checked' => TRUE]],
+    ],
+  ];
+
+  $form['cp_toc_node']['full_width'] = [
+    '#type'          => 'checkbox',
+    '#title'         => t('Allow ToC to take full-width when possible'),
+    '#default_value' => ($node_full_width === NULL) ? FALSE : (bool) $node_full_width,
+    '#description'   => t('The ToC block is usually half the page width. This allows the block to span the full width of the content for this page only.'),
+  ];
+
+  $form['cp_toc_node']['nesting'] = [
+    '#type'          => 'checkbox',
+    '#title'         => t('Enable one-level nesting'),
+    '#default_value' => ($node_nesting === NULL) ? (bool) $settings['nesting'] : (bool) $node_nesting,
+    '#description'   => t('Override the content-type nesting setting for this page only.'),
+  ];
+
+  $form['#entity_builders'][] = 'cp_toc_node_form_entity_builder';
+}
+
+/**
+ * Entity builder for node_form: saves per-node TOC field values.
+ */
+function cp_toc_node_form_entity_builder(string $entity_type, NodeInterface $node, array &$form, FormStateInterface $form_state): void {
+  $values = $form_state->getValue('cp_toc_node');
+
+  if (!is_array($values)) {
+    return;
+  }
+
+  try {
+    $node->set('cp_toc_enabled',               (bool) ($values['enabled'] ?? TRUE));
+    $node->set('cp_toc_selectors_override',    (bool) ($values['selectors_override'] ?? FALSE));
+    $node->set('cp_toc_selectors',             $values['selectors'] ?? '');
+    $node->set('cp_toc_min_headings_override', (bool) ($values['min_headings_override'] ?? FALSE));
+    $node->set('cp_toc_min_headings',          (int) ($values['min_headings'] ?? 2));
+    $node->set('cp_toc_full_width',            (bool) ($values['full_width'] ?? FALSE));
+    $node->set('cp_toc_nesting',               (bool) ($values['nesting'] ?? FALSE));
+  }
+  catch (\Exception $e) {
+    // Base fields not installed – skip silently.
+  }
+}

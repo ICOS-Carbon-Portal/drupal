@@ -1,0 +1,10 @@
+toc:
+  version: 1.x
+  css:
+    component:
+      css/cp_toc.css: {}
+  js:
+    js/cp_toc.js: {}
+  dependencies:
+    - core/drupal
+    - core/once

@@ -208,7 +208,7 @@
 					var column = this;
 
 					var $headerControl = $('<div class="input-group">' +
-						'<input class="suggestInput form-control" type="search" placeholder="Search column" />' +
+						'<input class="suggestInput form-control search-box" type="search"/>' +
 						'</div>');
 					var $suggestInput = $headerControl.find("input");
 					$headerControl.appendTo($(column.header()));

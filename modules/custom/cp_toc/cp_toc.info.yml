@@ -1,0 +1,7 @@
+name: 'CP Table of contents'
+type: module
+description: 'Generates a table of contents block from page headings. Configurable per content type, no jQuery dependency. Note: this module was created with the assistance of Claude Code (Claude Sonnet 4.6) and based off of the toc_js contributed model.'
+package: CP
+core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:node
