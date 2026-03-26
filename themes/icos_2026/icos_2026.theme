@@ -1,0 +1,194 @@
+<?php
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for region templates.
+ */
+function icos_2026_theme_suggestions_region_alter(array &$suggestions, array $variables) {
+
+  $footer_regions = [
+    'footer_second',
+    'footer_third',
+    'footer_fourth',
+    'footer_bottom_first',
+    'footer_bottom_second',
+  ];
+
+  if (in_array($variables['elements']['#region'], $footer_regions, true)) {
+    $suggestions[] = 'region__footer';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for block templates.
+ * @param array $suggestions
+ * @param array $variables
+ */
+function cp_theme_d8_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  // Block suggestions for custom block bundles.
+  if (isset($variables['elements']['content']['#block_content'])) {
+    array_splice($suggestions, 1, 0, 'block__bundle__' . $variables['elements']['content']['#block_content']->bundle());
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function icos_2026_theme() {
+	return [
+		'field__field_side_links_title' => [
+			'template' => 'field/field--title-h6',
+			'base hook' => 'field'
+		],
+		'field__field_bottom_left_links_title' => [
+			'template' => 'field/field--title-h6',
+			'base hook' => 'field'
+		],
+		'field__field_bottom_right_links_title' => [
+			'template' => 'field/field--title-h6',
+			'base hook' => 'field'
+		],
+		'field__field_side_links' => [
+			'template' => 'field/field--links-download',
+			'base hook' => 'field'
+		],
+		'field__field_bottom_left_links' => [
+			'template' => 'field/field--links-right-arrow',
+			'base hook' => 'field'
+		],
+		'field__field_bottom_right_links' => [
+			'template' => 'field/field--links-right-arrow',
+			'base hook' => 'field'
+		],
+		'field__node__field_cp_event_link' => [
+			'template' => 'field/field--link-danger',
+			'base hook' => 'field'
+		],
+		'field__node__field_link' => [
+			'template' => 'field/field--link-danger',
+			'base hook' => 'field'
+		],
+		'block__field_block__node__page__field_bottom_left_links' => [
+			'template' => 'block/block--links-collection',
+			'base hook' => 'block'
+		],
+		'block__field_block__node__page__field_bottom_right_links' => [
+			'template' => 'block/block--links-collection',
+			'base hook' => 'block'
+		],
+		'block__field_block__node__page__field_side_links' => [
+			'template' => 'block/block--links-collection',
+			'base hook' => 'block'
+		],
+	];
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page templates.
+ */
+function icos_2026_preprocess_page(&$variables) {
+  // Add main_image and content_type to variables for pages with nodes attached
+  $node = \Drupal::routeMatch()->getParameter('node');
+
+  if ($node instanceof \Drupal\node\NodeInterface) {
+    if ($node->bundle() === 'page' or $node->bundle() === 'webform') {
+      if ($node->hasField('field_header_image') && !$node->get('field_header_image')->isEmpty()) {
+        $render_array = $node->get('field_header_image')->view([
+          'label' => 'hidden',
+          'type' => 'image',
+          'settings' => [
+            'image_style' => 'hero_1440x450',
+          ],
+        ]);
+
+        $variables['main_image'] = $render_array;
+      }
+    } elseif ($node->bundle() === 'article' or $node->bundle() === 'fluxes_volume') {
+      if ($node->hasField('field_image') && !$node->get('field_image')->isEmpty()) {
+        $render_array = $node->get('field_image')->view([
+          'label' => 'hidden',
+        ]);
+        if ($node->bundle() === 'article') {
+          $variables['sub_image'] = $node->get('field_image')->view([
+            'label' => 'hidden',
+            'type' => 'image',
+            'settings' => [
+              'image_style' => 'news_header',
+            ],
+          ]);
+        } else {
+          $variables['main_image'] = $node->get('field_image')->view([
+            'label' => 'hidden',
+            'type' => 'image',
+            'settings' => [
+              'image_style' => 'hero_1440x450',
+            ],
+          ]);
+        } 
+      }
+    } elseif ($node->bundle() === "cp_event") {
+      if ($node->hasField('field_cp_event_picture') && !$node->get('field_cp_event_picture')->isEmpty()) {
+        $render_array = $node->get('field_cp_event_picture')->view([
+          'label' => 'hidden',
+          'type' => 'image',
+          'settings' => [
+            'image_style' => 'news_header',
+          ],
+        ]);
+
+        $variables['sub_image'] = $render_array;
+      }
+    } elseif ($node->bundle() === "fluxes_article") {
+      if ($node->hasField('field_featured_image') && !$node->get('field_featured_image')->isEmpty()) {
+        $media = $node->get('field_featured_image')->entity;
+        if ($media) {
+          $variables['sub_image'] = $media->get('field_media_image')->view([
+            'label' => 'hidden',
+            'type' => 'image',
+            'settings' => [
+              'image_style' => 'news_header',
+            ],
+          ]);
+        }
+      }
+    }
+    $variables['content_type'] = $node->bundle();
+  }
+  
+  // Add route name to variables for all pages
+  $route_match = \Drupal::routeMatch();
+  $route_name = $route_match->getRouteName();
+  $variables['route_class'] = strtr($route_name, [
+    '.' => '-',
+    '_' => '-',
+  ]);
+}
+
+use Drupal\views\Views;
+
+/**
+ * Implements hook_preprocess_HOOK() for FLUXES volume templates.
+ */
+function icos_2026_preprocess_node__fluxes_volume__full(&$variables) {
+  $art_view = Views::getView('fluxes_articles');
+  if ($art_view) {
+    $art_view->setDisplay('articles_with_img');
+    $art_view->execute();
+    $variables['articles_with_img_block'] = $art_view->render();
+  }
+  $vol_view = Views::getView('fluxes_volumes');
+  if ($vol_view) {
+    $vol_view->setDisplay('all_issues');
+    $vol_view->execute();
+    $variables['all_issues_block'] = $vol_view->render();
+  }
+}
+
+/**
+ * Implements hook_form_node_form_alter() for editing forms.
+ */
+function icos_2026_form_node_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  // Ensure that the delete action is styled as a "danger" button
+  if (isset($form['actions']['delete'])) {
+    $form['actions']['delete']['#attributes']['class'][] = 'btn btn-danger';
+  }
+}

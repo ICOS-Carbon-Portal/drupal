@@ -1,0 +1,88 @@
+{#
+/**
+ * @file
+ * Theme implementation to display a full page width, one-column layout with a light blue background.
+ *
+ * Available variables:
+ * - in_preview: Whether the plugin is being rendered in preview mode.
+ * - content: The content for this layout.
+ * - attributes: HTML attributes for the layout <div>.
+ *
+ * @ingroup themeable
+ */
+#}
+
+
+{%
+  set classes = [
+    'layout',
+    'layout--video'
+  ]
+%}
+
+{%
+  set text_classes = [
+    'layout__region',
+    'layout__region--text'
+  ]
+%}
+
+{% if content %}
+  <div{{ attributes.addClass(classes) }}>
+    <video autoplay disablepictureinpicture loop muted playsinline id="fp-video">
+      <source src="/home-video" type="video/mp4">
+    </video>
+    <div class="text-overlay position-relative">
+      {% if content.text %}
+        <div>
+          <div{{ region_attributes.text.addClass(text_classes) }}>
+            {{ content.text }}
+          </div>
+        </div>
+      {% endif %}
+      <button
+        type="button"
+        id="toggle-video"
+        class="btn btn-outline-light rounded-circle position-absolute d-flex justify-content-center align-items-center"
+        style="bottom: 3rem; right: 3rem; height: 45px; width: 45px;"><i class="fas fa-pause"></i></button>
+    </div>
+  </div>
+
+  <script>
+    function initVideoToggle() {
+      const video = document.getElementById("fp-video");
+      const button = document.getElementById("toggle-video");
+      const pauseIcon = button.children[0];
+      const playIcon = document.createElement("i");
+      playIcon.classList.add("fas", "fa-play");
+
+      button.addEventListener("click", (event) => {
+        if (video.paused) {
+          playVideo();
+          localStorage.removeItem("videoPaused");
+        } else {
+          pauseVideo();
+          localStorage.setItem("videoPaused", "paused");
+        }
+      });
+
+      if (localStorage.getItem("videoPaused")) {
+        pauseVideo();
+      }
+
+      function pauseVideo() {
+        video.pause();
+        button.removeChild(pauseIcon);
+        button.appendChild(playIcon);
+      }
+
+      function playVideo() {
+        video.play()
+        button.removeChild(playIcon);
+        button.appendChild(pauseIcon);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", initVideoToggle);
+  </script>
+{% endif %}

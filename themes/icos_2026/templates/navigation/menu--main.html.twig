@@ -1,0 +1,124 @@
+{#
+/**
+ * @file
+ * Bootstrap's override to display a menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *   - is_expanded: TRUE if the link has visible children within the current
+ *     menu tree.
+ *   - is_collapsed: TRUE if the link has children within the current menu tree
+ *     that are not currently visible.
+ *   - in_active_trail: TRUE if the link is in the active trail.
+ */
+#}
+
+{#
+/**
+ * @file
+ * Theme override to display the main menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *   - is_expanded: TRUE if the link has visible children within the current
+ *     menu tree.
+ *   - is_collapsed: TRUE if the link has children within the current menu tree
+ *     that are not currently visible.
+ *   - in_active_trail: TRUE if the link is in the active trail.
+ *
+ * @ingroup themeable
+ */
+#}
+
+{#
+	We call a macro which calls itself to render the full tree.
+	@see http://twig.sensiolabs.org/doc/tags/macro.html
+#}
+{% set prev_level_2 = "" %}
+{{ _self.menu_links(items, attributes, 0, _context, "") }}
+
+{% macro menu_links(items, attributes, menu_level, variables, last_level_2_url) %}
+	{% set prev_level_2 = "" %}
+	{% if items %}
+		{% if menu_level == 0 %}
+			<div id="icos_2026_menu" class="layout-container">
+			<div{{ attributes.removeClass('clearfix').addClass('nav navbar-nav justify-content-center px-4 was-ul')|without('id') }}>
+		{% elseif menu_level == 1 %}
+			<div class="dropdown-menu pt-3 pb-4 border rounded-0 justify-content-between">
+		{% endif %}
+		{% for item in items %}
+			{% set item_classes = [
+					menu_level == 0 and item.below ? 'top-node',
+					menu_level == 0 ? 'flex-grow-1',
+					menu_level == 1 ? 'menu-col',
+					menu_level > 1 ? 'list-item',
+					'menu-level-' ~ menu_level
+				]
+			%}
+			<div{{ item.attributes.addClass(item_classes) }}>
+				{% set link_classes = [
+						menu_level == 0 ? 'text-dark py-2 px-3 w-100 d-flex justify-content-center top-link',
+						menu_level == 0 and item.in_active_trail ? 'active-trail',
+						menu_level == 2 ? 'text-dark fw-semibold pt-3 pb-3 ',
+						menu_level > 2 ? 'text-secondary pt-1 pb-2'
+					]
+				%}
+				{% set hide_link = menu_level == 2 ? (item.url.toString() == last_level_2_url) : false %}
+				{% set no_active_link = menu_level == 0 and item.below %}
+				{% if hide_link %}
+					<div class="{{ link_classes|join(" ") }} user-select-none">&nbsp;</div>
+				{% elseif menu_level != 1 %} {# show link #}
+					{% if item.url.toString() == "" or no_active_link %}
+						<div class="{{ link_classes|join(" ") }} dd-toggle" role="button" tabindex="0">
+					{% else %}
+						<a href="{{ item.url }}" class="{{ link_classes|join(" ") }}">
+					{% endif %}
+					{% if menu_level == 0 %}
+						<div>
+					{% endif %}
+					{{ item.title }}
+					{% if menu_level == 0 %}
+						{% if item.below %}
+							<span class="open-menu menu-icon"><i class="fas fa-chevron-down"></i></span>
+						{% endif %}
+						</div>
+					{% endif %}
+					{% if item.url.toString() == "" or no_active_link %}
+						</div>
+					{% else %}
+						</a>
+					{% endif %}
+				{% endif %}
+				{% if item.below %}
+					{% set prev_level_2 = prev_level_2 != "" ? prev_level_2 : last_level_2_url %}
+					{{ _self.menu_links(item.below, attributes, menu_level + 1, variables, prev_level_2) }}
+				{% endif %}
+			</div>
+			{% if menu_level == 1 and item.below %}
+				{% for below_item in item.below|slice(0,1) %}
+					{% set prev_level_2 = below_item.url.toString() %}
+				{% endfor %}
+			{% endif %}
+		{% endfor %}
+		{% if menu_level == 0 %}
+			</div> {# .navbar-nav #}
+			</div> {# #icos_2026_menu #}
+		{% elseif menu_level <= 1 %}
+			</div> {# .dropdown-menu #}
+		{% endif %}
+		{% if menu_level == 0 %}
+		{% endif %}
+	{% endif %}
+{% endmacro %}

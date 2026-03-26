@@ -1,0 +1,155 @@
+/**
+ * @file
+ * Subtheme specific CSS for added components/features
+ */
+
+/* Components/Features */
+
+/* Ensure inline images have space to the side */
+img.align-right {
+  margin-left: 3rem;
+  margin-bottom: 1rem;
+}
+
+img.align-left {
+  margin-right: 3rem;
+  margin-bottom: 1rem;
+}
+
+/* Figure and caption styling - most images should be figures */
+figure {
+  --fig-margin-size: 3rem;
+
+  &.align-left {
+    margin-right: var(--fig-margin-size);
+  }
+
+  &.align-right {
+    margin-left: var(--fig-margin-size);
+  }
+
+  /* eliminate "align left and break" style by always aligning center */
+  &:not(.align-left, .align-right) {
+    display: table;
+    margin: var(--fig-margin-size) auto;
+  }
+
+  img {
+    border-radius: 0.375rem;
+  }
+
+  figcaption {
+    padding-top: 1rem;
+    font-size: 0.875rem;
+  }
+
+  &.align-center {
+    img {
+      max-width: 100%;
+      height: auto;
+      width: unset;
+    }
+  }
+}
+
+/* Analogous styling as figures for stand-alone images */
+.article .node__content .field--name-body>img {
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+  border-radius: 0.375rem;
+  max-width: 100%;
+  height: auto;
+  width: unset;
+
+  /* eliminate "align left and break" style by always aligning center */
+  &:not(.align-left, .align-right) {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+}
+
+
+/* Blockquote element, used via template */
+.blockquote-wrapper {
+  color: var(--bs-danger);
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+
+  blockquote {
+    &::before {
+      content: "\f10d";
+      font-family: "Font Awesome 6 Free";
+      display: block;
+      text-decoration: none;
+      font-weight: 900;
+      font-size: 3.75rem;
+    }
+
+    font-size: 1.375rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .attribution {
+    font-weight: 600;
+    line-height: 1.5;
+  }
+}
+
+/* Icon row element, used via template */
+.icon-row {
+  margin-top: 3.5rem;
+  margin-bottom: 4.5rem;
+
+  .icon-with-text {
+    margin-top: 1rem;
+
+    .icon {
+      --bs-bg-opacity: 0.2;
+      width: 4.5rem;
+      height: 4.5rem;
+
+      .fa-solid {
+        height: 2.5rem;
+        font-size: 0;
+      }
+
+      .fa-solid::before {
+        font-size: 2.5rem;
+      }
+    }
+  }
+}
+
+/* Highlights box, used via template */
+.highlights-box {
+  border-radius: 0.375rem;
+  background-color: var(--blue-20);
+  padding: 2rem 3rem;
+  margin-top: 4.5rem;
+  margin-bottom: 4.5rem;
+
+  i {
+    padding-right: 0.25rem;
+  }
+
+  ol, ul, p {
+    line-height: 2;
+  }
+
+  ol, ul {
+    padding-left: 1.25rem;
+  }
+}
+
+.block-link-box {
+  img {
+    border-radius: 0.4rem;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border: none;
+    width: 100%;
+    height: unset;
+  }
+}

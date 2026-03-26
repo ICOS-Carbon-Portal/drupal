@@ -1,0 +1,133 @@
+/**
+ * @file
+ * Subtheme specific CSS for menu.
+ */
+
+.menu--main {
+  width: 100%;
+  padding-left: calc((100% - 1400px)/2);
+  padding-right: calc((100% - 1400px)/2);
+}
+
+#icos_2026_menu {
+  font-size: 0.9375rem;
+
+  .dropdown-menu {
+    font-size: 0.9375rem;
+  }
+
+  a {
+    text-decoration: none;
+    display: inline-block;
+    transition: color 0.1s;
+  }
+
+  a:hover,
+  a:focus-within {
+    color: var(--bs-danger) !important;
+    text-decoration: underline 10%;
+  }
+
+  .top-link:hover,
+  .top-node:hover .top-link,
+  .top-link:focus-within,
+  .top-node:focus-within .top-link {
+    text-decoration: underline 5%;
+    text-underline-offset: 20%;
+    color: var(--bs-dark) !important;
+  }
+}
+
+/* Smaller than Bootstrap LG */
+@media all and (max-width: 991.999px) {
+  #icos_2026_menu {
+    .nav {
+      padding-bottom: 1rem;
+    }
+
+    .nav>div>a {
+      justify-content: flex-start !important;
+    }
+
+    .top-node .top-link {
+      display: block !important;
+    }
+
+    .top-node .dropdown-menu {
+      border: none !important;
+      box-shadow: none;
+      padding-left: 3rem;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+
+      .list-item>div.pt-3.pb-3 {
+        height: 0;
+        font-size: 0;
+        padding: 0 !important;
+      }
+    }
+
+    .top-node.open .dropdown-menu {
+      display: block;
+    }
+
+    .top-node.open>a {
+      font-weight: 600;
+    }
+
+    .menu-level-3 {
+      padding-left: 2rem;
+    }
+  }
+}
+
+/* Bootstrap LG breakpoint */
+@media all and (min-width: 992px) {
+  .mobile {
+    display: none;
+  }
+
+  #icos_2026_menu {
+    .top-node:hover .dropdown-menu,
+    .top-node:focus-within .dropdown-menu {
+      display: flex;
+      flex-wrap: none;
+    }
+
+    .top-node .dropdown-menu {
+      left: 0;
+      box-shadow: none;
+      width: 100%;
+      padding-left: 1rem;
+      padding-right: 1rem;
+
+      &>div {
+        width: 19%;
+      }
+    }
+  }
+
+}
+
+/* Bootstrap XXL breakpoint */
+@media all and (min-width: 1400px) {
+  .menu--main {
+    width: 100%;
+    padding-left: calc((100% - 1400px)/2);
+    padding-right: calc((100% - 1400px)/2);
+  }
+
+  #icos_2026_menu {
+    .top-node:hover .dropdown-menu,
+    .top-node:focus-within .dropdown-menu {
+      &>div {
+        width: 316px;
+      }
+    }
+
+    .top-node .dropdown-menu {
+      padding-left: calc((100% - 1400px)/2 + 1rem);
+      padding-right: calc((100% - 1400px)/2 + 1rem);
+    }
+  }
+}

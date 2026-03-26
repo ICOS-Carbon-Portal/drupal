@@ -1,0 +1,30 @@
+name: ICOS ERIC/CP Theme (Drupal 10)
+type: theme
+description: 'ICOS ERIC/CP theme, created 2025, for Drupal 10 and beyond.' 
+core_version_requirement: ^10.3 || ^11
+base theme: bootstrap
+dependencies:
+  - cp_layouts
+
+libraries:
+  - icos_2026/global-styling
+  - icos_2026/bootstrap
+  - icos_2026/freshdesk
+  - icos_2026/cookie-consent
+
+regions:
+  above_header: 'Above the header'
+  header: 'Header (left)'
+  header_right: 'Header (right)'
+  primary_menu: 'Primary menu'
+  above_content: 'Above content (hero image)'
+  breadcrumb: Breadcrumb
+  content: Content
+  footer_top: 'Footer top'
+  footer_first: 'Footer first column'
+  footer_second: 'Footer second column'
+  footer_third: 'Footer third column'
+  footer_fourth: 'Footer fourth column'
+  footer_bottom_first: 'Footer bottom first column'
+  footer_bottom_second: 'Footer bottom second-fourth column'
+  none: None
