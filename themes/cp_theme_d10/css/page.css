@@ -204,6 +204,16 @@ footer {
     color: var(--bs-light);
   }
 
+  a {
+    text-decoration: none !important;
+  }
+
+  a:hover,
+  a:focus-within {
+    text-decoration: underline !important;
+  }
+
+
   .block {
     .content ul li {
       margin-right: 2rem;
