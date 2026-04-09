@@ -820,7 +820,7 @@ iframe {
     }
 
     #edit-submit {
-      border-radius: 100px;
+      border-radius: var(--bs-btn-border-radius);
     }
   }
 }
