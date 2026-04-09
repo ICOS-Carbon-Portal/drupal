@@ -164,6 +164,11 @@ a:focus-visible {
 
 .header #search-block-form {
   padding: 0px 15px;
+  .btn {
+    --bs-btn-border-radius: 0.4rem;
+    padding: 0.375rem 0.75rem;
+    font-size: 14px;
+  }
 }
 
 /* Hero image */
@@ -821,6 +826,8 @@ iframe {
 
     #edit-submit {
       border-radius: var(--bs-btn-border-radius);
+      padding-bottom: 7.5px;
+      padding-top: 7.5px;
     }
   }
 }
