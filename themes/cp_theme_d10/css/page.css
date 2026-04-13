@@ -613,6 +613,13 @@ iframe {
   }
 }
 
+.data_product {
+  .page-content .block:not(.block-system-main-block), 
+  .page-content .layout {
+    padding: 0;
+  }
+}
+
 /* FLUXES */
 .fluxes_volume .page-content .block:not(.block-system-main-block) {
   padding-top: 0;
