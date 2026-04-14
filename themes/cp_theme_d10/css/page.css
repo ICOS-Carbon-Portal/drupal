@@ -164,6 +164,11 @@ a:focus-visible {
 
 .header #search-block-form {
   padding: 0px 15px;
+  .btn {
+    --bs-btn-border-radius: 0.4rem;
+    padding: 0.375rem 0.75rem;
+    font-size: 14px;
+  }
 }
 
 /* Hero image */
@@ -203,6 +208,16 @@ footer {
   a:focus-within {
     color: var(--bs-light);
   }
+
+  a {
+    text-decoration: none !important;
+  }
+
+  a:hover,
+  a:focus-within {
+    text-decoration: underline !important;
+  }
+
 
   .block {
     .content ul li {
@@ -598,6 +613,13 @@ iframe {
   }
 }
 
+.data_product {
+  .page-content .block:not(.block-system-main-block), 
+  .page-content .layout {
+    padding: 0;
+  }
+}
+
 /* FLUXES */
 .fluxes_volume .page-content .block:not(.block-system-main-block) {
   padding-top: 0;
@@ -810,7 +832,9 @@ iframe {
     }
 
     #edit-submit {
-      border-radius: 100px;
+      border-radius: var(--bs-btn-border-radius);
+      padding-bottom: 7.5px;
+      padding-top: 7.5px;
     }
   }
 }

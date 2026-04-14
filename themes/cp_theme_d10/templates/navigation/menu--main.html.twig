@@ -54,7 +54,7 @@
 	{% if items %}
 		{% if menu_level == 0 %}
 			<div id="cp_theme_d10_menu" class="layout-container">
-			<div{{ attributes.removeClass('clearfix').addClass('nav navbar-nav justify-content-center px-4 was-ul')|without('id') }}>
+			<div{{ attributes.removeClass('clearfix').addClass('nav navbar-nav justify-content-center px-4')|without('id') }}>
 		{% elseif menu_level == 1 %}
 			<div class="dropdown-menu pt-3 pb-4 border rounded-0 justify-content-between">
 		{% endif %}
@@ -81,7 +81,7 @@
 					<div class="{{ link_classes|join(" ") }} user-select-none">&nbsp;</div>
 				{% elseif menu_level != 1 %} {# show link #}
 					{% if item.url.toString() == "" or no_active_link %}
-						<div class="{{ link_classes|join(" ") }} dd-toggle" role="button" tabindex="0">
+						<div class="{{ link_classes|join(" ") }} drop-down-toggle" role="button" tabindex="0">
 					{% else %}
 						<a href="{{ item.url }}" class="{{ link_classes|join(" ") }}">
 					{% endif %}

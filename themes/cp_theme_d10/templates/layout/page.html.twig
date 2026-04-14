@@ -78,7 +78,7 @@
         </div>
       {% endif %}
 
-      <div class="header d-flex justify-content-between py-3 px-4">
+      <div class="header d-flex justify-content-between p-3">
         <div class="header-left d-flex align-items-center">
           {{ page.header }}
         </div>
@@ -94,8 +94,8 @@
         </div>
       </div>
 
-      <nav{{ navbar_attributes.removeClass(["bg-primary"]).addClass("border-top border-bottom py-0") }}>
-        <div id="collapsing-navbar" class="collapse navbar-collapse">
+      <nav{{ navbar_attributes.removeClass(["bg-primary"]).addClass("border-top py-0") }}>
+        <div id="collapsing-navbar" class="collapse navbar-collapse border-bottom">
           {{ page.primary_menu }}
         </div>
       </nav>
