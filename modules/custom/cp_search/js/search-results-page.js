@@ -203,7 +203,7 @@
                     },*/
                     templates: {
                         item(item) {
-                            return `<div class="search-results-hit p-4 bg-blue-10 mb-25 rounded">
+                            return `<div class="search-results-hit p-4 bg-blue-10 mb-3 rounded">
                                 <div class="text-primary text-uppercase mb-1">${categoryLabels[item.category]}</div>
                                 <h3><a href="${item.url}" class="text-dark">${item.title}</a></h3>
                                 <p>${processHighlightedContent(item._highlightResult.content.value)}</p>
