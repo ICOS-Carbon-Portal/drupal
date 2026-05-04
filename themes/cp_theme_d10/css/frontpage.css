@@ -243,11 +243,6 @@
   }
 
   .page .page-content .layout.layout--video {
-    background: url('/home-image');
-    background-position-x: center;
-    background-position-y: bottom;
-    background-repeat: no-repeat;
-
     .text-overlay {
       min-height: 420px;
       height: unset;
