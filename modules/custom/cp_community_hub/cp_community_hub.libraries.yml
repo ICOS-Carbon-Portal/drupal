@@ -1,0 +1,6 @@
+style:
+  css:
+    theme:
+      css/cp-community-hub.css: {}
+  js:
+    js/cp-community-hub-view.js: {}

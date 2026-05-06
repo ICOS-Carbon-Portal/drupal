@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Renders the link button text, falling back to "Go to resource" if empty.
+ *
+ * Available variables: see field.html.twig
+ */
+#}
+
+{% if items[0].content %}
+    {{ items[0].content }}
+{% else %}
+    Go to resource
+{% endif %}

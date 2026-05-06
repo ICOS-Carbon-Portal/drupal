@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Theme implementation for a community_resource node in teaser view mode.
+ *
+ * Cards link only to the external resource URL — the Drupal detail page is not
+ * surfaced to catalogue visitors.
+ *
+ * Available variables: see node.html.twig
+ */
+#}
+
+<div{{ attributes.addClass("card h-100 text-bg-light") }}>
+    {{ content.field_cpcommhub_image }}
+    <div class="card-body d-flex flex-column">
+        <h4 class="card-title">{{ label }}</h4>
+        <div class="cpcommhub-tags d-flex flex-wrap gap-1 my-2">
+            {{ content.field_cpcommhub_user_groups }}
+            {{ content.field_cpcommhub_scope }}
+        </div>
+        <div class="mt-auto">
+            <a class="no-external btn btn-primary border-0 px-2 my-2"
+               href="{{ content.field_cpcommhub_link[0] }}"
+               target="_blank"
+               rel="noopener noreferrer">
+                {{ content.field_cpcommhub_link_text }}
+                <i class="fa-solid fa-arrow-right-long"></i>
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cpcommhub_user_groups
+    - node.type.community_resource
+    - taxonomy.vocabulary.community_user_groups
+  module:
+    - options
+    - taxonomy
+id: node.community_resource.field_cpcommhub_user_groups
+field_name: field_cpcommhub_user_groups
+entity_type: node
+bundle: community_resource
+label: 'User Groups'
+description: 'The user groups / personas this resource is intended for.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      community_user_groups: community_user_groups
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

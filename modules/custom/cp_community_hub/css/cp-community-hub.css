@@ -1,0 +1,86 @@
+/* Utility class for hiding external link icon */
+
+.no-external::after {
+    content: "" !important;
+    margin: 0 !important;
+}
+
+/* Full/Teaser view field styles */
+
+.field--name-field-cpcommhub-image {
+    overflow: hidden;
+    display: flex;
+    margin-bottom: 1em;
+    aspect-ratio: 16 / 9;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+}
+
+/* Community Hub view grid styles */
+
+.cpcommhub-resources {
+    container: community-hub / inline-size;
+
+    .view-content {
+        display: grid;
+        gap: 1rem;
+        align-items: stretch;
+        margin-top: 0.5rem;
+    }
+
+    .view-filters {
+        .views-exposed-form.bef-exposed-form {
+            .form--inline {
+                .form-item-user-groups-target-id {
+                    min-width: 100%;
+                    margin-bottom: 1rem;
+                }
+                .form-item-scope-value {
+                    min-width: 200px;
+                    width: 23%;
+                }
+            }
+
+            legend, .form-item label {
+                font-size: 1em;
+                margin-bottom: 0.5rem;
+            }
+
+            .form-item {
+                margin-right: 1rem;
+            }
+        }
+    }
+}
+
+@container community-hub (min-width: calc(900px + 2rem)) {
+    .view-content {
+        grid-template-columns: repeat(3, minmax(300px, 1fr));
+    }
+}
+
+@container community-hub (max-width: calc(899px + 2rem)) {
+    .view-content {
+        grid-template-columns: repeat(2, minmax(300px, 1fr));
+    }
+}
+
+@container community-hub (max-width: calc(599px + 1rem)) {
+    .view-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+body.path-community-hub .ajax-progress {
+    display: none;
+}
+
+/* Scope filter hidden until a user group is selected */
+
+.cpcommhub-scope-hidden {
+    display: none;
+}

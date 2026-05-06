@@ -1,0 +1,15 @@
+name: CP Community Hub
+description: Community Hub resource catalogue for internal ICOS community resources
+package: CP
+type: module
+core_version_requirement: ^10
+dependencies:
+  - drupal:views
+  - drupal:taxonomy
+  - drupal:link
+  - drupal:image
+  - drupal:options
+  - better_exposed_filters:better_exposed_filters
+  - pathauto:pathauto
+libraries:
+  - cp_community_hub/style
