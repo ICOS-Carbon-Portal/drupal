@@ -27,12 +27,18 @@
   ]
 %}
 
+{%
+  set video_1080p = settings.video_url_1080p ?? "https://static.icos-cp.eu/videos/video1-1080p.mp4"
+  set video_720p = settings.video_url_720p ?? "https://static.icos-cp.eu/videos/video1-720p.mp4"
+  set video_480p = settings.video_url_480p ?? "https://static.icos-cp.eu/videos/video1-480p.mp4"
+%}
+
 {% if content %}
   <div{{ attributes.addClass(classes) }}>
     <video autoplay disablepictureinpicture loop muted playsinline id="fp-video">
-      <source src="/home-video-1-1080" type="video/mp4" media="(width > 1280px)">
-      <source src="/home-video-1-720" type="video/mp4" media="(width > 854px)">
-      <source src="/home-video-1-480" type="video/mp4" media="(width > 767px)">
+      <source src="{{ video_1080p }}" type="video/mp4" media="(width > 1280px)">
+      <source src="{{ video_720p }}" type="video/mp4" media="(width > 854px)">
+      <source src="{{ video_480p }}" type="video/mp4" media="(width > 767px)">
     </video>
     <div class="text-overlay position-relative">
       {% if content.text %}
