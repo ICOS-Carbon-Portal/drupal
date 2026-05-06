@@ -27,11 +27,9 @@
   ]
 %}
 
-{%
-  set video_1080p = settings.video_url_1080p ?? "https://static.icos-cp.eu/videos/video1-1080p.mp4"
-  set video_720p = settings.video_url_720p ?? "https://static.icos-cp.eu/videos/video1-720p.mp4"
-  set video_480p = settings.video_url_480p ?? "https://static.icos-cp.eu/videos/video1-480p.mp4"
-%}
+{% set video_1080p = settings.video_url_1080p == "" ? "https://static.icos-cp.eu/videos/video1-1080p.mp4" : settings.video_url_1080p %}
+{% set video_720p = settings.video_url_720p == "" ? "https://static.icos-cp.eu/videos/video1-720p.mp4" : settings.video_url_720p %}
+{% set video_480p = settings.video_url_480p == "" ? "https://static.icos-cp.eu/videos/video1-480p.mp4" : settings.video_url_480p %}
 
 {% if content %}
   <div{{ attributes.addClass(classes) }}>
