@@ -224,6 +224,14 @@
   }
 }
 
+.page .page-content .layout.layout--video {
+  background: url('/home-image');
+  background-position-x: center;
+  background-position-y: bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 /* Smaller than Bootstrap M breakpoint */
 @media all and (max-width: 767.98px) {
   .space-top {
@@ -235,11 +243,6 @@
   }
 
   .page .page-content .layout.layout--video {
-    background: url('/home-image');
-    background-position-x: center;
-    background-position-y: bottom;
-    background-repeat: no-repeat;
-
     .text-overlay {
       min-height: 420px;
       height: unset;
