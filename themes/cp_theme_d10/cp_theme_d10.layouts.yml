@@ -114,6 +114,7 @@ lgray_two_col_layout:
 video_layout:
   label: 'Video background'
   category: 'CP'
+  class: 'Drupal\cp_layouts\Plugin\Layout\VideoLayout'
   template: 'layouts/video'
   library: cp_layouts/video
   regions:
