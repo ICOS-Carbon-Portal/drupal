@@ -10,13 +10,13 @@ id: node.community_resource.field_cpcommhub_link
 field_name: field_cpcommhub_link
 entity_type: node
 bundle: community_resource
-label: 'Resource URL'
-description: 'The URL of the resource.'
+label: 'Resource link'
+description: 'The URL and button text for the resource. Button text defaults to "Go to resource" if left blank.'
 required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  title: 0
+  title: 1
   link_type: 17
 field_type: link

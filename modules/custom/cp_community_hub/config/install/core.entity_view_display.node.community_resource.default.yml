@@ -5,7 +5,6 @@ dependencies:
     - field.field.node.community_resource.body
     - field.field.node.community_resource.field_cpcommhub_image
     - field.field.node.community_resource.field_cpcommhub_link
-    - field.field.node.community_resource.field_cpcommhub_link_text
     - field.field.node.community_resource.field_cpcommhub_scope
     - field.field.node.community_resource.field_cpcommhub_user_groups
     - field.field.node.community_resource.field_cpcommhub_weight
@@ -49,14 +48,6 @@ content:
       target: '0'
     third_party_settings: {  }
     weight: 2
-    region: content
-  field_cpcommhub_link_text:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 3
     region: content
   field_cpcommhub_user_groups:
     type: entity_reference_label

@@ -3,29 +3,45 @@
  * @file
  * Theme implementation for a community_resource node in teaser view mode.
  *
- * Cards link only to the external resource URL — the Drupal detail page is not
- * surfaced to catalogue visitors.
+ * Modeled on the news article teaser, but with body text included and all
+ * links pointing directly to the external resource URL (the Drupal detail
+ * page is not surfaced to catalogue visitors).
  *
  * Available variables: see node.html.twig
  */
 #}
+{%
+    set classes = [
+        'node',
+        'node--type-' ~ node.bundle|clean_class,
+        view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+        'col',
+    ]
+%}
+{% set resource_url = content.field_cpcommhub_link[0] %}
 
-<div{{ attributes.addClass("card h-100 text-bg-light") }}>
-    {{ content.field_cpcommhub_image }}
-    <div class="card-body d-flex flex-column">
-        <h4 class="card-title">{{ label }}</h4>
-        <div class="cpcommhub-tags d-flex flex-wrap gap-1 my-2">
-            {{ content.field_cpcommhub_user_groups }}
-            {{ content.field_cpcommhub_scope }}
+<article{{ attributes.addClass(classes) }}>
+
+    <a href="{{ resource_url }}" class="hide-external" target="_blank" tabindex="-1">
+        <div class="teaser-news-image d-flex justify-content-center">
+            {{ content.field_cpcommhub_image }}
         </div>
-        <div class="mt-auto">
-            <a class="no-external btn btn-primary border-0 px-2 my-2"
-               href="{{ content.field_cpcommhub_link[0] }}"
-               target="_blank"
-               rel="noopener noreferrer">
-                {{ content.field_cpcommhub_link_text }}
-                <i class="fa-solid fa-arrow-right-long"></i>
+    </a>
+
+    {{ title_prefix }}
+    {% if label %}
+        <h2{{ title_attributes.addClass("h6") }}>
+            <a href="{{ resource_url }}" class="hide-external text-dark text-decoration-none" target="_blank" tabindex="-1">
+                {{ label }}
             </a>
-        </div>
-    </div>
-</div>
+        </h2>
+    {% endif %}
+    {{ title_suffix }}
+
+    {{ content.body }}
+
+    <a href="{{ resource_url }}" class="right-arrow btn btn-outline-primary" target="_blank">
+        {{ node.field_cpcommhub_link.0.title ?: 'Go to resource' }}
+    </a>
+
+</article>
