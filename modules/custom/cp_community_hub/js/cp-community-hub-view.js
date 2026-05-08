@@ -1,47 +1,52 @@
 (function (Drupal, once) {
 
-    var VIEW_BLOCK      = '.block-views-blockcpcommhub-resources-block-1';
-    var INTRO_BLOCK     = '.block-inline-blockbasic';
-    var GROUP_CONTAINER = '#user-groups-container';
-    var GROUP_SELECTOR  = '[data-drupal-selector="edit-user-groups-target-id"]';
-    var FORM_ID         = 'views-exposed-form-cpcommhub-resources-block-1';
+    const viewBlockSelector = '.block-views-blockcpcommhub-resources-block-1';
+    const introBlockSelector = '.block-inline-blockbasic';
+    const groupContainerSelector = '#user-groups-container';
+    const filterGroupsSelector = '[data-drupal-selector="edit-user-groups-target-id"]';
+    const viewsFormId = 'views-exposed-form-cpcommhub-resources-block-1';
 
     function moveUserGroupsFilter() {
-        var groupContainer = document.querySelector(GROUP_CONTAINER);
-        if (!groupContainer) {
+        const groupContainer = document.querySelector(groupContainerSelector);
+        const filterWrapper = document.querySelector(filterGroupsSelector)?.closest('.form-item, .js-form-item, fieldset, details');
+
+        if (!groupContainer || !filterWrapper) {
             return;
         }
-        var filterWrapper = document.querySelector(GROUP_SELECTOR)
-            ?.closest('.form-item, .js-form-item, fieldset, details');
-        if (!filterWrapper) {
-            return;
+
+        for (let checkbox of filterWrapper.querySelectorAll('input[type="checkbox"]')) {
+            checkbox.setAttribute('form', viewsFormId);
+            checkbox.classList.add('btn-check');
+            checkbox.setAttribute('autocomplete', 'off');
+            checkbox.closest('.form-check')?.classList.add('d-inline');
+            const label = filterWrapper.querySelector('label[for="' + checkbox.id + '"]');
+            if (label) {
+                label.classList.add('btn', 'btn-outline-primary');
+            }
         }
-        filterWrapper.querySelectorAll('input[type="checkbox"]').forEach(function (checkbox) {
-            checkbox.setAttribute('form', FORM_ID);
-        });
+
         groupContainer.appendChild(filterWrapper);
     }
 
-    function hideInViewGroupsFilter(context) {
-        var wrapper = context.querySelector(GROUP_SELECTOR)
-            ?.closest('.form-item, .js-form-item, fieldset, details');
-        if (wrapper && !wrapper.closest(GROUP_CONTAINER)) {
+    function hideGroupsFilterInView(context) {
+        const wrapper = context.querySelector(filterGroupsSelector)?.closest('.form-item, .js-form-item, fieldset, details');
+        if (wrapper && !wrapper.closest(groupContainerSelector)) {
             wrapper.classList.add('d-none');
         }
     }
 
     function hasGroupSelected() {
-        return document.querySelectorAll(
-            GROUP_CONTAINER + ' input[type="checkbox"]:checked'
-        ).length > 0;
+        return document.querySelectorAll(groupContainerSelector + ' input[type="checkbox"]:checked').length > 0;
     }
 
     function updateBlockVisibility() {
-        var viewBlock  = document.querySelector(VIEW_BLOCK);
-        var introBlock = document.querySelector(INTRO_BLOCK);
+        const viewBlock  = document.querySelector(viewBlockSelector);
+        const introBlock = document.querySelector(introBlockSelector);
+
         if (!viewBlock || !introBlock) {
             return;
         }
+
         if (hasGroupSelected()) {
             viewBlock.classList.add('d-block');
             introBlock.classList.add('d-none');
@@ -53,22 +58,19 @@
 
     Drupal.behaviors.communityHubView = {
         attach: function (context, settings) {
-            once('commhub-move-groups', 'body', document).forEach(function () {
-                moveUserGroupsFilter();
-            });
+            once('commhub-move-groups', 'body', document).forEach(() => moveUserGroupsFilter());
 
-            hideInViewGroupsFilter(context);
+            hideGroupsFilterInView(context);
 
             updateBlockVisibility();
 
-            once('commhub-group-listeners', GROUP_CONTAINER, document)
-                .forEach(function (container) {
-                    container.addEventListener('change', function (e) {
-                        if (e.target.matches('input[type="checkbox"]')) {
-                            updateBlockVisibility();
-                        }
-                    });
+            once('commhub-group-listeners', groupContainerSelector, document).forEach((container) => {
+                container.addEventListener('change', (e) => {
+                    if (e.target.matches('input[type="checkbox"]')) {
+                        updateBlockVisibility();
+                    }
                 });
+            });
         }
     };
 
