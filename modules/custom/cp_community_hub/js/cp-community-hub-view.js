@@ -65,17 +65,25 @@
             hideGroupsFilterInView(context);
 
             updateBlockVisibility();
+            document.querySelector(viewBlockSelector + ' .view-content')?.classList.remove('invisible');
 
             once('commhub-group-listeners', groupContainerSelector, document).forEach((container) => {
                 container.addEventListener('change', (e) => {
                     if (e.target.matches('input[type="checkbox"]')) {
+                        const viewBlock = document.querySelector(viewBlockSelector);
+                        const wasHidden = viewBlock && !viewBlock.classList.contains('d-block');
+
                         updateBlockVisibility();
+
                         const form = document.getElementById(viewsFormId);
                         const internalCb = form
                             ? Array.from(form.querySelectorAll('input[type="checkbox"]')).find(cb => cb.name === e.target.name)
                             : null;
                         if (internalCb) {
                             internalCb.checked = e.target.checked;
+                            if (wasHidden) {
+                                document.querySelector(viewBlockSelector + ' .view-content')?.classList.add('invisible');
+                            }
                             internalCb.dispatchEvent(new Event('change', { bubbles: true }));
                         }
                     }
