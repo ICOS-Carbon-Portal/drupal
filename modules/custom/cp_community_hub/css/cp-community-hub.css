@@ -12,3 +12,7 @@
     justify-content: center;
     margin-top: 1rem;
 }
+
+.ajax-progress {
+    display: none; 
+}
