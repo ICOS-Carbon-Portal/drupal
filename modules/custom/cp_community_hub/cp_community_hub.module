@@ -1,10 +1,24 @@
 <?php
 
+use Drupal\views\ViewExecutable;
+
 /**
  * Implements hook_preprocess_node().
  */
 function cp_community_hub_preprocess_node__community_resource(&$variables) {
   $variables['#attached']['library'][] = 'cp_community_hub/style';
+}
+
+/**
+ * Implements hook_views_pre_render().
+ *
+ * Attaches the library even when the view returns no results (no nodes render,
+ * so hook_preprocess_node never fires, leaving the page JS missing).
+ */
+function cp_community_hub_views_pre_render(ViewExecutable $view) {
+  if ($view->id() === 'cpcommhub_resources') {
+    $view->element['#attached']['library'][] = 'cp_community_hub/style';
+  }
 }
 
 /**

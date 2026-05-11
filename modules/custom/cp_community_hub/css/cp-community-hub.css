@@ -5,3 +5,10 @@
 #edit-user-groups-target-id--wrapper legend {
     display: none;
 }
+
+#edit-user-groups-target-id--wrapper .form-checkboxes.bef-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
+}
