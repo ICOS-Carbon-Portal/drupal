@@ -90,15 +90,15 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        body_value:
-          id: body_value
+        body:
+          id: body
           table: node__body
-          field: body_value
+          field: body
           relationship: none
           group_type: group
           admin_label: ''
           plugin_id: field
-          label: Body
+          label: ''
           exclude: true
           alter:
             alter_text: false
@@ -225,7 +225,7 @@ display:
       exposed_form:
         type: bef
         options:
-          submit_button: Apply
+          submit_button: Search
           reset_button: false
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
@@ -240,7 +240,7 @@ display:
               autosubmit_exclude_textfield: false
               autosubmit_textfield_delay: 500
               autosubmit_textfield_minimum_length: 3
-              autosubmit_hide: true
+              autosubmit_hide: false
               input_required: false
               allow_secondary: false
               secondary_label: 'Advanced options'
@@ -258,7 +258,7 @@ display:
                   collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: false
-                select_all_none: false
+                select_all_none: true
                 select_all_none_nested: false
                 display_inline: true
               field_cpcommhub_scope_value:
@@ -345,38 +345,6 @@ display:
           value:
             community_resource: community_resource
           group: 1
-        combine:
-          id: combine
-          table: views
-          field: combine
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: combine
-          operator: contains
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: ''
-            label: Search
-            description: ''
-            use_operator: false
-            operator: combine_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: search
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
-          fields:
-            - title
-            - body_value
         field_cpcommhub_user_groups_target_id:
           id: field_cpcommhub_user_groups_target_id
           table: node__field_cpcommhub_user_groups
@@ -468,6 +436,38 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           reduce_duplicates: false
+        combine:
+          id: combine
+          table: views
+          field: combine
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: combine
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: ''
+            label: Search
+            description: ''
+            use_operator: false
+            operator: combine_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: search
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+          fields:
+            - title
+            - body_value
       filter_groups:
         operator: AND
         groups:
