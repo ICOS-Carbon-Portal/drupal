@@ -35,7 +35,7 @@ display:
           entity_type: node
           entity_field: title
           plugin_id: field
-          label: Title
+          label: ''
           exclude: true
           alter:
             alter_text: false
@@ -467,7 +467,7 @@ display:
               editor: '0'
           fields:
             - title
-            - body_value
+            - body
       filter_groups:
         operator: AND
         groups:

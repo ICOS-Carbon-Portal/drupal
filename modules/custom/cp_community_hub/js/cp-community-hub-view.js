@@ -6,6 +6,34 @@
     const filterGroupsSelector = '[data-drupal-selector="edit-user-groups-target-id"]';
     const viewsFormId = 'views-exposed-form-cpcommhub-resources-block-1';
 
+    function isViewBlockHidden() {
+        const viewBlock = document.querySelector(viewBlockSelector);
+        return viewBlock ? !viewBlock.classList.contains('d-block') : false;
+    }
+
+    // Mirrors all cloned checkbox states into the hidden Views form, then fires a
+    // single change event on the last matched checkbox to trigger Views AJAX.
+    function syncInternalCheckboxes(wasHidden) {
+        const form = document.getElementById(viewsFormId);
+        if (!form) {
+            return;
+        }
+        const clonedCheckboxes = Array.from(document.querySelectorAll(groupContainerSelector + ' input[type="checkbox"]'));
+        const formCheckboxes = Array.from(form.querySelectorAll('input[type="checkbox"]'));
+        let lastInternalCb;
+        for (let cb of clonedCheckboxes) {
+            const internalCb = formCheckboxes.find(icb => icb.name === cb.name);
+            if (internalCb) {
+                internalCb.checked = cb.checked;
+                lastInternalCb = internalCb;
+            }
+        }
+        if (wasHidden) {
+            document.querySelector(viewBlockSelector + ' .view-content')?.classList.add('invisible');
+        }
+        lastInternalCb.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+
     function cloneUserGroupsFilter() {
         const groupContainer = document.querySelector(groupContainerSelector);
         const filterEl = document.querySelector(filterGroupsSelector);
@@ -36,9 +64,7 @@
             const checkboxes = Array.from(document.querySelectorAll(groupContainerSelector + ' input[type="checkbox"]'));
             const allChecked = checkboxes.every(cb => cb.checked);
             const newState = !allChecked;
-
-            const viewBlock = document.querySelector(viewBlockSelector);
-            const wasHidden = viewBlock && !viewBlock.classList.contains('d-block');
+            const wasHidden = isViewBlockHidden();
 
             for (const cb of checkboxes) {
                 cb.checked = newState;
@@ -46,24 +72,7 @@
 
             updateBlockVisibility();
 
-            const form = document.getElementById(viewsFormId);
-            let lastInternalCb = null;
-            for (const cb of checkboxes) {
-                const internalCb = form
-                    ? Array.from(form.querySelectorAll('input[type="checkbox"]')).find(icb => icb.name === cb.name)
-                    : null;
-                if (internalCb) {
-                    internalCb.checked = newState;
-                    lastInternalCb = internalCb;
-                }
-            }
-
-            if (lastInternalCb) {
-                if (wasHidden && newState) {
-                    document.querySelector(viewBlockSelector + ' .view-content')?.classList.add('invisible');
-                }
-                lastInternalCb.dispatchEvent(new Event('change', { bubbles: true }));
-            }
+            syncInternalCheckboxes(wasHidden);
         });
 
         groupContainer.appendChild(clone);
@@ -110,22 +119,11 @@
             once('commhub-group-listeners', groupContainerSelector, document).forEach((container) => {
                 container.addEventListener('change', (e) => {
                     if (e.target.matches('input[type="checkbox"]')) {
-                        const viewBlock = document.querySelector(viewBlockSelector);
-                        const wasHidden = viewBlock && !viewBlock.classList.contains('d-block');
+                        const wasHidden = isViewBlockHidden();
 
                         updateBlockVisibility();
 
-                        const form = document.getElementById(viewsFormId);
-                        const internalCb = form
-                            ? Array.from(form.querySelectorAll('input[type="checkbox"]')).find(cb => cb.name === e.target.name)
-                            : null;
-                        if (internalCb) {
-                            internalCb.checked = e.target.checked;
-                            if (wasHidden) {
-                                document.querySelector(viewBlockSelector + ' .view-content')?.classList.add('invisible');
-                            }
-                            internalCb.dispatchEvent(new Event('change', { bubbles: true }));
-                        }
+                        syncInternalCheckboxes(wasHidden);
                     }
                 });
             });
