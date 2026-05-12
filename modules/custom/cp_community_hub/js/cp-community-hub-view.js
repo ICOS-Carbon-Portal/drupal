@@ -109,6 +109,10 @@
 
     Drupal.behaviors.communityHubView = {
         attach: function (context, settings) {
+            once('commhub-disable-views-scroll', 'html', document).forEach(() => {
+                Drupal.AjaxCommands.prototype.scrollTop = function () {};
+            });
+
             once('commhub-clone-groups', 'body', document).forEach(() => cloneUserGroupsFilter());
 
             hideGroupsFilterInView(context);
