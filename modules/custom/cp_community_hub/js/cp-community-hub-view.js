@@ -1,10 +1,10 @@
 (function (Drupal, once) {
 
-    const viewBlockSelector = '.block-views-blockcpcommhub-resources-block-1';
+    const viewBlockSelector = '.block-views-blockcp-community-hub-block-1';
     const introBlockSelector = '.block-inline-blockbasic';
     const groupContainerSelector = '#user-groups-container';
     const filterGroupsSelector = '[data-drupal-selector="edit-user-groups-target-id"]';
-    const viewsFormId = 'views-exposed-form-cpcommhub-resources-block-1';
+    const viewsFormId = 'views-exposed-form-cp-community-hub-block-1';
 
     function isViewBlockHidden() {
         const viewBlock = document.querySelector(viewBlockSelector);
