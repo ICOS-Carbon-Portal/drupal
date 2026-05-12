@@ -9,7 +9,7 @@ dependencies:
     - node
     - taxonomy
     - user
-id: cpcommhub_resources
+id: cp_community_hub
 label: 'Community Hub Resources'
 module: views
 description: 'Catalogue of Community Hub resources'
