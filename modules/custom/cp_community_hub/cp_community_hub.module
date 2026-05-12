@@ -22,6 +22,15 @@ function cp_community_hub_views_pre_render(ViewExecutable $view) {
 }
 
 /**
+ * Implements hook_form_views_exposed_form_alter().
+ */
+function cp_community_hub_form_views_exposed_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if (isset($form['#id']) && $form['#id'] === 'views-exposed-form-cpcommhub-resources-block-1') {
+    $form['#attributes']['autocomplete'] = 'off';
+  }
+}
+
+/**
  * Implements hook_theme().
  */
 function cp_community_hub_theme() {

@@ -43,6 +43,10 @@
             return;
         }
 
+        for (const cb of filterWrapper.querySelectorAll('input[type="checkbox"]')) {
+            cb.checked = false;
+        }
+
         const clone = filterWrapper.cloneNode(true);
         for (let checkbox of clone.querySelectorAll('input[type="checkbox"]')) {
             checkbox.setAttribute('form', viewsFormId);
