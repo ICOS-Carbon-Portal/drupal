@@ -16,7 +16,7 @@ function cp_community_hub_preprocess_node__community_resource(&$variables) {
  * so hook_preprocess_node never fires, leaving the page JS missing).
  */
 function cp_community_hub_views_pre_render(ViewExecutable $view) {
-  if ($view->id() === 'cpcommhub_resources') {
+  if ($view->id() === 'cp_community_hub') {
     $view->element['#attached']['library'][] = 'cp_community_hub/style';
   }
 }
@@ -25,7 +25,7 @@ function cp_community_hub_views_pre_render(ViewExecutable $view) {
  * Implements hook_form_views_exposed_form_alter().
  */
 function cp_community_hub_form_views_exposed_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-  if (isset($form['#id']) && $form['#id'] === 'views-exposed-form-cpcommhub-resources-block-1') {
+  if (isset($form['#id']) && $form['#id'] === 'views-exposed-form-cp-community-hub-block-1') {
     $form['#attributes']['autocomplete'] = 'off';
   }
 }
