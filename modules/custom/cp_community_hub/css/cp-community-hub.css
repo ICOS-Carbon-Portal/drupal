@@ -13,7 +13,7 @@
     margin-top: 1rem;
 }
 
-.form-item-scope-value {
+.form-item-scope-value, .form-item-search-value {
     margin-right: 1rem;
 }
 
