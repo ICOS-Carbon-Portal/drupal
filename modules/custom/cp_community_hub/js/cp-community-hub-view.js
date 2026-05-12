@@ -26,6 +26,46 @@
             }
         }
 
+        const selectAllBtn = document.createElement('button');
+        selectAllBtn.type = 'button';
+        selectAllBtn.classList.add('btn', 'btn-outline-secondary', 'mb-3', 'ms-4');
+        selectAllBtn.textContent = 'Select all';
+        clone.querySelector(".form-checkboxes").appendChild(selectAllBtn);
+
+        selectAllBtn.addEventListener('click', () => {
+            const checkboxes = Array.from(document.querySelectorAll(groupContainerSelector + ' input[type="checkbox"]'));
+            const allChecked = checkboxes.every(cb => cb.checked);
+            const newState = !allChecked;
+
+            const viewBlock = document.querySelector(viewBlockSelector);
+            const wasHidden = viewBlock && !viewBlock.classList.contains('d-block');
+
+            for (const cb of checkboxes) {
+                cb.checked = newState;
+            }
+
+            updateBlockVisibility();
+
+            const form = document.getElementById(viewsFormId);
+            let lastInternalCb = null;
+            for (const cb of checkboxes) {
+                const internalCb = form
+                    ? Array.from(form.querySelectorAll('input[type="checkbox"]')).find(icb => icb.name === cb.name)
+                    : null;
+                if (internalCb) {
+                    internalCb.checked = newState;
+                    lastInternalCb = internalCb;
+                }
+            }
+
+            if (lastInternalCb) {
+                if (wasHidden && newState) {
+                    document.querySelector(viewBlockSelector + ' .view-content')?.classList.add('invisible');
+                }
+                lastInternalCb.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+        });
+
         groupContainer.appendChild(clone);
         filterWrapper.classList.add('d-none');
     }
