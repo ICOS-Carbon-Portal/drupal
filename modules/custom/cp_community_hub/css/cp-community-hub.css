@@ -20,3 +20,10 @@
 .ajax-progress {
     display: none; 
 }
+
+.community_resource #page .page-content {
+    margin-bottom: 2rem;
+    .node--type-community-resource, .teaser-news-image {
+        max-width: 441px;
+    }
+}

@@ -39,5 +39,9 @@ function cp_community_hub_theme() {
       'template' => 'node--community-resource--teaser',
       'base hook' => 'node',
     ],
+    'node__community_resource__full' => [
+      'template' => 'node--community-resource--teaser',
+      'base hook' => 'node',
+    ],
   ];
 }
