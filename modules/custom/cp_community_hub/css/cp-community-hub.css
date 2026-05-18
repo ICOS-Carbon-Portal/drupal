@@ -8,8 +8,7 @@
     }
 }
 
-
-.ajax-progress {
+h1.title, .ajax-progress {
     display: none; 
 }
 
