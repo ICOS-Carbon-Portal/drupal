@@ -1,7 +1,8 @@
 (function (Drupal, once) {
 
     const viewBlockSelector = '.block-views-blockcp-community-hub-block-1';
-    const introBlockSelector = '.block-inline-blockbasic';
+    const introBlockSelector = '.block-field-blocknodepagefield-introduction';
+    const inlineBlockSelector = '.block-inline-blockbasic';
     const groupContainerSelector = '#user-groups-container';
     const filterGroupsSelector = '[data-drupal-selector="edit-user-groups-target-id"]';
     const viewsFormId = 'views-exposed-form-cp-community-hub-block-1';
@@ -96,18 +97,22 @@
 
     function updateBlockVisibility() {
         const viewBlock  = document.querySelector(viewBlockSelector);
-        const introBlock = document.querySelector(introBlockSelector);
+        const introBlock  = document.querySelector(introBlockSelector);
+        const inlineBlock = document.querySelector(inlineBlockSelector);
 
-        if (!viewBlock || !introBlock) {
+        if (!viewBlock || !introBlock || !inlineBlock) {
+            console.error("Unable to find all blocks for updating visibility")
             return;
         }
 
         if (hasGroupSelected()) {
             viewBlock.classList.add('d-block');
-            introBlock.classList.add('d-none');
+            introBlock.classList.add('d-block');
+            inlineBlock.classList.add('d-none');
         } else {
             viewBlock.classList.remove('d-block');
-            introBlock.classList.remove('d-none');
+            introBlock.classList.remove('d-block');
+            inlineBlock.classList.remove('d-none');
         }
     }
 

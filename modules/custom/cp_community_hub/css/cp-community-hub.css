@@ -1,6 +1,13 @@
-#page-wrapper:not(.layout-builder-overrides-node-view) .block-views-blockcp-community-hub-block-1 {
-    display: none;
+#page-wrapper:not(.layout-builder-overrides-node-view) {
+    .block-views-blockcp-community-hub-block-1 {
+        display: none;
+    }
+
+    .block-field-blocknodepagefield-introduction {
+        display: none;
+    }
 }
+
 
 .ajax-progress {
     display: none; 
