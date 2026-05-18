@@ -12,6 +12,10 @@ h1.title, .ajax-progress {
     display: none; 
 }
 
+ol.breadcrumb {
+    visibility: hidden;
+}
+
 .block-views-blockcp-community-hub-block-1 {
     .form-item-scope-value, .form-type-textfield {
         margin-right: 1rem;
@@ -34,6 +38,8 @@ h1.title, .ajax-progress {
 }
 
 #user-groups-container {
+    margin-top: 2rem;
+
     #edit-user-groups-target-id--wrapper legend {
         display: none;
     }
