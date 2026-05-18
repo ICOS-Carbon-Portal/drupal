@@ -29,10 +29,19 @@
                 lastInternalCb = internalCb;
             }
         }
+
         if (wasHidden) {
             document.querySelector(viewBlockSelector + ' .view-content')?.classList.add('invisible');
         }
+
         lastInternalCb.dispatchEvent(new Event('change', { bubbles: true }));
+
+        const selectAllBtn = document.getElementById('selectAllBtn');
+        if (selectAllBtn && clonedCheckboxes.every(cb => cb.checked)) {
+            selectAllBtn.innerText = 'Select none';
+        } else {
+            selectAllBtn.innerText = 'Select all';
+        }
     }
 
     function cloneUserGroupsFilter() {
@@ -60,6 +69,7 @@
         }
 
         const selectAllBtn = document.createElement('button');
+        selectAllBtn.id = 'selectAllBtn';
         selectAllBtn.type = 'button';
         selectAllBtn.classList.add('btn', 'btn-outline-secondary', 'mb-3', 'ms-4');
         selectAllBtn.textContent = 'Select all';
@@ -67,8 +77,8 @@
 
         selectAllBtn.addEventListener('click', () => {
             const checkboxes = Array.from(document.querySelectorAll(groupContainerSelector + ' input[type="checkbox"]'));
-            const allChecked = checkboxes.every(cb => cb.checked);
-            const newState = !allChecked;
+
+            const newState = !(checkboxes.every(cb => cb.checked));
             const wasHidden = isViewBlockHidden();
 
             for (const cb of checkboxes) {
