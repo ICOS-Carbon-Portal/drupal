@@ -390,6 +390,8 @@ iframe {
 .cp_event #page .page-content,
 .system-404 .page-content,
 .system-403 .page-content,
+.path-user .page-content,
+.layout-builder-overrides-node-discard-changes .page-content,
 .cp-search-search-results-page #page .page-content {
   max-width: 70.5rem;
   margin-left: auto;
@@ -415,8 +417,7 @@ iframe {
 .node-add-page .page-content,
 .view-data-products-page-1 #page .page-content,
 .fluxes_volume .page-content .block:not(.block-system-main-block),
-.fluxes_volume .page-content .layout--normal,
-.path-user #page .page-content {
+.fluxes_volume .page-content .layout--normal {
   max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
