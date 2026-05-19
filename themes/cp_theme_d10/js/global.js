@@ -11,13 +11,17 @@
       once('cp_theme_d10', '#cp_theme_d10_menu .top-node .drop-down-toggle').forEach(function (el) {
         el.addEventListener('click', function (event) {
           let target = el.closest(".top-node");
-          target.classList.toggle("open");
+          if (window.innerWidth < 992) {
+            target.classList.toggle("open");
+          }
           event.preventDefault();
         });
         el.addEventListener('keyup', function (event) {
           if(event.key === "Enter") {
             let target = el.closest(".top-node");
-            target.classList.toggle("open");
+            if (window.innerWidth < 992) {
+              target.classList.toggle("open");
+            }
             event.preventDefault();
           }
         });
