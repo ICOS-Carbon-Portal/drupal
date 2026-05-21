@@ -94,13 +94,6 @@
         filterWrapper.classList.add('d-none');
     }
 
-    function hideGroupsFilterInView(context) {
-        const wrapper = context.querySelector(filterGroupsSelector)?.closest('.form-item, .js-form-item, fieldset, details');
-        if (wrapper && !wrapper.closest(groupContainerSelector)) {
-            wrapper.classList.add('d-none');
-        }
-    }
-
     function hasGroupSelected() {
         return document.querySelectorAll(groupContainerSelector + ' input[type="checkbox"]:checked').length > 0;
     }
@@ -133,8 +126,6 @@
             });
 
             once('commhub-clone-groups', 'body', document).forEach(() => cloneUserGroupsFilter());
-
-            hideGroupsFilterInView(context);
 
             updateBlockVisibility();
             document.querySelector(viewBlockSelector + ' .view-content')?.classList.remove('invisible');

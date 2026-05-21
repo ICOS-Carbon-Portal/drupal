@@ -16,6 +16,10 @@ ol.breadcrumb {
     visibility: hidden;
 }
 
+.view-filters fieldset[data-drupal-selector="edit-user-groups-target-id"] {
+    display: none;
+}
+
 .block-views-blockcp-community-hub-block-1 {
     .form-item-scope-value, .form-type-textfield {
         margin-right: 1rem;
