@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.community_resource.body
     - field.field.node.community_resource.field_cpcommhub_image
     - field.field.node.community_resource.field_cpcommhub_link
+    - field.field.node.community_resource.field_cpcommhub_restricted
     - field.field.node.community_resource.field_cpcommhub_scope
     - field.field.node.community_resource.field_cpcommhub_user_groups
     - field.field.node.community_resource.field_cpcommhub_weight
@@ -57,6 +58,7 @@ content:
     weight: 4
     region: content
 hidden:
+  field_cpcommhub_restricted: true
   field_cpcommhub_scope: true
   field_cpcommhub_user_groups: true
   field_cpcommhub_weight: true

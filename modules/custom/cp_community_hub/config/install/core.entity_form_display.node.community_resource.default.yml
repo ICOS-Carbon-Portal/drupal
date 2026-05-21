@@ -5,6 +5,7 @@ dependencies:
     - field.field.node.community_resource.body
     - field.field.node.community_resource.field_cpcommhub_image
     - field.field.node.community_resource.field_cpcommhub_link
+    - field.field.node.community_resource.field_cpcommhub_restricted
     - field.field.node.community_resource.field_cpcommhub_scope
     - field.field.node.community_resource.field_cpcommhub_user_groups
     - field.field.node.community_resource.field_cpcommhub_weight
@@ -60,11 +61,18 @@ content:
     third_party_settings: {  }
   field_cpcommhub_link:
     type: link_default
-    weight: 5
+    weight: 6
     region: content
     settings:
       placeholder_url: ''
       placeholder_title: 'Go to resource'
+    third_party_settings: {  }
+  field_cpcommhub_restricted:
+    type: boolean_checkbox
+    weight: 5
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   field_cpcommhub_weight:
     type: number

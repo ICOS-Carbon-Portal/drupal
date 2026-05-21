@@ -34,6 +34,9 @@
             <a href="{{ resource_url }}" class="hide-external text-dark text-decoration-none" target="_blank" tabindex="-1">
                 {{ label }}
             </a>
+            {% if node.field_cpcommhub_restricted.value %}
+                <i class="fas fa-lock text-danger ms-1" data-bs-toggle="tooltip" title="{{ 'Restricted access'|t }}"></i>
+            {% endif %}
         </h2>
     {% endif %}
     {{ title_suffix }}
