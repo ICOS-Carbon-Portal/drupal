@@ -383,6 +383,7 @@ iframe {
 
 /* "Narrow" pages -- all content narrow (70.5rem) */
 .fluxes_article .page-content,
+.path-webform .page-content,
 .webform #page .page-content,
 .entity-webform-canonical #page .page-content,
 .entity-webform-confirmation #page .page-content,
