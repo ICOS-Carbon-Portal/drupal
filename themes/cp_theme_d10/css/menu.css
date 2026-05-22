@@ -78,6 +78,10 @@
     .menu-level-3 {
       padding-left: 2rem;
     }
+
+    .menu-backdrop {
+      display: none;
+    }
   }
 }
 
@@ -103,6 +107,17 @@
       &>div {
         width: 19%;
       }
+    }
+
+    .menu-backdrop {
+      z-index: 8;
+      position: absolute;
+      top: 38.5px;
+      left: 0;
+      width: 100vw;
+      background: white;
+      box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 16px 0px;
+      transition: height 0.2s 0.1s;
     }
   }
 
