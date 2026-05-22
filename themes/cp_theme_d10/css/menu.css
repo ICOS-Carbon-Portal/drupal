@@ -92,42 +92,16 @@
     .top-node:focus-within .dropdown-menu {
       display: flex;
       flex-wrap: nowrap;
-      visibility: visible;
-      max-height: 400px;
-      padding-top: 1rem !important;
-      padding-bottom: 1.5rem !important;
-      transition: visibility 0s 0.3s,
-        max-height 0.3s ease-out 0.3s,
-        padding-bottom 0.3s ease-out 0.3s,
-        padding-top 0.15s ease-out 0.3s;
-
-      &>div {
-        opacity: 1;
-        transition: opacity 0.3s linear 0.3s; 
-      }
     }
 
     .top-node .dropdown-menu {
-      display: flex;
-      flex-wrap: nowrap;
       left: 0;
-      overflow: clip;
       width: 100%;
       padding-left: 1rem;
       padding-right: 1rem;
-      padding-top: 0 !important;
-      padding-bottom: 0 !important;
-      visibility: hidden;
-      max-height: 0;
-      transition: visibility 0s 0.2s,
-        max-height 0.1s ease-out 0.1s,
-        padding-bottom 0.1s ease-out 0.1s,
-        padding-top 0.05s ease-out 0.15s;
 
       &>div {
         width: 19%;
-        opacity: 0;
-        transition: opacity 0.1s linear 0.1s; 
       }
     }
   }
