@@ -94,11 +94,14 @@
   #cp_theme_d10_menu {
     .top-node:hover .dropdown-menu,
     .top-node:focus-within .dropdown-menu {
-      display: flex;
-      flex-wrap: nowrap;
+      opacity: 1;
+      visibility: visible;
+      transition: visibility 0s 0.5s, opacity 0.5s 0.5s;
     }
 
     .top-node .dropdown-menu {
+      display: flex;
+      flex-wrap: nowrap;
       left: 0;
       width: 100%;
       padding-left: 1rem;
@@ -106,6 +109,9 @@
       background: none;
       box-shadow: none;
       border: 0;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s 0.5s, opacity 0.5s 0s;
 
       &>div {
         width: 19%;
@@ -118,12 +124,12 @@
       top: 38.5px;
       left: 0;
       width: 100vw;
+      height: 0px;
       background: white;
       box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 16px 0px;
-      transition: height 0.2s 0.1s;
+      transition: height 0.5s 0.5s;
     }
   }
-
 }
 
 /* Bootstrap XXL breakpoint */
