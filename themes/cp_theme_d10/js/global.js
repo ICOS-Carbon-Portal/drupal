@@ -27,7 +27,9 @@
         });
       });
       const menuBackdrop = document.querySelector(".menu-backdrop");
-      if (!menuBackdrop) { return; }
+      if (!menuBackdrop) {
+        return;
+      }
 
       let committedTopNode = null;
       let dwellTimer = null;
@@ -45,11 +47,7 @@
           dropdown.style.opacity = '1';
           dropdown.style.transform = 'translateY(0)';
         }
-        let height = topNode.dataset.computedHeight;
-        if (!height) {
-          height = (dropdown ? dropdown.offsetHeight : topNode.offsetHeight) + 'px';
-          topNode.dataset.computedHeight = height;
-        }
+        const height = (dropdown ? dropdown.offsetHeight : topNode.offsetHeight) + 'px';
         menuBackdrop.style.height = height;
       }
 
@@ -84,23 +82,36 @@
 
       once('cp_theme_d10_hover', '#cp_theme_d10_menu .top-node').forEach(function (el) {
         el.addEventListener('mouseenter', function () {
+          if (window.innerWidth < 992) {
+            return;
+          }
           clearTimeout(closeTimer);
           dwellTimer = setTimeout(function () { showDropdown(el); }, DWELL_TIME);
         });
 
         el.addEventListener('mouseleave', function () {
+          if (window.innerWidth < 992) {
+            return;
+          }
           clearTimeout(dwellTimer);
           closeTimer = setTimeout(closeMenu, CLOSE_GRACE);
         });
 
         el.addEventListener('focusin', function () {
+          if (window.innerWidth < 992) {
+            return;
+          }
           clearTimeout(dwellTimer);
           clearTimeout(closeTimer);
           showDropdown(el);
         });
 
         el.addEventListener('focusout', function (event) {
-          if (!el.contains(event.relatedTarget) && committedTopNode === el) {
+          if (window.innerWidth < 992) {
+            return;
+          }
+          const nextTopNode = event.relatedTarget && event.relatedTarget.closest('#cp_theme_d10_menu .top-node');
+          if (!el.contains(event.relatedTarget) && committedTopNode === el && !nextTopNode) {
             closeMenu();
           }
         });
