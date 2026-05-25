@@ -103,6 +103,9 @@
       width: 100%;
       padding-left: 1rem;
       padding-right: 1rem;
+      background: none;
+      box-shadow: none;
+      border: 0;
 
       &>div {
         width: 19%;
