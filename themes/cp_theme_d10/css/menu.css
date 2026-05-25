@@ -92,14 +92,6 @@
   }
 
   #cp_theme_d10_menu {
-    .top-node:hover .dropdown-menu,
-    .top-node:focus-within .dropdown-menu {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-      transition: visibility 0s 0.2s, opacity 0.2s ease-out 0.2s, transform 0.2s ease-out 0.2s;
-    }
-
     .top-node .dropdown-menu {
       display: flex;
       flex-wrap: nowrap;
@@ -113,7 +105,7 @@
       visibility: hidden;
       opacity: 0;
       transform: translateY(-6px);
-      transition: opacity 0.15s ease-in, visibility 0s 0.15s, transform 0.15s ease-in;
+      transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
 
       &>div {
         width: 19%;
@@ -128,7 +120,7 @@
       width: 100vw;
       background: white;
       box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 16px 0px;
-      transition: height 0.15s ease-in 0.2s;
+      transition: height 0.2s ease-in-out;
     }
   }
 }
