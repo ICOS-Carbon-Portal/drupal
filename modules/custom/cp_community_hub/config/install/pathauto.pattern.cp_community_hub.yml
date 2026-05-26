@@ -1,0 +1,22 @@
+uuid: e241d093-790e-44f9-8c71-f178425a958f
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: cp_community_hub
+label: 'Community Hub Resources'
+type: 'canonical_entities:node'
+pattern: '/community-hub/[node:title]'
+selection_criteria:
+  1a483b67-0d3d-4c0b-9b70-dde7786861ff:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 1a483b67-0d3d-4c0b-9b70-dde7786861ff
+    context_mapping:
+      node: node
+    bundles:
+      community_resource: community_resource
+selection_logic: and
+weight: -5
+relationships: {  }

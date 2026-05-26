@@ -1,0 +1,38 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_cpcommhub_scope
+field_name: field_cpcommhub_scope
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: governance_management
+      label: 'Governance & Management'
+    -
+      value: strategy_policies_guidance
+      label: 'Strategy, Policies & Guidance'
+    -
+      value: operations_practical
+      label: 'Operations & Practical Instructions'
+    -
+      value: scientific_technical
+      label: 'Scientific & Technical Infrastructure'
+    -
+      value: communication_onboarding
+      label: 'Communication & Onboarding'
+    -
+      value: meetings_collaboration
+      label: 'Meetings & Internal Collaboration'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
