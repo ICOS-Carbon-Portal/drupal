@@ -59,11 +59,15 @@
 
         const clone = filterWrapper.cloneNode(true);
         for (let checkbox of clone.querySelectorAll('input[type="checkbox"]')) {
+            const originalId = checkbox.id;
+            const newId = 'top-' + originalId;
+            checkbox.id = newId;
             checkbox.setAttribute('form', viewsFormId);
             checkbox.classList.add('btn-check');
             checkbox.setAttribute('autocomplete', 'off');
-            const label = clone.querySelector('label[for="' + checkbox.id + '"]');
+            const label = clone.querySelector('label[for="' + originalId + '"]');
             if (label) {
+                label.setAttribute('for', newId);
                 label.classList.add('btn', 'btn-outline-primary');
             }
         }
