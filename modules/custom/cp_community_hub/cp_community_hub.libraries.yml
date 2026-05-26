@@ -4,3 +4,7 @@ style:
       css/cp-community-hub.css: {}
   js:
     js/cp-community-hub-view.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - core/drupal.ajax
