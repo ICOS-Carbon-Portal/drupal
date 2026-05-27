@@ -38,6 +38,10 @@ Once installed/enabled, requires a specific page setup to render properly.
     4) Add block to bottom section -- create content block, add text that should appear when no user group is selected, e.g. `Tell us what your role is, and we’ll show you what you need...`
     5) Save layout.
 
+## Hide h1
+
+Go to `/admin/structure/block` and, for page title, click Configure. Add the page's alias (from above) to list of pages on which page title is hidden.
+
 ## Create taxonomy terms for "User groups"
 
 Go to `/admin/structure/taxonomy/manage/community_user_groups/overview` and add user groups. Reorder as desired.
