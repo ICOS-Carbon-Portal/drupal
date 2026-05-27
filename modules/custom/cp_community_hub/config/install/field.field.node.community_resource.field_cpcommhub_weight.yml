@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cpcommhub_weight
+    - node.type.community_resource
+id: node.community_resource.field_cpcommhub_weight
+field_name: field_cpcommhub_weight
+entity_type: node
+bundle: community_resource
+label: 'Display weight'
+description: 'Lower numbers appear first. Use 0 for default ordering, negative numbers to promote above others.'
+required: false
+translatable: false
+default_value:
+  - value: 0
+default_value_callback: ''
+settings:
+  min: ''
+  max: ''
+  prefix: ''
+  suffix: ''
+field_type: integer

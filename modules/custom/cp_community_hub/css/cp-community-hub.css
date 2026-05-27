@@ -1,0 +1,67 @@
+#page-wrapper:not(.layout-builder-overrides-node-view) {
+    .block-views-blockcp-community-hub-block-1 {
+        display: none;
+    }
+
+    .block-field-blocknodepagefield-introduction {
+        display: none;
+    }
+}
+
+.ajax-progress {
+    display: none; 
+}
+
+ol.breadcrumb {
+    visibility: hidden;
+}
+
+.view-filters fieldset[data-drupal-selector="edit-user-groups-target-id"] {
+    display: none;
+}
+
+.block-views-blockcp-community-hub-block-1 {
+    .form-item-scope-value, .form-type-textfield {
+        margin-right: 1rem;
+    }
+
+    .community_resource #page .page-content {
+        margin-bottom: 2rem;
+        .node--type-community-resource, .teaser-news-image {
+            max-width: 441px;
+        }
+    }
+
+    .form-submit:disabled {
+        color: var(--bs-btn-color);
+        background-color: var(--bs-btn-bg);
+        border-color: var(--bs-btn-border-color);
+        opacity: var(--bs-btn-opacity);
+        box-shadow: var(--bs-btn-box-shadow);
+    }
+}
+
+#user-groups-container {
+    margin-top: 2rem;
+
+    #edit-user-groups-target-id--wrapper legend {
+        display: none;
+    }
+    
+    #edit-user-groups-target-id--wrapper .form-checkboxes.bef-checkboxes {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+
+    .btn-check:not(:checked) + .btn-outline-primary:hover {
+        color: var(--bs-primary);
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+    }
+
+    .btn-check:checked + .btn-outline-primary:hover {
+        color: var(--bs-body-bg);
+        background-color: rgba(var(--bs-primary-rgb), 0.8);
+    }
+}

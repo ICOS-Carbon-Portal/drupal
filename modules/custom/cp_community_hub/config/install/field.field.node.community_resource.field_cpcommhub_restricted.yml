@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cpcommhub_restricted
+    - node.type.community_resource
+id: node.community_resource.field_cpcommhub_restricted
+field_name: field_cpcommhub_restricted
+entity_type: node
+bundle: community_resource
+label: 'Restricted access'
+description: ''
+required: false
+translatable: false
+default_value:
+  - value: 0
+default_value_callback: ''
+settings: {  }
+field_type: boolean

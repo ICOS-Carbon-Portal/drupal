@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+third_party_settings: {  }
+name: 'Community User Groups'
+vid: community_user_groups
+description: 'User groups / personas for Community Hub resources'
+weight: 0
+new_revision: false

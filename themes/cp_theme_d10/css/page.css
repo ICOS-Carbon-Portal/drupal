@@ -393,7 +393,8 @@ iframe {
 .system-403 .page-content,
 .path-user .page-content,
 .layout-builder-overrides-node-discard-changes .page-content,
-.cp-search-search-results-page #page .page-content {
+.cp-search-search-results-page #page .page-content,
+.community_resource #page .page-content {
   max-width: 70.5rem;
   margin-left: auto;
   margin-right: auto;

@@ -1,0 +1,2 @@
+# Schema for cp_community_hub module configuration.
+# No custom field types in this module; all fields use core schemas.
