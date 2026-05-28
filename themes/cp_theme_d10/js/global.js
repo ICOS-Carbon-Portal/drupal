@@ -80,6 +80,12 @@
         menuBackdrop.style.height = '0px';
       }
 
+      window.addEventListener('resize', function () {
+        if (committedTopNode) {
+          revealDropdown(committedTopNode);
+        }
+      });
+
       once('cp_theme_d10_hover', '#cp_theme_d10_menu .top-node').forEach(function (el) {
         el.addEventListener('mouseenter', function () {
           if (window.innerWidth < 992) {
