@@ -383,6 +383,7 @@ iframe {
 
 /* "Narrow" pages -- all content narrow (70.5rem) */
 .fluxes_article .page-content,
+.path-webform .page-content,
 .webform #page .page-content,
 .entity-webform-canonical #page .page-content,
 .entity-webform-confirmation #page .page-content,
@@ -390,6 +391,8 @@ iframe {
 .cp_event #page .page-content,
 .system-404 .page-content,
 .system-403 .page-content,
+.path-user .page-content,
+.layout-builder-overrides-node-discard-changes .page-content,
 .cp-search-search-results-page #page .page-content,
 .community_resource #page .page-content {
   max-width: 70.5rem;
@@ -416,8 +419,7 @@ iframe {
 .node-add-page .page-content,
 .view-data-products-page-1 #page .page-content,
 .fluxes_volume .page-content .block:not(.block-system-main-block),
-.fluxes_volume .page-content .layout--normal,
-.path-user #page .page-content {
+.fluxes_volume .page-content .layout--normal {
   max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
@@ -446,7 +448,8 @@ iframe {
   .layout--threecol-section,
   .layout--twocol-section,
   .layout--colored-flex,
-  .layout--dark-blue-bot-left-two {
+  .layout--dark-blue-bot-left-two,
+  nav.tabs {
     max-width: 70.5rem;
     /* 1128px */
     margin-left: auto;
@@ -476,7 +479,8 @@ iframe {
   .layout--twocol-section,
   .layout--threecol-section,
   .layout--colored-flex,
-  .layout--dark-blue-bot-left-two {
+  .layout--dark-blue-bot-left-two,
+  nav.tabs {
     max-width: 1400px;
   }
 }
