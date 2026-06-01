@@ -1,0 +1,42 @@
+{#
+/**
+ * @file
+ * Theme implementation for a community_resource node in teaser view mode.
+ *
+ * Modeled on the news article teaser, but with body text included and all
+ * links pointing directly to the external resource URL (the Drupal detail
+ * page is not surfaced to catalogue visitors).
+ *
+ * Available variables: see node.html.twig
+ */
+#}
+{%
+    set classes = [
+        'node',
+        'node--type-' ~ node.bundle|clean_class,
+        view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+        'col',
+    ]
+%}
+{% set resource_url = content.field_cpcommhub_link[0] %}
+
+<div class="row mb-5">
+    <div class="col-4">
+        <article{{ attributes.addClass(classes) }}>
+            <a href="{{ resource_url }}" class="hide-external" target="_blank" tabindex="-1">
+                <div class="teaser-news-image d-flex justify-content-center">
+                    {{ content.field_cpcommhub_image }}
+                </div>
+            </a>
+
+            {{ content.body }}
+
+            <a href="{{ resource_url }}" class="btn btn-outline-primary" target="_blank">
+                {{ node.field_cpcommhub_link.0.title ?: 'Go to resource' }}
+                {% if node.field_cpcommhub_restricted.value %}
+                    <i class="fas fa-lock text-primary ms-1" data-bs-toggle="tooltip" title="{{ 'Restricted access'|t }}"></i>
+                {% endif %}
+            </a>
+        </article>
+    </div>
+</div>
