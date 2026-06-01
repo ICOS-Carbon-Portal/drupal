@@ -56,7 +56,7 @@
 			<div id="cp_theme_d10_menu" class="layout-container">
 			<div{{ attributes.removeClass('clearfix').addClass('nav navbar-nav justify-content-center px-3')|without('id') }}>
 		{% elseif menu_level == 1 %}
-			<div class="dropdown-menu pt-3 pb-4 border rounded-0 justify-content-between">
+			<div class="dropdown-menu pt-3 pb-4 rounded-0 justify-content-between">
 		{% endif %}
 		{% for item in items %}
 			{% set item_classes = [
@@ -114,11 +114,10 @@
 		{% endfor %}
 		{% if menu_level == 0 %}
 			</div> {# .navbar-nav #}
+			<div class="menu-backdrop" style="height: 0px;"></div>
 			</div> {# #cp_theme_d10_menu #}
 		{% elseif menu_level <= 1 %}
 			</div> {# .dropdown-menu #}
-		{% endif %}
-		{% if menu_level == 0 %}
 		{% endif %}
 	{% endif %}
 {% endmacro %}
