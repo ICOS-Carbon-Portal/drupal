@@ -39,6 +39,15 @@ ol.breadcrumb {
         opacity: var(--bs-btn-opacity);
         box-shadow: var(--bs-btn-box-shadow);
     }
+
+    .node--type-community-resource {
+        margin-bottom: 0;
+        padding-bottom: 0.75rem;
+    }
+
+    .view-filters {
+        margin-bottom: 1.25rem;
+    }
 }
 
 #user-groups-container {

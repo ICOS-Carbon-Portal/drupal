@@ -40,7 +40,7 @@ function cp_community_hub_theme() {
       'base hook' => 'node',
     ],
     'node__community_resource__full' => [
-      'template' => 'node--community-resource--teaser',
+      'template' => 'node--community-resource--full',
       'base hook' => 'node',
     ],
   ];

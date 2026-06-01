@@ -35,13 +35,6 @@
         }
 
         lastInternalCb.dispatchEvent(new Event('change', { bubbles: true }));
-
-        const selectAllBtn = document.getElementById('selectAllBtn');
-        if (selectAllBtn && clonedCheckboxes.every(cb => cb.checked)) {
-            selectAllBtn.innerText = 'Select none';
-        } else {
-            selectAllBtn.innerText = 'Select all';
-        }
     }
 
     function cloneUserGroupsFilter() {
@@ -72,28 +65,6 @@
             }
         }
 
-        const selectAllBtn = document.createElement('button');
-        selectAllBtn.id = 'selectAllBtn';
-        selectAllBtn.type = 'button';
-        selectAllBtn.classList.add('btn', 'btn-outline-secondary', 'mb-3', 'ms-4');
-        selectAllBtn.textContent = 'Select all';
-        clone.querySelector(".form-checkboxes").appendChild(selectAllBtn);
-
-        selectAllBtn.addEventListener('click', () => {
-            const checkboxes = Array.from(document.querySelectorAll(groupContainerSelector + ' input[type="checkbox"]'));
-
-            const newState = !(checkboxes.every(cb => cb.checked));
-            const wasHidden = isViewBlockHidden();
-
-            for (const cb of checkboxes) {
-                cb.checked = newState;
-            }
-
-            updateBlockVisibility();
-
-            syncInternalCheckboxes(wasHidden);
-        });
-
         groupContainer.appendChild(clone);
         filterWrapper.classList.add('d-none');
     }
@@ -123,6 +94,29 @@
         }
     }
 
+    function addSelectAllToEmpty() {
+        const viewEmpty = document.querySelector(viewBlockSelector + ' .view-empty');
+        const checkboxes = Array.from(document.querySelectorAll(groupContainerSelector + ' input[type="checkbox"]'));
+        if (!viewEmpty || viewEmpty.querySelector('.select-all-link') || checkboxes.every(cb => cb.checked)) {
+            return;
+        }
+        const link = document.createElement('a');
+        link.href = '#';
+        link.classList.add('select-all-link');
+        link.textContent = 'Expand search to include all roles';
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const checkboxes = Array.from(document.querySelectorAll(groupContainerSelector + ' input[type="checkbox"]'));
+            const wasHidden = isViewBlockHidden();
+            for (const cb of checkboxes) {
+                cb.checked = true;
+            }
+            updateBlockVisibility();
+            syncInternalCheckboxes(wasHidden);
+        });
+        viewEmpty.appendChild(link);
+    }
+
     Drupal.behaviors.communityHubView = {
         attach: function (context, settings) {
             once('commhub-disable-views-scroll', 'html', document).forEach(() => {
@@ -133,6 +127,7 @@
 
             updateBlockVisibility();
             document.querySelector(viewBlockSelector + ' .view-content')?.classList.remove('invisible');
+            addSelectAllToEmpty();
 
             once('commhub-group-listeners', groupContainerSelector, document).forEach((container) => {
                 container.addEventListener('change', (e) => {
