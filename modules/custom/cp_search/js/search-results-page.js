@@ -13,6 +13,9 @@
             const paginationDiv = context.getElementById("pagination");
             const categoriesDiv = context.getElementById("categories");
 
+            const urlParams = new URLSearchParams(window.location.search);
+            const initialQuery = urlParams.has("q") ? decodeURIComponent(urlParams.get("q")) : "";
+
             const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
                 server: {
                     apiKey: typesenseApiKey,
@@ -22,6 +25,7 @@
                             protocol: 'https',
                         },
                     ],
+                    connectionTimeoutSeconds: 10,
                 },
                 additionalSearchParameters: {
                     query_by: 'title,content,url',
@@ -34,19 +38,31 @@
 
             const searchClient = typesenseInstantsearchAdapter.searchClient;
 
+            // undefined = first search not yet fired; null/timer ID = debounce active or expired
+            let debounceTimerId;
+
             const search = instantsearch({
                 searchClient,
                 indexName,
+                initialUiState: initialQuery ? { [indexName]: { query: initialQuery } } : {},
                 searchFunction(helper) {
                     let newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?q=' + encodeURIComponent(helper.state.query.trim());
 
                     if (helper.state.query.trim() === '') {
                         newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-                        // Hide results when query is empty
+                        clearTimeout(debounceTimerId);
                         document.querySelectorAll(".hide-on-empty-query").forEach((element) => element.style.display = 'none');
                     } else {
                         document.querySelectorAll(".hide-on-empty-query").forEach((element) => element.style.display = '');
-                        helper.search();
+                        if (debounceTimerId === undefined) {
+                            debounceTimerId = null;
+                            helper.search();
+                        } else {
+                            clearTimeout(debounceTimerId);
+                            debounceTimerId = setTimeout(() => {
+                                helper.search();
+                            }, 300);
+                        }
                     }
                     window.history.replaceState({path:newurl},'',newurl);
                 }
@@ -167,11 +183,6 @@
                     input: ["form-search", "form-control"],
                     submit: ["btn", "btn-primary", "ms-3", "rounded-5"]
                   },
-                  /*templates: {
-                    submit({ cssClasses }, { html }) {
-                        return html`<i class="${cssClasses.submitIcon}"></i>`;
-                    },
-                  }*/
                   templates: {
                     submit({ cssClasses }, { html }) {
                         return "Search";
@@ -195,12 +206,6 @@
                 hitsPanel({
                     container: hitsDiv,
                     escapeHTML: false,
-                    /*transformItems(items) {
-                        console.log(items);
-                        return items.map(item => ({
-                            ...item
-                        }));
-                    },*/
                     templates: {
                         item(item) {
                             return `<div class="search-results-hit p-4 bg-blue-10 mb-3 rounded">
@@ -220,16 +225,6 @@
             ]);
 
             search.start();
-
-            // If page is loaded with get parameter q="...", use query to start search
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.has("q")) {
-                search.setUiState({
-                    [indexName]: {
-                        query: decodeURIComponent(urlParams.get("q"))
-                    }
-                });
-            }
         }
     }};
 })(Drupal, drupalSettings);
