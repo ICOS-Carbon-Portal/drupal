@@ -34,3 +34,76 @@ function cp_data_products_update_8001() {
 		FieldConfig::create($yml)->save();
 	}
 }
+
+/**
+ * Add use_collection and collection_id fields to data_product_preview block.
+ */
+function cp_data_products_update_8002() {
+
+	$module_path = \Drupal::service('extension.list.module')->getPath('cp_data_products');
+
+	$yml = Yaml::decode(file_get_contents($module_path . '/config/install/field.storage.block_content.field_use_collection.yml'));
+	if (!FieldStorageConfig::loadByName($yml['entity_type'], $yml['field_name'])) {
+		FieldStorageConfig::create($yml)->save();
+	}
+	$yml = Yaml::decode(file_get_contents($module_path . '/config/install/field.storage.block_content.field_collection_id.yml'));
+	if (!FieldStorageConfig::loadByName($yml['entity_type'], $yml['field_name'])) {
+		FieldStorageConfig::create($yml)->save();
+	}
+	$yml = Yaml::decode(file_get_contents($module_path . '/config/install/field.field.block_content.data_product_preview.field_use_collection.yml'));
+	if (!FieldConfig::loadByName($yml['entity_type'], $yml['bundle'], $yml['field_name'])) {
+		FieldConfig::create($yml)->save();
+	}
+	$yml = Yaml::decode(file_get_contents($module_path . '/config/install/field.field.block_content.data_product_preview.field_collection_id.yml'));
+	if (!FieldConfig::loadByName($yml['entity_type'], $yml['bundle'], $yml['field_name'])) {
+		FieldConfig::create($yml)->save();
+	}
+
+	$form_display = \Drupal::entityTypeManager()
+		->getStorage('entity_form_display')
+		->load('block_content.data_product_preview.default');
+	if ($form_display) {
+		$form_display->setComponent('field_use_collection', [
+			'weight' => 31,
+			'settings' => ['display_label' => TRUE],
+			'third_party_settings' => [],
+			'type' => 'boolean_checkbox',
+			'region' => 'content',
+		]);
+		$form_display->setComponent('field_collection_id', [
+			'weight' => 32,
+			'settings' => ['size' => 60, 'placeholder' => ''],
+			'third_party_settings' => [],
+			'type' => 'string_textfield',
+			'region' => 'content',
+		]);
+		$form_display->save();
+	}
+
+	$view_display = \Drupal::entityTypeManager()
+		->getStorage('entity_view_display')
+		->load('block_content.data_product_preview.default');
+	if ($view_display) {
+		$view_display->setComponent('field_use_collection', [
+			'weight' => -1,
+			'label' => 'above',
+			'settings' => [
+				'format' => 'default',
+				'format_custom_false' => '',
+				'format_custom_true' => '',
+			],
+			'third_party_settings' => [],
+			'type' => 'boolean',
+			'region' => 'content',
+		]);
+		$view_display->setComponent('field_collection_id', [
+			'weight' => -2,
+			'label' => 'above',
+			'settings' => ['link_to_entity' => FALSE],
+			'third_party_settings' => [],
+			'type' => 'string',
+			'region' => 'content',
+		]);
+		$view_display->save();
+	}
+}
