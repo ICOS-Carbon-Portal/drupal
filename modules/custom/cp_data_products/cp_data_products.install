@@ -59,24 +59,45 @@ function cp_data_products_update_8002() {
 		FieldConfig::create($yml)->save();
 	}
 
+	$field_config = FieldConfig::loadByName('block_content', 'data_product_preview', 'field_use_collection');
+	if ($field_config) {
+		$field_config->setLabel('Use collection ID instead of data type');
+		$field_config->save();
+	}
+
 	$form_display = \Drupal::entityTypeManager()
 		->getStorage('entity_form_display')
 		->load('block_content.data_product_preview.default');
 	if ($form_display) {
 		$form_display->setComponent('field_use_collection', [
-			'weight' => 31,
+			'weight' => 28,
 			'settings' => ['display_label' => TRUE],
 			'third_party_settings' => [],
 			'type' => 'boolean_checkbox',
 			'region' => 'content',
 		]);
 		$form_display->setComponent('field_collection_id', [
-			'weight' => 32,
+			'weight' => 29,
 			'settings' => ['size' => 60, 'placeholder' => ''],
 			'third_party_settings' => [],
 			'type' => 'string_textfield',
 			'region' => 'content',
 		]);
+		$weights = [
+			'field_preview_type'      => 30,
+			'field_parameter'         => 31,
+			'field_number_of_columns' => 32,
+			'field_display_height'    => 33,
+			'field_keyword'           => 34,
+			'field_show_deprecated'   => 35,
+		];
+		foreach ($weights as $field_name => $weight) {
+			$component = $form_display->getComponent($field_name);
+			if ($component) {
+				$component['weight'] = $weight;
+				$form_display->setComponent($field_name, $component);
+			}
+		}
 		$form_display->save();
 	}
 

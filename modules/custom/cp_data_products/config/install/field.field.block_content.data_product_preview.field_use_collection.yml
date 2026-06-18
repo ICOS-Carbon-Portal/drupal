@@ -8,7 +8,7 @@ id: block_content.data_product_preview.field_use_collection
 field_name: field_use_collection
 entity_type: block_content
 bundle: data_product_preview
-label: 'Use collection ID'
+label: 'Use collection ID instead of data type'
 description: ''
 required: false
 translatable: false
