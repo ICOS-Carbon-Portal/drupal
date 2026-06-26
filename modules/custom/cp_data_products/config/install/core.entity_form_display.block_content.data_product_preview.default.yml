@@ -9,6 +9,8 @@ dependencies:
     - field.field.block_content.data_product_preview.field_parameter
     - field.field.block_content.data_product_preview.field_keyword
     - field.field.block_content.data_product_preview.field_show_deprecated
+    - field.field.block_content.data_product_preview.field_use_collection
+    - field.field.block_content.data_product_preview.field_collection_id
   module:
     - link
   enforced:
@@ -27,30 +29,45 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
-  field_display_height:
-    weight: 30
+  field_use_collection:
+    weight: 28
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
-  field_number_of_columns:
+  field_collection_id:
     weight: 29
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
-    type: number
-    region: content
-  field_parameter:
-    weight: 28
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_parameter:
+    weight: 31
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_number_of_columns:
+    weight: 32
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_display_height:
+    weight: 33
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
   field_keyword:
-    weight: 27
+    weight: 34
     settings:
       size: 60
       placeholder: ''
@@ -58,7 +75,7 @@ content:
     type: string_textfield
     region: content
   field_show_deprecated:
-    weight: 26
+    weight: 35
     settings:
       size: 60
       placeholder: ''

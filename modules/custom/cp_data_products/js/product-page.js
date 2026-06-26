@@ -41,7 +41,7 @@
 	const query = (spec, shouldGetHeight, keyword, showDeprecated) => {
 		const samplingHeight = shouldGetHeight ? 'OPTIONAL{?dobj cpmeta:wasAcquiredBy/cpmeta:hasSamplingHeight ?samplingHeight} .' : '';
 		const filterNextVersion = showDeprecated ? '' : 'FILTER NOT EXISTS {[] cpmeta:isNextVersionOf ?dobj}';
-		const hasKeyword = keyword ? '?dobj cpmeta:hasKeyword "Drought 2018"^^xsd:string' : '';
+		const hasKeyword = keyword ? `?dobj cpmeta:hasKeyword "${keyword}"^^xsd:string` : '';
 
 		return `prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 		prefix cpmeta: <http://meta.icos-cp.eu/ontologies/cpmeta/>
@@ -51,10 +51,31 @@
 			?dobj cpmeta:hasObjectSpec <${spec}> .
 			${filterNextVersion}
 			filter exists {?dobj cpmeta:wasSubmittedBy/prov:endedAtTime []}
-			?dobj cpmeta:wasAcquiredBy [prov:startedAtTime ?start ; prov:endedAtTime ?end] .
+			?dobj cpmeta:wasAcquiredBy/prov:startedAtTime ?start .
+			?dobj cpmeta:wasAcquiredBy/prov:endedAtTime ?end .
 			?dobj cpmeta:wasAcquiredBy/prov:wasAssociatedWith/cpmeta:hasName ?station .
 			${samplingHeight}
 			${hasKeyword}
+		}
+		order by ?station ${shouldGetHeight ? '?samplingHeight' : ''} ?start`;
+	}
+
+	const collectionQuery = (collectionId, shouldGetHeight) => {
+		const samplingHeight = shouldGetHeight ? 'OPTIONAL{?dobj cpmeta:wasAcquiredBy/cpmeta:hasSamplingHeight ?samplingHeight} .' : '';
+
+		return `prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+		prefix cpmeta: <http://meta.icos-cp.eu/ontologies/cpmeta/>
+		prefix prov: <http://www.w3.org/ns/prov#>
+		prefix dcterms: <http://purl.org/dc/terms/>
+		select ?dobj ?station ?samplingHeight ?start ?end
+		where {
+			VALUES ?coll { <https://meta.icos-cp.eu/collections/${collectionId}> }
+			?coll dcterms:hasPart+ ?dobj .
+			filter exists {?dobj cpmeta:wasSubmittedBy/prov:endedAtTime []}
+			?dobj cpmeta:wasAcquiredBy/prov:startedAtTime ?start .
+			?dobj cpmeta:wasAcquiredBy/prov:endedAtTime ?end .
+			?dobj cpmeta:wasAcquiredBy/prov:wasAssociatedWith/cpmeta:hasName ?station .
+			${samplingHeight}
 		}
 		order by ?station ${shouldGetHeight ? '?samplingHeight' : ''} ?start`;
 	}
@@ -64,6 +85,9 @@
 	}
 
 	const displayPreviewTable = (tableConfig) => {
+		const sparqlQuery = tableConfig.useCollection
+			? collectionQuery(tableConfig.collectionId, tableConfig.shouldGetHeight)
+			: query(tableConfig.spec, tableConfig.shouldGetHeight, tableConfig.keyword, tableConfig.showDeprecated);
 		$.ajax({
 			method: 'post',
 			url: 'https://meta.icos-cp.eu/sparql',
@@ -72,7 +96,7 @@
 				'Content-Type': 'text/plain',
 				'Cache-Control': 'max-age=1000000'
 			},
-			data: query(tableConfig.spec, tableConfig.shouldGetHeight, tableConfig.keyword, tableConfig.showDeprecated)
+			data: sparqlQuery
 		}).done(function(result) {
 			let station = '';
 			let rowNumber = 1;

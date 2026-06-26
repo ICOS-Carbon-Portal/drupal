@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.data_product_preview
+    - field.storage.block_content.field_use_collection
+id: block_content.data_product_preview.field_use_collection
+field_name: field_use_collection
+entity_type: block_content
+bundle: data_product_preview
+label: 'Use collection ID instead of data type'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
