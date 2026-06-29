@@ -47,8 +47,6 @@
         menuBackdrop.style.height = dropdownHeight + 'px';
         if (dropdown) {
           if (currentHeight > 0) {
-            // Switching between menus: pre-set clip to exactly what the backdrop already covers,
-            // so the clip only animates the delta (or not at all when shrinking).
             const startClipPct = dropdownHeight > currentHeight
               ? (100 * (dropdownHeight - currentHeight) / dropdownHeight).toFixed(2) + '%'
               : '0%';
@@ -60,7 +58,6 @@
             dropdown.getBoundingClientRect();
             dropdown.style.transition = '';
           } else {
-            // Initial open: clip 100%→0% is already in sync with backdrop growing from 0.
             dropdown.style.visibility = 'visible';
             dropdown.style.opacity = '1';
             dropdown.style.transform = 'translateY(0)';
