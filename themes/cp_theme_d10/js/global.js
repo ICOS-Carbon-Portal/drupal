@@ -17,7 +17,7 @@
           event.preventDefault();
         });
         el.addEventListener('keyup', function (event) {
-          if(event.key === "Enter") {
+          if (event.key === "Enter") {
             let target = el.closest(".top-node");
             if (window.innerWidth < 992) {
               target.classList.toggle("open");
@@ -32,6 +32,7 @@
       }
 
       let committedTopNode = null;
+      let backdropHeight = 0;
       let dwellTimer = null;
       let closeTimer = null;
       let switchTimer = null;
@@ -42,28 +43,26 @@
       function revealDropdown(topNode) {
         if (committedTopNode !== topNode) { return; }
         const dropdown = topNode.querySelector(':scope > .dropdown-menu');
-        const currentHeight = parseInt(menuBackdrop.style.height, 10) || 0;
-        const dropdownHeight = dropdown ? dropdown.offsetHeight : topNode.offsetHeight;
-        menuBackdrop.style.height = dropdownHeight + 'px';
-        if (dropdown) {
-          if (currentHeight > 0) {
-            const startClipPct = dropdownHeight > currentHeight
-              ? (100 * (dropdownHeight - currentHeight) / dropdownHeight).toFixed(2) + '%'
-              : '0%';
-            dropdown.style.transition = 'opacity 0.2s ease-in-out, transform 0.2s ease-in-out';
-            dropdown.style.clipPath = `inset(0 0 ${startClipPct} 0)`;
-            dropdown.style.visibility = 'visible';
-            dropdown.style.opacity = '1';
-            dropdown.style.transform = 'translateY(0)';
-            dropdown.getBoundingClientRect();
-            dropdown.style.transition = '';
-          } else {
-            dropdown.style.visibility = 'visible';
-            dropdown.style.opacity = '1';
-            dropdown.style.transform = 'translateY(0)';
-          }
-          dropdown.style.clipPath = 'inset(0 0 0 0)';
+        const prevHeight = backdropHeight;
+        const newHeight = dropdown ? dropdown.offsetHeight : topNode.offsetHeight;
+        backdropHeight = newHeight;
+        menuBackdrop.style.height = newHeight + 'px';
+        if (!dropdown) { return; }
+
+        if (prevHeight > 0) { // dropdown already visible
+          const startClipPct = newHeight > prevHeight
+            ? (100 * (newHeight - prevHeight) / newHeight).toFixed(2) + '%'
+            : '0%';
+          dropdown.style.transition = 'opacity 0.2s ease-in-out, transform 0.2s ease-in-out';
+          dropdown.style.clipPath = `inset(0 0 ${startClipPct} 0)`;
+          dropdown.getBoundingClientRect(); // commit the start state before restoring the CSS transition
+          dropdown.style.transition = ''; // restore CSS transition, which re-adds clip-path as a transitioning property
         }
+
+        dropdown.style.visibility = 'visible';
+        dropdown.style.opacity = '1';
+        dropdown.style.transform = 'translateY(0)';
+        dropdown.style.clipPath = 'inset(0 0 0 0)';
       }
 
       function showDropdown(topNode) {
@@ -98,6 +97,7 @@
           hideDropdown(committedTopNode);
           committedTopNode = null;
         }
+        backdropHeight = 0;
         menuBackdrop.style.height = '0px';
       }
 
@@ -143,6 +143,7 @@
           }
         });
       });
+
       once('cp_theme_d10', '#cp_theme_d10_menu').forEach(function (el) {
         el.addEventListener('mouseout', function (event) {
           if (event.target === document.activeElement) {
