@@ -78,12 +78,12 @@
         }
       }
 
-      function hideDropdown(topNode, isSwitch) {
+      function hideDropdown(topNode, menuAlreadyOpen) {
         const dropdown = topNode.querySelector(':scope > .dropdown-menu');
         if (!dropdown) { return; }
         dropdown.style.opacity = '';
         dropdown.style.transform = '';
-        if (!isSwitch) {
+        if (!menuAlreadyOpen) {
           dropdown.style.clipPath = '';
         }
         setTimeout(function () {
@@ -94,7 +94,7 @@
 
       function closeMenu() {
         if (committedTopNode) {
-          hideDropdown(committedTopNode);
+          hideDropdown(committedTopNode, false);
           committedTopNode = null;
         }
         backdropHeight = 0;
