@@ -42,13 +42,31 @@
       function revealDropdown(topNode) {
         if (committedTopNode !== topNode) { return; }
         const dropdown = topNode.querySelector(':scope > .dropdown-menu');
+        const currentHeight = parseInt(menuBackdrop.style.height, 10) || 0;
+        const dropdownHeight = dropdown ? dropdown.offsetHeight : topNode.offsetHeight;
+        menuBackdrop.style.height = dropdownHeight + 'px';
         if (dropdown) {
-          dropdown.style.visibility = 'visible';
-          dropdown.style.opacity = '1';
-          dropdown.style.transform = 'translateY(0)';
+          if (currentHeight > 0) {
+            // Switching between menus: pre-set clip to exactly what the backdrop already covers,
+            // so the clip only animates the delta (or not at all when shrinking).
+            const startClipPct = dropdownHeight > currentHeight
+              ? (100 * (dropdownHeight - currentHeight) / dropdownHeight).toFixed(2) + '%'
+              : '0%';
+            dropdown.style.transition = 'opacity 0.2s ease-in-out, transform 0.2s ease-in-out';
+            dropdown.style.clipPath = `inset(0 0 ${startClipPct} 0)`;
+            dropdown.style.visibility = 'visible';
+            dropdown.style.opacity = '1';
+            dropdown.style.transform = 'translateY(0)';
+            dropdown.getBoundingClientRect();
+            dropdown.style.transition = '';
+          } else {
+            // Initial open: clip 100%→0% is already in sync with backdrop growing from 0.
+            dropdown.style.visibility = 'visible';
+            dropdown.style.opacity = '1';
+            dropdown.style.transform = 'translateY(0)';
+          }
+          dropdown.style.clipPath = 'inset(0 0 0 0)';
         }
-        const height = (dropdown ? dropdown.offsetHeight : topNode.offsetHeight) + 'px';
-        menuBackdrop.style.height = height;
       }
 
       function showDropdown(topNode) {
@@ -57,19 +75,25 @@
         const prev = committedTopNode;
         committedTopNode = topNode;
         if (prev && prev !== topNode) {
-          hideDropdown(prev);
+          hideDropdown(prev, true);
           switchTimer = setTimeout(function () { revealDropdown(topNode); }, SWITCH_DELAY);
         } else {
           revealDropdown(topNode);
         }
       }
 
-      function hideDropdown(topNode) {
+      function hideDropdown(topNode, isSwitch) {
         const dropdown = topNode.querySelector(':scope > .dropdown-menu');
         if (!dropdown) { return; }
         dropdown.style.opacity = '';
         dropdown.style.transform = '';
-        setTimeout(function () { dropdown.style.visibility = ''; }, 200);
+        if (!isSwitch) {
+          dropdown.style.clipPath = '';
+        }
+        setTimeout(function () {
+          dropdown.style.visibility = '';
+          dropdown.style.clipPath = '';
+        }, 200);
       }
 
       function closeMenu() {
