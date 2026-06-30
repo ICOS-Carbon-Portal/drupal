@@ -21,7 +21,7 @@
 		$("#stationMapModalLabel").text(title);
 		$('#stationMapModalBody').html($frame);
 
-		new bootstrap.Modal($("#station-map")).show()
+		bootstrap.Modal.getOrCreateInstance(document.getElementById('stationMapModal')).show();
 	}
 
 	function stationsToKML(){
