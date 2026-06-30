@@ -172,6 +172,13 @@
 					searchable: false
 				},
 				{
+					targets: [varNameIdx(Vars.stationId)],
+					fnCreatedCell: function (nTd) {
+						const a = nTd.querySelector('a');
+						if (a) a.classList.add('hide-external');
+					}
+				},
+				{
 					targets: [varNameIdx(Vars.coords)],
 					fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
 
