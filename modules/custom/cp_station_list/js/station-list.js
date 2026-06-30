@@ -113,10 +113,13 @@
 					});
 
 				else if(geoJsonFeature.geometries)
-					geoJsonFeature.geometries.forEach(g => acc.features.push(getFeature(g.type, g.coordinates, props)));
+					acc.features.push({ type: "Feature", geometry: geoJsonFeature, properties: props });
 
 				else
 					acc.features.push(getFeature(geoJsonFeature.type, geoJsonFeature.coordinates, props));
+
+			} else {
+				acc.features.push({ type: "Feature", geometry: null, properties: props });
 			}
 
 			return acc;
