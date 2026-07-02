@@ -9,7 +9,6 @@ dependencies:
     - field.field.block_content.data_product_preview.field_parameter
     - field.field.block_content.data_product_preview.field_keyword
     - field.field.block_content.data_product_preview.field_show_deprecated
-    - field.field.block_content.data_product_preview.field_use_collection
     - field.field.block_content.data_product_preview.field_collection_id
   module:
     - link
@@ -28,13 +27,6 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: content
-  field_use_collection:
-    weight: 28
-    settings:
-      display_label: true
-    third_party_settings: {  }
-    type: boolean_checkbox
     region: content
   field_collection_id:
     weight: 29
