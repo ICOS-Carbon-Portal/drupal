@@ -60,8 +60,9 @@
 		order by ?station ${shouldGetHeight ? '?samplingHeight' : ''} ?start`;
 	}
 
-	const collectionQuery = (collectionId, shouldGetHeight) => {
+	const collectionQuery = (collectionId, shouldGetHeight, spec) => {
 		const samplingHeight = shouldGetHeight ? 'OPTIONAL{?dobj cpmeta:wasAcquiredBy/cpmeta:hasSamplingHeight ?samplingHeight} .' : '';
+		const hasObjectSpec = spec ? `?dobj cpmeta:hasObjectSpec <${spec}> .` : '';
 
 		return `prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 		prefix cpmeta: <http://meta.icos-cp.eu/ontologies/cpmeta/>
@@ -71,6 +72,7 @@
 		where {
 			VALUES ?coll { <https://meta.icos-cp.eu/collections/${collectionId}> }
 			?coll dcterms:hasPart+ ?dobj .
+			${hasObjectSpec}
 			filter exists {?dobj cpmeta:wasSubmittedBy/prov:endedAtTime []}
 			?dobj cpmeta:wasAcquiredBy/prov:startedAtTime ?start .
 			?dobj cpmeta:wasAcquiredBy/prov:endedAtTime ?end .
@@ -86,7 +88,7 @@
 
 	const displayPreviewTable = (tableConfig) => {
 		const sparqlQuery = tableConfig.useCollection
-			? collectionQuery(tableConfig.collectionId, tableConfig.shouldGetHeight)
+			? collectionQuery(tableConfig.collectionId, tableConfig.shouldGetHeight, tableConfig.spec)
 			: query(tableConfig.spec, tableConfig.shouldGetHeight, tableConfig.keyword, tableConfig.showDeprecated);
 		$.ajax({
 			method: 'post',

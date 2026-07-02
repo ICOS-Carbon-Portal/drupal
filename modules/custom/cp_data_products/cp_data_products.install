@@ -128,3 +128,15 @@ function cp_data_products_update_8002() {
 		$view_display->save();
 	}
 }
+
+/**
+ * Make the data type field optional.
+ */
+function cp_data_products_update_8003() {
+
+	$field_config = FieldConfig::loadByName('block_content', 'data_product_preview', 'field_data_type');
+	if ($field_config) {
+		$field_config->setRequired(FALSE);
+		$field_config->save();
+	}
+}
