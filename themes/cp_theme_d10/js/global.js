@@ -43,11 +43,11 @@
       function revealDropdown(topNode) {
         if (committedTopNode !== topNode) { return; }
         const dropdown = topNode.querySelector(':scope > .dropdown-menu');
+        if (!dropdown) { return; }
         const prevHeight = backdropHeight;
-        const newHeight = dropdown ? dropdown.offsetHeight : topNode.offsetHeight;
+        const newHeight = dropdown.offsetHeight;
         backdropHeight = newHeight;
         menuBackdrop.style.height = newHeight + 'px';
-        if (!dropdown) { return; }
 
         if (prevHeight > 0) { // dropdown already visible
           const startClipPct = newHeight > prevHeight
