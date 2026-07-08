@@ -9,7 +9,6 @@ dependencies:
     - field.field.block_content.data_product_preview.field_parameter
     - field.field.block_content.data_product_preview.field_keyword
     - field.field.block_content.data_product_preview.field_show_deprecated
-    - field.field.block_content.data_product_preview.field_use_collection
     - field.field.block_content.data_product_preview.field_collection_id
   module:
     - link
@@ -75,16 +74,6 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-    region: content
-  field_use_collection:
-    weight: -1
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
     region: content
   field_collection_id:
     weight: -2

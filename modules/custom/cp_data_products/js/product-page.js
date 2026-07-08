@@ -38,17 +38,25 @@
 		return Uint8Array.from(atob(ascii), c => c.charCodeAt(0));
 	}
 
-	const query = (spec, shouldGetHeight, keyword, showDeprecated) => {
+	const query = (spec, collectionId, shouldGetHeight, keyword, showDeprecated) => {
 		const samplingHeight = shouldGetHeight ? 'OPTIONAL{?dobj cpmeta:wasAcquiredBy/cpmeta:hasSamplingHeight ?samplingHeight} .' : '';
 		const filterNextVersion = showDeprecated ? '' : 'FILTER NOT EXISTS {[] cpmeta:isNextVersionOf ?dobj}';
-		const hasKeyword = keyword ? `?dobj cpmeta:hasKeyword "${keyword}"^^xsd:string` : '';
+		// hasKeyword relies on an index keyed off the spec; without a spec it fails, so skip it for now.
+		const hasKeyword = (keyword && spec) ? `?dobj cpmeta:hasKeyword "${keyword}"^^xsd:string` : '';
+		const hasObjectSpec = spec ? `?dobj cpmeta:hasObjectSpec <${spec}> .` : '';
+		const hasCollection = collectionId
+			? `VALUES ?coll { <https://meta.icos-cp.eu/collections/${collectionId}> }
+			?coll dcterms:hasPart+ ?dobj .`
+			: '';
 
 		return `prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 		prefix cpmeta: <http://meta.icos-cp.eu/ontologies/cpmeta/>
 		prefix prov: <http://www.w3.org/ns/prov#>
+		prefix dcterms: <http://purl.org/dc/terms/>
 		select ?dobj ?station ?samplingHeight ?start ?end
 		where {
-			?dobj cpmeta:hasObjectSpec <${spec}> .
+			${hasCollection}
+			${hasObjectSpec}
 			${filterNextVersion}
 			filter exists {?dobj cpmeta:wasSubmittedBy/prov:endedAtTime []}
 			?dobj cpmeta:wasAcquiredBy/prov:startedAtTime ?start .
@@ -60,34 +68,15 @@
 		order by ?station ${shouldGetHeight ? '?samplingHeight' : ''} ?start`;
 	}
 
-	const collectionQuery = (collectionId, shouldGetHeight) => {
-		const samplingHeight = shouldGetHeight ? 'OPTIONAL{?dobj cpmeta:wasAcquiredBy/cpmeta:hasSamplingHeight ?samplingHeight} .' : '';
-
-		return `prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-		prefix cpmeta: <http://meta.icos-cp.eu/ontologies/cpmeta/>
-		prefix prov: <http://www.w3.org/ns/prov#>
-		prefix dcterms: <http://purl.org/dc/terms/>
-		select ?dobj ?station ?samplingHeight ?start ?end
-		where {
-			VALUES ?coll { <https://meta.icos-cp.eu/collections/${collectionId}> }
-			?coll dcterms:hasPart+ ?dobj .
-			filter exists {?dobj cpmeta:wasSubmittedBy/prov:endedAtTime []}
-			?dobj cpmeta:wasAcquiredBy/prov:startedAtTime ?start .
-			?dobj cpmeta:wasAcquiredBy/prov:endedAtTime ?end .
-			?dobj cpmeta:wasAcquiredBy/prov:wasAssociatedWith/cpmeta:hasName ?station .
-			${samplingHeight}
-		}
-		order by ?station ${shouldGetHeight ? '?samplingHeight' : ''} ?start`;
-	}
-
 	function timestampToDate(timestamp) {
 		return timestamp.substring(0, timestamp.indexOf('T'));
 	}
 
 	const displayPreviewTable = (tableConfig) => {
-		const sparqlQuery = tableConfig.useCollection
-			? collectionQuery(tableConfig.collectionId, tableConfig.shouldGetHeight)
-			: query(tableConfig.spec, tableConfig.shouldGetHeight, tableConfig.keyword, tableConfig.showDeprecated);
+		if (!tableConfig.spec && !tableConfig.collectionId) {
+			return;
+		}
+		const sparqlQuery = query(tableConfig.spec, tableConfig.collectionId, tableConfig.shouldGetHeight, tableConfig.keyword, tableConfig.showDeprecated);
 		$.ajax({
 			method: 'post',
 			url: 'https://meta.icos-cp.eu/sparql',

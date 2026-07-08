@@ -10,16 +10,14 @@ function cp_data_products_preprocess_block(&$vars) {
     $field_preview_type = $vars['elements']['content']['field_preview_type'];
     $field_keyword = $vars['elements']['content']['field_keyword'];
     $field_show_deprecated = $vars['elements']['content']['field_show_deprecated'];
-    $field_use_collection = $vars['elements']['content']['field_use_collection'];
     $field_collection_id = $vars['elements']['content']['field_collection_id'];
     $vars['#attached']['drupalSettings']['data_product_preview'][$param] = [
-      'spec' => $vars['elements']['content']['field_data_type'][0]['#title'],
+      'spec' => !empty($vars['elements']['content']['field_data_type'][0]) ? $vars['elements']['content']['field_data_type'][0]['#title'] : '',
       'previewType' => isset($field_preview_type) && !empty($field_preview_type[0]) ? $field_preview_type[0]['#markup'] : '',
       'param' => explode(',', $param),
       'shouldGetHeight' => $vars['elements']['content']['field_display_height'][0]['#markup'] == "On" ? true : false,
       'keyword' => !empty($field_keyword[0]) ? $field_keyword[0]['#context']['value'] : '',
       'showDeprecated' => !empty($field_show_deprecated[0]) && $field_show_deprecated[0]['#markup'] == "On" ? true : false,
-      'useCollection' => !empty($field_use_collection[0]) && $field_use_collection[0]['#markup'] == "On" ? true : false,
       'collectionId' => !empty($field_collection_id[0]) ? $field_collection_id[0]['#context']['value'] : '',
     ];
   }

@@ -128,3 +128,42 @@ function cp_data_products_update_8002() {
 		$view_display->save();
 	}
 }
+
+/**
+ * Make the data type field optional, and remove the use_collection override
+ * field in favor of collection ID presence/absence.
+ */
+function cp_data_products_update_8003() {
+
+	$field_config = FieldConfig::loadByName('block_content', 'data_product_preview', 'field_data_type');
+	if ($field_config) {
+		$field_config->setRequired(FALSE);
+		$field_config->save();
+	}
+
+	$form_display = \Drupal::entityTypeManager()
+		->getStorage('entity_form_display')
+		->load('block_content.data_product_preview.default');
+	if ($form_display) {
+		$form_display->removeComponent('field_use_collection');
+		$form_display->save();
+	}
+
+	$view_display = \Drupal::entityTypeManager()
+		->getStorage('entity_view_display')
+		->load('block_content.data_product_preview.default');
+	if ($view_display) {
+		$view_display->removeComponent('field_use_collection');
+		$view_display->save();
+	}
+
+	$field_config = FieldConfig::loadByName('block_content', 'data_product_preview', 'field_use_collection');
+	if ($field_config) {
+		$field_config->delete();
+	}
+
+	$field_storage = FieldStorageConfig::loadByName('block_content', 'field_use_collection');
+	if ($field_storage) {
+		$field_storage->delete();
+	}
+}
