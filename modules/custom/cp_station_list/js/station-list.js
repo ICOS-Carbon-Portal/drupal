@@ -21,7 +21,7 @@
 		$("#stationMapModalLabel").text(title);
 		$('#stationMapModalBody').html($frame);
 
-		new bootstrap.Modal($("#station-map")).show()
+		bootstrap.Modal.getOrCreateInstance(document.getElementById('stationMapModal')).show();
 	}
 
 	function stationsToKML(){
@@ -113,10 +113,13 @@
 					});
 
 				else if(geoJsonFeature.geometries)
-					geoJsonFeature.geometries.forEach(g => acc.features.push(getFeature(g.type, g.coordinates, props)));
+					acc.features.push({ type: "Feature", geometry: geoJsonFeature, properties: props });
 
 				else
 					acc.features.push(getFeature(geoJsonFeature.type, geoJsonFeature.coordinates, props));
+
+			} else {
+				acc.features.push({ type: "Feature", geometry: null, properties: props });
 			}
 
 			return acc;
@@ -170,6 +173,13 @@
 					targets: [Vars.lat, Vars.lon, Vars.geoJson, Vars.themeShort].map(varNameIdx),
 					visible: false,
 					searchable: false
+				},
+				{
+					targets: [varNameIdx(Vars.stationId)],
+					fnCreatedCell: function (nTd) {
+						const a = nTd.querySelector('a');
+						if (a) a.classList.add('hide-external');
+					}
 				},
 				{
 					targets: [varNameIdx(Vars.coords)],
