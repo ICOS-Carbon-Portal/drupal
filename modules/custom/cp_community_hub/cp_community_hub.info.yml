@@ -2,7 +2,7 @@ name: CP Community Hub
 description: Community Hub resource catalogue for internal ICOS community resources
 package: CP
 type: module
-core_version_requirement: ^10
+core_version_requirement: ^10 || ^11
 dependencies:
   - drupal:views
   - drupal:taxonomy
