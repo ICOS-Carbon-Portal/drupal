@@ -192,3 +192,40 @@ function cp_theme_d10_form_node_form_alter(&$form, \Drupal\Core\Form\FormStateIn
     $form['actions']['delete']['#attributes']['class'][] = 'btn btn-danger';
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for html templates.
+ *
+ * Shows a striped bar and a badge on test copies of the site. Enable it in
+ * settings.php with e.g. $settings['env_badge'] = 'demo';
+ */
+function cp_theme_d10_preprocess_html(&$variables) {
+  $badge = \Drupal\Core\Site\Settings::get('env_badge');
+  if (!$badge) {
+    return;
+  }
+
+  $variables['page_top']['env_badge'] = [
+    'border' => [
+      '#type' => 'html_tag',
+      '#tag' => 'div',
+      '#attributes' => ['class' => ['env-border'], 'aria-hidden' => 'true'],
+    ],
+    'badge' => [
+      '#type' => 'html_tag',
+      '#tag' => 'div',
+      '#value' => $badge,
+      '#attributes' => ['class' => ['env-badge']],
+    ],
+    '#attached' => ['library' => ['cp_theme_d10/env-badge']],
+  ];
+
+  // Prefix the browser tab title, like the data portal's staging site.
+  if (isset($variables['head_title']['title'])) {
+    $title = $variables['head_title']['title'];
+    if (!$title instanceof \Drupal\Component\Render\MarkupInterface) {
+      $title = \Drupal\Component\Utility\Html::escape((string) $title);
+    }
+    $variables['head_title']['title'] = \Drupal\Core\Render\Markup::create('🚧 ' . $title);
+  }
+}
