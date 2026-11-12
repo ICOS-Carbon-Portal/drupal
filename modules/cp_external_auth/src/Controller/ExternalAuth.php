@@ -62,7 +62,7 @@ class ExternalAuth {
 		$result = $user->save();
 		
 		if ($result) {
-			\Drupal::logger('cp_external_auth')->notice('Create user: ' . $user->getUsername());	
+			\Drupal::logger('cp_external_auth')->notice('Create user: ' . $user->getAccountName());	
 			return $user;
 		}
 		
