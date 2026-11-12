@@ -6,9 +6,11 @@
 function cp_search_theme() {
   return [
     'search_results_page' => [
+      'variables' => [],
       'template' => 'search-results-page'
     ],
     'cp_search_form_block' => [
+      'variables' => [],
       'template' => 'cp-search-form-block'
     ]
   ];
