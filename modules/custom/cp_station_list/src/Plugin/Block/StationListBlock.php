@@ -25,7 +25,8 @@ class StationListBlock extends BlockBase
 		$country = $this->configuration['station_list_block_country'] ?? '';
 
 		return [
-			'#theme' => 'station_list_block',
+			// block.js fills the block with the station table.
+			'#markup' => '',
 			'#attached' => [
 				'drupalSettings' => [
 					'stationList' => [

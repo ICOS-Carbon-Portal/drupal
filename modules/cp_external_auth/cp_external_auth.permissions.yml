@@ -1,4 +1,0 @@
-access external_auth login:
-  title: Access CP external auth login page
-  description: Allow users to login via CP external auth
-  restrict access: false
