@@ -128,7 +128,7 @@
 					rowNumber++;
 				}
 				return row;
-			}).join()).map(function() {
+			}).join('')).filter('tr').map(function() {
 				while (this.children.length <= $(`#${tableConfig.param[0]}-table thead th`).length - 1) {
 					let td = document.createElement('td');
 					$(this).append(td);

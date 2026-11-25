@@ -9,12 +9,8 @@
 /themes/contrib/
 
 !modules/custom/
-!modules/cp_blogs/
 !modules/cp_contacts/
-!modules/cp_data_search/
 !modules/cp_events/
-!modules/cp_external_auth/
-!modules/ns_stationdata/
 
 .csslintrc
 .editorconfig
